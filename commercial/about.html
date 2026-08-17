@@ -379,23 +379,6 @@
 <body>
 
 <!-- NAVBAR - CANONICAL (see commercial/components/navbar.html) -->
-<!-- UTILITY BAR - top tier, ChannelSwitcher only -->
-<div class="utility-bar">
-  <div class="utility-bar__inner">
-    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-        <span class="channel-switch__full">Home</span>
-      </a>
-      <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
-        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
-      </a>
-      <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
-        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-      </a>
-    </div>
-  </div>
-</div>
 
 <!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
 <nav class="navbar" id="navbar">
@@ -453,11 +436,23 @@
         </div>
       </div>
       <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
-      <a href="/commercial/resources.html" class="navbar__link">Resources</a>
+      <a href="/commercial/guides/index.html" class="navbar__link">Resources</a>
       <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
     </div>
 
     <div class="navbar__right">
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -484,7 +479,7 @@
   <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
   <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
   <a href="/commercial/business-loans.html" onclick="closeMobile()">All Business Loans</a>
-  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/guides/index.html" onclick="closeMobile()">Resources</a>
   <a href="/commercial/broker-portal.html" onclick="closeMobile()">Broker Portal</a>
   <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
   <a href="/commercial/about.html" onclick="closeMobile()">About</a>
@@ -694,14 +689,18 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container container--wide">
-    <div class="footer__grid">
+    <div class="footer__grid footer__grid--condensed">
+
+      <!-- Column 1: Brand, contact, badges -->
       <div class="footer__brand-col">
-        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding"><img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding"></a>
-        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers. Then we get it done. Free. No credit check. 24 hours.</p>
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
         <div class="footer__contact">
           <div class="footer__contact-item">&#128222; 1300 161 641</div>
           <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
-          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
         </div>
         <div class="footer__badges">
           <span class="footer__badge">ACL 387856</span>
@@ -710,24 +709,53 @@
           <span class="footer__badge">Fintech Australia</span>
         </div>
       </div>
-      <div>
-        <h4 class="footer__heading">Products</h4>
-        <div class="footer__links"><a href="/commercial/business-term-loans.html">Term Loan</a><a href="/commercial/business-line-of-credit.html">Line of Credit</a><a href="/commercial/invoice-finance.html">Invoice Finance</a><a href="/commercial/trade-finance.html">Trade Finance</a><a href="/commercial/merchant-cash-advance.html">Merchant Cash Advance</a><a href="/commercial/charge-card.html">Charge Card</a><a href="/commercial/overdraft.html">Overdraft</a><a href="/commercial/finance-lease.html">Finance Lease</a><a href="/commercial/chattel-mortgage.html">Chattel Mortgage</a></div>
-        <div class="footer__links footer__links--more"><a href="/commercial/operating-lease.html">Operating Lease</a><a href="/commercial/debtor-finance.html">Debtor Finance</a><a href="/commercial/fund-an-invoice.html">Fund an Invoice</a><a href="/commercial/export-finance.html">Export Finance</a><a href="/commercial/supply-chain-funding.html">Supply Chain</a><a href="/commercial/r-and-d-funding.html">R&amp;D Funding</a><a href="/commercial/second-mortgage.html">Second Mortgage</a><a href="/commercial/self-employed-home-loan.html">Self-Employed Home Loan</a></div>
+
+      <!-- Column 2: condensed sitemap - Channels / Company / Legal grouped
+           into one column so the footer reads as 2 columns overall
+           (brand col + this link col) on every page, every channel. -->
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Channels</h4>
+          <div class="footer__links">
+            <a href="/commercial/business-loans.html">Business Loans</a>
+            <a href="/connect/index.html">Connect</a>
+            <a href="/personal-and-property/index.html">Personal &amp; Property</a>
+            <a href="/commercial/guides/index.html">Guides &amp; Tools</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/commercial/about.html">About Us</a>
+            <a href="/commercial/broker-portal.html">Broker Portal</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/commercial/apply.html">Get Started</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/commercial/privacy.html">Privacy Policy</a>
+            <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
       </div>
-      <div>
-        <h4 class="footer__heading">Resources</h4>
-        <div class="footer__links"><a href="/commercial/resources.html">All Guides &amp; Tools</a><a href="/commercial/guides/compare-business-loans.html">Compare Business Loans</a><a href="/commercial/guides/business-term-loans-guide.html">Term Loans Guide</a><a href="/commercial/guides/business-line-of-credit-guide.html">Line of Credit Guide</a><a href="/commercial/repayment-calculator.html">Repayment Calculator</a><a href="/commercial/equipment-calculator.html">Equipment Calculator</a></div>
-      </div>
-      <div>
-        <h4 class="footer__heading">Company</h4>
-        <div class="footer__links"><a href="/commercial/about.html">About Us</a><a href="/commercial/comparison-report.html">Compare Report</a><a href="/commercial/meet-cashper.html">Meet Cashper</a><a href="/commercial/apply.html">Get Started</a></div>
-      </div>
+
     </div>
-    <div class="footer__disclaimer"><p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p></div>
+
+    <!-- FooterLegal (global, componentized once per CLAUDE.md rule 8) -->
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+
     <div class="footer__bottom">
       <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
-      <div class="footer__bottom-links"><a href="/commercial/privacy.html">Privacy Policy</a><a href="/commercial/terms.html">Terms &amp; Conditions</a><a href="/commercial/credit-guide.html">Credit Guide</a></div>
+      <div class="footer__bottom-links">
+        <a href="/commercial/privacy.html">Privacy Policy</a>
+        <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
+      </div>
     </div>
   </div>
 </footer>

@@ -2459,23 +2459,6 @@ input:focus, select:focus, textarea:focus {
 <!-- ============================================
      NAVBAR
      ============================================ -->
-<!-- UTILITY BAR - top tier, ChannelSwitcher only -->
-<div class="utility-bar">
-  <div class="utility-bar__inner">
-    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-        <span class="channel-switch__full">Home</span>
-      </a>
-      <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
-        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
-      </a>
-      <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
-        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-      </a>
-    </div>
-  </div>
-</div>
 
 <!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
 <nav class="navbar" id="navbar">
@@ -2533,11 +2516,23 @@ input:focus, select:focus, textarea:focus {
         </div>
       </div>
       <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
-      <a href="/commercial/resources.html" class="navbar__link">Resources</a>
+      <a href="/commercial/guides/index.html" class="navbar__link">Resources</a>
       <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
     </div>
 
     <div class="navbar__right">
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -2564,7 +2559,7 @@ input:focus, select:focus, textarea:focus {
   <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
   <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
   <a href="/commercial/business-loans.html" onclick="closeMobile()">All Business Loans</a>
-  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/guides/index.html" onclick="closeMobile()">Resources</a>
   <a href="/commercial/broker-portal.html" onclick="closeMobile()">Broker Portal</a>
   <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
   <a href="/commercial/about.html" onclick="closeMobile()">About</a>
@@ -3645,7 +3640,7 @@ input:focus, select:focus, textarea:focus {
             <a href="/commercial/business-loans.html">Business Loans</a>
             <a href="/connect/index.html">Connect</a>
             <a href="/personal-and-property/index.html">Personal &amp; Property</a>
-            <a href="/commercial/resources.html">Guides &amp; Tools</a>
+            <a href="/commercial/guides/index.html">Guides &amp; Tools</a>
           </div>
         </div>
         <div class="footer__links-group">

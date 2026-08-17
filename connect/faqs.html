@@ -66,23 +66,6 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- NAVBAR - CANONICAL (see commercial/components/navbar.html; CLAUDE.md rule 14) -->
-<!-- UTILITY BAR - top tier, ChannelSwitcher only -->
-<div class="utility-bar">
-  <div class="utility-bar__inner">
-    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-        <span class="channel-switch__full">Home</span>
-      </a>
-      <a href="/connect/index.html" class="channel-switch__option active active--connect" aria-current="page" aria-label="Connect">
-        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
-      </a>
-      <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
-        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-      </a>
-    </div>
-  </div>
-</div>
 
 <!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
 <nav class="navbar" id="navbar">
@@ -99,6 +82,18 @@
     </div>
 
     <div class="navbar__right">
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option active active--connect" aria-current="page" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
