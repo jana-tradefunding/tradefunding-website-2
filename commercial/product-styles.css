@@ -1,5 +1,5 @@
 /* ================================================================
-   TRADE FUNDING — PRODUCT PAGE STYLES (MASTER TEMPLATE)
+   TRADE FUNDING  -  PRODUCT PAGE STYLES (MASTER TEMPLATE)
    ================================================================
    This file is the single source of truth for all product page
    section styling. It relies on shared-styles.css for:
@@ -15,7 +15,7 @@
 
 
 /* ================================================================
-   0. PRODUCT PAGE — SHARED TOKENS & SECTION RHYTHM
+   0. PRODUCT PAGE  -  SHARED TOKENS & SECTION RHYTHM
    ================================================================ */
 .product-section {
   padding: 80px 0;
@@ -75,7 +75,7 @@
 
 
 /* ================================================================
-   1. HERO — .product-hero
+   1. HERO  -  .product-hero
    ================================================================ */
 .product-hero {
   position: relative;
@@ -211,7 +211,7 @@
 
 
 /* ================================================================
-   2. HOW IT WORKS — .product-how
+   2. HOW IT WORKS  -  .product-how
    ================================================================ */
 .product-how {
   background: var(--light-bg);
@@ -299,7 +299,7 @@
 
 
 /* ================================================================
-   3. PRODUCT VARIANTS — .product-variants
+   3. PRODUCT VARIANTS  -  .product-variants
    ================================================================ */
 .product-variants {
   background: var(--white);
@@ -332,7 +332,7 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* Accent color modifiers — each card can use a different left border */
+/* Accent color modifiers  -  each card can use a different left border */
 .product-variants__card--skyblue { border-left-color: var(--skyblue); }
 .product-variants__card--peach   { border-left-color: var(--peach); }
 .product-variants__card--gold    { border-left-color: var(--gold); }
@@ -379,7 +379,7 @@
 
 
 /* ================================================================
-   4. CALCULATOR — .product-calc
+   4. CALCULATOR  -  .product-calc
    ================================================================ */
 .product-calc {
   background: var(--white);
@@ -560,9 +560,9 @@
 }
 
 
-/* [DEPRECATED — replaced by .pc-compare on redesigned pages. Remove after full rollout.] */
+/* [DEPRECATED  -  replaced by .pc-compare on redesigned pages. Remove after full rollout.] */
 /* ================================================================
-   5. COMPARISON TABLE — .product-compare
+   5. COMPARISON TABLE  -  .product-compare
    ================================================================ */
 .product-compare {
   background: var(--light-bg);
@@ -634,7 +634,7 @@
   background: #FAFBFC;
 }
 
-/* Highlighted row — current product */
+/* Highlighted row  -  current product */
 .product-compare__table tr.is-current {
   background: rgba(84,180,246,0.06);
   border-left: 4px solid var(--skyblue);
@@ -650,9 +650,9 @@
 }
 
 
-/* [DEPRECATED — replaced by .pc-elig on redesigned pages. Remove after full rollout.] */
+/* [DEPRECATED  -  replaced by .pc-elig on redesigned pages. Remove after full rollout.] */
 /* ================================================================
-   6. ELIGIBILITY — .product-eligibility
+   6. ELIGIBILITY  -  .product-eligibility
    ================================================================ */
 .product-eligibility {
   background: var(--white);
@@ -713,9 +713,9 @@
 }
 
 
-/* [DEPRECATED — replaced by .pc-proscons on redesigned pages. Remove after full rollout.] */
+/* [DEPRECATED  -  replaced by .pc-proscons on redesigned pages. Remove after full rollout.] */
 /* ================================================================
-   7. PROS & CONS — .product-proscons
+   7. PROS & CONS  -  .product-proscons
    ================================================================ */
 .product-proscons {
   background: var(--light-bg);
@@ -824,9 +824,9 @@
 }
 
 
-/* [DEPRECATED — replaced by .pc-proof on redesigned pages. Remove after full rollout.] */
+/* [DEPRECATED  -  replaced by .pc-proof on redesigned pages. Remove after full rollout.] */
 /* ================================================================
-   8. CASE STUDY — .product-case
+   8. CASE STUDY  -  .product-case
    ================================================================ */
 .product-case {
   background: var(--white);
@@ -934,9 +934,9 @@
 }
 
 
-/* [DEPRECATED — replaced by .pc-lenders on redesigned pages. Remove after full rollout.] */
+/* [DEPRECATED  -  replaced by .pc-lenders on redesigned pages. Remove after full rollout.] */
 /* ================================================================
-   9. LENDER PANEL — .product-lenders
+   9. LENDER PANEL  -  .product-lenders
    ================================================================ */
 .product-lenders {
   background: var(--light-bg);
@@ -992,9 +992,9 @@
 }
 
 
-/* [DEPRECATED — replaced by .pc-faq on redesigned pages. Remove after full rollout.] */
+/* [DEPRECATED  -  replaced by .pc-faq on redesigned pages. Remove after full rollout.] */
 /* ================================================================
-   10. FAQ — .product-faq
+   10. FAQ  -  .product-faq
    ================================================================ */
 .product-faq {
   background: var(--white);
@@ -1073,7 +1073,7 @@
 
 .product-faq__answer[aria-hidden="false"],
 .product-faq__item.is-open .product-faq__answer {
-  max-height: 600px; /* generous upper bound — will shrink to content */
+  max-height: 600px; /* generous upper bound  -  will shrink to content */
 }
 
 .product-faq__answer-body {
@@ -1089,7 +1089,7 @@
 
 
 /* ================================================================
-   11. FINAL CTA — .product-cta
+   11. FINAL CTA  -  .product-cta
    ================================================================ */
 .product-cta {
   background: var(--navy);
@@ -1293,7 +1293,7 @@
 
 
 /* ================================================================
-   RESPONSIVE — 1024px (Tablet landscape)
+   RESPONSIVE  -  1024px (Tablet landscape)
    ================================================================ */
 @media (max-width: 1024px) {
   /* Hero */
@@ -1328,7 +1328,7 @@
 
 
 /* ================================================================
-   RESPONSIVE — 768px (Tablet portrait)
+   RESPONSIVE  -  768px (Tablet portrait)
    ================================================================ */
 @media (max-width: 768px) {
   /* Shared section padding */
@@ -1356,7 +1356,7 @@
     max-width: 100%;
   }
 
-  /* How it works — vertical timeline */
+  /* How it works  -  vertical timeline */
   .product-how__steps {
     flex-direction: column;
     align-items: flex-start;
@@ -1436,10 +1436,10 @@
 
 
 /* ================================================================
-   RESPONSIVE — 480px (Mobile)
+   RESPONSIVE  -  480px (Mobile)
    ================================================================ */
 @media (max-width: 480px) {
-  /* Hero stats — single column */
+  /* Hero stats  -  single column */
   .product-hero__stats {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1456,7 +1456,7 @@
     border-bottom: 1px solid #E8ECF1;
   }
 
-  /* Eligibility — single column */
+  /* Eligibility  -  single column */
   .product-eligibility__grid {
     grid-template-columns: 1fr;
   }
@@ -1466,7 +1466,7 @@
     grid-template-columns: 1fr;
   }
 
-  /* Lenders — single column on very small screens */
+  /* Lenders  -  single column on very small screens */
   .product-lenders__grid {
     grid-template-columns: 1fr;
   }
@@ -1531,7 +1531,7 @@
 }
 
 /* ================================================================
-   SECTION: PRODUCT COMPARISON — .pc-compare
+   SECTION: PRODUCT COMPARISON  -  .pc-compare
    ================================================================ */
 .pc-compare {
   padding: 80px 0;
@@ -1803,7 +1803,7 @@
 }
 
 /* ================================================================
-   SECTION: PROS & CONS — .pc-proscons
+   SECTION: PROS & CONS  -  .pc-proscons
    ================================================================ */
 .pc-proscons {
   padding: 80px 0;
@@ -1981,7 +1981,7 @@
 }
 
 /* ================================================================
-   SECTION: REPAYMENT CALCULATOR — .pc-calc
+   SECTION: REPAYMENT CALCULATOR  -  .pc-calc
    ================================================================ */
 .pc-calc {
   padding: 80px 0;
@@ -2319,7 +2319,7 @@
 }
 
 /* ================================================================
-   SECTION: SOCIAL PROOF — .pc-proof
+   SECTION: SOCIAL PROOF  -  .pc-proof
    ================================================================ */
 .pc-proof {
   padding: 80px 0;
@@ -2479,7 +2479,7 @@
 }
 
 /* ================================================================
-   SECTION: ELIGIBILITY TIERS — .pc-elig
+   SECTION: ELIGIBILITY TIERS  -  .pc-elig
    ================================================================ */
 .pc-elig {
   padding: 80px 0;
@@ -2729,7 +2729,7 @@
 }
 
 /* ================================================================
-   SECTION: GETTING STARTED TIMELINE — .pc-started
+   SECTION: GETTING STARTED TIMELINE  -  .pc-started
    ================================================================ */
 .pc-started {
   padding: 80px 0;
@@ -2899,7 +2899,7 @@
 }
 
 /* ================================================================
-   SECTION: FAQ — .pc-faq
+   SECTION: FAQ  -  .pc-faq
    ================================================================ */
 .pc-faq {
   padding: 80px 0;
@@ -3004,7 +3004,7 @@
 }
 
 /* ================================================================
-   SECTION: BOTTOM CTA — .pc-bottom-cta
+   SECTION: BOTTOM CTA  -  .pc-bottom-cta
    ================================================================ */
 .pc-bottom-cta {
   background: var(--navy);
@@ -3101,7 +3101,7 @@
 }
 
 /* ================================================================
-   HOW IT WORKS — .hiw-section (3-card layout)
+   HOW IT WORKS  -  .hiw-section (3-card layout)
    ================================================================ */
 .hiw-section { background: linear-gradient(180deg, #F5F7FA 0%, #EDF1F7 100%); padding: clamp(80px, 10vw, 120px) 0; color: var(--navy); position: relative; overflow: hidden; }
 .hiw-header { text-align: center; margin-bottom: 64px; }

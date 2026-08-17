@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Trade Funding. Call 1300 161 641, email us, or send a message and pick your department so your enquiry reaches the right team first time.">
+<title>Contact Us | Trade Funding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/commercial/shared-styles.css">
+
+<style>
+.legal-hero { padding: 130px 0 60px; background: #FAFBFD; }
+.legal-breadcrumb { font-size: 0.78rem; margin-bottom: 16px; }
+.legal-breadcrumb a { color: var(--skyblue); }
+.legal-hero h1 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--navy); margin-bottom: 8px; }
+.legal-hero__sub { font-size: 0.9rem; color: var(--text-secondary); max-width: 620px; }
+.contact-content { max-width: 760px; margin: 0 auto; padding: 60px 24px 90px; }
+.contact-content p { font-size: 0.9rem; line-height: 1.75; color: #4A5568; margin-bottom: 16px; }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: start; margin-top: 32px; }
+
+.contact-details { background: rgba(84,180,246,0.04); border: 1px solid rgba(84,180,246,0.1); border-radius: 12px; padding: 28px 24px; }
+.contact-details h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 16px; }
+.contact-details__item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: #4A5568; margin-bottom: 14px; }
+.contact-details__item a { color: var(--skyblue); text-decoration: none; }
+.contact-details__item a:hover { text-decoration: underline; }
+
+.contact-form { background: #fff; border: 1px solid rgba(0,28,68,0.08); border-radius: 12px; padding: 28px 24px; box-shadow: 0 8px 24px rgba(0,28,68,0.04); }
+.contact-form h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 18px; }
+.form-field { margin-bottom: 18px; }
+.form-field label { display: block; font-family: var(--font-heading); font-weight: 600; font-size: 0.82rem; color: var(--navy); margin-bottom: 6px; }
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: var(--navy);
+  padding: 11px 14px;
+  border: 1px solid rgba(0,28,68,0.15);
+  border-radius: 8px;
+  background: #fff;
+  box-sizing: border-box;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--skyblue);
+  box-shadow: 0 0 0 3px rgba(84,180,246,0.15);
+}
+.form-field textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  display: inline-block;
+  background: var(--skyblue);
+  color: #fff;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+.form-submit:hover { filter: brightness(0.95); }
+
+@media (max-width: 768px) {
+  .legal-hero { padding: 100px 0 40px; }
+  .legal-hero h1 { font-size: clamp(1.3rem, 4vw, 1.8rem); }
+  .contact-content { padding: 40px 16px 60px; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR  -  canonical, sourced from
+     /commercial/components/navbar.html (CLAUDE.md rule 14).
+     This is the sitewide /contact/ page (per Master IA §2B)  - 
+     it sits outside all three channels, so none of the
+     channel-switch options carry active/aria-current here.
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="/commercial/index.html" class="navbar__logo">
+      <img src="/commercial/assets/logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <a href="/commercial/index.html" class="navbar__link">Home</a>
+      <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/commercial/resources.html" class="navbar__link">Resources</a>
+      <a href="/commercial/about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <!-- ChannelSwitcher  -  CLAUDE.md rule 13: always all three channels,
+           every page, no exceptions. This page sits outside all three
+           channels (it's the shared sitewide Contact page), so none of
+           the three options carries active / aria-current="page" here. -->
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
+      <a href="/commercial/apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/commercial/index.html" onclick="closeMobile()">Home</a>
+  <a href="/commercial/index.html#why" onclick="closeMobile()">Why Us</a>
+  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/about.html" onclick="closeMobile()">About</a>
+  <div class="mobile-nav__switch">
+    <span class="mobile-nav__switch-label">Trade Funding also does</span>
+    <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
+    <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
+  </div>
+  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="legal-hero">
+  <div style="max-width: 760px; margin: 0 auto; padding: 0 24px; text-align: center;">
+    <div class="legal-breadcrumb"><a href="/commercial/index.html">Home</a> &gt; Contact Us</div>
+    <h1>Talk to the right team, first time.</h1>
+    <p class="legal-hero__sub" style="margin: 0 auto;">Pick your department below so your enquiry lands with the right team straight away, no back-and-forth required.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     CONTACT CONTENT
+     ============================================ -->
+<div class="contact-content">
+
+  <div class="contact-grid">
+
+    <div class="contact-details">
+      <h2>Get in touch directly</h2>
+      <div class="contact-details__item">&#128222; <a href="tel:1300161641">1300 161 641</a></div>
+      <!-- hello@tradefunding.com.au routing to support@ and inbox access is still
+           unconfirmed per docs/plan.md §1 (operational, needs Ben) - this is
+           an operational flag, not a blocker to publishing this page. Do not
+           treat this address as immutable until confirmed. -->
+      <div class="contact-details__item">&#128231; <a href="mailto:hello@tradefunding.com.au">hello@tradefunding.com.au</a></div>
+      <p style="margin-top: 20px; margin-bottom: 0; font-size: 0.82rem;">We aim to respond to all enquiries within one business day.</p>
+    </div>
+
+    <div class="contact-form">
+      <h2>Send message</h2>
+      <!-- Static HTML phase (Phase 5) - no backend yet. The real submission
+           endpoint (Payload/Next.js API route) is a Phase 6 concern, not
+           built here. action/method below are placeholders only. -->
+      <form action="#" method="post">
+        <div class="form-field">
+          <label for="contact-name">Name</label>
+          <input type="text" id="contact-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label for="contact-phone">Phone</label>
+          <input type="tel" id="contact-phone" name="phone" autocomplete="tel" required>
+        </div>
+        <div class="form-field">
+          <label for="contact-department">Department</label>
+          <select id="contact-department" name="department" required>
+            <option value="">Select a department</option>
+            <option value="general">General</option>
+            <option value="broker">Broker</option>
+            <option value="connect-vendor">Connect Vendor Enquiry</option>
+            <option value="personal-and-property">Personal &amp; Property</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send message</button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ============================================
+     FOOTER  -  canonical, sourced from
+     /commercial/components/footer.html (CLAUDE.md rule 14).
+     ============================================ -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid footer__grid--condensed">
+
+      <!-- Column 1: Brand, contact, badges -->
+      <div class="footer__brand-col">
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers - then we get it done. Free. No credit check. 24 hours.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; <!-- BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+
+      <!-- Column 2: condensed sitemap -->
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Channels</h4>
+          <div class="footer__links">
+            <a href="/commercial/business-loans.html">Business Loans</a>
+            <a href="/connect/index.html">Connect</a>
+            <a href="/personal-and-property/index.html">Personal &amp; Property</a>
+            <a href="/commercial/resources.html">Guides &amp; Tools</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/commercial/about.html">About Us</a>
+            <a href="/commercial/broker-portal.html">Broker Portal</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/commercial/apply.html">Get Started</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/commercial/privacy.html">Privacy Policy</a>
+            <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FooterLegal (global, componentized once per CLAUDE.md rule 8) -->
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links">
+        <a href="/commercial/privacy.html">Privacy Policy</a>
+        <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  var navbar = document.getElementById('navbar');
+
+  function handleNavScroll() {
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+
+  window.closeMobile = function() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+})();
+</script>
+
+<script src="/commercial/cookie-consent.js"></script>
+</body>
+</html>

@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared-styles.css">
+<link rel="stylesheet" href="/commercial/shared-styles.css">
 
 <!-- Schema: Organization + WebSite + AggregateRating -->
 <script type="application/ld+json">
@@ -463,7 +463,7 @@
 }
 
 /* ========================================
-   HERO — Hybrid Engine (Qualifier + Mini Report)
+   HERO  -  Hybrid Engine (Qualifier + Mini Report)
    ======================================== */
 .hero {
   background: var(--navy);
@@ -1106,7 +1106,7 @@
 }
 
 /* ========================================
-   WHAT YOU GET — S.T.A.R. + BUSINESS OVERVIEW
+   WHAT YOU GET  -  S.T.A.R. + BUSINESS OVERVIEW
    ======================================== */
 .wyg-section {
   padding: clamp(80px, 10vw, 120px) 0;
@@ -1473,7 +1473,7 @@
 }
 
 /* ========================================
-   HOW IT WORKS — 3-CARD HORIZONTAL
+   HOW IT WORKS  -  3-CARD HORIZONTAL
    ======================================== */
 /* Dark section */
 .hiw-section {
@@ -1504,7 +1504,7 @@
   margin-bottom: 48px;
 }
 
-/* Cards with layered shadows — Stripe-style depth */
+/* Cards with layered shadows  -  Stripe-style depth */
 .hiw-card {
   background: var(--white);
   border: 1px solid rgba(0,28,68,0.06);
@@ -1535,7 +1535,7 @@
 /* Card 3 accent: green gradient */
 .hiw-card--step3 { --accent-start: #FBB766; --accent-end: #e8a050; }
 
-/* Embedded mockup area — dark panel inside white card */
+/* Embedded mockup area  -  dark panel inside white card */
 .hiw-card__mockup {
   padding: 20px 20px 0;
   min-height: 180px;
@@ -1547,7 +1547,7 @@
   margin: 12px 12px 0;
 }
 
-/* Mockup inner — floating UI panel */
+/* Mockup inner  -  floating UI panel */
 .hiw-mockup {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
@@ -1856,7 +1856,7 @@
   100% { transform: translateX(-50%); }
 }
 
-/* Lender logo tiles — greywash default, colour on hover */
+/* Lender logo tiles  -  greywash default, colour on hover */
 .lender-logo {
   flex-shrink: 0;
   width: 148px;
@@ -2140,7 +2140,7 @@
 }
 
 /* ========================================
-   FINAL CTA — CONVERSATIONAL QUALIFIER
+   FINAL CTA  -  CONVERSATIONAL QUALIFIER
    ======================================== */
 .final-cta {
   padding: clamp(80px, 10vw, 120px) 0;
@@ -2629,7 +2629,7 @@
   .container { padding: 0 16px; }
 }
 
-/* What You Get report — mobile responsive */
+/* What You Get report  -  mobile responsive */
 @media (max-width: 768px) {
   .wyg-report [style*="grid-template-columns:40px"] {
     grid-template-columns: 32px 1fr !important;
@@ -2661,7 +2661,7 @@
   }
 }
 
-/* Mobile sticky CTA — per spec requirement */
+/* Mobile sticky CTA  -  per spec requirement */
 .mobile-sticky-cta {
   display: none;
   position: fixed;
@@ -2710,7 +2710,7 @@
   overflow: hidden;
 }
 
-/* Light section watermarks — very faint navy ghost */
+/* Light section watermarks  -  very faint navy ghost */
 .product-how::after,
 .product-compare::after,
 .product-eligibility::after,
@@ -2750,7 +2750,7 @@
   top: -20px;
 }
 
-/* Dark section watermarks — white/lighter ghost */
+/* Dark section watermarks  -  white/lighter ghost */
 .product-hero::after,
 .final-cta::after,
 .product-cta::after,
@@ -2809,7 +2809,7 @@
 
 /* ========================================
    PREMIUM ENHANCEMENTS v2
-   Additive improvements — better transitions,
+   Additive improvements  -  better transitions,
    shadows, hover states, micro-interactions
    ======================================== */
 
@@ -3027,12 +3027,12 @@ html {
 }
 
 /* ========================================
-   TASTE-SKILL PASS — DENSITY:4, VARIANCE:8
+   TASTE-SKILL PASS  -  DENSITY:4, VARIANCE:8
    Diffusion shadows, Art Gallery spacing,
    Liquid Glass, Spotlight effects, Grain
    ======================================== */
 
-/* --- DENSITY:4 Art Gallery spacing — generous section gaps --- */
+/* --- DENSITY:4 Art Gallery spacing  -  generous section gaps --- */
 .pillars,
 .wyg-section,
 .products,
@@ -3048,7 +3048,7 @@ html {
   padding-bottom: clamp(96px, 12vw, 144px);
 }
 
-/* --- Diffusion shadows — wide-spreading, light (taste-skill Rule 4) --- */
+/* --- Diffusion shadows  -  wide-spreading, light (taste-skill Rule 4) --- */
 .pillar-card {
   box-shadow: 0 1px 2px rgba(0, 28, 68, 0.04);
 }
@@ -3099,14 +3099,14 @@ html {
   box-shadow: 0 24px 56px -12px rgba(0, 28, 68, 0.12), 0 0 0 1px rgba(84, 180, 246, 0.12);
 }
 
-/* --- Form inputs — accent glow on focus (taste-skill Rule 6) --- */
+/* --- Form inputs  -  accent glow on focus (taste-skill Rule 6) --- */
 .qualifier__input:focus {
   border-color: var(--skyblue);
   box-shadow: 0 0 0 4px rgba(84, 180, 246, 0.12);
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* --- Qualifier step — glow when active (taste-skill: Liquid Glass) --- */
+/* --- Qualifier step  -  glow when active (taste-skill: Liquid Glass) --- */
 .qualifier__step.active {
   box-shadow:
     0 8px 40px rgba(0, 0, 0, 0.2),
@@ -3114,36 +3114,36 @@ html {
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* --- Step number — active glow ring --- */
+/* --- Step number  -  active glow ring --- */
 .qualifier__step.active .qualifier__step-num {
   box-shadow: 0 0 0 4px rgba(84, 180, 246, 0.15), 0 4px 16px rgba(84, 180, 246, 0.25);
 }
 
-/* --- HIW cards — subtle glow on dark background --- */
+/* --- HIW cards  -  subtle glow on dark background --- */
 .hiw-card {
   box-shadow: 0 4px 24px rgba(0,0,0,0.2);
 }
 
-/* --- Lender marquee — clean, refined --- */
+/* --- Lender marquee  -  clean, refined --- */
 .lender-logo:active {
   transform: translateY(0) scale(0.98);
   background: rgba(84, 180, 246, 0.06);
 }
 
-/* --- Reviews rating badge — refined depth --- */
+/* --- Reviews rating badge  -  refined depth --- */
 .reviews__rating-badge {
   box-shadow: 0 4px 16px rgba(0, 28, 68, 0.04);
 }
 
-/* --- Footer — subtle top gradient line per taste-skill --- */
+/* --- Footer  -  subtle top gradient line per taste-skill --- */
 
 
-/* --- S.T.A.R. card — no box shadow (left-border accent mode) --- */
+/* --- S.T.A.R. card  -  no box shadow (left-border accent mode) --- */
 .star-card {
   box-shadow: none;
 }
 
-/* --- Mobile override — single column collapse (taste-skill MOBILE OVERRIDE) --- */
+/* --- Mobile override  -  single column collapse (taste-skill MOBILE OVERRIDE) --- */
 @media (max-width: 768px) {
   .pillars,
   .wyg-section,
@@ -3173,7 +3173,7 @@ html {
 }
 
 /* ========================================
-   PRODUCT CATEGORIES — 6-CARD GRID
+   PRODUCT CATEGORIES  -  6-CARD GRID
    ======================================== */
 .product-categories {
   padding: clamp(96px, 12vw, 144px) 0;
@@ -3185,21 +3185,15 @@ html {
   margin-bottom: 56px;
 }
 
+/* 🟢 Fix (Team Comments  -  Isabella): the old asymmetric 3/2/1/1/2/3
+   column-span mosaic made tiles wildly different widths despite
+   holding the same amount of content. Evenly sized 3-up grid instead. */
 .product-categories__grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
   gap: 24px;
 }
-
-/* Row 1: 2fr 1fr 1fr  =>  card1 spans 3, card2 spans 1.5, card3 spans 1.5 */
-.product-categories__grid > *:nth-child(1) { grid-column: span 3; }
-.product-categories__grid > *:nth-child(2) { grid-column: span 2; }
-.product-categories__grid > *:nth-child(3) { grid-column: span 1; }
-
-/* Row 2: 1fr 1fr 2fr  =>  card4 spans 1, card5 spans 2, card6 spans 3 */
-.product-categories__grid > *:nth-child(4) { grid-column: span 1; }
-.product-categories__grid > *:nth-child(5) { grid-column: span 2; }
-.product-categories__grid > *:nth-child(6) { grid-column: span 3; }
 
 .product-cat-card {
   display: flex;
@@ -3299,7 +3293,7 @@ html {
 }
 
 /* ========================================
-   BUSINESS CALCULATORS — SPLIT LAYOUT
+   BUSINESS CALCULATORS  -  SPLIT LAYOUT
    ======================================== */
 .calculators {
   padding: clamp(64px, 8vw, 100px) 0;
@@ -3445,7 +3439,7 @@ html {
 }
 
 /* ========================================
-   FUNDING GUIDES — FEATURED + 4 CARDS
+   FUNDING GUIDES  -  FEATURED + 4 CARDS
    ======================================== */
 .guides {
   padding: clamp(96px, 12vw, 144px) 0;
@@ -3624,7 +3618,7 @@ html {
 }
 
 /* ========================================
-   SOCIAL PROOF — MERGED SECTION
+   SOCIAL PROOF  -  MERGED SECTION
    ======================================== */
 .social-proof {
   padding: clamp(96px, 12vw, 144px) 0;
@@ -3647,6 +3641,9 @@ html {
   margin-bottom: 24px;
   box-shadow: 0 4px 16px rgba(0, 28, 68, 0.04);
   transition: all 0.3s var(--ease-premium, ease);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .social-proof__badge:hover {
@@ -3802,7 +3799,7 @@ html {
 }
 
 /* ========================================
-   NEW SECTIONS — RESPONSIVE
+   NEW SECTIONS  -  RESPONSIVE
    ======================================== */
 @media (max-width: 1024px) {
   .product-categories__grid { grid-template-columns: repeat(2, 1fr); }
@@ -3831,7 +3828,7 @@ html {
   .social-proof__reviews-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
 }
 
-/* Staggered reveal animations — 60ms intervals (Motion Intensity 6) */
+/* Staggered reveal animations  -  60ms intervals (Motion Intensity 6) */
 .product-categories__grid > *:nth-child(1) { transition-delay: 0ms; }
 .product-categories__grid > *:nth-child(2) { transition-delay: 60ms; }
 .product-categories__grid > *:nth-child(3) { transition-delay: 120ms; }
@@ -3872,13 +3869,13 @@ html {
 }
 
 /* ==========================================
-   SECTION 4: WHAT YOU GET — S.T.A.R. Cards
+   SECTION 4: WHAT YOU GET  -  S.T.A.R. Cards
    ========================================== */
 .wyg-section {
   background: var(--white) !important;
 }
 
-/* S.T.A.R. Cards — Left-border accent, no card box (Anti-Card / Density 4) */
+/* S.T.A.R. Cards  -  Left-border accent, no card box (Anti-Card / Density 4) */
 .star-card {
   background: transparent !important;
   border: none !important;
@@ -3908,7 +3905,7 @@ html {
 .star-cards .star-card:nth-child(3) { --star-accent-start: #FBB766; --star-accent-end: #e8a050; }
 .star-cards .star-card:nth-child(4) { --star-accent-start: #FF5D5C; --star-accent-end: #e84847; }
 
-/* Business Overview — wrap in white card with dark navy panel */
+/* Business Overview  -  wrap in white card with dark navy panel */
 .biz-overview {
   background: var(--white) !important;
   border: 1px solid rgba(0,28,68,0.06) !important;
@@ -3928,7 +3925,7 @@ html {
 }
 
 /* ==========================================
-   SECTION 5: PRODUCT CATEGORIES — 6 Cards
+   SECTION 5: PRODUCT CATEGORIES  -  6 Cards
    ========================================== */
 .product-categories {
   background: var(--light-bg) !important;
@@ -4161,7 +4158,7 @@ html {
   background: var(--light-bg) !important;
 }
 
-/* Featured article — layered shadow + gradient overlay */
+/* Featured article  -  layered shadow + gradient overlay */
 .guide-featured {
   border: 1px solid rgba(0,28,68,0.06) !important;
   border-radius: 16px !important;
@@ -4177,7 +4174,7 @@ html {
 
 /* Featured visual overlay handled above */
 
-/* Guide cards — white + thin border + hover lift */
+/* Guide cards  -  white + thin border + hover lift */
 .guide-card {
   border: 1px solid rgba(0,28,68,0.06) !important;
   border-radius: 16px !important;
@@ -4191,7 +4188,7 @@ html {
   box-shadow: var(--stripe-shadow-hover) !important;
 }
 
-/* Category tags — prominent coloured pill backgrounds */
+/* Category tags  -  prominent coloured pill backgrounds */
 .guide-card__tag {
   background: rgba(84,180,246,0.1) !important;
   padding: 4px 12px !important;
@@ -4230,7 +4227,7 @@ html {
   background: var(--white) !important;
 }
 
-/* Case study cards — layered shadow + gradient accent at top */
+/* Case study cards  -  layered shadow + gradient accent at top */
 .sp-case-card {
   border: 1px solid rgba(0,28,68,0.06) !important;
   border-radius: 16px !important;
@@ -4244,7 +4241,7 @@ html {
   box-shadow: var(--stripe-shadow-hover) !important;
 }
 
-/* Funded badge — more prominent coloured pill */
+/* Funded badge  -  more prominent coloured pill */
 .sp-case-card__funded-badge {
   background: rgba(255,255,255,0.3) !important;
   padding: 3px 14px !important;
@@ -4255,7 +4252,7 @@ html {
   backdrop-filter: blur(4px);
 }
 
-/* Google 5.0 badge — premium feel with glow */
+/* Google 5.0 badge  -  premium feel with glow */
 .social-proof__badge {
   padding: 16px 36px !important;
   border-radius: var(--radius-xl) !important;
@@ -4282,7 +4279,7 @@ html {
   font-size: 1.4rem !important;
 }
 
-/* Review cards — Density 4: clean list with border-top dividers, no card boxes */
+/* Review cards  -  Density 4: clean list with border-top dividers, no card boxes */
 .social-proof__reviews-grid .review-card {
   background: transparent !important;
   border: none !important;
@@ -4301,7 +4298,7 @@ html {
   background: rgba(0,28,68,0.015) !important;
 }
 
-/* Quote mark decoration — subtle, still present */
+/* Quote mark decoration  -  subtle, still present */
 .social-proof__reviews-grid .review-card::before {
   content: '\201C';
   position: absolute;
@@ -4315,7 +4312,7 @@ html {
   z-index: 0;
 }
 
-/* Stagger delays for social proof review cards — 60ms intervals */
+/* Stagger delays for social proof review cards  -  60ms intervals */
 .social-proof__reviews-grid > *:nth-child(1) { transition-delay: 0ms; }
 .social-proof__reviews-grid > *:nth-child(2) { transition-delay: 60ms; }
 .social-proof__reviews-grid > *:nth-child(3) { transition-delay: 120ms; }
@@ -4324,7 +4321,7 @@ html {
 .social-proof__reviews-grid > *:nth-child(6) { transition-delay: 300ms; }
 
 /* ==========================================
-   RESPONSIVE — Stripe upgrade mobile fixes
+   RESPONSIVE  -  Stripe upgrade mobile fixes
    ========================================== */
 @media (max-width: 768px) {
   .calc-card__mockup {
@@ -4341,7 +4338,7 @@ html {
 }
 
 /* ==========================================
-   TASTE-SKILL REFINEMENT — ACTIVE STATES,
+   TASTE-SKILL REFINEMENT  -  ACTIVE STATES,
    TYPOGRAPHY, DENSITY, VARIANCE FIXES
    ========================================== */
 
@@ -4468,7 +4465,7 @@ html {
 }
 .qualifier__trust-item { color: rgba(0,28,68,0.65); }
 
-/* Proof ticker — on light bg */
+/* Proof ticker  -  on light bg */
 .proof-ticker { border-top: 1px solid rgba(0,28,68,0.08); }
 .proof-ticker::before { background: linear-gradient(90deg, #F5F8FC, transparent); }
 .proof-ticker::after  { background: linear-gradient(-90deg, #EDF3FA, transparent); }
@@ -4484,23 +4481,23 @@ html {
 .proof-ticker__google-text { color: rgba(0,28,68,0.6); }
 .proof-ticker__google-text strong { color: var(--navy); }
 
-/* Mini report card — becomes an elevated dark panel on light bg */
+/* Mini report card  -  becomes an elevated dark panel on light bg */
 .hero__report-wrap { filter: drop-shadow(0 20px 48px rgba(0,28,68,0.18)); }
 
-/* Navbar — flip transparent state to dark-on-light */
+/* Navbar  -  flip transparent state to dark-on-light */
 .navbar.transparent { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,28,68,0.06); }
 .navbar.transparent .navbar__logo img { filter: none; }
 .navbar.transparent .navbar__link { color: var(--navy); }
 .navbar.transparent .navbar__hamburger span { background: var(--navy); }
 
-/* Trust bar "5.0" — was hard-coded white */
+/* Trust bar "5.0"  -  was hard-coded white */
 .hero__trust-bar-item strong { color: var(--navy) !important; }
 
-/* S.T.A.R. "S" dot — restore indigo on light hero */
+/* S.T.A.R. "S" dot  -  restore indigo on light hero */
 .hero .star-dot--s,
 .mini-report .star-dot--s { background: #1C1998 !important; }
 
-/* Mini report card — light theme */
+/* Mini report card  -  light theme */
 .mini-report {
   background: #FFFFFF;
   border: 1px solid rgba(0,28,68,0.08);
@@ -4541,7 +4538,7 @@ html {
 }
 .mini-report__footer-text { color: rgba(0,28,68,0.5); }
 
-/* Star tooltip — keep dark (reads as a popover over a light card) */
+/* Star tooltip  -  keep dark (reads as a popover over a light card) */
 </style>
 </head>
 <body>
@@ -4551,8 +4548,8 @@ html {
      ============================================ -->
 <nav class="navbar transparent" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">
-      <img src="assets/logo-navy.png" alt="Trade Funding" height="28">
+    <a href="/commercial/index.html" class="navbar__logo">
+      <img src="/commercial/assets/logo-navy.png" alt="Trade Funding" height="28">
     </a>
 
     <div class="navbar__links">
@@ -4561,62 +4558,73 @@ html {
         <div class="dropdown-menu">
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Term Loans</span>
-            <a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
-            <a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
-            <a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+            <a href="/commercial/business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="/commercial/merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="/commercial/r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Credit Lines</span>
-            <a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
-            <a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
-            <a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+            <a href="/commercial/charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="/commercial/business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="/commercial/overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Invoice</span>
-            <a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance / Factoring</a>
-            <a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
-            <a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a>
+            <a href="/commercial/invoice-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Invoice Finance</a>
+            <a href="/commercial/fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Trade</span>
-            <a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
-            <a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
-            <a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+            <a href="/commercial/trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+            <a href="/commercial/export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="/commercial/supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Equipment</span>
-            <a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
-            <a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
-            <a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+            <a href="/commercial/finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="/commercial/operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="/commercial/chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
           </div>
           <div class="dropdown-menu__category">
-            <span class="dropdown-menu__heading">Mortgage</span>
-            <a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
-            <a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+            <span class="dropdown-menu__heading">Personal &amp; Property</span>
+            <a href="/commercial/second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+            <a href="/commercial/self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="/personal-and-property/index.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> All Personal &amp; Property loans</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Other</span>
+            <a href="/commercial/business-loans.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128218;</span> View all business loans</a>
           </div>
           <div class="dropdown-menu__bottom">
-            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+            <a href="/commercial/comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
           </div>
         </div>
       </div>
-      <a href="resources.html" class="navbar__link">Resources</a>
-      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
-      <a href="about.html" class="navbar__link">About</a>
+      <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/commercial/resources.html" class="navbar__link">Resources</a>
+      <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
+      <a href="/commercial/about.html" class="navbar__link">About</a>
     </div>
 
     <div class="navbar__right">
+      <!-- ChannelSwitcher  -  CLAUDE.md rule 13 / buildspec.md §2A:
+           always all three channels, every page, no exceptions. Home
+           icon + "Home" text represents Commercial (never the word
+           "Commercial"). Whichever option matches the current page
+           carries class="active" (plus aria-current="page" for a11y). -->
       <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-        <a href="index.html" class="channel-switch__option channel-switch__option--home" aria-current="page" aria-label="Commercial (Home)">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
         </a>
-        <a href="../personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
-          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-        </a>
-        <a href="../connect/index.html" class="channel-switch__option" aria-label="Connect">
+        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
           <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
         </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
       </div>
-      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <a href="/commercial/apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -4626,37 +4634,61 @@ html {
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
+  <a href="/commercial/business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="/commercial/merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="/commercial/r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="/commercial/charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="/commercial/business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="/commercial/overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="/commercial/invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="/commercial/fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="/commercial/export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="/commercial/supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="/commercial/trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="/commercial/finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="/commercial/operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="/commercial/chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="/commercial/business-loans.html" onclick="closeMobile()">All Business Loans</a>
+  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/broker-portal.html" onclick="closeMobile()">Broker Portal</a>
+  <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="/commercial/about.html" onclick="closeMobile()">About</a>
+  <a href="/commercial/meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
   <div class="mobile-nav__switch">
     <span class="mobile-nav__switch-label">Trade Funding also does</span>
-    <a href="../personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
-    <a href="../connect/index.html" onclick="closeMobile()">Trade Funding Connect &rarr;</a>
+    <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
+    <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
-  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
-  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
-  <a href="r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
-  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
-  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
-  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
-  <a href="debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
-  <a href="fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
-  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
-  <a href="export-finance.html" onclick="closeMobile()">Export Finance</a>
-  <a href="supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
-  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
-  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
-  <a href="operating-lease.html" onclick="closeMobile()">Operating Lease</a>
-  <a href="chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
-  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
-  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
-  <a href="resources.html" onclick="closeMobile()">Resources</a>
-  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
-  <a href="about.html" onclick="closeMobile()">About</a>
-  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
-  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+  <a href="/commercial/business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="/commercial/merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="/commercial/r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="/commercial/charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="/commercial/business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="/commercial/overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="/commercial/debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
+  <a href="/commercial/fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="/commercial/invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="/commercial/export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="/commercial/supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="/commercial/trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="/commercial/finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="/commercial/operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="/commercial/chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="/commercial/about.html" onclick="closeMobile()">About</a>
+  <a href="/commercial/meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
 </div>
 
 <!-- ============================================
-     SECTION 1 — HERO (Hybrid Engine)
+     SECTION 1  -  HERO (Hybrid Engine)
      ============================================ -->
 <section class="hero" id="hero">
   <div class="hero__glow hero__glow--1" aria-hidden="true"></div>
@@ -4683,6 +4715,16 @@ html {
 
       <!-- LEFT: Headline + Compact Qualifier -->
       <div class="hero__content">
+        <!-- 🔴 DRAFT - PENDING SIGN-OFF (copy-final.md §Home, plan.md §5.0):
+             directional-only replacement hero, not yet approved - do NOT
+             swap the live headline below for this without Matt's sign-off.
+             "Business finance shouldn't mean reading through hundreds of
+             lenders you'll never qualify for. We match your business - and
+             the people behind it - with funding that actually fits."
+             This would replace the current hero because the locked
+             messaging direction leads with the *why* (personalised,
+             qualified options) rather than the *how* (the S.T.A.R. scoring
+             mechanism the live headline currently opens with). -->
         <p class="hero__eyebrow">Australia's Lending Intelligence Platform</p>
         <h1 class="hero__title">Every option. Scored for your business.<br><span>Then we get it done.</span></h1>
         <p class="hero__sub">Know before you apply. Our S.T.A.R. Compare Report shows personalised offers from 70+ lenders, scored against the facts that matter. Our team then helps you secure the best one.</p>
@@ -4799,26 +4841,102 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 3 — HOW IT WORKS (Pitch Deck Port)
+     WHY-FIRST INTRO (below hero, per copy-final.md §Home)
      ============================================ -->
 <style>
-/* How It Works — ported from pitch deck */
+.why-first { padding: 56px 0 8px; background: #fff; text-align: center; }
+.why-first__inner { max-width: 760px; margin: 0 auto; }
+.why-first p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75; }
+
+/* GoogleReviews container - honest fallback, no fabricated count */
+.google-reviews-strip { padding: 8px 0 40px; background: #fff; text-align: center; }
+.google-reviews-strip__inner {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 20px; border-radius: 999px; border: 1px solid rgba(0,28,68,0.1);
+  font-size: 0.85rem; color: var(--text-secondary); text-decoration: none;
+}
+.google-reviews-strip__inner:hover { border-color: #54B4F6; color: var(--navy); }
+.google-reviews-strip__stars { color: #FBB766; letter-spacing: 1px; }
+
+/* Three-channel explainer strip */
+.channel-strip { padding: 8px 0 64px; background: #fff; }
+.channel-strip__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.channel-strip__card { display: block; text-decoration: none; color: inherit; background: #FAFBFD; border: 1px solid rgba(0,28,68,0.06); border-radius: var(--radius-lg); padding: 28px 24px; transition: all 0.3s ease; }
+.channel-strip__card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,28,68,0.08); }
+.channel-strip__eyebrow { font-family: var(--font-heading); font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: #54B4F6; margin-bottom: 10px; }
+.channel-strip__title { font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+.channel-strip__desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+@media (max-width: 768px) { .channel-strip__grid { grid-template-columns: 1fr; } }
+</style>
+<section class="why-first">
+  <div class="container why-first__inner">
+    <p>Reviewing 70+ lenders and hundreds of products on your own risks wasted time - and a search history of credit applications that can quietly damage your file. That's the reason Trade Funding exists: one free, no-credit-check Compare Report that shows the options that actually qualify, before you commit to anything.</p>
+  </div>
+</section>
+
+<section class="google-reviews-strip" id="google-reviews">
+  <div class="container">
+    <!-- 🔴 BLOCKED - NEEDS: real Google review count/rating and a confirmed
+         widget provider/script/API key before this can render a live
+         feed (plan.md §1; buildspec.md §7; Team Comments - Isabella
+         flagged the old static "31 reviews" as stale/non-updating).
+         TODO (Phase 3 kickoff): swap this link-out for the live
+         next/script "lazyOnload" GoogleReviews widget once the real
+         script/key is supplied - keep this honest fallback until then. -->
+    <a class="google-reviews-strip__inner" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener">
+      <span class="google-reviews-strip__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span>See what real customers say about us on Google</span>
+    </a>
+  </div>
+</section>
+
+<!-- Three-channel explainer strip (per copy-final.md §Home) -->
+<section class="channel-strip">
+  <div class="channel-strip__grid">
+    <a href="/commercial/business-loans.html" class="channel-strip__card reveal">
+      <p class="channel-strip__eyebrow">For your business</p>
+      <h3 class="channel-strip__title">Commercial</h3>
+      <p class="channel-strip__desc">Funding options for the business itself, compared and scored across 70+ lenders.</p>
+    </a>
+    <a href="/connect/index.html" class="channel-strip__card reveal delay-1">
+      <p class="channel-strip__eyebrow">For your customers</p>
+      <h3 class="channel-strip__title">Connect</h3>
+      <p class="channel-strip__desc">Point-of-sale finance so your customers get funded at checkout - win more business, get paid faster.</p>
+    </a>
+    <a href="/personal-and-property/index.html" class="channel-strip__card reveal delay-2">
+      <p class="channel-strip__eyebrow">For the people who run it</p>
+      <h3 class="channel-strip__title">Personal &amp; Property</h3>
+      <p class="channel-strip__desc">Home, investment and property finance for the people behind the business.</p>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 3  -  HOW IT WORKS (Pitch Deck Port)
+     ============================================ -->
+<style>
+/* How It Works  -  ported from pitch deck */
 .hiw2 { padding: 80px 0 0; background: #FAFBFD; }
 .hiw2__header { text-align: center; margin-bottom: 48px; }
 .hiw2__eyebrow { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #54B4F6; margin-bottom: 14px; }
 .hiw2__title { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.6rem,3.5vw,2.4rem); color: var(--navy); margin-bottom: 16px; }
 .hiw2__desc { font-size: 1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.7; }
 
-/* The Engine Flow — matches pitch deck Slide 6 layout */
+/* The Engine Flow  -  matches pitch deck Slide 6 layout */
 .hiw2__engine { background: linear-gradient(160deg, #001C44 0%, #002A5C 50%, #001838 100%); padding: 56px 0; color: #fff; overflow: hidden; }
 .hiw2__flow { display: grid; grid-template-columns: 1fr 40px 2fr 40px 1fr; gap: 12px; align-items: stretch; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .hiw2__stage { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .hiw2__stage-lbl { font-family: var(--font-heading); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #54B4F6; }
 .hiw2__card { position: relative; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 18px; flex: 1; display: flex; flex-direction: column; }
 .hiw2__card--input { gap: 9px; }
-.hiw2__card-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.78rem; color: rgba(255,255,255,0.5); border-bottom: 1px dashed rgba(255,255,255,0.06); padding-bottom: 8px; }
+.hiw2__card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.5); border-bottom: 1px dashed rgba(255,255,255,0.06); padding-bottom: 8px; }
 .hiw2__card-row:last-child { border-bottom: none; }
-.hiw2__card-row strong { font-family: var(--font-heading); font-weight: 700; color: #fff; font-size: 0.84rem; }
+/* 🟢 Fix (Team Comments  -  Isabella): the Step 01 Input row's Business
+   name value is long enough to wrap and drift out of line with the
+   other rows under align-items:baseline. Center-align the row and
+   clip the value to one line instead. */
+.hiw2__card-row span { flex-shrink: 0; }
+.hiw2__card-row strong { font-family: var(--font-heading); font-weight: 700; color: #fff; font-size: 0.84rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right; }
 .hiw2__pulse { position: absolute; inset: 0; border-radius: 14px; border: 1px solid #54B4F6; opacity: 0.4; animation: hiwPulse 2.4s cubic-bezier(0.22,1,0.36,1) infinite; pointer-events: none; }
 @keyframes hiwPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(84,180,246,0.4); opacity:0.5; } 50% { box-shadow: 0 0 0 10px rgba(84,180,246,0); opacity:0.8; } }
 
@@ -4888,7 +5006,7 @@ html {
     </div>
   </div>
 
-  <!-- The Engine Flow — Input → Cashper → Output -->
+  <!-- The Engine Flow  -  Input → Cashper → Output -->
   <div class="hiw2__engine">
     <div class="hiw2__flow reveal">
 
@@ -4915,7 +5033,7 @@ html {
         <span class="hiw2__stage-lbl" style="color:#FF5D5C;">02 &middot; Cashper Scoring</span>
         <div class="hiw2__engine-panel">
           <div class="hiw2__engine-side">
-            <img src="assets/cashper.png" alt="Cashper" class="hiw2__engine-cashper">
+            <img src="/commercial/assets/cashper.png" alt="Cashper" class="hiw2__engine-cashper">
             <span class="hiw2__engine-label">Scanning lenders</span>
             <span class="hiw2__engine-counter" id="hiwCounter2">0</span>
             <span class="hiw2__engine-sub">Matched against each lender's actual policy</span>
@@ -4956,7 +5074,7 @@ html {
       </div>
 
       <div style="max-width:960px;margin:0 auto;">
-        <!-- Step 1 — Report snippet (peek) -->
+        <!-- Step 1  -  Report snippet (peek) -->
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;margin-bottom:64px;">
           <div style="background:var(--white);border-radius:14px;border:1px solid rgba(0,28,68,0.06);overflow:hidden;box-shadow:0 4px 24px rgba(0,28,68,0.06);position:relative;">
             <!-- Report header -->
@@ -5032,7 +5150,7 @@ html {
       </div>
 
       <div class="reveal" style="text-align:center;margin-top:48px;">
-        <a href="apply.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:600;font-size:1rem;padding:16px 36px;border-radius:50px;background:var(--peach);color:#fff;text-decoration:none;box-shadow:0 4px 20px rgba(255,93,92,0.25);transition:all 0.3s ease;">Get My Free Compare Report &rarr;</a>
+        <a href="/commercial/apply.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:600;font-size:1rem;padding:16px 36px;border-radius:50px;background:var(--peach);color:#fff;text-decoration:none;box-shadow:0 4px 20px rgba(255,93,92,0.25);transition:all 0.3s ease;">Get My Free Compare Report &rarr;</a>
         <div style="margin-top:14px;display:flex;justify-content:center;gap:20px;font-size:0.78rem;color:var(--text-secondary);opacity:0.5;">
           <span>No credit check</span><span>No commitment</span><span>Ready in 24hrs</span>
         </div>
@@ -5041,7 +5159,7 @@ html {
   </div>
 </section>
 
-<!-- Cashper engine animation — ported from pitch deck -->
+<!-- Cashper engine animation  -  ported from pitch deck -->
 <script>
 (function(){
   var grid = document.getElementById('hiwGrid2');
@@ -5063,7 +5181,7 @@ html {
     tiles.push(tile);
   }
 
-  // Animation loop — matches pitch deck timing
+  // Animation loop  -  matches pitch deck timing
   var started = false;
   var obs = new IntersectionObserver(function(entries) {
     if (entries[0].isIntersecting && !started) {
@@ -5140,7 +5258,7 @@ html {
 </script>
 
 <!-- ============================================
-     SECTION 4 — WHAT YOU GET (S.T.A.R. + BUSINESS OVERVIEW)
+     SECTION 4  -  WHAT YOU GET (S.T.A.R. + BUSINESS OVERVIEW)
      ============================================ -->
 <section class="wyg-section reveal" id="what-you-get">
   <div class="container container--wide">
@@ -5206,7 +5324,7 @@ html {
           </div>
           <!-- Rows -->
           <div style="padding:6px 0;">
-            <!-- Row 1 — Best match -->
+            <!-- Row 1  -  Best match -->
             <div style="display:grid;grid-template-columns:40px 1.4fr 0.8fr 0.6fr 0.6fr 0.6fr 1fr;gap:10px;align-items:center;padding:12px 22px;background:linear-gradient(90deg,rgba(251,183,102,0.08),rgba(84,180,246,0.06));border-left:3px solid #FBB766;">
               <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FBB766,#FF5D5C);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:0.78rem;color:#fff;">1</span>
               <div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.82rem;color:var(--navy);">Pinnacle Lending</div><div style="font-size:0.62rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-top:1px;">Tier-1 non-bank</div></div>
@@ -5245,7 +5363,7 @@ html {
                 </div>
               </div>
             </div>
-            <!-- Rows 2-4 — blurred to draw focus to #1 and S.T.A.R. -->
+            <!-- Rows 2-4  -  blurred to draw focus to #1 and S.T.A.R. -->
             <div style="position:relative;">
               <div style="filter:blur(2px);opacity:0.45;">
                 <div style="display:grid;grid-template-columns:40px 1.4fr 0.8fr 0.6fr 0.6fr 0.6fr 1fr;gap:10px;align-items:center;padding:10px 22px;border-bottom:1px solid rgba(0,28,68,0.04);">
@@ -5288,13 +5406,13 @@ html {
     </div>
 
     <div class="wyg-cta">
-      <a href="comparison-report.html" class="btn btn--primary">See a sample Compare Report &rarr;</a>
+      <a href="/commercial/comparison-report.html" class="btn btn--primary">See a sample Compare Report &rarr;</a>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     SECTION 4 — PRODUCT CATEGORIES (6 CARDS)
+     SECTION 4  -  PRODUCT CATEGORIES (6 CARDS)
      ============================================ -->
 <section class="product-categories reveal" id="products">
   <div class="container">
@@ -5305,7 +5423,7 @@ html {
     </div>
     <div class="product-categories__grid">
       <!-- Business Loans -->
-      <a href="business-term-loans.html" class="product-cat-card">
+      <a href="/commercial/business-term-loans.html" class="product-cat-card">
         <div class="product-cat-card__icon" style="background:rgba(84,180,246,0.08);color:var(--skyblue);">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12a3 3 0 1 0 0-0.01"/><path d="M6 12h.01M18 12h.01"/></svg>
         </div>
@@ -5315,7 +5433,7 @@ html {
         <span class="product-cat-card__link">Compare options <span>&rarr;</span></span>
       </a>
       <!-- Lines of Credit -->
-      <a href="business-line-of-credit.html" class="product-cat-card">
+      <a href="/commercial/business-line-of-credit.html" class="product-cat-card">
         <div class="product-cat-card__icon" style="background:rgba(84,180,246,0.08);color:#54B4F6;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
@@ -5325,7 +5443,7 @@ html {
         <span class="product-cat-card__link">Compare options <span>&rarr;</span></span>
       </a>
       <!-- Invoice Finance -->
-      <a href="invoice-finance.html" class="product-cat-card">
+      <a href="/commercial/invoice-finance.html" class="product-cat-card">
         <div class="product-cat-card__icon" style="background:rgba(255,93,92,0.08);color:var(--peach);">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
         </div>
@@ -5335,7 +5453,7 @@ html {
         <span class="product-cat-card__link">Compare options <span>&rarr;</span></span>
       </a>
       <!-- Trade Finance -->
-      <a href="trade-finance.html" class="product-cat-card">
+      <a href="/commercial/trade-finance.html" class="product-cat-card">
         <div class="product-cat-card__icon" style="background:rgba(28,25,152,0.08);color:var(--navy-blue);">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
@@ -5345,7 +5463,7 @@ html {
         <span class="product-cat-card__link">Compare options <span>&rarr;</span></span>
       </a>
       <!-- Equipment & Leasing -->
-      <a href="finance-lease.html" class="product-cat-card">
+      <a href="/commercial/finance-lease.html" class="product-cat-card">
         <div class="product-cat-card__icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         </div>
@@ -5355,7 +5473,7 @@ html {
         <span class="product-cat-card__link">Compare options <span>&rarr;</span></span>
       </a>
       <!-- Commercial Mortgages -->
-      <a href="self-employed-home-loan.html" class="product-cat-card">
+      <a href="/commercial/self-employed-home-loan.html" class="product-cat-card">
         <div class="product-cat-card__icon" style="background:rgba(84,180,246,0.08);color:var(--skyblue);">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
@@ -5370,7 +5488,7 @@ html {
 
 
 <!-- ============================================
-     SECTION 5 — LENDER PANEL
+     SECTION 5  -  LENDER PANEL
      ============================================ -->
 <section class="lenders reveal" id="lenders">
   <div class="container">
@@ -5381,88 +5499,88 @@ html {
   </div>
   <div class="marquee marquee-row">
     <div class="marquee-track">
-      <span class="lender-logo"><img src="assets/lenders/cba.svg" alt="CBA logo" loading="lazy"><span class="lender-logo__fallback">CBA</span></span>
-      <span class="lender-logo"><img src="assets/lenders/anz.png" alt="ANZ logo" loading="lazy"><span class="lender-logo__fallback">ANZ</span></span>
-      <span class="lender-logo"><img src="assets/lenders/prospa.svg" alt="Prospa logo" loading="lazy"><span class="lender-logo__fallback">Prospa</span></span>
-      <span class="lender-logo"><img src="assets/lenders/shift.svg" alt="Shift logo" loading="lazy"><span class="lender-logo__fallback">Shift</span></span>
-      <span class="lender-logo"><img src="assets/lenders/finstro.svg" alt="Finstro logo" loading="lazy"><span class="lender-logo__fallback">Finstro</span></span>
-      <span class="lender-logo"><img src="assets/lenders/grenke.svg" alt="Grenke logo" loading="lazy"><span class="lender-logo__fallback">Grenke</span></span>
-      <span class="lender-logo"><img src="assets/lenders/lumi.svg" alt="Lumi logo" loading="lazy"><span class="lender-logo__fallback">Lumi</span></span>
-      <span class="lender-logo"><img src="assets/lenders/dyna-money.svg" alt="Dyna Money logo" loading="lazy"><span class="lender-logo__fallback">Dyna Money</span></span>
-      <span class="lender-logo"><img src="assets/lenders/scotpac.png" alt="ScotPac logo" loading="lazy"><span class="lender-logo__fallback">ScotPac</span></span>
-      <span class="lender-logo"><img src="assets/lenders/moula.png" alt="Moula logo" loading="lazy"><span class="lender-logo__fallback">Moula</span></span>
-      <span class="lender-logo"><img src="assets/lenders/ondeck.svg" alt="OnDeck logo" loading="lazy"><span class="lender-logo__fallback">OnDeck</span></span>
-      <span class="lender-logo"><img src="assets/lenders/judo-bank.svg" alt="Judo Bank logo" loading="lazy"><span class="lender-logo__fallback">Judo Bank</span></span>
-      <span class="lender-logo"><img src="assets/lenders/getcapital.svg" alt="GetCapital logo" loading="lazy"><span class="lender-logo__fallback">GetCapital</span></span>
-      <span class="lender-logo"><img src="assets/lenders/octet.svg" alt="Octet logo" loading="lazy"><span class="lender-logo__fallback">Octet</span></span>
-      <span class="lender-logo"><img src="assets/lenders/earlypay.svg" alt="Earlypay logo" loading="lazy"><span class="lender-logo__fallback">Earlypay</span></span>
-      <span class="lender-logo"><img src="assets/lenders/westpac.svg" alt="Westpac logo" loading="lazy"><span class="lender-logo__fallback">Westpac</span></span>
-      <span class="lender-logo"><img src="assets/lenders/remara.svg" alt="Remara logo" loading="lazy"><span class="lender-logo__fallback">Remara</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/cba.svg" alt="CBA logo" loading="lazy"><span class="lender-logo__fallback">CBA</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/anz.png" alt="ANZ logo" loading="lazy"><span class="lender-logo__fallback">ANZ</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/prospa.svg" alt="Prospa logo" loading="lazy"><span class="lender-logo__fallback">Prospa</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/shift.svg" alt="Shift logo" loading="lazy"><span class="lender-logo__fallback">Shift</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/finstro.svg" alt="Finstro logo" loading="lazy"><span class="lender-logo__fallback">Finstro</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/grenke.svg" alt="Grenke logo" loading="lazy"><span class="lender-logo__fallback">Grenke</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/lumi.svg" alt="Lumi logo" loading="lazy"><span class="lender-logo__fallback">Lumi</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/dyna-money.svg" alt="Dyna Money logo" loading="lazy"><span class="lender-logo__fallback">Dyna Money</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/scotpac.png" alt="ScotPac logo" loading="lazy"><span class="lender-logo__fallback">ScotPac</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/moula.png" alt="Moula logo" loading="lazy"><span class="lender-logo__fallback">Moula</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/ondeck.svg" alt="OnDeck logo" loading="lazy"><span class="lender-logo__fallback">OnDeck</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/judo-bank.svg" alt="Judo Bank logo" loading="lazy"><span class="lender-logo__fallback">Judo Bank</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/getcapital.svg" alt="GetCapital logo" loading="lazy"><span class="lender-logo__fallback">GetCapital</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/octet.svg" alt="Octet logo" loading="lazy"><span class="lender-logo__fallback">Octet</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/earlypay.svg" alt="Earlypay logo" loading="lazy"><span class="lender-logo__fallback">Earlypay</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/westpac.svg" alt="Westpac logo" loading="lazy"><span class="lender-logo__fallback">Westpac</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/remara.svg" alt="Remara logo" loading="lazy"><span class="lender-logo__fallback">Remara</span></span>
       <!-- Duplicate for seamless scroll -->
-      <span class="lender-logo"><img src="assets/lenders/cba.svg" alt="CBA logo" loading="lazy"><span class="lender-logo__fallback">CBA</span></span>
-      <span class="lender-logo"><img src="assets/lenders/anz.png" alt="ANZ logo" loading="lazy"><span class="lender-logo__fallback">ANZ</span></span>
-      <span class="lender-logo"><img src="assets/lenders/prospa.svg" alt="Prospa logo" loading="lazy"><span class="lender-logo__fallback">Prospa</span></span>
-      <span class="lender-logo"><img src="assets/lenders/shift.svg" alt="Shift logo" loading="lazy"><span class="lender-logo__fallback">Shift</span></span>
-      <span class="lender-logo"><img src="assets/lenders/finstro.svg" alt="Finstro logo" loading="lazy"><span class="lender-logo__fallback">Finstro</span></span>
-      <span class="lender-logo"><img src="assets/lenders/grenke.svg" alt="Grenke logo" loading="lazy"><span class="lender-logo__fallback">Grenke</span></span>
-      <span class="lender-logo"><img src="assets/lenders/lumi.svg" alt="Lumi logo" loading="lazy"><span class="lender-logo__fallback">Lumi</span></span>
-      <span class="lender-logo"><img src="assets/lenders/dyna-money.svg" alt="Dyna Money logo" loading="lazy"><span class="lender-logo__fallback">Dyna Money</span></span>
-      <span class="lender-logo"><img src="assets/lenders/scotpac.png" alt="ScotPac logo" loading="lazy"><span class="lender-logo__fallback">ScotPac</span></span>
-      <span class="lender-logo"><img src="assets/lenders/moula.png" alt="Moula logo" loading="lazy"><span class="lender-logo__fallback">Moula</span></span>
-      <span class="lender-logo"><img src="assets/lenders/ondeck.svg" alt="OnDeck logo" loading="lazy"><span class="lender-logo__fallback">OnDeck</span></span>
-      <span class="lender-logo"><img src="assets/lenders/judo-bank.svg" alt="Judo Bank logo" loading="lazy"><span class="lender-logo__fallback">Judo Bank</span></span>
-      <span class="lender-logo"><img src="assets/lenders/getcapital.svg" alt="GetCapital logo" loading="lazy"><span class="lender-logo__fallback">GetCapital</span></span>
-      <span class="lender-logo"><img src="assets/lenders/octet.svg" alt="Octet logo" loading="lazy"><span class="lender-logo__fallback">Octet</span></span>
-      <span class="lender-logo"><img src="assets/lenders/earlypay.svg" alt="Earlypay logo" loading="lazy"><span class="lender-logo__fallback">Earlypay</span></span>
-      <span class="lender-logo"><img src="assets/lenders/westpac.svg" alt="Westpac logo" loading="lazy"><span class="lender-logo__fallback">Westpac</span></span>
-      <span class="lender-logo"><img src="assets/lenders/remara.svg" alt="Remara logo" loading="lazy"><span class="lender-logo__fallback">Remara</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/cba.svg" alt="CBA logo" loading="lazy"><span class="lender-logo__fallback">CBA</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/anz.png" alt="ANZ logo" loading="lazy"><span class="lender-logo__fallback">ANZ</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/prospa.svg" alt="Prospa logo" loading="lazy"><span class="lender-logo__fallback">Prospa</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/shift.svg" alt="Shift logo" loading="lazy"><span class="lender-logo__fallback">Shift</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/finstro.svg" alt="Finstro logo" loading="lazy"><span class="lender-logo__fallback">Finstro</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/grenke.svg" alt="Grenke logo" loading="lazy"><span class="lender-logo__fallback">Grenke</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/lumi.svg" alt="Lumi logo" loading="lazy"><span class="lender-logo__fallback">Lumi</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/dyna-money.svg" alt="Dyna Money logo" loading="lazy"><span class="lender-logo__fallback">Dyna Money</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/scotpac.png" alt="ScotPac logo" loading="lazy"><span class="lender-logo__fallback">ScotPac</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/moula.png" alt="Moula logo" loading="lazy"><span class="lender-logo__fallback">Moula</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/ondeck.svg" alt="OnDeck logo" loading="lazy"><span class="lender-logo__fallback">OnDeck</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/judo-bank.svg" alt="Judo Bank logo" loading="lazy"><span class="lender-logo__fallback">Judo Bank</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/getcapital.svg" alt="GetCapital logo" loading="lazy"><span class="lender-logo__fallback">GetCapital</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/octet.svg" alt="Octet logo" loading="lazy"><span class="lender-logo__fallback">Octet</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/earlypay.svg" alt="Earlypay logo" loading="lazy"><span class="lender-logo__fallback">Earlypay</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/westpac.svg" alt="Westpac logo" loading="lazy"><span class="lender-logo__fallback">Westpac</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/remara.svg" alt="Remara logo" loading="lazy"><span class="lender-logo__fallback">Remara</span></span>
     </div>
   </div>
   <div class="marquee marquee-row" style="margin-top:16px;">
     <div class="marquee-track">
-      <span class="lender-logo"><img src="assets/lenders/moneytech.svg" alt="Moneytech logo" loading="lazy"><span class="lender-logo__fallback">Moneytech</span></span>
-      <span class="lender-logo"><img src="assets/lenders/funding.svg" alt="Funding logo" loading="lazy"><span class="lender-logo__fallback">Funding</span></span>
-      <span class="lender-logo"><img src="assets/lenders/banjo-loans.svg" alt="Banjo Loans logo" loading="lazy"><span class="lender-logo__fallback">Banjo Loans</span></span>
-      <span class="lender-logo"><img src="assets/lenders/capify.png" alt="Capify logo" loading="lazy"><span class="lender-logo__fallback">Capify</span></span>
-      <span class="lender-logo"><img src="assets/lenders/tractor-ventures.svg" alt="Tractor Ventures logo" loading="lazy"><span class="lender-logo__fallback">Tractor Ventures</span></span>
-      <span class="lender-logo"><img src="assets/lenders/liberty.svg" alt="Liberty logo" loading="lazy"><span class="lender-logo__fallback">Liberty</span></span>
-      <span class="lender-logo"><img src="assets/lenders/pepper-money.svg" alt="Pepper Money logo" loading="lazy"><span class="lender-logo__fallback">Pepper Money</span></span>
-      <span class="lender-logo"><img src="assets/lenders/morris-finance.svg" alt="Morris Finance logo" loading="lazy"><span class="lender-logo__fallback">Morris Finance</span></span>
-      <span class="lender-logo"><img src="assets/lenders/metro-finance.svg" alt="Metro Finance logo" loading="lazy"><span class="lender-logo__fallback">Metro Finance</span></span>
-      <span class="lender-logo"><img src="assets/lenders/finance-one.svg" alt="Finance One logo" loading="lazy"><span class="lender-logo__fallback">Finance One</span></span>
-      <span class="lender-logo"><img src="assets/lenders/azora.svg" alt="Azora logo" loading="lazy"><span class="lender-logo__fallback">Azora</span></span>
-      <span class="lender-logo"><img src="assets/lenders/flexicommercial.svg" alt="FlexiCommercial logo" loading="lazy"><span class="lender-logo__fallback">FlexiCommercial</span></span>
-      <span class="lender-logo"><img src="assets/lenders/cogsflow.png" alt="Cogsflow logo" loading="lazy"><span class="lender-logo__fallback">Cogsflow</span></span>
-      <span class="lender-logo"><img src="assets/lenders/sail-funding.svg" alt="Sail Funding logo" loading="lazy"><span class="lender-logo__fallback">Sail Funding</span></span>
-      <span class="lender-logo"><img src="assets/lenders/angle.png" alt="Angle Finance logo" loading="lazy"><span class="lender-logo__fallback">Angle Finance</span></span>
-      <span class="lender-logo"><img src="assets/lenders/fundtap.svg" alt="FundTap logo" loading="lazy"><span class="lender-logo__fallback">FundTap</span></span>
-      <span class="lender-logo"><img src="assets/lenders/chocoup.svg" alt="Choco Up logo" loading="lazy"><span class="lender-logo__fallback">Choco Up</span></span>
-      <span class="lender-logo"><img src="assets/lenders/arch-finance.svg" alt="Arch Finance logo" loading="lazy"><span class="lender-logo__fallback">Arch Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/moneytech.svg" alt="Moneytech logo" loading="lazy"><span class="lender-logo__fallback">Moneytech</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/funding.svg" alt="Funding logo" loading="lazy"><span class="lender-logo__fallback">Funding</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/banjo-loans.svg" alt="Banjo Loans logo" loading="lazy"><span class="lender-logo__fallback">Banjo Loans</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/capify.png" alt="Capify logo" loading="lazy"><span class="lender-logo__fallback">Capify</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/tractor-ventures.svg" alt="Tractor Ventures logo" loading="lazy"><span class="lender-logo__fallback">Tractor Ventures</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/liberty.svg" alt="Liberty logo" loading="lazy"><span class="lender-logo__fallback">Liberty</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/pepper-money.svg" alt="Pepper Money logo" loading="lazy"><span class="lender-logo__fallback">Pepper Money</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/morris-finance.svg" alt="Morris Finance logo" loading="lazy"><span class="lender-logo__fallback">Morris Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/metro-finance.svg" alt="Metro Finance logo" loading="lazy"><span class="lender-logo__fallback">Metro Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/finance-one.svg" alt="Finance One logo" loading="lazy"><span class="lender-logo__fallback">Finance One</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/azora.svg" alt="Azora logo" loading="lazy"><span class="lender-logo__fallback">Azora</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/flexicommercial.svg" alt="FlexiCommercial logo" loading="lazy"><span class="lender-logo__fallback">FlexiCommercial</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/cogsflow.png" alt="Cogsflow logo" loading="lazy"><span class="lender-logo__fallback">Cogsflow</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/sail-funding.svg" alt="Sail Funding logo" loading="lazy"><span class="lender-logo__fallback">Sail Funding</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/angle.png" alt="Angle Finance logo" loading="lazy"><span class="lender-logo__fallback">Angle Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/fundtap.svg" alt="FundTap logo" loading="lazy"><span class="lender-logo__fallback">FundTap</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/chocoup.svg" alt="Choco Up logo" loading="lazy"><span class="lender-logo__fallback">Choco Up</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/arch-finance.svg" alt="Arch Finance logo" loading="lazy"><span class="lender-logo__fallback">Arch Finance</span></span>
       <!-- Duplicate for seamless scroll -->
-      <span class="lender-logo"><img src="assets/lenders/moneytech.svg" alt="Moneytech logo" loading="lazy"><span class="lender-logo__fallback">Moneytech</span></span>
-      <span class="lender-logo"><img src="assets/lenders/funding.svg" alt="Funding logo" loading="lazy"><span class="lender-logo__fallback">Funding</span></span>
-      <span class="lender-logo"><img src="assets/lenders/banjo-loans.svg" alt="Banjo Loans logo" loading="lazy"><span class="lender-logo__fallback">Banjo Loans</span></span>
-      <span class="lender-logo"><img src="assets/lenders/capify.png" alt="Capify logo" loading="lazy"><span class="lender-logo__fallback">Capify</span></span>
-      <span class="lender-logo"><img src="assets/lenders/tractor-ventures.svg" alt="Tractor Ventures logo" loading="lazy"><span class="lender-logo__fallback">Tractor Ventures</span></span>
-      <span class="lender-logo"><img src="assets/lenders/liberty.svg" alt="Liberty logo" loading="lazy"><span class="lender-logo__fallback">Liberty</span></span>
-      <span class="lender-logo"><img src="assets/lenders/pepper-money.svg" alt="Pepper Money logo" loading="lazy"><span class="lender-logo__fallback">Pepper Money</span></span>
-      <span class="lender-logo"><img src="assets/lenders/morris-finance.svg" alt="Morris Finance logo" loading="lazy"><span class="lender-logo__fallback">Morris Finance</span></span>
-      <span class="lender-logo"><img src="assets/lenders/metro-finance.svg" alt="Metro Finance logo" loading="lazy"><span class="lender-logo__fallback">Metro Finance</span></span>
-      <span class="lender-logo"><img src="assets/lenders/finance-one.svg" alt="Finance One logo" loading="lazy"><span class="lender-logo__fallback">Finance One</span></span>
-      <span class="lender-logo"><img src="assets/lenders/azora.svg" alt="Azora logo" loading="lazy"><span class="lender-logo__fallback">Azora</span></span>
-      <span class="lender-logo"><img src="assets/lenders/flexicommercial.svg" alt="FlexiCommercial logo" loading="lazy"><span class="lender-logo__fallback">FlexiCommercial</span></span>
-      <span class="lender-logo"><img src="assets/lenders/cogsflow.png" alt="Cogsflow logo" loading="lazy"><span class="lender-logo__fallback">Cogsflow</span></span>
-      <span class="lender-logo"><img src="assets/lenders/sail-funding.svg" alt="Sail Funding logo" loading="lazy"><span class="lender-logo__fallback">Sail Funding</span></span>
-      <span class="lender-logo"><img src="assets/lenders/angle.png" alt="Angle Finance logo" loading="lazy"><span class="lender-logo__fallback">Angle Finance</span></span>
-      <span class="lender-logo"><img src="assets/lenders/fundtap.svg" alt="FundTap logo" loading="lazy"><span class="lender-logo__fallback">FundTap</span></span>
-      <span class="lender-logo"><img src="assets/lenders/chocoup.svg" alt="Choco Up logo" loading="lazy"><span class="lender-logo__fallback">Choco Up</span></span>
-      <span class="lender-logo"><img src="assets/lenders/arch-finance.svg" alt="Arch Finance logo" loading="lazy"><span class="lender-logo__fallback">Arch Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/moneytech.svg" alt="Moneytech logo" loading="lazy"><span class="lender-logo__fallback">Moneytech</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/funding.svg" alt="Funding logo" loading="lazy"><span class="lender-logo__fallback">Funding</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/banjo-loans.svg" alt="Banjo Loans logo" loading="lazy"><span class="lender-logo__fallback">Banjo Loans</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/capify.png" alt="Capify logo" loading="lazy"><span class="lender-logo__fallback">Capify</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/tractor-ventures.svg" alt="Tractor Ventures logo" loading="lazy"><span class="lender-logo__fallback">Tractor Ventures</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/liberty.svg" alt="Liberty logo" loading="lazy"><span class="lender-logo__fallback">Liberty</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/pepper-money.svg" alt="Pepper Money logo" loading="lazy"><span class="lender-logo__fallback">Pepper Money</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/morris-finance.svg" alt="Morris Finance logo" loading="lazy"><span class="lender-logo__fallback">Morris Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/metro-finance.svg" alt="Metro Finance logo" loading="lazy"><span class="lender-logo__fallback">Metro Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/finance-one.svg" alt="Finance One logo" loading="lazy"><span class="lender-logo__fallback">Finance One</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/azora.svg" alt="Azora logo" loading="lazy"><span class="lender-logo__fallback">Azora</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/flexicommercial.svg" alt="FlexiCommercial logo" loading="lazy"><span class="lender-logo__fallback">FlexiCommercial</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/cogsflow.png" alt="Cogsflow logo" loading="lazy"><span class="lender-logo__fallback">Cogsflow</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/sail-funding.svg" alt="Sail Funding logo" loading="lazy"><span class="lender-logo__fallback">Sail Funding</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/angle.png" alt="Angle Finance logo" loading="lazy"><span class="lender-logo__fallback">Angle Finance</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/fundtap.svg" alt="FundTap logo" loading="lazy"><span class="lender-logo__fallback">FundTap</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/chocoup.svg" alt="Choco Up logo" loading="lazy"><span class="lender-logo__fallback">Choco Up</span></span>
+      <span class="lender-logo"><img src="/commercial/assets/lenders/arch-finance.svg" alt="Arch Finance logo" loading="lazy"><span class="lender-logo__fallback">Arch Finance</span></span>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     SECTION 6 — BUSINESS CALCULATORS
+     SECTION 6  -  BUSINESS CALCULATORS
      ============================================ -->
 <section class="calculators reveal" id="calculators">
   <div class="container">
@@ -5474,7 +5592,7 @@ html {
       </div>
       <div class="calculators__grid">
         <!-- Loan Repayment Calculator -->
-        <a href="repayment-calculator.html" class="calc-card">
+        <a href="/commercial/repayment-calculator.html" class="calc-card">
           <div class="calc-card__mockup">
             <div class="calc-card__mockup-inner">
               <span class="calc-card__mockup-label">Loan Amount</span>
@@ -5496,7 +5614,7 @@ html {
           </div>
         </a>
         <!-- Borrowing Power Calculator -->
-        <a href="apply.html" class="calc-card">
+        <a href="/commercial/apply.html" class="calc-card">
           <div class="calc-card__mockup">
             <div class="calc-card__mockup-inner">
               <span class="calc-card__mockup-label">Annual Revenue</span>
@@ -5517,7 +5635,7 @@ html {
           </div>
         </a>
         <!-- Compare Report Calculator -->
-        <a href="apply.html" class="calc-card">
+        <a href="/commercial/apply.html" class="calc-card">
           <div class="calc-card__mockup">
             <div class="calc-card__mockup-inner">
               <span class="calc-card__mockup-label">Lender Matches</span>
@@ -5548,7 +5666,7 @@ html {
           </div>
         </a>
         <!-- Equipment Finance Calculator -->
-        <a href="equipment-calculator.html" class="calc-card">
+        <a href="/commercial/equipment-calculator.html" class="calc-card">
           <div class="calc-card__mockup">
             <div class="calc-card__mockup-inner">
               <span class="calc-card__mockup-label">Lease vs Buy</span>
@@ -5582,7 +5700,7 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 7 — FUNDING GUIDES
+     SECTION 7  -  FUNDING GUIDES
      ============================================ -->
 <section class="guides reveal" id="guides">
   <div class="container">
@@ -5592,7 +5710,7 @@ html {
     </div>
 
     <div class="guides__featured">
-      <a href="guides/compare-business-loans.html" class="guide-featured">
+      <a href="/commercial/guides/compare-business-loans.html" class="guide-featured">
         <div class="guide-featured__visual">
           <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;padding:24px;">
             <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;width:80%;max-width:360px;backdrop-filter:blur(4px);">
@@ -5626,7 +5744,7 @@ html {
     </div>
 
     <div class="guides__grid">
-      <a href="guides/best-line-of-credit.html" class="guide-card">
+      <a href="/commercial/guides/best-line-of-credit.html" class="guide-card">
         <div class="guide-card__visual guide-card__visual--1">
           <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;padding:16px;">
             <div style="width:80%;max-width:200px;">
@@ -5652,7 +5770,7 @@ html {
           <p class="guide-card__author">Trade Funding</p>
         </div>
       </a>
-      <a href="guides/invoice-vs-debtor-finance.html" class="guide-card">
+      <a href="/commercial/guides/invoice-vs-debtor-finance.html" class="guide-card">
         <div class="guide-card__visual guide-card__visual--2">
           <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;padding:14px;">
             <div style="background:rgba(255,255,255,0.95);border-radius:6px;padding:14px 16px;width:80%;max-width:210px;box-shadow:0 4px 20px rgba(0,0,0,0.2);color:#1a1a2e;">
@@ -5681,7 +5799,7 @@ html {
           <p class="guide-card__author">Trade Funding</p>
         </div>
       </a>
-      <a href="guides/lease-vs-buy.html" class="guide-card">
+      <a href="/commercial/guides/lease-vs-buy.html" class="guide-card">
         <div class="guide-card__visual guide-card__visual--3">
           <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;padding:10px;">
             <svg viewBox="0 0 260 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:240px;">
@@ -5733,7 +5851,7 @@ html {
           <p class="guide-card__author">Trade Funding</p>
         </div>
       </a>
-      <a href="guides/business-loan-bad-credit.html" class="guide-card">
+      <a href="/commercial/guides/business-loan-bad-credit.html" class="guide-card">
         <div class="guide-card__visual guide-card__visual--4">
           <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;padding:16px;">
             <div style="width:75%;max-width:200px;">
@@ -5768,20 +5886,22 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 8 — SOCIAL PROOF (CASES + REVIEWS)
+     SECTION 8  -  SOCIAL PROOF (CASES + REVIEWS)
      ============================================ -->
 <section class="social-proof reveal" id="social-proof">
   <div class="container container--wide">
     <div class="social-proof__header">
-      <div class="social-proof__badge">
-        <span class="social-proof__badge-number">5.0</span>
-        <div>
-          <div class="social-proof__badge-stars">
-            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-          </div>
-          <span class="social-proof__badge-text">Google Reviews (31)</span>
+      <!-- 🔴 BLOCKED - NEEDS: actual current Google review count/rating and
+           a confirmed real widget provider/script/API key (plan.md §1,
+           §5.0; buildspec.md §7). The old static "5.0 / 31 reviews" figure
+           was flagged as stale and non-updating (Team Comments  -  Isabella).
+           Honest fallback: link out to the real listing, no invented number. -->
+      <a class="social-proof__badge" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener" aria-label="See our reviews on Google">
+        <div class="social-proof__badge-stars">
+          <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
         </div>
-      </div>
+        <span class="social-proof__badge-text">See what real customers say about us on Google &rarr;</span>
+      </a>
       <h2 class="section-title">Real businesses. Real results.</h2>
       <p class="section-subtitle">See how Australian businesses used their Compare Report to find better funding.</p>
     </div>
@@ -5923,7 +6043,10 @@ html {
 
     <!-- CTA -->
     <div class="social-proof__cta">
-      <a href="apply.html" class="social-proof__cta-link">Join 100+ Australian businesses we've helped fund &rarr;</a>
+      <!-- 🟢 Fix (Team Comments  -  Isabella / plan.md §5.0): don't repeat
+           the same Compare Report CTA in every section  -  this instance now
+           routes to Google Reviews for variety, per the flagged feedback. -->
+      <a href="#google-reviews" class="social-proof__cta-link">See what 100+ Australian businesses say about us &rarr;</a>
     </div>
   </div>
 </section>
@@ -5932,7 +6055,7 @@ html {
   <div class="container">
     <h2 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:12px;">Ready to see the full picture?</h2>
     <p style="color:rgba(255,255,255,0.7);font-size:1rem;margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto;">Start your free application and receive your personalised Compare Report within 24 hours.</p>
-    <a href="apply.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:600;font-size:1rem;padding:16px 36px;border-radius:50px;background:var(--peach);color:white;text-decoration:none;box-shadow:0 4px 20px rgba(255,93,92,0.3);transition:all 0.3s ease;">Get My Free Compare Report &rarr;</a>
+    <a href="/commercial/apply.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:600;font-size:1rem;padding:16px 36px;border-radius:50px;background:var(--peach);color:white;text-decoration:none;box-shadow:0 4px 20px rgba(255,93,92,0.3);transition:all 0.3s ease;">Get My Free Compare Report &rarr;</a>
     <div style="margin-top:16px;display:flex;justify-content:center;gap:20px;font-size:0.8rem;color:rgba(255,255,255,0.5);">
       <span>No credit check</span>
       <span>No commitment</span>
@@ -5945,18 +6068,18 @@ html {
      ============================================ -->
 <footer class="footer">
   <div class="container container--wide">
-    <div class="footer__grid">
+    <div class="footer__grid footer__grid--condensed">
 
       <!-- Column 1: Brand, contact, badges -->
       <div class="footer__brand-col">
-        <a href="index.html" class="footer__logo" aria-label="Trade Funding">
-          <img src="assets/logo-white-ghost.png" alt="Trade Funding">
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
         </a>
-        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers. Then we get it done. Free. No credit check. 24 hours.</p>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers - then we get it done. Free. No credit check. 24 hours.</p>
         <div class="footer__contact">
           <div class="footer__contact-item">&#128222; 1300 161 641</div>
           <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
-          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
         </div>
         <div class="footer__badges">
           <span class="footer__badge">ACL 387856</span>
@@ -5966,68 +6089,49 @@ html {
         </div>
       </div>
 
-      <!-- Column 2: Products -->
-      <div>
-        <h4 class="footer__heading">Products</h4>
-        <div class="footer__links">
-          <a href="business-term-loans.html">Term Loan</a>
-          <a href="business-line-of-credit.html">Line of Credit</a>
-          <a href="invoice-finance.html">Invoice Finance</a>
-          <a href="trade-finance.html">Trade Finance</a>
-          <a href="merchant-cash-advance.html">Merchant Cash Advance</a>
-          <a href="charge-card.html">Charge Card</a>
-          <a href="overdraft.html">Overdraft</a>
-          <a href="finance-lease.html">Finance Lease</a>
-          <a href="chattel-mortgage.html">Chattel Mortgage</a>
+      <!-- Column 2: condensed sitemap -->
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Channels</h4>
+          <div class="footer__links">
+            <a href="/commercial/business-loans.html">Business Loans</a>
+            <a href="/connect/index.html">Connect</a>
+            <a href="/personal-and-property/index.html">Personal &amp; Property</a>
+            <a href="/commercial/resources.html">Guides &amp; Tools</a>
+          </div>
         </div>
-        <div class="footer__links footer__links--more">
-          <a href="operating-lease.html">Operating Lease</a>
-          <a href="debtor-finance.html">Debtor Finance</a>
-          <a href="fund-an-invoice.html">Fund an Invoice</a>
-          <a href="export-finance.html">Export Finance</a>
-          <a href="supply-chain-funding.html">Supply Chain</a>
-          <a href="r-and-d-funding.html">R&amp;D Funding</a>
-          <a href="second-mortgage.html">Second Mortgage</a>
-          <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/commercial/about.html">About Us</a>
+            <a href="/commercial/broker-portal.html">Broker Portal</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/commercial/apply.html">Get Started</a>
+          </div>
         </div>
-      </div>
-
-      <!-- Column 3: Resources -->
-      <div>
-        <h4 class="footer__heading">Resources</h4>
-        <div class="footer__links">
-          <a href="resources.html">All Guides &amp; Tools</a>
-          <a href="guides/compare-business-loans.html">Compare Business Loans</a>
-          <a href="guides/business-term-loans-guide.html">Term Loans Guide</a>
-          <a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a>
-          <a href="repayment-calculator.html">Repayment Calculator</a>
-          <a href="equipment-calculator.html">Equipment Calculator</a>
-        </div>
-      </div>
-
-      <!-- Column 4: Company -->
-      <div>
-        <h4 class="footer__heading">Company</h4>
-        <div class="footer__links">
-          <a href="about.html">About Us</a>
-          <a href="comparison-report.html">Compare Report</a>
-          <a href="meet-cashper.html">Meet Cashper</a>
-          <a href="apply.html">Get Started</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/commercial/privacy.html">Privacy Policy</a>
+            <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+          </div>
         </div>
       </div>
 
     </div>
 
+    <!-- FooterLegal (global, componentized once per CLAUDE.md rule 8) -->
     <div class="footer__disclaimer">
-      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
     </div>
 
     <div class="footer__bottom">
       <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
       <div class="footer__bottom-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="credit-guide.html">Credit Guide</a>
+        <a href="/commercial/privacy.html">Privacy Policy</a>
+        <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
       </div>
     </div>
   </div>
@@ -6186,7 +6290,7 @@ html {
 })();
 
 // ============================================
-// HERO QUALIFIER — Lender data & reactive report
+// HERO QUALIFIER  -  Lender data & reactive report
 // ============================================
 var heroLenders = {
   growth: [
@@ -6356,7 +6460,7 @@ heroUpdate();
     if (!a) return;
     var href = a.getAttribute('href');
     if (!href) return;
-    // Match apply.html at start or after / — ignore if already has a query string
+    // Match apply.html at start or after /  -  ignore if already has a query string
     if (/^apply\.html(\?|$)/.test(href) && href.indexOf('?') === -1) {
       a.setAttribute('href', 'apply.html' + buildQualifierQuery());
     }
@@ -6364,9 +6468,9 @@ heroUpdate();
 })();
 </script>
 
-<!-- Mobile Sticky CTA — spec requirement -->
-<a href="apply.html" class="mobile-sticky-cta">Get My Free Compare Report &rarr;</a>
+<!-- Mobile Sticky CTA  -  spec requirement -->
+<a href="/commercial/apply.html" class="mobile-sticky-cta">Get My Free Compare Report &rarr;</a>
 
-<script src="cookie-consent.js"></script>
+<script src="/commercial/cookie-consent.js"></script>
 </body>
 </html>

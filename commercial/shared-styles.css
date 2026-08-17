@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================
-   NAVBAR — Canonical styles (do NOT duplicate in inline styles)
+   NAVBAR  -  Canonical styles (do NOT duplicate in inline styles)
    ======================================== */
 .navbar {
   position: fixed;
@@ -305,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: rotate(180deg);
 }
 
-/* Dropdown menu — 3-column grid */
+/* Dropdown menu  -  3-column grid */
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -452,7 +452,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* ========================================
-   CHANNEL SWITCHER — "One Brand, Three Channels"
+   CHANNEL SWITCHER  -  "One Brand, Three Channels"
    Capsule toggle in the navbar, outside the primary nav row (Products /
    Resources / About never compete with it). On Commercial's home page it
    shows a Home glyph (current channel, no text label) plus two selectable
@@ -493,6 +493,7 @@ h1, h2, h3, h4, h5, h6 {
   outline-offset: 2px;
 }
 
+.channel-switch__option.active,
 .channel-switch__option[aria-current="page"] {
   background: var(--navy);
   color: var(--white);
@@ -500,13 +501,27 @@ h1, h2, h3, h4, h5, h6 {
   cursor: default;
 }
 
+.channel-switch__option.active:hover,
 .channel-switch__option[aria-current="page"]:hover {
   background: var(--navy);
   color: var(--white);
 }
 
+/* Per-channel active tint  -  the active pill takes on the current
+   channel's own accent color (tokens.md §2), not a flat navy on every
+   page, per buildspec.md §2A. */
+.channel-switch__option.active--connect {
+  background: var(--tf-connect-primary);
+  color: var(--navy);
+}
+.channel-switch__option.active--personalproperty {
+  background: var(--tf-personalproperty-primary);
+  color: var(--white);
+}
+
 .channel-switch__option--home {
-  padding: 9px 15px;
+  padding: 9px 15px 9px 12px;
+  gap: 6px;
 }
 
 .channel-switch__option--home svg {
@@ -517,8 +532,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 🟡 Contrast fix (buildspec.md §2 / plan.md §4): this page's hero
    flips .navbar.transparent to a light background (see the hero override
-   below), so the base .navbar.transparent rules elsewhere in this file —
-   written for a dark hero — must not apply to the switcher here. Force
+   below), so the base .navbar.transparent rules elsewhere in this file  - 
+   written for a dark hero  -  must not apply to the switcher here. Force
    navy border/text so the Connect and Personal & Property options stay
    legible against the light home-page background, instead of rendering
    near-white text on a near-white pill. */
@@ -536,6 +551,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--navy);
 }
 
+.navbar.transparent .channel-switch__option.active,
 .navbar.transparent .channel-switch__option[aria-current="page"] {
   background: var(--navy);
   color: var(--white);
@@ -646,6 +662,28 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 1.6fr 1fr 1fr 1fr;
   gap: 40px 48px;
   margin-bottom: 48px;
+}
+
+/* Condensed 2-column footer (Phase 5 Part 1)  -  brand column + one
+   link column holding three grouped sub-lists, so the footer reads
+   as two columns sitewide instead of four. */
+.footer__grid--condensed {
+  grid-template-columns: 1.4fr 2fr;
+  gap: 40px;
+}
+
+.footer__links-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.footer__links-group .footer__heading {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 640px) {
+  .footer__links-col { grid-template-columns: 1fr 1fr; }
 }
 
 .footer__brand-col {

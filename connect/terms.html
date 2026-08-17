@@ -21,52 +21,94 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/main.css?v=20260811-1"/>
-<link rel="icon" type="image/png" sizes="32x32" href="branding/favicon-32.png"/>
-<link rel="icon" type="image/png" sizes="192x192" href="branding/favicon-192.png"/>
-<link rel="icon" type="image/png" sizes="256x256" href="branding/favicon-256.png"/>
-<link rel="apple-touch-icon" sizes="180x180" href="branding/apple-touch-icon.png"/>
+<link rel="stylesheet" href="/commercial/shared-styles.css"/>
+<link rel="stylesheet" href="/connect/styles/main.css?v=20260811-1"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/connect/branding/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/connect/branding/favicon-192.png"/>
+<link rel="icon" type="image/png" sizes="256x256" href="/connect/branding/favicon-256.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/connect/branding/apple-touch-icon.png"/>
 </head>
 <body>
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<header id="site-nav" class="nav">
-  <div class="nav__inner wrap">
-    <a href="index.html" class="nav__brand" aria-label="Trade Funding home">
-      <img src="branding/logo-white.png" alt="Trade Funding Connect" class="nav__logo nav__logo--white"/>
+<!-- NAVBAR - CANONICAL (see commercial/components/navbar.html; CLAUDE.md rule 14) -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="/connect/index.html" class="navbar__logo">
+      <img src="/connect/branding/logo-navy.png" alt="Trade Funding Connect" height="28">
     </a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="index.html#how-it-works">How it works</a>
-      <a href="index.html#the-maths">The maths</a>
-      <a href="index.html#why-us">Why us</a>
-    </nav>
-    <div class="nav__cta">
-      <a href="index.html#request-a-call" class="btn btn--secondary">Request a call</a>
-      <a href="index.html#register" class="btn btn--primary">Register your business</a>
+
+    <div class="navbar__links">
+      <a href="/connect/how-it-works.html" class="navbar__link">How It Works</a>
+      <a href="/connect/for-vendors.html" class="navbar__link">For Vendors</a>
+      <a href="/connect/for-customers.html" class="navbar__link">For Customers</a>
+      <a href="/connect/faqs.html" class="navbar__link">FAQs</a>
+      <a href="/connect/about.html" class="navbar__link">About</a>
     </div>
-    <button class="nav__hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
+
+    <div class="navbar__right">
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option active active--connect" aria-current="page" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
+      <a href="/connect/for-vendors.html" class="navbar__cta">Become a Partner &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-  <div class="nav__mobile" id="mobileMenu" hidden>
-    <a href="index.html#how-it-works">How it works</a>
-    <a href="index.html#the-maths">The maths</a>
-    <a href="index.html#why-us">Why us</a>
-    <a href="index.html#request-a-call" class="btn btn--secondary btn--lg">Request a call</a>
-    <a href="index.html#register" class="btn btn--primary btn--lg">Register your business</a>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/connect/how-it-works.html" onclick="closeMobile()">How It Works</a>
+  <a href="/connect/for-vendors.html" onclick="closeMobile()">For Vendors</a>
+  <a href="/connect/for-customers.html" onclick="closeMobile()">For Customers</a>
+  <a href="/connect/faqs.html" onclick="closeMobile()">FAQs</a>
+  <a href="/connect/about.html" onclick="closeMobile()">About</a>
+  <div class="mobile-nav__switch">
+    <span class="mobile-nav__switch-label">Trade Funding also does</span>
+    <a href="/commercial/index.html" onclick="closeMobile()">Business Loans &rarr;</a>
+    <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
-</header>
+  <a href="/connect/for-vendors.html" class="btn btn--primary" onclick="closeMobile()">Become a Partner &rarr;</a>
+</div>
+<script>
+(function() {
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  if (!hamburger || !mobileNav) return;
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  window.closeMobile = function() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+})();
+</script>
 
 <main id="main" class="legal">
   <div class="wrap-sm legal__inner">
-    <p class="legal__crumb"><a href="index.html">Home</a> &rsaquo; Terms &amp; Conditions</p>
+    <p class="legal__crumb"><a href="/connect/index.html">Home</a> &rsaquo; Terms &amp; Conditions</p>
     <h1 class="s-headline" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">Terms &amp; Conditions</h1>
     <p class="legal__updated">Effective Date: 30 March 2025</p>
 
     <h2>1. Introduction</h2>
     <p>Welcome to Trade Funding, operated by <strong>Trade Funding Pty Ltd</strong> (ABN 28 647 543 084) (<strong>"we"</strong>, <strong>"us"</strong>, or <strong>"our"</strong>). These Terms and Conditions (<strong>"Terms"</strong>) govern your use of our website located at <strong>tradefunding.com.au</strong> and all related products, tools, and services we make available, including our point-of-sale finance offering for vendor partners (collectively, the <strong>"Services"</strong>).</p>
-    <p>By accessing or using our Services in any way, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="privacy.html">Privacy Policy</a>, which is incorporated herein by reference. If you do not agree to these Terms, you must not access or use our Services.</p>
+    <p>By accessing or using our Services in any way, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="/connect/privacy.html">Privacy Policy</a>, which is incorporated herein by reference. If you do not agree to these Terms, you must not access or use our Services.</p>
     <p>We hold Australian Credit Licence <strong>387856</strong> and are a member of the Australian Financial Complaints Authority (AFCA). These Terms do not limit any rights you may have under Australian consumer protection legislation, including the <em>Australian Consumer Law</em>.</p>
 
     <h2>2. Eligibility</h2>
@@ -201,61 +243,74 @@
   </div>
 </main>
 
-<footer id="site-footer" class="footer">
-  <div class="wrap footer__inner">
-    <div class="footer__cols">
+<!-- FOOTER - CANONICAL, condensed 2-column (see commercial/components/footer.html; CLAUDE.md rules 8/14) -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid footer__grid--condensed">
+
+      <!-- Column 1: Brand, contact, badges -->
       <div class="footer__brand-col">
-        <a href="index.html" class="footer__brand"><img src="branding/logo-white.png" alt="Trade Funding Connect" class="footer__logo"/></a>
-        <p class="footer__tag">Finance at every point of sale. We bring 70+ lenders to the moment your customer needs to buy, so deals move forward instead of stalling.</p>
-        <ul class="footer__contact">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:1300161641">1300 161 641</a></li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:support@tradefunding.com.au">support@tradefunding.com.au</a></li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Sydney, Australia</span></li>
-        </ul>
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Finance at every point of sale. We bring 70+ lenders to the moment your customer needs to buy, so deals move forward instead of stalling.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; <a href="tel:1300161641" style="color:inherit;">1300 161 641</a></div>
+          <div class="footer__contact-item">&#128231; <a href="mailto:support@tradefunding.com.au" style="color:inherit;">support@tradefunding.com.au</a></div>
+          <div class="footer__contact-item">&#128205; <!-- BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
+        </div>
         <div class="footer__badges">
-          <span class="footer__badge">Australian Credit Licence 387856</span>
-          <span class="footer__badge">Australian Financial Complaints Authority</span>
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
           <span class="footer__badge">CAFBA</span>
           <span class="footer__badge">Fintech Australia</span>
         </div>
+        <!-- Cashper mascot - CLAUDE.md rule 7: never remove -->
+        <img src="/connect/branding/cashper-gradient-transparent.png" alt="" style="height:56px;width:auto;margin-top:16px;" aria-hidden="true">
       </div>
-      <nav class="footer__col" aria-label="Product">
-        <h4 class="footer__heading">Product</h4>
-        <div class="footer__links">
-          <a href="index.html#how-it-works">How it works</a>
-          <a href="index.html#who-its-for">What we fund</a>
-          <a href="index.html#the-impact">Impact for vendors</a>
-          <a href="index.html#the-maths">ROI calculator</a>
-          <a href="index.html#why-us">Why Trade Funding</a>
+
+      <!-- Column 2: condensed sitemap -->
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Connect</h4>
+          <div class="footer__links">
+            <a href="/connect/how-it-works.html">How It Works</a>
+            <a href="/connect/for-vendors.html">For Vendors</a>
+            <a href="/connect/for-customers.html">For Customers</a>
+            <a href="/connect/faqs.html">FAQs</a>
+          </div>
         </div>
-      </nav>
-      <nav class="footer__col" aria-label="Get started">
-        <h4 class="footer__heading">Get started</h4>
-        <div class="footer__links">
-          <a href="index.html#register">Register your business</a>
-          <a href="index.html#request-a-call">Request a call</a>
-          <a href="mailto:support@tradefunding.com.au">Contact sales</a>
-          <a href="tel:1300161641">1300 161 641</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/connect/about.html">About Connect</a>
+            <a href="https://tradefunding.com.au">tradefunding.com.au</a>
+            <a href="/contact.html">Contact</a>
+          </div>
         </div>
-      </nav>
-      <nav class="footer__col" aria-label="Company">
-        <h4 class="footer__heading">Company</h4>
-        <div class="footer__links">
-          <a href="https://tradefunding.com.au">tradefunding.com.au</a>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms &amp; Conditions</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/connect/privacy.html">Privacy Policy</a>
+            <a href="/connect/terms.html">Terms &amp; Conditions</a>
+          </div>
         </div>
-      </nav>
+      </div>
+
     </div>
+
+    <!-- FooterLegal (global, componentized once per CLAUDE.md rule 8) -->
     <div class="footer__disclaimer">
-      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="terms.html">Terms &amp; Conditions</a> | Australian Credit Licence 387856</p>
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/connect/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
     </div>
+
     <div class="footer__bottom">
-      <img src="branding/cashper-gradient-transparent.png" alt="" class="footer__cashper" aria-hidden="true"/>
-      <p class="footer__copy">&copy; 2026 Trade Funding Pty Ltd. ABN 28 647 543 084. Australian Credit Licence 387856.</p>
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. ABN 28 647 543 084. Australian Credit Licence 387856.</p>
       <div class="footer__bottom-links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
+        <a href="/connect/privacy.html">Privacy Policy</a>
+        <a href="/connect/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
       </div>
     </div>
   </div>
@@ -265,7 +320,7 @@
   <div class="cookie-bar__inner">
     <div class="cookie-bar__text">
       <strong>We use cookies to keep the site working and improve it.</strong>
-      <span>Essential cookies are always on. Analytics cookies (when accepted) help us understand how Trade Funding Connect is used. See our <a href="privacy.html">Privacy Policy</a>.</span>
+      <span>Essential cookies are always on. Analytics cookies (when accepted) help us understand how Trade Funding Connect is used. See our <a href="/connect/privacy.html">Privacy Policy</a>.</span>
     </div>
     <div class="cookie-bar__actions">
       <button type="button" class="cookie-bar__btn cookie-bar__btn--ghost" data-cookie-action="essential">Essential only</button>
@@ -274,7 +329,7 @@
   </div>
 </div>
 
-<script src="scripts/main.js" defer></script>
+<script src="/connect/scripts/main.js" defer></script>
 
 </body>
 </html>

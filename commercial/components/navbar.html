@@ -1,10 +1,18 @@
 <!-- ============================================
-     NAVBAR
+     NAVBAR  -  CANONICAL (Commercial channel)
+     Source of truth for header markup/CSS classes per CLAUDE.md rule 14
+     and buildspec.md §10. Every page on every channel (Commercial,
+     Connect, Personal & Property) must reproduce this exact wrapper
+     structure  -  same divs, same classes, same order  -  swapping only:
+       - the .channel-switch__option that carries `active`/aria-current
+       - the primary-nav links (each channel keeps its own nav items)
+     All hrefs/srcs below are root-relative per buildspec.md §10 /
+     CLAUDE.md rule 15  -  never relative, never bare filenames.
      ============================================ -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">
-      <img src="assets/logo-navy.png" alt="Trade Funding" height="28">
+    <a href="/commercial/index.html" class="navbar__logo">
+      <img src="/commercial/assets/logo-navy.png" alt="Trade Funding" height="28">
     </a>
 
     <div class="navbar__links">
@@ -13,51 +21,73 @@
         <div class="dropdown-menu">
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Term Loans</span>
-            <a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
-            <a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
-            <a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+            <a href="/commercial/business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="/commercial/merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="/commercial/r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Credit Lines</span>
-            <a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
-            <a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
-            <a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+            <a href="/commercial/charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="/commercial/business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="/commercial/overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Invoice</span>
-            <a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance / Factoring</a>
-            <a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
-            <a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a>
+            <a href="/commercial/invoice-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Invoice Finance</a>
+            <a href="/commercial/fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Trade</span>
-            <a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
-            <a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
-            <a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+            <a href="/commercial/trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+            <a href="/commercial/export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="/commercial/supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Equipment</span>
-            <a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
-            <a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
-            <a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+            <a href="/commercial/finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="/commercial/operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="/commercial/chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
           </div>
           <div class="dropdown-menu__category">
-            <span class="dropdown-menu__heading">Mortgage</span>
-            <a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
-            <a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+            <span class="dropdown-menu__heading">Personal &amp; Property</span>
+            <a href="/commercial/second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+            <a href="/commercial/self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="/personal-and-property/index.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> All Personal &amp; Property loans</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Other</span>
+            <a href="/commercial/business-loans.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128218;</span> View all business loans</a>
           </div>
           <div class="dropdown-menu__bottom">
-            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+            <a href="/commercial/comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
           </div>
         </div>
       </div>
-      <a href="resources.html" class="navbar__link">Resources</a>
-      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
-      <a href="about.html" class="navbar__link">About</a>
+      <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/commercial/resources.html" class="navbar__link">Resources</a>
+      <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
+      <a href="/commercial/about.html" class="navbar__link">About</a>
     </div>
 
     <div class="navbar__right">
-      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <!-- ChannelSwitcher  -  CLAUDE.md rule 13 / buildspec.md §2A:
+           always all three channels, every page, no exceptions. Home
+           icon + "Home" text represents Commercial (never the word
+           "Commercial"). Whichever option matches the current page
+           carries class="active" (plus aria-current="page" for a11y). -->
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
+      <a href="/commercial/apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -67,26 +97,32 @@
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
-  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
-  <a href="r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
-  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
-  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
-  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
-  <a href="debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
-  <a href="fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
-  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
-  <a href="export-finance.html" onclick="closeMobile()">Export Finance</a>
-  <a href="supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
-  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
-  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
-  <a href="operating-lease.html" onclick="closeMobile()">Operating Lease</a>
-  <a href="chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
-  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
-  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
-  <a href="resources.html" onclick="closeMobile()">Resources</a>
-  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
-  <a href="about.html" onclick="closeMobile()">About</a>
-  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
-  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+  <a href="/commercial/business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="/commercial/merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="/commercial/r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="/commercial/charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="/commercial/business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="/commercial/overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="/commercial/invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="/commercial/fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="/commercial/export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="/commercial/supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="/commercial/trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="/commercial/finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="/commercial/operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="/commercial/chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="/commercial/business-loans.html" onclick="closeMobile()">All Business Loans</a>
+  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/broker-portal.html" onclick="closeMobile()">Broker Portal</a>
+  <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="/commercial/about.html" onclick="closeMobile()">About</a>
+  <a href="/commercial/meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <div class="mobile-nav__switch">
+    <span class="mobile-nav__switch-label">Trade Funding also does</span>
+    <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
+    <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
+  </div>
+  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
 </div>

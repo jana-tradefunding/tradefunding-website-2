@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Compare 16 business funding options in one place - term loans, lines of credit, invoice finance, trade finance, equipment finance and more. Built for your business, not a generic search.">
+<title>Business Loans: Compare All Funding Options | Trade Funding</title>
+<link rel="canonical" href="https://www.tradefunding.com.au/business-loans">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/commercial/shared-styles.css">
+<link rel="stylesheet" href="/commercial/product-styles.css">
+
+<style>
+/* ========================================
+   BUSINESS LOANS HUB  -  /business-loans/
+   Scoped "blh-" prefix. Reuses shared tokens
+   and product-hero/product-section patterns
+   so this hub reads as a native sibling of
+   the existing product pages.
+   ======================================== */
+
+.blh-hero {
+  position: relative;
+  background: var(--navy);
+  background: linear-gradient(160deg, var(--navy) 0%, #002A5C 50%, #001838 100%);
+  padding: 140px 0 80px;
+  overflow: hidden;
+  color: var(--white);
+  text-align: center;
+}
+
+.blh-hero__inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.blh-hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--skyblue);
+  margin-bottom: 16px;
+}
+
+.blh-hero__title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.blh-hero__subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255,255,255,0.8);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 36px;
+}
+
+.blh-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 16px 36px;
+  border-radius: 50px;
+  background: var(--peach);
+  color: var(--white);
+  box-shadow: 0 4px 20px rgba(255,93,92,0.35);
+  transition: all var(--transition-base);
+}
+
+.blh-hero__cta:hover {
+  background: var(--peach-hover, #e84847);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,93,92,0.5);
+}
+
+.blh-hero__cta-note {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.blh-hero__glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  top: -20%;
+  right: 5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(84,180,246,0.08) 0%, transparent 70%);
+}
+
+/* --- Intro --- */
+.blh-intro {
+  background: var(--white);
+  padding: 64px 0 16px;
+}
+
+.blh-intro__inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.blh-intro__text {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+/* --- Card Grid --- */
+.blh-grid-section {
+  background: var(--white);
+  padding: 48px 0 80px;
+}
+
+.blh-grid-section__inner {
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.blh-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.blh-card {
+  background: var(--white);
+  border: 1px solid #E8ECF1;
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.blh-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blh-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(84,180,246,0.1);
+  color: var(--skyblue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.blh-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.blh-card__benefit {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.blh-card__cta {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.blh-card__cta:hover {
+  color: var(--skyblue);
+}
+
+/* --- Trust strip --- */
+.blh-trust {
+  background: var(--light-bg);
+  padding: 56px 0;
+}
+
+.blh-trust__inner {
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.blh-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.blh-trust__item svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--skyblue);
+  flex-shrink: 0;
+}
+
+.blh-trust__item strong {
+  font-family: var(--font-heading);
+  color: var(--navy);
+}
+
+@media (max-width: 1024px) {
+  .blh-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .blh-hero { padding: 110px 0 60px; }
+  .blh-grid { grid-template-columns: repeat(2, 1fr); }
+  .blh-trust__inner { gap: 24px; }
+}
+
+@media (max-width: 480px) {
+  .blh-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR  -  canonical, copied verbatim from
+     /commercial/components/navbar.html per
+     CLAUDE.md rule 14. Home is the current channel.
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="/commercial/index.html" class="navbar__logo">
+      <img src="/commercial/assets/logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Term Loans</span>
+            <a href="/commercial/business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="/commercial/merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="/commercial/r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Credit Lines</span>
+            <a href="/commercial/charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="/commercial/business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="/commercial/overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Invoice</span>
+            <a href="/commercial/invoice-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Invoice Finance</a>
+            <a href="/commercial/fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Trade</span>
+            <a href="/commercial/trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+            <a href="/commercial/export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="/commercial/supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Equipment</span>
+            <a href="/commercial/finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="/commercial/operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="/commercial/chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Personal &amp; Property</span>
+            <a href="/commercial/second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+            <a href="/commercial/self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="/personal-and-property/index.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> All Personal &amp; Property loans</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Other</span>
+            <a href="/commercial/business-loans.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128218;</span> View all business loans</a>
+          </div>
+          <div class="dropdown-menu__bottom">
+            <a href="/commercial/comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/commercial/resources.html" class="navbar__link">Resources</a>
+      <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
+      <a href="/commercial/about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
+      <a href="/commercial/apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/commercial/business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="/commercial/merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="/commercial/r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="/commercial/charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="/commercial/business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="/commercial/overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="/commercial/invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="/commercial/fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="/commercial/export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="/commercial/supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="/commercial/trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="/commercial/finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="/commercial/operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="/commercial/chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="/commercial/business-loans.html" onclick="closeMobile()">All Business Loans</a>
+  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/broker-portal.html" onclick="closeMobile()">Broker Portal</a>
+  <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="/commercial/about.html" onclick="closeMobile()">About</a>
+  <a href="/commercial/meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <div class="mobile-nav__switch">
+    <span class="mobile-nav__switch-label">Trade Funding also does</span>
+    <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
+    <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
+  </div>
+  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+<!-- 1. HERO -->
+<section class="blh-hero">
+  <div class="blh-hero__glow" aria-hidden="true"></div>
+  <div class="blh-hero__inner">
+    <div class="blh-hero__eyebrow">Business Loans Hub</div>
+    <h1 class="blh-hero__title">Every kind of business finance, in one place - built for your business, not a generic search.</h1>
+    <p class="blh-hero__subtitle">Instead of guessing which of dozens of loan products fits, see the options that are actually built for businesses like yours, in one hub.</p>
+    <a href="/commercial/apply.html" class="blh-hero__cta">Compare your options &rarr;</a>
+    <div class="blh-hero__cta-note">We match you against 70+ lenders and show you what actually fits - free, no credit check.</div>
+  </div>
+</section>
+
+<!-- 2. INTRO -->
+<section class="blh-intro">
+  <div class="blh-intro__inner">
+    <p class="blh-intro__text">Business funding isn't one product - it's a whole toolkit, and the right fit depends on what you're funding, how fast you need it, and what you already have as security. Rather than searching for a single "business loan" and hoping it's the right shape, browse every product Trade Funding matches against below, or skip straight to a personalised Compare Report.</p>
+  </div>
+</section>
+
+<!-- 3. CARD GRID -->
+<section class="blh-grid-section">
+  <div class="blh-grid-section__inner">
+    <div class="blh-grid">
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#128176;</div>
+        <h3 class="blh-card__title">Business Term Loans</h3>
+        <p class="blh-card__benefit">A lump sum with fixed repayments - straightforward funding for growth, stock, or working capital.</p>
+        <a href="/commercial/business-term-loans.html" class="blh-card__cta">See Business Term Loans options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#128179;</div>
+        <h3 class="blh-card__title">Business Line of Credit</h3>
+        <p class="blh-card__benefit">Draw funds as you need them and only pay interest on what you use.</p>
+        <a href="/commercial/business-line-of-credit.html" class="blh-card__cta">See Business Line of Credit options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#127974;</div>
+        <h3 class="blh-card__title">Business Overdraft</h3>
+        <p class="blh-card__benefit">A flexible buffer against your everyday transaction account for smoothing cash flow gaps.</p>
+        <a href="/commercial/overdraft.html" class="blh-card__cta">See Business Overdraft options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#128179;</div>
+        <h3 class="blh-card__title">Business Charge Card</h3>
+        <p class="blh-card__benefit">Give your team spending power with a card that's built for business expenses, not personal ones.</p>
+        <a href="/commercial/charge-card.html" class="blh-card__cta">See Business Charge Card options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#9881;</div>
+        <h3 class="blh-card__title">Chattel Mortgage</h3>
+        <p class="blh-card__benefit">Own equipment from day one while spreading the cost - a common fit for vehicles and machinery.</p>
+        <a href="/commercial/chattel-mortgage.html" class="blh-card__cta">See Chattel Mortgage options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#9881;</div>
+        <h3 class="blh-card__title">Finance Lease</h3>
+        <p class="blh-card__benefit">Lease the equipment you need with the option to take ownership at the end of the term.</p>
+        <a href="/commercial/finance-lease.html" class="blh-card__cta">See Finance Lease options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#9881;</div>
+        <h3 class="blh-card__title">Operating Lease</h3>
+        <p class="blh-card__benefit">Use equipment without owning it - hand it back or upgrade at the end, off your balance sheet.</p>
+        <a href="/commercial/operating-lease.html" class="blh-card__cta">See Operating Lease options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#128196;</div>
+        <h3 class="blh-card__title">Invoice Finance</h3>
+        <p class="blh-card__benefit">Unlock cash tied up in unpaid invoices instead of waiting 30, 60, or 90 days to get paid.</p>
+        <a href="/commercial/invoice-finance.html" class="blh-card__cta">See Invoice Finance options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#128196;</div>
+        <h3 class="blh-card__title">Fund an Invoice</h3>
+        <p class="blh-card__benefit">Fund a single invoice when you need one gap covered, without a full ongoing facility.</p>
+        <a href="/commercial/fund-an-invoice.html" class="blh-card__cta">See Fund an Invoice options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#127758;</div>
+        <h3 class="blh-card__title">Trade Finance</h3>
+        <p class="blh-card__benefit">Fund the gap between paying suppliers and getting paid by your customers, locally or overseas.</p>
+        <a href="/commercial/trade-finance.html" class="blh-card__cta">See Trade Finance options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#127758;</div>
+        <h3 class="blh-card__title">Export Finance</h3>
+        <p class="blh-card__benefit">Fund production and shipping costs before your overseas buyer pays, without stalling the order.</p>
+        <a href="/commercial/export-finance.html" class="blh-card__cta">See Export Finance options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#127758;</div>
+        <h3 class="blh-card__title">Supply Chain Funding</h3>
+        <p class="blh-card__benefit">Extend supplier payment terms or get suppliers paid early, without straining either side's cash flow.</p>
+        <a href="/commercial/supply-chain-funding.html" class="blh-card__cta">See Supply Chain Funding options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#128179;</div>
+        <h3 class="blh-card__title">Merchant Cash Advance</h3>
+        <p class="blh-card__benefit">An advance repaid as a percentage of card sales - repayments flex with revenue.</p>
+        <a href="/commercial/merchant-cash-advance.html" class="blh-card__cta">See Merchant Cash Advance options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#128300;</div>
+        <h3 class="blh-card__title">R&amp;D Tax Incentive Funding</h3>
+        <p class="blh-card__benefit">Access the cash value of your R&amp;D Tax Incentive claim now, instead of waiting for the ATO.</p>
+        <a href="/commercial/r-and-d-funding.html" class="blh-card__cta">See R&amp;D Tax Incentive Funding options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#127970;</div>
+        <h3 class="blh-card__title">Second Mortgage</h3>
+        <p class="blh-card__benefit">Access equity in property you already own without refinancing or disturbing your first mortgage.</p>
+        <a href="/commercial/second-mortgage.html" class="blh-card__cta">See Second Mortgage options &rarr;</a>
+      </div>
+
+      <div class="blh-card">
+        <div class="blh-card__icon">&#127970;</div>
+        <h3 class="blh-card__title">Self-Employed Home Loan</h3>
+        <p class="blh-card__benefit">A home loan built around self-employed income, without the paperwork a standard bank loan demands.</p>
+        <a href="/commercial/self-employed-home-loan.html" class="blh-card__cta">See Self-Employed Home Loan options &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4. TRUST STRIP -->
+<section class="blh-trust">
+  <div class="blh-trust__inner">
+    <div class="blh-trust__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <span><strong>70+ lenders</strong> in one panel</span>
+    </div>
+    <div class="blh-trust__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span>Indicative approvals in <strong>as little as 24 hours</strong></span>
+    </div>
+    <div class="blh-trust__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      <span>Free, <strong>no credit check</strong> to compare</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER  -  canonical, copied verbatim from
+     /commercial/components/footer.html per
+     CLAUDE.md rules 8 and 14.
+     ============================================ -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid footer__grid--condensed">
+
+      <div class="footer__brand-col">
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers - then we get it done. Free. No credit check. 24 hours.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Channels</h4>
+          <div class="footer__links">
+            <a href="/commercial/business-loans.html">Business Loans</a>
+            <a href="/connect/index.html">Connect</a>
+            <a href="/personal-and-property/index.html">Personal &amp; Property</a>
+            <a href="/commercial/resources.html">Guides &amp; Tools</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/commercial/about.html">About Us</a>
+            <a href="/commercial/broker-portal.html">Broker Portal</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/commercial/apply.html">Get Started</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/commercial/privacy.html">Privacy Policy</a>
+            <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links">
+        <a href="/commercial/privacy.html">Privacy Policy</a>
+        <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/commercial/product-page.js"></script>
+</body>
+</html>

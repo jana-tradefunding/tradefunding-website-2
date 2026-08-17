@@ -383,8 +383,8 @@ img { max-width: 100%; display: block; }
 <!-- Nav with step indicators -->
 <nav class="nav">
   <div class="nav__logo">
-    <a href="index.html" style="text-decoration:none;"><img src="assets/logo-navy.png" alt="Trade Funding" height="28" style="display:block;"></a>
-    <a href="index.html" class="nav__back">&larr; Back to site</a>
+    <a href="/commercial/index.html" style="text-decoration:none;"><img src="/commercial/assets/logo-navy.png" alt="Trade Funding" height="28" style="display:block;"></a>
+    <a href="/commercial/index.html" class="nav__back">&larr; Back to site</a>
   </div>
   <div class="nav__trust">
     <span class="nav__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> No credit check</span>
@@ -486,11 +486,11 @@ img { max-width: 100%; display: block; }
             <input type="text" class="field__input" id="abnSearch" placeholder="Start typing ABN or business name..." oninput="abnLookup(this.value)">
             <div class="abn-lookup__status" id="abnStatus"></div>
             <div class="abn-autofill" id="abnAutofill" style="display:none;">
-              <div class="abn-autofill__row"><span class="abn-autofill__label">Business Name</span><span class="abn-autofill__value" id="abnBizName">—</span></div>
-              <div class="abn-autofill__row"><span class="abn-autofill__label">ABN</span><span class="abn-autofill__value" id="abnNumber">—</span></div>
-              <div class="abn-autofill__row"><span class="abn-autofill__label">Entity Type</span><span class="abn-autofill__value" id="abnEntityType">—</span></div>
-              <div class="abn-autofill__row"><span class="abn-autofill__label">GST Registered</span><span class="abn-autofill__value" id="abnGst">—</span></div>
-              <div class="abn-autofill__row"><span class="abn-autofill__label">State</span><span class="abn-autofill__value" id="abnState">—</span></div>
+              <div class="abn-autofill__row"><span class="abn-autofill__label">Business Name</span><span class="abn-autofill__value" id="abnBizName">-</span></div>
+              <div class="abn-autofill__row"><span class="abn-autofill__label">ABN</span><span class="abn-autofill__value" id="abnNumber">-</span></div>
+              <div class="abn-autofill__row"><span class="abn-autofill__label">Entity Type</span><span class="abn-autofill__value" id="abnEntityType">-</span></div>
+              <div class="abn-autofill__row"><span class="abn-autofill__label">GST Registered</span><span class="abn-autofill__value" id="abnGst">-</span></div>
+              <div class="abn-autofill__row"><span class="abn-autofill__label">State</span><span class="abn-autofill__value" id="abnState">-</span></div>
             </div>
             <input type="hidden" id="bizName" value="">
             <input type="hidden" id="abn" value="">
@@ -528,22 +528,22 @@ img { max-width: 100%; display: block; }
           <div class="autofill-row">
             <div class="autofill-field">
               <div class="autofill-field__label"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Entity Type</div>
-              <div class="autofill-field__value" id="autoEntityType">—</div>
+              <div class="autofill-field__value" id="autoEntityType">-</div>
             </div>
             <div class="autofill-field">
               <div class="autofill-field__label"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Business State</div>
-              <div class="autofill-field__value" id="autoState">—</div>
+              <div class="autofill-field__value" id="autoState">-</div>
             </div>
           </div>
           <div class="autofill-row">
             <div class="autofill-field">
               <div class="autofill-field__label"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> GST Registered</div>
-              <div class="autofill-field__value" id="autoGstStatus">—</div>
+              <div class="autofill-field__value" id="autoGstStatus">-</div>
               <div class="autofill-field__sub" id="autoGstDuration"></div>
             </div>
             <div class="autofill-field">
               <div class="autofill-field__label"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> ABN Active Since</div>
-              <div class="autofill-field__value" id="autoAbnDate">—</div>
+              <div class="autofill-field__value" id="autoAbnDate">-</div>
               <div class="autofill-field__sub" id="autoTradingYears"></div>
             </div>
           </div>
@@ -720,7 +720,7 @@ img { max-width: 100%; display: block; }
     </div>
 
     <div class="cashper-msg" id="cashperMsg">
-      <div class="cashper-msg__avatar"><img src="assets/cashper.png" alt="Cashper"></div>
+      <div class="cashper-msg__avatar"><img src="/commercial/assets/cashper.png" alt="Cashper"></div>
       <div class="cashper-msg__text" id="cashperText">Select a funding purpose and I'll start matching you to 70+ lenders.</div>
     </div>
 
@@ -805,7 +805,7 @@ function updateCashper() {
 }
 
 // ================================================================
-// CALCULATOR ENGINE — DIRECT 1:1 PORT FROM calculatorEngine.ts
+// CALCULATOR ENGINE - DIRECT 1:1 PORT FROM calculatorEngine.ts
 // DO NOT modify this logic. It matches the portal exactly.
 // ================================================================
 var purposeProductMap = {
@@ -1406,7 +1406,7 @@ function formatAmountText(el) {
   recalc();
 }
 
-// ABN Lookup — ABR JSONP API
+// ABN Lookup - ABR JSONP API
 var ABR_GUID = '34f1d0c4-e8a4-4c8e-a347-069ef4df4c2b';
 var abnTimer = null;
 
@@ -1465,7 +1465,7 @@ function calcMonthsSince(dateStr) {
 }
 
 function formatDateShort(dateStr) {
-  if (!dateStr) return '—';
+  if (!dateStr) return '-';
   var d = new Date(dateStr);
   if (isNaN(d.getTime())) return dateStr;
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1533,8 +1533,8 @@ function handleAbnDetails(data) {
   var abrFields = document.getElementById('abrAutoFields');
   if (abrFields) {
     abrFields.style.display = 'block';
-    document.getElementById('autoEntityType').textContent = entityType || '—';
-    document.getElementById('autoState').textContent = bizState || '—';
+    document.getElementById('autoEntityType').textContent = entityType || '-';
+    document.getElementById('autoState').textContent = bizState || '-';
     document.getElementById('autoGstStatus').textContent = hasGst ? 'Yes' : 'No';
     document.getElementById('autoGstDuration').textContent = hasGst ? 'Since ' + formatDateShort(gstDate) + ' (' + monthsToText(gstMonths) + ')' : 'Not registered for GST';
     document.getElementById('autoAbnDate').textContent = formatDateShort(abnActiveDate);
@@ -1640,6 +1640,6 @@ updateCashper();
   recalc();
 })();
 </script>
-<script src="cookie-consent.js"></script>
+<script src="/commercial/cookie-consent.js"></script>
 </body>
 </html>

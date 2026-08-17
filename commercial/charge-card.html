@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared-styles.css">
-<link rel="stylesheet" href="product-styles.css">
+<link rel="stylesheet" href="/commercial/shared-styles.css">
+<link rel="stylesheet" href="/commercial/product-styles.css">
 
 <!-- FAQPage Schema -->
 <script type="application/ld+json">
@@ -143,7 +143,7 @@
 .product-hero__definition { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 32px; max-width: 540px; }
 .product-hero__cta { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; padding: 16px 36px; border-radius: 50px; background: var(--peach); color: var(--white); box-shadow: 0 4px 20px rgba(255,93,92,0.35); transition: all var(--transition-base); }
 .product-hero__cta:hover { background: var(--peach-hover); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,93,92,0.5); }
-/* ================================================================ MINI COMPARE REPORT — HERO COMPONENT ================================================================ */
+/* ================================================================ MINI COMPARE REPORT  -  HERO COMPONENT ================================================================ */
 .star-dots { display: flex; gap: 3px; } .star-dot { width: 7px; height: 7px; border-radius: 50%; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); } .star-dot--s { background: #1C1998; } .star-dot--t { background: #54B4F6; } .star-dot--a { background: #FBB766; } .star-dot--r { background: #FF5D5C; }
 /* S dot white on dark backgrounds */
 .product-hero .star-dot--s,
@@ -1739,7 +1739,7 @@
   overflow: hidden;
 }
 
-/* Light section watermarks — very faint navy ghost */
+/* Light section watermarks  -  very faint navy ghost */
 .product-how::after,
 .product-compare::after,
 .product-eligibility::after,
@@ -1779,7 +1779,7 @@
   top: -20px;
 }
 
-/* Dark section watermarks — white/lighter ghost */
+/* Dark section watermarks  -  white/lighter ghost */
 .hero::after,
 .product-hero::after,
 .final-cta::after,
@@ -1985,7 +1985,7 @@ html { scroll-padding-top: 80px; }
 }
 
 /* ========================================
-   TASTE-SKILL PASS — shared enhancements
+   TASTE-SKILL PASS  -  shared enhancements
    Diffusion shadows, Liquid Glass dropdown,
    Form focus states, Art Gallery spacing
    ======================================== */
@@ -2108,8 +2108,8 @@ input:focus, select:focus, textarea:focus {
      ============================================ -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">
-      <img src="assets/logo-navy.png" alt="Trade Funding" height="28">
+    <a href="/commercial/index.html" class="navbar__logo">
+      <img src="/commercial/assets/logo-navy.png" alt="Trade Funding" height="28">
     </a>
 
     <div class="navbar__links">
@@ -2118,51 +2118,73 @@ input:focus, select:focus, textarea:focus {
         <div class="dropdown-menu">
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Term Loans</span>
-            <a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
-            <a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
-            <a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+            <a href="/commercial/business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="/commercial/merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="/commercial/r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Credit Lines</span>
-            <a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
-            <a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
-            <a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+            <a href="/commercial/charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="/commercial/business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="/commercial/overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Invoice</span>
-            <a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance / Factoring</a>
-            <a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
-            <a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a>
+            <a href="/commercial/invoice-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Invoice Finance</a>
+            <a href="/commercial/fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Trade</span>
-            <a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
-            <a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
-            <a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+            <a href="/commercial/trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+            <a href="/commercial/export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="/commercial/supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Equipment</span>
-            <a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
-            <a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
-            <a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+            <a href="/commercial/finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="/commercial/operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="/commercial/chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
           </div>
           <div class="dropdown-menu__category">
-            <span class="dropdown-menu__heading">Mortgage</span>
-            <a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
-            <a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+            <span class="dropdown-menu__heading">Personal &amp; Property</span>
+            <a href="/commercial/second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+            <a href="/commercial/self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="/personal-and-property/index.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> All Personal &amp; Property loans</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Other</span>
+            <a href="/commercial/business-loans.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128218;</span> View all business loans</a>
           </div>
           <div class="dropdown-menu__bottom">
-            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+            <a href="/commercial/comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
           </div>
         </div>
       </div>
-      <a href="resources.html" class="navbar__link">Resources</a>
-      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
-      <a href="about.html" class="navbar__link">About</a>
+      <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/commercial/resources.html" class="navbar__link">Resources</a>
+      <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
+      <a href="/commercial/about.html" class="navbar__link">About</a>
     </div>
 
     <div class="navbar__right">
-      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <!-- ChannelSwitcher  -  CLAUDE.md rule 13 / buildspec.md §2A:
+           always all three channels, every page, no exceptions. Home
+           icon + "Home" text represents Commercial (never the word
+           "Commercial"). Whichever option matches the current page
+           carries class="active" (plus aria-current="page" for a11y). -->
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          <span class="channel-switch__full">Home</span>
+        </a>
+        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+      </div>
+      <a href="/commercial/apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -2172,32 +2194,38 @@ input:focus, select:focus, textarea:focus {
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
-  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
-  <a href="r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
-  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
-  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
-  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
-  <a href="debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
-  <a href="fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
-  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
-  <a href="export-finance.html" onclick="closeMobile()">Export Finance</a>
-  <a href="supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
-  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
-  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
-  <a href="operating-lease.html" onclick="closeMobile()">Operating Lease</a>
-  <a href="chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
-  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
-  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
-  <a href="resources.html" onclick="closeMobile()">Resources</a>
-  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
-  <a href="about.html" onclick="closeMobile()">About</a>
-  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
-  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+  <a href="/commercial/business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="/commercial/merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="/commercial/r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="/commercial/charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="/commercial/business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="/commercial/overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="/commercial/invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="/commercial/fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="/commercial/export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="/commercial/supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="/commercial/trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="/commercial/finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="/commercial/operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="/commercial/chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="/commercial/business-loans.html" onclick="closeMobile()">All Business Loans</a>
+  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
+  <a href="/commercial/broker-portal.html" onclick="closeMobile()">Broker Portal</a>
+  <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="/commercial/about.html" onclick="closeMobile()">About</a>
+  <a href="/commercial/meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <div class="mobile-nav__switch">
+    <span class="mobile-nav__switch-label">Trade Funding also does</span>
+    <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
+    <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
+  </div>
+  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
 </div>
 
 <!-- ============================================
-     SECTION 1 — HERO
+     SECTION 1  -  HERO
      ============================================ -->
 <section class="product-hero" id="hero">
   <div class="hero__glow hero__glow--1"></div>
@@ -2208,7 +2236,7 @@ input:focus, select:focus, textarea:focus {
       <h1 class="product-hero__title">Every business expense<br><span>should be working harder.</span></h1>
       <p class="product-hero__definition">We compare business charge cards and corporate cards from multiple providers, showing you which cards you qualify for, with what limits, rewards, and terms.</p>
       <div class="product-hero__cta-group">
-        <a href="apply.html?purpose=pay_expenses" class="product-hero__cta">Get My Free Compare Report &rarr;</a>
+        <a href="/commercial/apply.html?purpose=pay_expenses" class="product-hero__cta">Get My Free Compare Report &rarr;</a>
         <a href="#how-it-works" class="product-hero__cta-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg> See how it works</a>
       </div>
       <div class="product-hero__trust">
@@ -2238,7 +2266,7 @@ input:focus, select:focus, textarea:focus {
     <div class="info-bar__item"><div><div class="info-bar__value">Instant</div><div>Approval speed</div></div></div>
 </div></div>
 
-<!-- HOW IT WORKS — Shared component for product pages -->
+<!-- HOW IT WORKS  -  Shared component for product pages -->
 <section id="how-it-works" style="padding:0;">
 
   <!-- The Engine Flow -->
@@ -2272,7 +2300,7 @@ input:focus, select:focus, textarea:focus {
           <span style="font-family:var(--font-heading);font-weight:800;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:#FF5D5C;">02 · Cashper Scoring</span>
           <div style="background:rgba(255,255,255,0.03);border-radius:14px;border:1px solid rgba(255,255,255,0.06);padding:20px;flex:1;display:flex;gap:20px;align-items:center;">
             <div style="flex:0 0 120px;text-align:center;">
-              <img src="assets/cashper.png" alt="Cashper" style="width:80px;animation:hiwCashperP 1.6s ease-in-out infinite;">
+              <img src="/commercial/assets/cashper.png" alt="Cashper" style="width:80px;animation:hiwCashperP 1.6s ease-in-out infinite;">
               <div style="font-family:var(--font-heading);font-weight:700;font-size:0.72rem;color:#54B4F6;letter-spacing:0.08em;text-transform:uppercase;margin-top:8px;">Scanning</div>
               <div style="font-family:var(--font-heading);font-weight:800;font-size:1.8rem;color:#fff;line-height:1;">70+</div>
               <div style="font-size:0.65rem;color:rgba(255,255,255,0.45);">lenders matched</div>
@@ -2340,7 +2368,7 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <div style="max-width:960px;margin:0 auto;">
-        <!-- Step 1 — Report snippet (peek) -->
+        <!-- Step 1  -  Report snippet (peek) -->
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;margin-bottom:64px;">
           <div style="background:var(--white);border-radius:14px;border:1px solid rgba(0,28,68,0.06);overflow:hidden;box-shadow:0 4px 24px rgba(0,28,68,0.06);position:relative;">
             <!-- Report header -->
@@ -2371,7 +2399,7 @@ input:focus, select:focus, textarea:focus {
             </div>
             <!-- Fade overlay suggesting more -->
             <div style="padding:16px 20px;background:linear-gradient(to bottom,rgba(255,255,255,0.5),#fff);text-align:center;">
-              <span style="font-size:0.72rem;color:var(--text-secondary);opacity:0.6;">+4 more offers &middot; <a href="apply.html" style="color:#54B4F6;font-weight:600;text-decoration:none;">See full report &darr;</a></span>
+              <span style="font-size:0.72rem;color:var(--text-secondary);opacity:0.6;">+4 more offers &middot; <a href="/commercial/apply.html" style="color:#54B4F6;font-weight:600;text-decoration:none;">See full report &darr;</a></span>
             </div>
           </div>
           <div>
@@ -2416,7 +2444,7 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <div class="reveal" style="text-align:center;margin-top:48px;">
-        <a href="apply.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:600;font-size:1rem;padding:16px 36px;border-radius:50px;background:var(--peach);color:#fff;text-decoration:none;box-shadow:0 4px 20px rgba(255,93,92,0.25);transition:all 0.3s ease;">Get My Free Compare Report &rarr;</a>
+        <a href="/commercial/apply.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:600;font-size:1rem;padding:16px 36px;border-radius:50px;background:var(--peach);color:#fff;text-decoration:none;box-shadow:0 4px 20px rgba(255,93,92,0.25);transition:all 0.3s ease;">Get My Free Compare Report &rarr;</a>
         <div style="margin-top:14px;display:flex;justify-content:center;gap:20px;font-size:0.78rem;color:var(--text-secondary);opacity:0.5;">
           <span>No credit check</span><span>No commitment</span><span>Ready in 24hrs</span>
         </div>
@@ -2459,7 +2487,7 @@ input:focus, select:focus, textarea:focus {
 
 
 <!-- ============================================
-     SECTION 1 — PRODUCT COMPARISON
+     SECTION 1  -  PRODUCT COMPARISON
      ============================================ -->
 <section class="pc-compare" id="comparison">
   <div class="pc-compare__inner reveal">
@@ -2533,13 +2561,13 @@ input:focus, select:focus, textarea:focus {
 
     <div class="pc-compare__footer">
       <p>Not sure which is right for you?</p>
-      <a href="apply.html?purpose=pay_expenses" class="pc-compare__footer-btn">Your Compare Report will recommend the best fit &rarr;</a>
+      <a href="/commercial/apply.html?purpose=pay_expenses" class="pc-compare__footer-btn">Your Compare Report will recommend the best fit &rarr;</a>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     SECTION 2 — PROS & CONS
+     SECTION 2  -  PROS & CONS
      ============================================ -->
 <section class="pc-proscons" id="pros-cons">
   <div class="pc-proscons__inner reveal">
@@ -2669,7 +2697,7 @@ input:focus, select:focus, textarea:focus {
 </section>
 
 <!-- ============================================
-     SECTION 3 — FLOAT CALCULATOR
+     SECTION 3  -  FLOAT CALCULATOR
      ============================================ -->
 <section class="pc-calc" id="calculator">
   <div class="pc-calc__inner reveal">
@@ -2739,7 +2767,7 @@ input:focus, select:focus, textarea:focus {
 </section>
 
 <!-- ============================================
-     SECTION 4 — SOCIAL PROOF
+     SECTION 4  -  SOCIAL PROOF
      ============================================ -->
 <section class="pc-proof" id="social-proof">
   <div class="pc-proof__inner reveal">
@@ -2790,7 +2818,7 @@ input:focus, select:focus, textarea:focus {
 </section>
 
 <!-- ============================================
-     SECTION 5 — ELIGIBILITY
+     SECTION 5  -  ELIGIBILITY
      ============================================ -->
 <section class="pc-elig" id="eligibility">
   <div class="pc-elig__inner reveal">
@@ -2892,7 +2920,7 @@ input:focus, select:focus, textarea:focus {
 </section>
 
 <!-- ============================================
-     SECTION 6 — GETTING STARTED
+     SECTION 6  -  GETTING STARTED
      ============================================ -->
 <section class="pc-started" id="getting-started">
   <div class="pc-started__inner reveal">
@@ -2969,7 +2997,7 @@ input:focus, select:focus, textarea:focus {
 </section>
 
 <!-- ============================================
-     SECTION 7 — FAQ
+     SECTION 7  -  FAQ
      ============================================ -->
 <section class="pc-faq" id="faq">
   <div class="pc-faq__inner reveal">
@@ -3127,7 +3155,7 @@ input:focus, select:focus, textarea:focus {
     </div>
 
     <div style="text-align:center;margin-top:36px;">
-      <a href="apply.html" style="font-family:var(--font-heading);font-weight:600;font-size:0.95rem;color:var(--skyblue);text-decoration:none;transition:color 0.2s ease;">Join 100+ Australian businesses we've helped fund &rarr;</a>
+      <a href="/commercial/apply.html" style="font-family:var(--font-heading);font-weight:600;font-size:0.95rem;color:var(--skyblue);text-decoration:none;transition:color 0.2s ease;">Join 100+ Australian businesses we've helped fund &rarr;</a>
     </div>
   </div>
   <style>
@@ -3167,15 +3195,15 @@ input:focus, select:focus, textarea:focus {
 </section>
 
 <!-- ============================================
-     SECTION 8 — BOTTOM CTA
+     SECTION 8  -  BOTTOM CTA
      ============================================ -->
-     SECTION 8 — BOTTOM CTA
+     SECTION 8  -  BOTTOM CTA
      ============================================ -->
 <section class="pc-bottom-cta" id="product-cta">
   <div class="pc-bottom-cta__inner reveal">
     <h2 class="pc-bottom-cta__title">Ready to see the full picture?</h2>
     <p class="pc-bottom-cta__subtitle">Start your free application and receive your personalised Compare Report within 24 hours.</p>
-    <a href="apply.html?purpose=pay_expenses" class="pc-bottom-cta__btn">Get My Free Compare Report &rarr;</a>
+    <a href="/commercial/apply.html?purpose=pay_expenses" class="pc-bottom-cta__btn">Get My Free Compare Report &rarr;</a>
     <div class="pc-bottom-cta__trust">
       <span class="pc-bottom-cta__trust-item">No credit check</span>
       <span class="pc-bottom-cta__trust-item">No commitment</span>
@@ -3188,18 +3216,18 @@ input:focus, select:focus, textarea:focus {
      ============================================ -->
 <footer class="footer">
   <div class="container container--wide">
-    <div class="footer__grid">
+    <div class="footer__grid footer__grid--condensed">
 
       <!-- Column 1: Brand, contact, badges -->
       <div class="footer__brand-col">
-        <a href="index.html" class="footer__logo" aria-label="Trade Funding">
-          <img src="assets/logo-white-ghost.png" alt="Trade Funding">
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
         </a>
-        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers. Then we get it done. Free. No credit check. 24 hours.</p>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers - then we get it done. Free. No credit check. 24 hours.</p>
         <div class="footer__contact">
           <div class="footer__contact-item">&#128222; 1300 161 641</div>
           <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
-          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
         </div>
         <div class="footer__badges">
           <span class="footer__badge">ACL 387856</span>
@@ -3209,68 +3237,49 @@ input:focus, select:focus, textarea:focus {
         </div>
       </div>
 
-      <!-- Column 2: Products -->
-      <div>
-        <h4 class="footer__heading">Products</h4>
-        <div class="footer__links">
-          <a href="business-term-loans.html">Term Loan</a>
-          <a href="business-line-of-credit.html">Line of Credit</a>
-          <a href="invoice-finance.html">Invoice Finance</a>
-          <a href="trade-finance.html">Trade Finance</a>
-          <a href="merchant-cash-advance.html">Merchant Cash Advance</a>
-          <a href="charge-card.html">Charge Card</a>
-          <a href="overdraft.html">Overdraft</a>
-          <a href="finance-lease.html">Finance Lease</a>
-          <a href="chattel-mortgage.html">Chattel Mortgage</a>
+      <!-- Column 2: condensed sitemap -->
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Channels</h4>
+          <div class="footer__links">
+            <a href="/commercial/business-loans.html">Business Loans</a>
+            <a href="/connect/index.html">Connect</a>
+            <a href="/personal-and-property/index.html">Personal &amp; Property</a>
+            <a href="/commercial/resources.html">Guides &amp; Tools</a>
+          </div>
         </div>
-        <div class="footer__links footer__links--more">
-          <a href="operating-lease.html">Operating Lease</a>
-          <a href="debtor-finance.html">Debtor Finance</a>
-          <a href="fund-an-invoice.html">Fund an Invoice</a>
-          <a href="export-finance.html">Export Finance</a>
-          <a href="supply-chain-funding.html">Supply Chain</a>
-          <a href="r-and-d-funding.html">R&amp;D Funding</a>
-          <a href="second-mortgage.html">Second Mortgage</a>
-          <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/commercial/about.html">About Us</a>
+            <a href="/commercial/broker-portal.html">Broker Portal</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/commercial/apply.html">Get Started</a>
+          </div>
         </div>
-      </div>
-
-      <!-- Column 3: Resources -->
-      <div>
-        <h4 class="footer__heading">Resources</h4>
-        <div class="footer__links">
-          <a href="resources.html">All Guides &amp; Tools</a>
-          <a href="guides/compare-business-loans.html">Compare Business Loans</a>
-          <a href="guides/business-term-loans-guide.html">Term Loans Guide</a>
-          <a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a>
-          <a href="repayment-calculator.html">Repayment Calculator</a>
-          <a href="equipment-calculator.html">Equipment Calculator</a>
-        </div>
-      </div>
-
-      <!-- Column 4: Company -->
-      <div>
-        <h4 class="footer__heading">Company</h4>
-        <div class="footer__links">
-          <a href="about.html">About Us</a>
-          <a href="comparison-report.html">Compare Report</a>
-          <a href="meet-cashper.html">Meet Cashper</a>
-          <a href="apply.html">Get Started</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/commercial/privacy.html">Privacy Policy</a>
+            <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+          </div>
         </div>
       </div>
 
     </div>
 
+    <!-- FooterLegal (global, componentized once per CLAUDE.md rule 8) -->
     <div class="footer__disclaimer">
-      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
     </div>
 
     <div class="footer__bottom">
       <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
       <div class="footer__bottom-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="credit-guide.html">Credit Guide</a>
+        <a href="/commercial/privacy.html">Privacy Policy</a>
+        <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
       </div>
     </div>
   </div>
@@ -3279,7 +3288,7 @@ input:focus, select:focus, textarea:focus {
 <!-- ============================================
      JAVASCRIPT
      ============================================ -->
-<script src="product-page.js"></script>
+<script src="/commercial/product-page.js"></script>
 <script>
 (function() {
   'use strict';
@@ -3405,6 +3414,6 @@ input:focus, select:focus, textarea:focus {
 // ---- Mini Compare Report: Hero Component ----
 (function(){var PAGE_DATA={primary:{subtitle:'Charge Card &bull; $50,000',lenders:[{name:'Finstro',product:'Business Card',rate:'0%',rateType:'55 days',amount:'$50k',stars:'star',eligible:true,highlight:true,security:'PPSR',estTime:'3 days',estFees:'0%'},{name:'Prospa',product:'Charge Card',rate:'0%',rateType:'30 days',amount:'$30k',stars:'sta',eligible:true,highlight:false,security:'PG Only',estTime:'2 days',estFees:'0%'},{name:'Shift',product:'Business Card',rate:'0%',rateType:'45 days',amount:'$25k',stars:'ta',eligible:true,highlight:false,security:'PG Only',estTime:'3 days',estFees:'0%'},{name:'Capify',product:'Business Card',rate:'0%',rateType:'30 days',amount:'$20k',stars:'sr',eligible:true,highlight:false,security:'PG Only',estTime:'2 days',estFees:'0%'},{name:'ANZ',product:'Business CC',rate:'0%',rateType:'55 days',amount:'$100k',stars:'star',eligible:false,highlight:false}],locked:[{name:'Lumi',product:'Charge Card',rate:'0%',rateType:'30 days',amount:'$15k',stars:'st'},{name:'Dyna Money',product:'Business Card',rate:'0%',rateType:'45 days',amount:'$20k',stars:'ta'}]},secondary:{subtitle:'Line of Credit &bull; $150,000',lenders:[{name:'Finstro',product:'Credit Line',rate:'22.0%',rateType:'p.a.',amount:'$150k',stars:'sta',eligible:true,highlight:true,security:'PPSR',estTime:'6 days',estFees:'2%'},{name:'Prospa',product:'Business Line',rate:'20.0%',rateType:'p.a.',amount:'$100k',stars:'star',eligible:true,highlight:false,security:'PG Only',estTime:'3 days',estFees:'1%'},{name:'Shift',product:'Revolving Credit',rate:'12.0%',rateType:'p.a.',amount:'$75k',stars:'str',eligible:true,highlight:false,security:'PPSR + PG',estTime:'5 days',estFees:'2%'},{name:'Lumi',product:'Credit Line',rate:'19.0%',rateType:'p.a.',amount:'$100k',stars:'ta',eligible:true,highlight:false,security:'PG Only',estTime:'4 days',estFees:'1%'},{name:'NAB',product:'Business OD',rate:'8.5%',rateType:'p.a.',amount:'$150k',stars:'star',eligible:false,highlight:false}],locked:[{name:'Dyna Money',product:'Credit Line',rate:'20.5%',rateType:'p.a.',amount:'$80k',stars:'sa'},{name:'ANZ',product:'Business OD',rate:'9.1%',rateType:'p.a.',amount:'$150k',stars:'star'}]},tertiary:{subtitle:'Overdraft &bull; $200,000',lenders:[{name:'Shift',product:'Business OD',rate:'10.5%',rateType:'p.a.',amount:'$200k',stars:'star',eligible:true,highlight:true,security:'PPSR + PG',estTime:'5 days',estFees:'1%'},{name:'Prospa',product:'Overdraft',rate:'12.0%',rateType:'p.a.',amount:'$150k',stars:'sta',eligible:true,highlight:false,security:'PG Only',estTime:'3 days',estFees:'1%'},{name:'Lumi',product:'Business OD',rate:'14.0%',rateType:'p.a.',amount:'$100k',stars:'ta',eligible:true,highlight:false,security:'PG Only',estTime:'4 days',estFees:'1%'},{name:'Finstro',product:'OD Facility',rate:'18.0%',rateType:'p.a.',amount:'$80k',stars:'sr',eligible:true,highlight:false,security:'PPSR',estTime:'6 days',estFees:'2%'},{name:'CBA',product:'Business OD',rate:'7.5%',rateType:'p.a.',amount:'$250k',stars:'star',eligible:false,highlight:false}],locked:[{name:'OnDeck',product:'Overdraft',rate:'15.0%',rateType:'p.a.',amount:'$100k',stars:'tr'},{name:'Moula',product:'Business OD',rate:'13.5%',rateType:'p.a.',amount:'$120k',stars:'sa'}]}};var starMap={s:'star-dot--s',t:'star-dot--t',a:'star-dot--a',r:'star-dot--r'};var starLabels={s:'Security',t:'Term',a:'Amount',r:'Rate'};function renderStars(str){var label=str.split('').map(function(c){return starLabels[c];}).join(', ');return'<span class="star-dots" aria-label="Scores well on '+label+'">'+str.split('').map(function(c){return'<span class="star-dot '+starMap[c]+'"></span>';}).join('')+'</span>';}function renderRow(l,i,isLocked){var statusClass=l.eligible?'lender-row__status--yes':'lender-row__status--no';var checkIcon=l.eligible?'<path d="M20 6L9 17l-5-5"/>':'<path d="M18 6L6 18M6 6l12 12"/>';var highlightClass=l.highlight?' lender-row--highlight':'';var lockedClass=isLocked?' lender-row--locked':'';var dimStyle=!l.eligible?' style="opacity:0.4;"':'';var delay=(i*0.08+0.7).toFixed(2);var reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var animStyle=reducedMotion?'':'animation:rowSlideIn 0.5s cubic-bezier(0.16,1,0.3,1) '+delay+'s forwards;opacity:0;transform:translateX(-12px);';var detailHtml='';if(!isLocked&&l.eligible&&l.security){detailHtml='<div class="lender-row__detail" role="region" aria-label="'+l.name+' details"><div class="lender-row__detail-item"><div class="lender-row__detail-label">Security</div><div class="lender-row__detail-value">'+l.security+'</div></div><div class="lender-row__detail-item"><div class="lender-row__detail-label">Est. Time</div><div class="lender-row__detail-value">'+l.estTime+'</div></div><div class="lender-row__detail-item"><div class="lender-row__detail-label">Est. Fees</div><div class="lender-row__detail-value">'+l.estFees+'</div></div></div>';}var bestMatchHtml=l.highlight?'<span class="best-match-tag">Best Match</span>':'';return'<div class="lender-row'+highlightClass+lockedClass+'" style="'+animStyle+'"'+(l.eligible&&!isLocked?' tabindex="0" role="button" aria-expanded="false"':'')+'><div class="lender-row__status '+statusClass+'"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round">'+checkIcon+'</svg></div><div'+dimStyle+'><div class="lender-row__name">'+l.name+'</div><div class="lender-row__product">'+l.product+'</div>'+bestMatchHtml+'</div><div class="lender-row__rate"'+dimStyle+'>'+l.rate+' <span class="lender-row__rate-type">'+(l.rateType||'')+'</span></div><div class="lender-row__amount"'+dimStyle+'>'+l.amount+'</div><div'+(!l.eligible?' style="opacity:0.25;"':'')+'>'+renderStars(l.stars)+'</div>'+detailHtml+'</div>';}function switchProduct(tabKey){var data=PAGE_DATA[tabKey];if(!data)return;var tabs=document.querySelectorAll('.mini-report__tab');tabs.forEach(function(t){var isActive=t.getAttribute('data-tab')===tabKey;t.classList.toggle('mini-report__tab--active',isActive);t.setAttribute('aria-selected',isActive?'true':'false');t.setAttribute('tabindex',isActive?'0':'-1');});document.getElementById('reportSubtitle').innerHTML=data.subtitle;document.getElementById('lenderRows').innerHTML=data.lenders.map(function(l,i){return renderRow(l,i,false);}).join('');document.getElementById('lockedRows').innerHTML=data.locked.map(function(l,i){return renderRow(l,i+5,true);}).join('');bindRowInteractions();}var activeDetailRow=null;function bindRowInteractions(){var isTouchDevice='ontouchstart'in window||navigator.maxTouchPoints>0;var rows=document.querySelectorAll('.lender-row[tabindex="0"]');rows.forEach(function(row){if(isTouchDevice){row.addEventListener('click',function(e){e.preventDefault();var detail=this.querySelector('.lender-row__detail');if(!detail)return;if(activeDetailRow&&activeDetailRow!==this){activeDetailRow.classList.remove('lender-row--expanded');var prevDetail=activeDetailRow.querySelector('.lender-row__detail');if(prevDetail)prevDetail.style.display='none';activeDetailRow.setAttribute('aria-expanded','false');}var isOpen=detail.style.display==='grid';detail.style.display=isOpen?'none':'grid';this.classList.toggle('lender-row--expanded',!isOpen);this.setAttribute('aria-expanded',isOpen?'false':'true');activeDetailRow=isOpen?null:this;});}row.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();this.click();}});});}var tabContainer=document.querySelector('.mini-report__tabs');if(tabContainer){tabContainer.addEventListener('keydown',function(e){var tabs=Array.from(this.querySelectorAll('.mini-report__tab'));var current=tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true';});if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();var next=e.key==='ArrowRight'?(current+1)%tabs.length:(current-1+tabs.length)%tabs.length;var tabKey=tabs[next].getAttribute('data-tab');switchProduct(tabKey);tabs[next].focus();}});tabContainer.addEventListener('click',function(e){var tab=e.target.closest('.mini-report__tab');if(tab){switchProduct(tab.getAttribute('data-tab'));}});}var starBadge=document.querySelector('.mini-report__star-badge');if(starBadge){starBadge.setAttribute('tabindex','0');starBadge.setAttribute('role','button');starBadge.setAttribute('aria-label','S.T.A.R. scoring explanation');starBadge.addEventListener('click',function(e){var tooltip=this.querySelector('.star-tooltip');if(tooltip){var isOpen=tooltip.style.opacity==='1';tooltip.style.opacity=isOpen?'0':'1';tooltip.style.pointerEvents=isOpen?'none':'auto';tooltip.style.transform=isOpen?'translateY(-4px)':'translateY(0)';}});starBadge.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();this.click();}});}switchProduct('primary');})();
 </script>
-<script src="cookie-consent.js"></script>
+<script src="/commercial/cookie-consent.js"></script>
 </body>
 </html>

@@ -1,20 +1,25 @@
 <!-- ============================================
-     FOOTER — Canonical version
+     FOOTER  -  CANONICAL, condensed 2-column (Phase 5 Part 1)
+     Source of truth for footer markup per CLAUDE.md rule 14. Every
+     page on every channel reproduces this exact wrapper structure.
+     The ACL/AFCA legal strip is the componentized-once FooterLegal
+     block per CLAUDE.md rule 8  -  never duplicated or reworded per
+     channel/page. All hrefs/srcs are root-relative (rule 15).
      ============================================ -->
 <footer class="footer">
   <div class="container container--wide">
-    <div class="footer__grid">
+    <div class="footer__grid footer__grid--condensed">
 
       <!-- Column 1: Brand, contact, badges -->
       <div class="footer__brand-col">
-        <a href="index.html" class="footer__logo" aria-label="Trade Funding">
-          <img src="assets/logo-white-ghost.png" alt="Trade Funding">
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
         </a>
-        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers &mdash; then we get it done. Free. No credit check. 24 hours.</p>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers - then we get it done. Free. No credit check. 24 hours.</p>
         <div class="footer__contact">
           <div class="footer__contact-item">&#128222; 1300 161 641</div>
           <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
-          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
         </div>
         <div class="footer__badges">
           <span class="footer__badge">ACL 387856</span>
@@ -24,68 +29,51 @@
         </div>
       </div>
 
-      <!-- Column 2: Products -->
-      <div>
-        <h4 class="footer__heading">Products</h4>
-        <div class="footer__links">
-          <a href="business-term-loans.html">Term Loan</a>
-          <a href="business-line-of-credit.html">Line of Credit</a>
-          <a href="invoice-finance.html">Invoice Finance</a>
-          <a href="trade-finance.html">Trade Finance</a>
-          <a href="merchant-cash-advance.html">Merchant Cash Advance</a>
-          <a href="charge-card.html">Charge Card</a>
-          <a href="overdraft.html">Overdraft</a>
-          <a href="finance-lease.html">Finance Lease</a>
-          <a href="chattel-mortgage.html">Chattel Mortgage</a>
+      <!-- Column 2: condensed sitemap  -  Channels / Company / Legal grouped
+           into one column so the footer reads as 2 columns overall
+           (brand col + this link col) on every page, every channel. -->
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Channels</h4>
+          <div class="footer__links">
+            <a href="/commercial/business-loans.html">Business Loans</a>
+            <a href="/connect/index.html">Connect</a>
+            <a href="/personal-and-property/index.html">Personal &amp; Property</a>
+            <a href="/commercial/resources.html">Guides &amp; Tools</a>
+          </div>
         </div>
-        <div class="footer__links footer__links--more">
-          <a href="operating-lease.html">Operating Lease</a>
-          <a href="debtor-finance.html">Debtor Finance</a>
-          <a href="fund-an-invoice.html">Fund an Invoice</a>
-          <a href="export-finance.html">Export Finance</a>
-          <a href="supply-chain-funding.html">Supply Chain</a>
-          <a href="r-and-d-funding.html">R&amp;D Funding</a>
-          <a href="second-mortgage.html">Second Mortgage</a>
-          <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/commercial/about.html">About Us</a>
+            <a href="/commercial/broker-portal.html">Broker Portal</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/commercial/apply.html">Get Started</a>
+          </div>
         </div>
-      </div>
-
-      <!-- Column 3: Resources -->
-      <div>
-        <h4 class="footer__heading">Resources</h4>
-        <div class="footer__links">
-          <a href="resources.html">All Guides &amp; Tools</a>
-          <a href="guides/compare-business-loans.html">Compare Business Loans</a>
-          <a href="guides/business-term-loans-guide.html">Term Loans Guide</a>
-          <a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a>
-          <a href="repayment-calculator.html">Repayment Calculator</a>
-          <a href="equipment-calculator.html">Equipment Calculator</a>
-        </div>
-      </div>
-
-      <!-- Column 4: Company -->
-      <div>
-        <h4 class="footer__heading">Company</h4>
-        <div class="footer__links">
-          <a href="about.html">About Us</a>
-          <a href="comparison-report.html">Compare Report</a>
-          <a href="meet-cashper.html">Meet Cashper</a>
-          <a href="apply.html">Get Started</a>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/commercial/privacy.html">Privacy Policy</a>
+            <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+          </div>
         </div>
       </div>
 
     </div>
 
+    <!-- FooterLegal (global, componentized once per CLAUDE.md rule 8) -->
     <div class="footer__disclaimer">
-      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
     </div>
 
     <div class="footer__bottom">
       <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
       <div class="footer__bottom-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="credit-guide.html">Credit Guide</a>
+        <a href="/commercial/privacy.html">Privacy Policy</a>
+        <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
       </div>
     </div>
   </div>
