@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="We're changing how Australian businesses access finance. Australia's lending intelligence platform, pre-qualifying your business against 70+ lenders. $500M+ in Compare Reports. ACL 387856.">
+<title>About Us | Australia's Lending Intelligence Platform | Trade Funding</title>
+<link rel="canonical" href="https://www.tradefunding.com.au/about">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-styles.css">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Trade Funding",
+  "description": "Australia's lending intelligence platform. Pre-qualifying businesses against 70+ lenders.",
+  "url": "https://www.tradefunding.com.au/about",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Trade Funding",
+    "legalName": "Trade Funding Pty Ltd",
+    "url": "https://www.tradefunding.com.au",
+    "description": "Australia's lending intelligence platform. Pre-qualifying your business against 70+ lenders. Know before you apply.",
+    "foundingDate": "2023",
+    "telephone": "1300 161 641",
+    "email": "hello@tradefunding.com.au",
+    "address": { "@type": "PostalAddress", "addressLocality": "Sydney", "addressRegion": "NSW", "addressCountry": "AU" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "31", "bestRating": "5" },
+    "founder": [
+      { "@type": "Person", "name": "Matt Bauld", "jobTitle": "Co-Founder & Director" },
+      { "@type": "Person", "name": "Ben Lyons", "jobTitle": "Co-Founder & Director" }
+    ]
+  }
+}
+</script>
+
+<style>
+/* ========================================
+   ABOUT PAGE — Clean rebuild (ab- prefix)
+   ======================================== */
+
+/* Hero */
+.ab-hero {
+  background: linear-gradient(160deg, #001C44 0%, #002A5C 50%, #001838 100%);
+  padding: 160px 0 100px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ab-hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #54B4F6;
+  margin-bottom: 20px;
+}
+.ab-hero__title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  max-width: 800px;
+  margin: 0 auto 24px;
+  letter-spacing: -0.02em;
+}
+.ab-hero__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 36px;
+}
+.ab-hero__trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ab-hero__trust-item {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ab-hero__trust-item svg { width: 14px; height: 14px; stroke: #54B4F6; }
+
+/* Sections */
+.ab-section { padding: 80px 0; }
+.ab-section--alt { background: #FAFBFD; }
+.ab-section--navy { background: linear-gradient(160deg, #001C44 0%, #002A5C 50%, #001838 100%); color: #fff; }
+.ab-section__header { text-align: center; max-width: 700px; margin: 0 auto 48px; }
+.ab-section__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #54B4F6;
+  margin-bottom: 12px;
+}
+.ab-section__title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--navy);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.ab-section--navy .ab-section__title { color: #fff; }
+.ab-section__desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.ab-section--navy .ab-section__desc { color: rgba(255,255,255,0.6); }
+
+/* Problem cards */
+.ab-problems {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.ab-problem {
+  background: var(--white);
+  border: 1px solid rgba(0,28,68,0.05);
+  border-radius: 14px;
+  padding: 28px 24px;
+  text-align: left;
+}
+.ab-problem__num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,93,92,0.06); color: #FF5D5C;
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.ab-problem h3 {
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.92rem;
+  color: var(--navy); margin-bottom: 8px; line-height: 1.35;
+}
+.ab-problem p {
+  font-size: 0.84rem; color: var(--text-secondary); line-height: 1.65;
+}
+
+/* Tech steps */
+.ab-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.ab-tech-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 28px 24px;
+  text-align: left;
+}
+.ab-tech-card__num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(84,180,246,0.1); color: #54B4F6;
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.ab-tech-card h3 {
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.92rem;
+  color: #fff; margin-bottom: 8px;
+}
+.ab-tech-card p {
+  font-size: 0.84rem; color: rgba(255,255,255,0.55); line-height: 1.65;
+}
+
+/* Impact grid */
+.ab-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.ab-impact-card {
+  padding: 32px 20px;
+  background: #FAFBFD;
+  border-radius: 14px;
+  text-align: center;
+}
+.ab-impact-card__num {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--navy); margin-bottom: 6px;
+}
+.ab-impact-card__num--accent { color: #54B4F6; }
+.ab-impact-card__label {
+  font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;
+}
+.ab-impact-sub {
+  text-align: center; margin-top: 20px;
+  font-size: 0.76rem; color: var(--text-secondary); opacity: 0.6;
+}
+
+/* Values */
+.ab-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.ab-value {
+  padding: 28px 24px;
+  border-radius: 14px;
+  text-align: left;
+}
+.ab-value--1 { background: rgba(84,180,246,0.04); border-left: 3px solid #54B4F6; }
+.ab-value--2 { background: rgba(255,93,92,0.04); border-left: 3px solid #FF5D5C; }
+.ab-value--3 { background: rgba(251,183,102,0.04); border-left: 3px solid #FBB766; }
+.ab-value--4 { background: rgba(28,25,152,0.04); border-left: 3px solid #7B78FF; }
+.ab-value h3 {
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem;
+  color: var(--navy); margin-bottom: 4px;
+}
+.ab-value__tag {
+  font-size: 0.72rem; color: var(--text-secondary); font-style: italic; margin-bottom: 10px;
+}
+.ab-value p {
+  font-size: 0.84rem; color: var(--text-secondary); line-height: 1.65;
+}
+
+/* Team */
+.ab-team-intro {
+  text-align: center; max-width: 660px; margin: 0 auto 40px;
+  font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;
+}
+.ab-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 740px;
+  margin: 0 auto;
+}
+.ab-founder {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.ab-founder__photo {
+  width: 80px; height: 80px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,28,68,0.08);
+}
+.ab-founder__name {
+  font-family: var(--font-heading); font-weight: 700; font-size: 1rem;
+  color: var(--navy); margin-bottom: 2px;
+}
+.ab-founder__role {
+  font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 8px;
+}
+.ab-founder__bio {
+  font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6;
+}
+
+/* Pull quote */
+.ab-quote {
+  text-align: center; padding: 56px 32px;
+}
+.ab-quote blockquote {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  color: #fff; line-height: 1.4; max-width: 700px; margin: 0 auto;
+  letter-spacing: -0.01em;
+}
+.ab-quote__attr {
+  font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 16px;
+}
+
+/* Vision */
+.ab-vision {
+  max-width: 700px; margin: 0 auto;
+  text-align: center;
+  font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75;
+}
+
+/* Careers */
+.ab-careers-body {
+  max-width: 700px; margin: 0 auto;
+  text-align: center;
+}
+.ab-careers-body p {
+  font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;
+}
+.ab-careers-cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  max-width: 700px; margin: 32px auto 0; text-align: left;
+}
+.ab-careers-col h3 {
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem;
+  color: var(--navy); margin-bottom: 12px;
+}
+.ab-careers-col ul {
+  list-style: none; padding: 0;
+}
+.ab-careers-col li {
+  font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;
+  padding: 4px 0 4px 16px; position: relative;
+}
+.ab-careers-col li::before {
+  content: ''; position: absolute; left: 0; top: 11px;
+  width: 6px; height: 6px; border-radius: 50%; background: #54B4F6;
+}
+
+/* CTA */
+.ab-cta { text-align: center; padding: 80px 0; }
+.ab-cta h2 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: #fff; margin-bottom: 14px;
+}
+.ab-cta p {
+  color: rgba(255,255,255,0.6); font-size: 1rem;
+  margin-bottom: 32px; max-width: 460px; margin-left: auto; margin-right: auto;
+}
+.ab-cta__btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-heading); font-weight: 600; font-size: 1rem;
+  padding: 16px 36px; border-radius: 50px;
+  background: #FF5D5C; color: #fff; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(255,93,92,0.25);
+  transition: all 0.3s ease;
+}
+.ab-cta__btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,93,92,0.35); }
+.ab-cta__trust {
+  margin-top: 16px; display: flex; justify-content: center; gap: 20px;
+  font-size: 0.78rem; color: rgba(255,255,255,0.35);
+}
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ab-values-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .ab-hero { padding: 120px 0 64px; }
+  .ab-hero__title { font-size: 1.6rem; }
+  .ab-hero__trust { gap: 12px; }
+  .ab-section { padding: 56px 0; }
+  .ab-problems { grid-template-columns: 1fr; max-width: 480px; }
+  .ab-tech-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .ab-impact-grid { grid-template-columns: repeat(2, 1fr); }
+  .ab-values-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .ab-team-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .ab-founder { flex-direction: column; text-align: center; align-items: center; }
+  .ab-careers-cols { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .ab-hero { padding: 100px 0 48px; }
+  .ab-hero__title { font-size: 1.4rem; }
+  .ab-impact-grid { grid-template-columns: 1fr; max-width: 300px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo"><img src="assets/logo-navy.png" alt="Trade Funding" height="28"></a>
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Term Loans</span><a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a><a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a><a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Credit Lines</span><a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a><a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a><a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Invoice</span><a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance</a><a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a><a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Trade</span><a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a><a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a><a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Equipment</span><a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a><a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a><a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Property</span><a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a><a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a></div>
+          <div class="dropdown-menu__bottom"><a href="apply.html" class="dropdown-menu__cta">Not sure which product? Get your free Compare Report &rarr;</a></div>
+        </div>
+      </div>
+      <a href="resources.html" class="navbar__link">Resources</a>
+      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
+      <a href="about.html" class="navbar__link">About</a>
+    </div>
+    <div class="navbar__right">
+      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="resources.html" onclick="closeMobile()">Resources</a>
+  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+
+<!-- 1. HERO — THE MISSION -->
+<section class="ab-hero">
+  <div class="container">
+    <p class="ab-hero__eyebrow reveal">About Trade Funding</p>
+    <h1 class="ab-hero__title reveal">Every Australian business deserves to see the full picture before making a funding decision.</h1>
+    <p class="ab-hero__sub reveal">We're building Australia's lending intelligence platform. Businesses see every real option, pre-qualified for their situation, before they apply to a single lender. Then we help them get the best one.</p>
+    <div class="ab-hero__trust reveal">
+      <span class="ab-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> ACL 387856</span>
+      <span class="ab-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> 70+ Lenders</span>
+      <span class="ab-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> 500+ Businesses Funded</span>
+      <span class="ab-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 5.0 Google Rating</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- 2. THE PROBLEM -->
+<section class="ab-section">
+  <div class="container">
+    <div class="ab-section__header reveal">
+      <p class="ab-section__eyebrow">The Problem</p>
+      <h2 class="ab-section__title">Business lending in Australia is broken</h2>
+      <p class="ab-section__desc">The market has more lenders, more products, and more complexity than ever. Yet businesses still make funding decisions with incomplete information.</p>
+    </div>
+    <div class="ab-problems">
+      <div class="ab-problem reveal"><div class="ab-problem__num">1</div><h3>Too many options, no way to compare</h3><p>Dozens of lenders entered the Australian SME market. No transparent way exists for business owners to see them all side by side.</p></div>
+      <div class="ab-problem reveal"><div class="ab-problem__num">2</div><h3>Wrong product, wrong lender</h3><p>Too many businesses end up with products that don't match their actual purpose of funds. That costs them time, money, and opportunity.</p></div>
+      <div class="ab-problem reveal"><div class="ab-problem__num">3</div><h3>Paying more than they should</h3><p>Business owners paying far more in interest and fees than necessary, simply because they didn't know better options existed for their profile.</p></div>
+      <div class="ab-problem reveal"><div class="ab-problem__num">4</div><h3>Larger businesses left underserved</h3><p>Companies with genuine capital needs get offered amounts that don't solve the real problem, because the lender only has one product.</p></div>
+      <div class="ab-problem reveal"><div class="ab-problem__num">5</div><h3>Security mismanagement</h3><p>Businesses accessing funds without understanding how their security is used or the impact on their PPSR. The result: locking themselves out of future options.</p></div>
+      <div class="ab-problem reveal"><div class="ab-problem__num">6</div><h3>Apply first, find out later</h3><p>The standard process: apply to a lender, wait, get approved or declined, repeat. No visibility into what you'd actually qualify for until after you've committed.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 3. OUR PLATFORM — CASHPER + S.T.A.R. -->
+<section class="ab-section ab-section--navy">
+  <div class="container">
+    <div class="ab-section__header reveal">
+      <p class="ab-section__eyebrow">Our Platform</p>
+      <h2 class="ab-section__title">Powered by Cashper. AI-driven pre-qualification across 70+ lenders.</h2>
+      <p class="ab-section__desc">Cashper is our proprietary lending intelligence engine. It doesn't just compare. It pre-qualifies your business against each lender's actual criteria and delivers personalised indicative offers, scored using our S.T.A.R. framework.</p>
+    </div>
+    <div class="ab-tech-grid">
+      <div class="ab-tech-card reveal"><div class="ab-tech-card__num">1</div><h3>Lending Profile</h3><p>Cashper absorbs your business data and builds a full lending profile: revenue, industry, trading history, security position.</p></div>
+      <div class="ab-tech-card reveal"><div class="ab-tech-card__num">2</div><h3>Provider Matrix</h3><p>Your profile is matched against 70+ lenders AND products based on your purpose of funds and business characteristics.</p></div>
+      <div class="ab-tech-card reveal"><div class="ab-tech-card__num">3</div><h3>Credit Assessment</h3><p>Individual credit engines, one for each lender on our panel, assess your creditworthiness against that lender's specific criteria.</p></div>
+      <div class="ab-tech-card reveal"><div class="ab-tech-card__num">4</div><h3>Indicative Offers</h3><p>Each engine produces personalised indicative terms. Not just "you might qualify", but actual estimated pricing and structure.</p></div>
+      <div class="ab-tech-card reveal"><div class="ab-tech-card__num">5</div><h3>S.T.A.R. Scoring</h3><p>Offers are scored on Security, Term, Amount, and Rate: the black and white facts about what each lender is offering and what they want in return.</p></div>
+      <div class="ab-tech-card reveal"><div class="ab-tech-card__num">6</div><h3>Guided Execution</h3><p>Our team walks you through the report, helps you choose, and runs the loan from application through to settlement.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 4. IMPACT -->
+<section class="ab-section">
+  <div class="container">
+    <div class="ab-section__header reveal">
+      <p class="ab-section__eyebrow">Our Impact</p>
+      <h2 class="ab-section__title">Real results for Australian businesses</h2>
+    </div>
+    <div class="ab-impact-grid reveal">
+      <div class="ab-impact-card"><div class="ab-impact-card__num">$500M+</div><div class="ab-impact-card__label">In Compare Reports delivered</div></div>
+      <div class="ab-impact-card"><div class="ab-impact-card__num">500+</div><div class="ab-impact-card__label">Businesses funded</div></div>
+      <div class="ab-impact-card"><div class="ab-impact-card__num ab-impact-card__num--accent">6+</div><div class="ab-impact-card__label">Options per Compare Report</div></div>
+      <div class="ab-impact-card"><div class="ab-impact-card__num">$300K+</div><div class="ab-impact-card__label">Avg. facility (last 12 months)</div></div>
+    </div>
+    <p class="ab-impact-sub reveal">Average customer runs 2 to 3 transactions over 15 months &middot; 70+ lenders on panel &middot; From comparison to settlement</p>
+  </div>
+</section>
+
+
+<!-- 5. WHERE WE'RE GOING -->
+<section class="ab-section ab-section--alt">
+  <div class="container">
+    <div class="ab-section__header reveal">
+      <p class="ab-section__eyebrow">Our Vision</p>
+      <h2 class="ab-section__title">The definitive lending intelligence platform for Australian businesses</h2>
+    </div>
+    <div class="ab-vision reveal">
+      <p>Every product category. Every lender worth comparing. Every business, from a sole trader needing $20,000 to an established company seeking $10 million.</p>
+      <p>Our goal is simple: no Australian business should ever make a funding decision without seeing the full picture first.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- 6. VALUES -->
+<section class="ab-section">
+  <div class="container">
+    <div class="ab-section__header reveal">
+      <p class="ab-section__eyebrow">Our Values</p>
+      <h2 class="ab-section__title">What drives everything we do</h2>
+    </div>
+    <div class="ab-values-grid">
+      <div class="ab-value ab-value--1 reveal"><h3>Total Transparency</h3><div class="ab-value__tag">No Smoke, No Mirrors</div><p>We show you every option, every cost, every trade-off. No hidden agendas, no preferred lenders. What you see is what you get.</p></div>
+      <div class="ab-value ab-value--2 reveal"><h3>Move Fast</h3><div class="ab-value__tag">Speed Wins</div><p>We built our careers in startups where speed is survival. Fast comparisons, fast answers, fast execution. We move at the pace your business needs.</p></div>
+      <div class="ab-value ab-value--3 reveal"><h3>As One</h3><div class="ab-value__tag">Your Success is Our Success</div><p>We don't hand you a report and walk away. Your dedicated specialist stays with you from comparison to settlement. We succeed when you get funded.</p></div>
+      <div class="ab-value ab-value--4 reveal"><h3>Keep It Simple</h3><div class="ab-value__tag">Clarity in Complexity</div><p>No jargon, no 40-page documents, no confusing rate structures. Plain language, clear comparisons, informed decisions.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 7. THE TEAM -->
+<section class="ab-section ab-section--alt">
+  <div class="container">
+    <div class="ab-section__header reveal">
+      <p class="ab-section__eyebrow">Our Team</p>
+      <h2 class="ab-section__title">Built by people who spent two decades inside the lending industry</h2>
+    </div>
+    <div class="ab-team-intro reveal">
+      <p>Our founding team has over 35 years of combined experience building, launching, and scaling some of Australia's most recognised lending brands. That includes FlexiGroup, Hanover Consumer Finance, Prospa (ASX:PGL), and others. They've seen the problems firsthand, and they built Trade Funding to solve them.</p>
+    </div>
+    <div class="ab-team-grid">
+      <div class="ab-founder reveal">
+        <img src="assets/matt-bauld.jpg" alt="Matt Bauld" class="ab-founder__photo">
+        <div>
+          <div class="ab-founder__name">Matt Bauld</div>
+          <div class="ab-founder__role">Co-Founder &amp; Director</div>
+          <div class="ab-founder__bio">20+ years building and scaling lending products across Lombard Finance, Hanover, FlexiGroup, Prospa (ASX listing), Finstro, and Jifie (exit 2022).</div>
+        </div>
+      </div>
+      <div class="ab-founder reveal">
+        <img src="assets/ben-lyons.jpg" alt="Ben Lyons" class="ab-founder__photo">
+        <div>
+          <div class="ab-founder__name">Ben Lyons</div>
+          <div class="ab-founder__role">Co-Founder &amp; Director</div>
+          <div class="ab-founder__bio">17+ years in SME fintech. Part of the founding team at Prospa, pioneered the broker distribution channel. Co-founded Jifie (exit 2022).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 8. BELIEF PULL-QUOTE -->
+<section class="ab-section ab-section--navy ab-quote">
+  <div class="container reveal">
+    <blockquote>&ldquo;Every Australian business deserves to see the full picture before making a funding decision.&rdquo;</blockquote>
+    <p class="ab-quote__attr">The belief behind everything we build</p>
+  </div>
+</section>
+
+
+<!-- 9. CAREERS -->
+<section class="ab-section">
+  <div class="container">
+    <div class="ab-section__header reveal">
+      <p class="ab-section__eyebrow">Careers</p>
+      <h2 class="ab-section__title">Help us reshape business lending</h2>
+    </div>
+    <div class="ab-careers-body reveal">
+      <p>We're a small, fast-moving team building something that doesn't exist yet: a truly transparent lending intelligence platform backed by two decades of industry experience. Every person has impact from day one.</p>
+    </div>
+    <div class="ab-careers-cols reveal">
+      <div class="ab-careers-col">
+        <h3>What we offer</h3>
+        <ul>
+          <li>Ground-floor opportunity at a high-growth fintech</li>
+          <li>Founders who've built and exited before</li>
+          <li>Direct exposure to 70+ lender partnerships</li>
+          <li>A culture that moves fast and trusts its people</li>
+        </ul>
+      </div>
+      <div class="ab-careers-col">
+        <h3>We're always interested in</h3>
+        <ul>
+          <li>Business development &amp; partnerships</li>
+          <li>Credit &amp; lending specialists</li>
+          <li>Product &amp; engineering</li>
+          <li>Marketing &amp; content</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 10. CTA -->
+<section class="ab-section ab-section--navy ab-cta">
+  <div class="container reveal">
+    <h2>Ready to see the full picture?</h2>
+    <p>Your personalised Compare Report shows every option, pre-qualified for your business. Then we help you get the best one.</p>
+    <a href="apply.html" class="ab-cta__btn">Get My Free Compare Report &rarr;</a>
+    <div class="ab-cta__trust">
+      <span>No credit check</span>
+      <span>No commitment</span>
+      <span>Ready in 24hrs</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid">
+      <div class="footer__brand-col">
+        <a href="index.html" class="footer__logo" aria-label="Trade Funding"><img src="assets/logo-white-ghost.png" alt="Trade Funding"></a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers. Then we get it done. Free. No credit check. 24 hours.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Products</h4>
+        <div class="footer__links"><a href="business-term-loans.html">Term Loan</a><a href="business-line-of-credit.html">Line of Credit</a><a href="invoice-finance.html">Invoice Finance</a><a href="trade-finance.html">Trade Finance</a><a href="merchant-cash-advance.html">Merchant Cash Advance</a><a href="charge-card.html">Charge Card</a><a href="overdraft.html">Overdraft</a><a href="finance-lease.html">Finance Lease</a><a href="chattel-mortgage.html">Chattel Mortgage</a></div>
+        <div class="footer__links footer__links--more"><a href="operating-lease.html">Operating Lease</a><a href="debtor-finance.html">Debtor Finance</a><a href="fund-an-invoice.html">Fund an Invoice</a><a href="export-finance.html">Export Finance</a><a href="supply-chain-funding.html">Supply Chain</a><a href="r-and-d-funding.html">R&amp;D Funding</a><a href="second-mortgage.html">Second Mortgage</a><a href="self-employed-home-loan.html">Self-Employed Home Loan</a></div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Resources</h4>
+        <div class="footer__links"><a href="resources.html">All Guides &amp; Tools</a><a href="guides/compare-business-loans.html">Compare Business Loans</a><a href="guides/business-term-loans-guide.html">Term Loans Guide</a><a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a><a href="repayment-calculator.html">Repayment Calculator</a><a href="equipment-calculator.html">Equipment Calculator</a></div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Company</h4>
+        <div class="footer__links"><a href="about.html">About Us</a><a href="comparison-report.html">Compare Report</a><a href="meet-cashper.html">Meet Cashper</a><a href="apply.html">Get Started</a></div>
+      </div>
+    </div>
+    <div class="footer__disclaimer"><p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p></div>
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a><a href="credit-guide.html">Credit Guide</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+  window.closeMobile = function() {
+    if (hamburger) hamburger.classList.remove('open');
+    if (mobileNav) mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+  }
+})();
+</script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

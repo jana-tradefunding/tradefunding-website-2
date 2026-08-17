@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply | Trade Funding</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-styles.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--light-bg); color: var(--navy); }
+.nav { background: var(--white); border-bottom: 1px solid #e8ecf1; padding: 10px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.nav__logo { font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; color: var(--navy); }
+.nav__steps { display: flex; gap: 8px; }
+.nav__step { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; padding: 6px 14px; border-radius: 50px; color: rgba(0,28,68,0.35); background: rgba(0,28,68,0.04); transition: all 0.3s var(--ease); }
+.nav__step--active { color: white; background: var(--skyblue); }
+.nav__step--done { color: var(--green); background: rgba(84,180,246,0.1); }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 1fr 380px; height: calc(100vh - 48px); }
+
+/* LEFT: Form */
+.form-panel { padding: 24px 36px; overflow-y: auto; }
+.form-panel__header { margin-bottom: 16px; }
+.form-panel__step-label { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--skyblue); margin-bottom: 4px; }
+.form-panel__title { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+.form-panel__sub { font-size: 0.82rem; color: #4a5568; line-height: 1.5; }
+
+/* Form elements */
+.field { margin-bottom: 14px; }
+.field__label { display: block; font-family: var(--font-heading); font-size: 0.74rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.field__hint { font-size: 0.68rem; color: #718096; margin-bottom: 4px; }
+
+.field__input, .field__select {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid #e2e8f0; border-radius: 8px;
+  font-size: 0.85rem; color: var(--navy); background: white;
+  outline: none; transition: border-color 0.3s ease;
+  font-family: var(--font-body);
+}
+.field__input:focus, .field__select:focus { border-color: var(--skyblue); box-shadow: 0 0 0 3px rgba(84,180,246,0.1); }
+
+.field__select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23718096' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+
+/* Amount display */
+.amount-display { font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem; color: var(--navy); margin-bottom: 6px; }
+.amount-display em { font-style: normal; color: var(--skyblue); }
+
+.slider { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--skyblue) 25%, #e2e8f0 25%); outline: none; cursor: pointer; }
+.slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 3px var(--skyblue); cursor: pointer; }
+.slider-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: #a0aec0; margin-top: 4px; }
+
+/* Purpose selector */
+.purpose-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--navy);
+  background: white;
+  outline: none;
+  font-family: var(--font-body);
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23718096' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.purpose-select:focus { border-color: var(--skyblue); box-shadow: 0 0 0 3px rgba(84,180,246,0.1); }
+.purpose-select optgroup { font-family: var(--font-heading); font-weight: 600; font-size: 0.82rem; color: var(--navy); }
+.purpose-select option { font-weight: 400; padding: 4px 0; }
+
+/* Credit rating pills */
+.credit-pills { display: flex; gap: 6px; }
+.credit-pill { flex: 1; padding: 8px 6px; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.25s var(--ease); background: white; }
+.credit-pill__label { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 600; color: var(--navy); }
+.credit-pill__sub { font-size: 0.58rem; color: #a0aec0; margin-top: 1px; }
+.credit-pill:hover { border-color: var(--skyblue); }
+.credit-pill--active { border-color: var(--green); background: rgba(52,199,89,0.06); }
+.credit-pill--active .credit-pill__label { color: var(--green); }
+
+/* Yes/No toggle */
+.toggle-row { display: flex; gap: 6px; }
+.toggle-btn { flex: 1; padding: 8px; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; font-family: var(--font-heading); font-size: 0.78rem; font-weight: 600; color: var(--navy); cursor: pointer; transition: all 0.25s var(--ease); background: white; }
+.toggle-btn:hover { border-color: var(--skyblue); }
+.toggle-btn--active { border-color: var(--skyblue); background: rgba(84,180,246,0.08); color: var(--skyblue); }
+
+/* Section groups */
+.form-section {
+  background: white;
+  border: 1px solid #e8ecf1;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+}
+
+.form-section__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.form-section__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.form-section__icon svg { width: 14px; height: 14px; }
+
+.form-section__title {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.form-section__subtitle {
+  font-size: 0.65rem;
+  color: #a0aec0;
+}
+
+/* Inline field pairs */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* Compact yes/no inline with label */
+.field--inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f7fa;
+}
+
+.field--inline:last-child { border-bottom: none; }
+
+.field--inline .field__label { margin-bottom: 0; font-size: 0.76rem; }
+
+.field--inline .toggle-row { gap: 4px; flex-shrink: 0; }
+
+.field--inline .toggle-btn { padding: 5px 14px; font-size: 0.72rem; min-width: 48px; }
+
+/* Navigation buttons */
+.form-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid #e8ecf1; }
+.btn-back { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 500; color: #718096; background: none; border: none; cursor: pointer; padding: 10px 20px; }
+.btn-back:hover { color: var(--navy); }
+.btn-next { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; color: white; background: var(--peach); border: none; border-radius: 50px; padding: 14px 32px; cursor: pointer; box-shadow: 0 4px 16px rgba(255,93,92,0.3); transition: all 0.3s var(--ease); }
+.btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,93,92,0.4); }
+.btn-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* RIGHT: Live Report Panel */
+.report-panel { background: var(--navy); color: white; padding: 20px 20px; position: sticky; top: 48px; height: calc(100vh - 48px); overflow-y: auto; display: flex; flex-direction: column; }
+
+.report-panel__header { margin-bottom: 14px; }
+.report-panel__eyebrow { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--skyblue); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.report-panel__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.report-panel__title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+.report-panel__sub { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+
+/* Star legend */
+.star-legend { display: flex; gap: 10px; margin-bottom: 12px; padding: 8px 12px; background: rgba(255,255,255,0.04); border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); }
+.star-legend__item { display: flex; align-items: center; gap: 4px; font-size: 0.62rem; color: rgba(255,255,255,0.5); }
+.star-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.star-dot--s { background: var(--green); }
+.star-dot--t { background: var(--skyblue); }
+.star-dot--a { background: #54B4F6; }
+.star-dot--r { background: var(--peach); }
+
+/* Product match cards */
+.match-section { margin-bottom: 20px; }
+.match-section__label { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+
+.match-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 12px 14px; margin-bottom: 6px; transition: all 0.4s var(--ease); animation: cardSlideIn 0.5s var(--ease) forwards; opacity: 0; }
+@keyframes cardSlideIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+
+.match-card--eligible { border-left: 3px solid var(--green); }
+.match-card--ineligible { border-left: 3px solid rgba(255,93,92,0.4); opacity: 0.5; }
+
+.match-card__top { display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px; }
+.match-card__name { font-family: var(--font-heading); font-weight: 700; font-size: 0.88rem; }
+.match-card__badge { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 2px 8px; border-radius: 4px; }
+.match-card__badge--eligible { background: rgba(52,199,89,0.15); color: var(--green); }
+.match-card__badge--ineligible { background: rgba(255,93,92,0.1); color: var(--peach); }
+.match-card__badge--primary { background: rgba(84,180,246,0.15); color: var(--skyblue); }
+
+.match-card__stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.match-card__stat-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.8px; color: rgba(255,255,255,0.3); margin-bottom: 2px; }
+.match-card__stat-value { font-family: var(--font-heading); font-weight: 700; font-size: 0.82rem; color: var(--skyblue); }
+
+.match-card__reason { font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 6px; font-style: italic; }
+
+/* Empty state */
+.report-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.report-empty__icon { width: 64px; height: 64px; background: rgba(84,180,246,0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.report-empty__icon svg { width: 32px; height: 32px; stroke: var(--skyblue); }
+.report-empty__title { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+.report-empty__text { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.6; max-width: 280px; }
+
+/* Progress indicator */
+.report-progress { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+.report-progress__bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+.report-progress__fill { height: 100%; background: linear-gradient(90deg, var(--skyblue), var(--green)); border-radius: 2px; transition: width 0.5s var(--ease); }
+.report-progress__text { font-size: 0.7rem; color: rgba(255,255,255,0.35); display: flex; justify-content: space-between; }
+
+/* Contact fields (step 3) */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Term Loans</span>
+            <a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Credit Lines</span>
+            <a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Invoice</span>
+            <a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance / Factoring</a>
+            <a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
+            <a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Trade</span>
+            <a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
+            <a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Equipment</span>
+            <a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Mortgage</span>
+            <a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+          </div>
+          <div class="dropdown-menu__bottom">
+            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <a href="resources.html" class="navbar__link">Resources</a>
+      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
+      <a href="about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
+  <a href="fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="resources.html" onclick="closeMobile()">Resources</a>
+  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+<!-- Nav with step indicators -->
+<nav class="nav">
+  <div class="nav__logo">Trade Funding</div>
+  <div class="nav__steps">
+    <span class="nav__step nav__step--active" id="navStep1">1. Funding & Contact</span>
+    <span class="nav__step" id="navStep2">2. Business Profile</span>
+    <span class="nav__step" id="navStep3">3. Results</span>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- LEFT: Progressive Form -->
+  <div class="form-panel">
+
+    <!-- STEP 1: Funding Purpose -->
+    <div id="step1" class="step">
+      <div class="form-panel__header">
+        <div class="form-panel__step-label">Step 1 of 3</div>
+        <h1 class="form-panel__title">What do you need funding for?</h1>
+        <p class="form-panel__sub">Tell us what you need and how to reach you. This helps us match the right products immediately.</p>
+      </div>
+
+      <!-- Section: Purpose -->
+      <div class="form-section">
+        <div class="form-section__header">
+          <div class="form-section__icon" style="background:rgba(84,180,246,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+          <div><div class="form-section__title">Funding Purpose</div></div>
+        </div>
+        <select class="purpose-select" id="purposeSelect" onchange="selectPurposeDropdown(this)">
+          <option value="">Select your funding purpose...</option>
+          <optgroup label="Cashflow & Expansion">
+            <option value="cashflow_working_capital">Working Capital</option>
+            <option value="cashflow_expansion">Business Expansion</option>
+          </optgroup>
+          <optgroup label="Pay">
+            <option value="pay_suppliers">Suppliers</option>
+            <option value="pay_expenses">Expenses</option>
+            <option value="pay_invoices">Invoices</option>
+            <option value="pay_gov_tax">Government (Tax / BAS)</option>
+          </optgroup>
+          <optgroup label="Purchase">
+            <option value="purchase_equipment">Equipment / Technology</option>
+            <option value="purchase_vehicle">Vehicle</option>
+            <option value="purchase_business">Business Acquisition</option>
+            <option value="purchase_commercial_property">Commercial Property</option>
+            <option value="purchase_residential_property">Residential Property</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option value="new_business">New Business / Startup</option>
+            <option value="refinance">Refinance</option>
+            <option value="restructure">Debt Consolidation</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- Section: Amount & Timeline -->
+      <div class="form-section">
+        <div class="form-section__header">
+          <div class="form-section__icon" style="background:rgba(84,180,246,0.08);"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div><div class="form-section__title">Amount & Timeline</div></div>
+        </div>
+        <div class="field" style="margin-bottom:10px;">
+          <div class="amount-display">$<em id="amt1">250,000</em></div>
+          <input type="range" class="slider" id="amtSlider" min="10000" max="2000000" step="10000" value="250000" oninput="updateAmount(this)">
+          <div class="slider-labels"><span id="sliderMin">$10k</span><span id="sliderMax">$2M</span></div>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label class="field__label">When do you need it?</label>
+          <select class="field__select" id="timeline">
+            <option value="asap">ASAP</option>
+            <option value="within_2_weeks">Within 2 weeks</option>
+            <option value="within_1_month">Within 1 month</option>
+            <option value="within_3_months">Within 3 months</option>
+            <option value="no_rush">No rush</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Section: Your Details -->
+      <div class="form-section">
+        <div class="form-section__header">
+          <div class="form-section__icon" style="background:rgba(84,180,246,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><div class="form-section__title">Your Details</div><div class="form-section__subtitle">So we can send your Compare Report</div></div>
+        </div>
+        <div class="contact-grid">
+          <div class="field" style="margin-bottom:8px;"><label class="field__label">First Name</label><input type="text" class="field__input" id="firstName" placeholder="Ben"></div>
+          <div class="field" style="margin-bottom:8px;"><label class="field__label">Last Name</label><input type="text" class="field__input" id="lastName" placeholder="Lyons"></div>
+          <div class="field" style="margin-bottom:8px;"><label class="field__label">Email</label><input type="email" class="field__input" id="email" placeholder="ben@business.com.au"></div>
+          <div class="field" style="margin-bottom:8px;"><label class="field__label">Phone</label><input type="tel" class="field__input" id="phone" placeholder="0412 345 678"></div>
+          <div class="field" style="grid-column:1/-1;margin-bottom:8px;"><label class="field__label">Business Name</label><input type="text" class="field__input" id="bizName" placeholder="My Business Pty Ltd"></div>
+          <div class="field" style="grid-column:1/-1;margin-bottom:0;"><label class="field__label">ABN</label><input type="text" class="field__input" id="abn" placeholder="12 345 678 901"></div>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <div></div>
+        <button class="btn-next" onclick="goStep(2)">Next: Business Profile &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Business Profile -->
+    <div id="step2" class="step" style="display:none;">
+      <div class="form-panel__header">
+        <div class="form-panel__step-label">Step 2 of 3</div>
+        <h1 class="form-panel__title">Tell us about your business</h1>
+        <p class="form-panel__sub">The more you share, the more accurate your matches become. Watch the report update in real-time.</p>
+      </div>
+
+      <!-- Section: Business Basics -->
+      <div class="form-section">
+        <div class="form-section__header">
+          <div class="form-section__icon" style="background:rgba(84,180,246,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+          <div><div class="form-section__title">Business Basics</div><div class="form-section__subtitle">How established is your business?</div></div>
+        </div>
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label">Trading Duration</label>
+            <select class="field__select" id="tradingDuration" onchange="recalc()">
+              <option value="">Select trading duration</option>
+              <option value="lt_1_year">Less than 1 year</option>
+              <option value="1_2_years">1-2 years</option>
+              <option value="2_5_years">2-5 years</option>
+              <option value="5_plus_years">5+ years</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label">Citizenship</label>
+            <select class="field__select" id="citizenship" onchange="recalc()">
+              <option value="australian_citizen">Australian Citizen</option>
+              <option value="permanent_resident">Permanent Resident</option>
+              <option value="temporary_resident">Temporary Resident</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Financials -->
+      <div class="form-section">
+        <div class="form-section__header">
+          <div class="form-section__icon" style="background:rgba(84,180,246,0.08);"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div><div class="form-section__title">Financial Profile</div><div class="form-section__subtitle">Revenue, credit, and obligations</div></div>
+        </div>
+        <div class="field" style="margin-bottom:10px;">
+          <label class="field__label">Annual Revenue</label>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span style="font-family:var(--font-heading);font-weight:800;font-size:1.4rem;color:var(--navy);">$</span>
+            <input type="text" inputmode="numeric" id="revInput" value="0" style="font-family:var(--font-heading);font-weight:800;font-size:1.4rem;color:var(--navy);border:none;outline:none;background:transparent;width:100%;" onfocus="this.select()" oninput="syncRevenueFromInput(this)" onblur="formatRevenueInput(this)">
+          </div>
+          <input type="range" class="slider" id="revSlider" min="0" max="50000000" step="50000" value="0" oninput="updateRevenue(this)" style="background:linear-gradient(90deg, var(--skyblue) 0%, #e2e8f0 0%);">
+          <div class="slider-labels"><span>$0</span><span>$50M+</span></div>
+        </div>
+        <div class="field" style="margin-bottom:8px;">
+          <label class="field__label">Credit History</label>
+          <div class="credit-pills">
+            <div class="credit-pill" data-credit="perfect" onclick="selectCredit(this)"><div class="credit-pill__label">Perfect</div><div class="credit-pill__sub">No defaults</div></div>
+            <div class="credit-pill" data-credit="excellent" onclick="selectCredit(this)"><div class="credit-pill__label">Excellent</div><div class="credit-pill__sub">Minor enquiries</div></div>
+            <div class="credit-pill" data-credit="good" onclick="selectCredit(this)"><div class="credit-pill__label">Good</div><div class="credit-pill__sub">Some history</div></div>
+            <div class="credit-pill" data-credit="issues" onclick="selectCredit(this)"><div class="credit-pill__label">Issues</div><div class="credit-pill__sub">Defaults/judgments</div></div>
+          </div>
+        </div>
+        <div class="field--inline">
+          <label class="field__label">Any outstanding tax debt?</label>
+          <div class="toggle-row">
+            <div class="toggle-btn" data-val="yes" onclick="selectToggle(this,'hasTaxDebt')">Yes</div>
+            <div class="toggle-btn" data-val="no" onclick="selectToggle(this,'hasTaxDebt')">No</div>
+          </div>
+        </div>
+        <div id="taxDebtField" style="display:none;">
+          <div class="field-row" style="margin-bottom:8px;">
+            <div class="field" style="margin-bottom:0;">
+              <label class="field__label">Tax Debt Amount</label>
+              <input type="text" class="field__input" id="taxDebtAmount" placeholder="e.g. 25,000" oninput="recalc()">
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="field__label">On ATO payment plan?</label>
+              <div class="toggle-row" style="margin-top:6px;">
+                <div class="toggle-btn" data-val="yes" onclick="selectToggle(this,'taxPaymentPlan')">Yes</div>
+                <div class="toggle-btn" data-val="no" onclick="selectToggle(this,'taxPaymentPlan')">No</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Assets & Operations -->
+      <div class="form-section">
+        <div class="form-section__header">
+          <div class="form-section__icon" style="background:rgba(84,180,246,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="form-section__title">Assets & Operations</div><div class="form-section__subtitle">Property, suppliers, and trade terms</div></div>
+        </div>
+        <div class="field--inline">
+          <label class="field__label">Do directors own property?</label>
+          <div class="toggle-row">
+            <div class="toggle-btn" data-val="yes" onclick="selectToggle(this,'ownProperty')">Yes</div>
+            <div class="toggle-btn" data-val="no" onclick="selectToggle(this,'ownProperty')">No</div>
+          </div>
+        </div>
+        <div id="propertyFields" style="display:none;">
+          <div class="field-row" style="margin-bottom:8px;">
+            <div class="field" style="margin-bottom:0;">
+              <label class="field__label">Property Value</label>
+              <input type="text" class="field__input" id="propertyValue" placeholder="e.g. 800,000" oninput="recalc()">
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="field__label">Mortgage Balance</label>
+              <input type="text" class="field__input" id="mortgageBalance" placeholder="e.g. 400,000" oninput="recalc()">
+            </div>
+          </div>
+        </div>
+        <div class="field--inline">
+          <label class="field__label">Purchase from suppliers?</label>
+          <div class="toggle-row">
+            <div class="toggle-btn" data-val="yes" onclick="selectToggle(this,'purchasesFromSuppliers')">Yes</div>
+            <div class="toggle-btn" data-val="no" onclick="selectToggle(this,'purchasesFromSuppliers')">No</div>
+          </div>
+        </div>
+        <div class="field--inline">
+          <label class="field__label">Offer trade terms to customers?</label>
+          <div class="toggle-row">
+            <div class="toggle-btn" data-val="yes" onclick="selectToggle(this,'offersTradeTerms')">Yes</div>
+            <div class="toggle-btn" data-val="no" onclick="selectToggle(this,'offersTradeTerms')">No</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-back" onclick="goStep(1)">&larr; Back</button>
+        <button class="btn-next" onclick="goStep(3)">See My Results &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Results + Submit -->
+    <div id="step3" class="step" style="display:none;">
+      <div class="form-panel__header">
+        <div class="form-panel__step-label">Your Preliminary Match</div>
+        <h1 class="form-panel__title">Here's what you qualify for</h1>
+        <p class="form-panel__sub">Based on your answers, these are the product categories that match your business. Submit to receive your full personalised Compare Report with specific lender options.</p>
+      </div>
+
+      <div id="finalResults"></div>
+
+      <div style="background:rgba(84,180,246,0.05); border:1px solid rgba(84,180,246,0.12); border-radius:8px; padding:12px 16px; margin-top:12px;">
+        <h3 style="font-family:var(--font-heading); font-size:0.82rem; margin-bottom:4px;">What happens next?</h3>
+        <div style="font-size:0.75rem; color:#4a5568; line-height:1.6;">A specialist reviews your profile and builds your full Compare Report with specific lender matches within 24 hours, at no cost to you.</div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-back" onclick="goStep(2)">&larr; Back</button>
+        <button class="btn-next" onclick="submitApplication()" style="background:var(--green); box-shadow: 0 4px 16px rgba(52,199,89,0.3);">Submit Application &rarr;</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Live Report Panel -->
+  <div class="report-panel">
+    <div class="report-panel__header">
+      <div class="report-panel__eyebrow"><span class="report-panel__dot"></span> Live Matching</div>
+      <div class="report-panel__title">Your Compare Report</div>
+      <div class="report-panel__sub" id="reportStatus">Answer questions to see matches appear</div>
+    </div>
+
+    <div class="star-legend">
+      <div class="star-legend__item"><span class="star-dot star-dot--s"></span> Security</div>
+      <div class="star-legend__item"><span class="star-dot star-dot--t"></span> Term</div>
+      <div class="star-legend__item"><span class="star-dot star-dot--a"></span> Amount</div>
+      <div class="star-legend__item"><span class="star-dot star-dot--r"></span> Rate</div>
+    </div>
+
+    <div id="matchResults">
+      <div class="report-empty">
+        <div class="report-empty__icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <div class="report-empty__title">Your report is building</div>
+        <div class="report-empty__text">Select a funding purpose to see your first product matches appear here</div>
+      </div>
+    </div>
+
+    <div class="report-progress">
+      <div class="report-progress__bar"><div class="report-progress__fill" id="progressFill" style="width:0%"></div></div>
+      <div class="report-progress__text"><span id="progressLabel">0% complete</span><span id="matchCount">0 matches</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// State
+var state = {
+  purpose: '', amount: 250000, timeline: 'asap',
+  tradingDuration: '', revenue: 0, credit: '', citizenship: 'australian_citizen',
+  ownProperty: null, propertyValue: 0, mortgageBalance: 0,
+  hasTaxDebt: null, taxDebtAmount: 0, taxPaymentPlan: null,
+  purchasesFromSuppliers: null, offersTradeTerms: null,
+  step: 1
+};
+
+// ================================================================
+// CALCULATOR ENGINE — DIRECT 1:1 PORT FROM calculatorEngine.ts
+// DO NOT modify this logic. It matches the portal exactly.
+// ================================================================
+var purposeProductMap = {
+  cashflow_working_capital: { primary: ['term-loan','line'], secondary: ['invoice','second-mortgage'] },
+  cashflow_expansion: { primary: ['term-loan','line'], secondary: ['invoice','trade','second-mortgage'] },
+  pay_suppliers: { primary: ['trade','line'], secondary: ['term-loan','second-mortgage'] },
+  pay_expenses: { primary: ['line'], secondary: ['term-loan','second-mortgage'] },
+  pay_invoices: { primary: ['invoice','line'], secondary: ['term-loan','second-mortgage'] },
+  pay_gov_tax: { primary: ['line','term-loan'], secondary: ['invoice','second-mortgage'] },
+  purchase_equipment: { primary: ['lease'], secondary: ['term-loan','second-mortgage'] },
+  purchase_business: { primary: ['term-loan'], secondary: ['line','second-mortgage'] },
+  purchase_commercial_property: { primary: ['mortgage','second-mortgage'], secondary: ['term-loan'] },
+  purchase_residential_property: { primary: ['mortgage','second-mortgage'], secondary: [] },
+  purchase_vehicle: { primary: ['lease'], secondary: ['term-loan'] },
+  new_business: { primary: ['term-loan','mortgage','second-mortgage'], secondary: [] },
+  refinance: { primary: ['term-loan'], secondary: ['mortgage','second-mortgage'] },
+  restructure: { primary: ['term-loan'], secondary: ['mortgage','second-mortgage'] }
+};
+
+var productInfo = {
+  'lease': { label: 'Lease / Asset Finance', rate: '7% APR', term: '84 months' },
+  'mortgage': { label: 'Commercial Mortgage', rate: '5.9% APR', term: '30 years' },
+  'line': { label: 'Line of Credit', rate: '14% APR', term: '60 months' },
+  'term-loan': { label: 'Term Loan', rate: '9.9% ASR', term: '60 months' },
+  'invoice': { label: 'Invoice Finance', rate: '6.5% APR', term: '90 days' },
+  'trade': { label: 'Trade Finance', rate: '9.85% APR', term: '120 days' },
+  'second-mortgage': { label: 'Second Mortgage', rate: '7.5% APR', term: '12 months' }
+};
+
+// Trading duration → months (conservative estimate for each bucket)
+// "Less than 1 year" = could be 1 month, conservatively use 3
+var durationMonths = { lt_1_year: 3, '1_2_years': 18, '2_5_years': 36, '5_plus_years': 84 };
+
+function getMonths() { return durationMonths[state.tradingDuration] || 0; }
+
+// ================================================================
+// EXACT PORT of checkEligibility from calculatorEngine.ts
+// Uses a CustomerProfile object just like the portal does
+// ================================================================
+function assembleProfile() {
+  return {
+    purpose: state.purpose,
+    citizenshipStatus: state.citizenship,
+    fundingAmountRequired: state.amount,
+    monthsTrading: getMonths(),
+    gstRegistered: true, // not asked yet, default true
+    creditRating: state.credit || 'good', // default to good if not answered
+    purchasesFromSuppliers: state.purchasesFromSuppliers === 'yes',
+    annualRevenue: state.revenue,
+    offersTradeTerms: state.offersTradeTerms === 'yes',
+    taxDebtAmount: state.hasTaxDebt === 'yes' ? state.taxDebtAmount : 0,
+    taxDebtOnPaymentPlan: state.taxPaymentPlan === 'yes',
+    arBalance: 0, // not asked in simplified flow
+    directorsOwnProperty: state.ownProperty === 'yes',
+    propertyMarketValue: state.propertyValue,
+    outstandingMortgageBalance: state.mortgageBalance
+  };
+}
+
+function checkEligibility(cat) {
+  // On Step 1, show all purpose-matched products as eligible (profile not collected yet)
+  if (state.step === 1) {
+    return { eligible: true, reasons: [] };
+  }
+
+  // On Step 2+, run the EXACT same logic as calculatorEngine.ts
+  var profile = assembleProfile();
+  var reasons = [];
+  var monthsTrading = profile.monthsTrading;
+  var monthlyRevenue = profile.annualRevenue / 12;
+  var taxDebtRatio = monthlyRevenue > 0 ? profile.taxDebtAmount / monthlyRevenue : 0;
+  var availableEquity = profile.directorsOwnProperty
+    ? profile.propertyMarketValue * 0.75 - profile.outstandingMortgageBalance
+    : 0;
+
+  if (cat === 'lease') {
+    if (profile.citizenshipStatus === 'temporary_resident') {
+      reasons.push('Australian Citizen or Permanent Resident required');
+    }
+    // Time trading: 0+ (no minimum)
+    // Credit: all ratings accepted
+  }
+
+  else if (cat === 'mortgage') {
+    if (profile.citizenshipStatus === 'temporary_resident') {
+      reasons.push('Australian Citizen or Permanent Resident required');
+    }
+    if (monthsTrading < 6) {
+      reasons.push('Minimum 6 months trading history required');
+    }
+  }
+
+  else if (cat === 'line') {
+    // All citizenship types accepted
+    if (monthsTrading < 6) {
+      reasons.push('Minimum 6 months trading history required');
+    }
+    if (profile.annualRevenue < 72000) {
+      reasons.push('Minimum $72,000 annual revenue required');
+    }
+    if (taxDebtRatio > 1.5 && profile.taxDebtAmount > 0) {
+      reasons.push('Tax debt to monthly revenue ratio exceeds 1.5x limit');
+    }
+  }
+
+  else if (cat === 'term-loan') {
+    if (profile.citizenshipStatus === 'temporary_resident') {
+      reasons.push('Australian Citizen or Permanent Resident required');
+    }
+    if (monthsTrading < 6) {
+      reasons.push('Minimum 6 months trading history required');
+    }
+    if (profile.annualRevenue < 72000) {
+      reasons.push('Minimum $72,000 annual revenue required');
+    }
+    if (taxDebtRatio > 1.5 && profile.taxDebtAmount > 0) {
+      reasons.push('Tax debt to monthly revenue ratio exceeds 1.5x limit');
+    }
+  }
+
+  else if (cat === 'invoice') {
+    if (profile.citizenshipStatus === 'temporary_resident') {
+      reasons.push('Australian Citizen or Permanent Resident required');
+    }
+    if (monthsTrading < 3) {
+      reasons.push('Minimum 3 months trading history required');
+    }
+    if (profile.annualRevenue < 60000) {
+      reasons.push('Minimum $60,000 annual revenue required');
+    }
+    if (!profile.offersTradeTerms) {
+      reasons.push('Must offer trade terms to customers');
+    }
+  }
+
+  else if (cat === 'trade') {
+    if (profile.citizenshipStatus === 'temporary_resident') {
+      reasons.push('Australian Citizen or Permanent Resident required');
+    }
+    if (monthsTrading < 12) {
+      reasons.push('Minimum 12 months trading history required');
+    }
+    if (profile.creditRating === 'issues') {
+      reasons.push('Credit history rating of Good or above required');
+    }
+    if (!profile.purchasesFromSuppliers) {
+      reasons.push('Must purchase goods or services from suppliers');
+    }
+    if (profile.annualRevenue < 100000) {
+      reasons.push('Minimum $100,000 annual revenue required');
+    }
+  }
+
+  else if (cat === 'second-mortgage') {
+    if (profile.citizenshipStatus === 'temporary_resident') {
+      reasons.push('Australian Citizen or Permanent Resident required');
+    }
+    if (monthsTrading < 3) {
+      reasons.push('Minimum 3 months trading history required');
+    }
+    if (profile.creditRating === 'issues') {
+      reasons.push('Credit history rating of Good or above required');
+    }
+    if (!profile.directorsOwnProperty) {
+      reasons.push('Directors must own property to secure a second mortgage');
+    }
+    if (availableEquity <= 0 && profile.directorsOwnProperty) {
+      reasons.push('Insufficient available equity in property (75% LVR)');
+    }
+  }
+
+  return { eligible: reasons.length === 0, reasons: reasons };
+}
+
+// EXACT PORT of calculateIndicativeAmount from calculatorEngine.ts
+function calcAmount(cat) {
+  var profile = assembleProfile();
+  var monthlyRevenue = profile.annualRevenue / 12;
+  var availableEquity = profile.directorsOwnProperty
+    ? profile.propertyMarketValue * 0.75 - profile.outstandingMortgageBalance
+    : 0;
+
+  if (cat === 'lease') return 'TBC - Reviewed against asset';
+  if (cat === 'mortgage') return 'TBC - Reviewed against property';
+  if (cat === 'line') { var a = Math.round(monthlyRevenue * 2); return a > 0 ? '$' + a.toLocaleString() : 'TBC'; }
+  if (cat === 'term-loan') { var a = Math.round(monthlyRevenue * 2.5); return a > 0 ? '$' + a.toLocaleString() : 'TBC'; }
+  if (cat === 'invoice') { var a = Math.round(profile.arBalance * 0.9); return a > 0 ? '$' + a.toLocaleString() : '90% of receivables'; }
+  if (cat === 'trade') { var a = Math.round(monthlyRevenue * 1.5); return a > 0 ? '$' + a.toLocaleString() : 'TBC'; }
+  if (cat === 'second-mortgage') { return availableEquity > 0 ? '$' + Math.round(availableEquity).toLocaleString() : 'TBC'; }
+  return 'TBC';
+}
+
+function runCalc() {
+  if (!state.purpose) return null;
+  var map = purposeProductMap[state.purpose];
+  if (!map) return null;
+  var seen = {};
+  var results = { primary: [], secondary: [] };
+
+  map.primary.forEach(function(cat) {
+    if (seen[cat]) return;
+    seen[cat] = true;
+    var e = checkEligibility(cat);
+    results.primary.push({ cat: cat, info: productInfo[cat], eligible: e.eligible, reasons: e.reasons, amount: calcAmount(cat) });
+  });
+
+  map.secondary.forEach(function(cat) {
+    if (seen[cat]) return;
+    seen[cat] = true;
+    var e = checkEligibility(cat);
+    results.secondary.push({ cat: cat, info: productInfo[cat], eligible: e.eligible, reasons: e.reasons, amount: calcAmount(cat) });
+  });
+
+  return results;
+}
+
+function renderMatches() {
+  var results = runCalc();
+  var container = document.getElementById('matchResults');
+
+  if (!results) {
+    container.innerHTML = '<div class="report-empty"><div class="report-empty__icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="report-empty__title">Your report is building</div><div class="report-empty__text">Select a funding purpose to see product matches</div></div>';
+    updateProgress(0, 0);
+    return;
+  }
+
+  var html = '';
+  var eligible = 0, total = 0;
+
+  if (results.primary.length) {
+    html += '<div class="match-section"><div class="match-section__label">Primary Matches</div>';
+    results.primary.forEach(function(m, i) {
+      total++;
+      if (m.eligible) eligible++;
+      html += renderCard(m, i, true);
+    });
+    html += '</div>';
+  }
+
+  if (results.secondary.length) {
+    html += '<div class="match-section"><div class="match-section__label">Secondary Matches</div>';
+    results.secondary.forEach(function(m, i) {
+      total++;
+      if (m.eligible) eligible++;
+      html += renderCard(m, i + results.primary.length, false);
+    });
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+  document.getElementById('reportStatus').textContent = eligible + ' of ' + total + ' products eligible';
+  updateProgress(getProgress(), eligible);
+}
+
+function renderCard(m, i, isPrimary) {
+  var cls = m.eligible ? 'match-card--eligible' : 'match-card--ineligible';
+  var badge = m.eligible
+    ? (isPrimary ? '<span class="match-card__badge match-card__badge--primary">Primary</span>' : '<span class="match-card__badge match-card__badge--eligible">Eligible</span>')
+    : '<span class="match-card__badge match-card__badge--ineligible">Ineligible</span>';
+  var reason = !m.eligible && m.reasons.length ? '<div class="match-card__reason">' + m.reasons[0] + '</div>' : '';
+  var delay = (i * 0.08).toFixed(2);
+
+  return '<div class="match-card ' + cls + '" style="animation-delay:' + delay + 's;">' +
+    '<div class="match-card__top"><div class="match-card__name">' + m.info.label + '</div>' + badge + '</div>' +
+    '<div class="match-card__stats">' +
+      '<div><div class="match-card__stat-label">Rate From</div><div class="match-card__stat-value">' + m.info.rate + '</div></div>' +
+      '<div><div class="match-card__stat-label">Max Term</div><div class="match-card__stat-value">' + m.info.term + '</div></div>' +
+      '<div><div class="match-card__stat-label">Est. Amount</div><div class="match-card__stat-value">' + m.amount + '</div></div>' +
+    '</div>' + reason + '</div>';
+}
+
+function getProgress() {
+  var fields = 0, filled = 0;
+  fields++; if (state.purpose) filled++;
+  fields++; filled++; // amount always has a value
+  fields++; if (state.tradingDuration) filled++;
+  fields++; if (state.revenue > 0) filled++;
+  fields++; if (state.credit) filled++;
+  fields++; if (state.citizenship) filled++;
+  fields++; if (state.ownProperty !== null) filled++;
+  fields++; if (state.hasTaxDebt !== null) filled++;
+  fields++; if (state.purchasesFromSuppliers !== null) filled++;
+  fields++; if (state.offersTradeTerms !== null) filled++;
+  return Math.round((filled / fields) * 100);
+}
+
+function updateProgress(pct, matches) {
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '% complete';
+  document.getElementById('matchCount').textContent = (matches || 0) + ' eligible';
+}
+
+// UI handlers
+function selectPurposeDropdown(el) {
+  state.purpose = el.value;
+  // Adjust slider range for property purchases
+  var ranges = { purchase_commercial_property: [100000,10000000,50000], purchase_residential_property: [100000,10000000,50000], purchase_business: [50000,5000000,25000] };
+  var r = ranges[state.purpose] || [10000,2000000,10000];
+  var sl = document.getElementById('amtSlider');
+  sl.min = r[0]; sl.max = r[1]; sl.step = r[2];
+  if (parseInt(sl.value) < r[0]) sl.value = r[0];
+  if (parseInt(sl.value) > r[1]) sl.value = r[1];
+  document.getElementById('sliderMin').textContent = fmt(r[0]);
+  document.getElementById('sliderMax').textContent = fmt(r[1]);
+  updateAmount(sl);
+  recalc();
+}
+
+function selectCredit(el) {
+  document.querySelectorAll('.credit-pill').forEach(function(p) { p.classList.remove('credit-pill--active'); });
+  el.classList.add('credit-pill--active');
+  state.credit = el.getAttribute('data-credit');
+  recalc();
+}
+
+function selectToggle(el, field) {
+  el.parentElement.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('toggle-btn--active'); });
+  el.classList.add('toggle-btn--active');
+  state[field] = el.getAttribute('data-val');
+  if (field === 'ownProperty') document.getElementById('propertyFields').style.display = state.ownProperty === 'yes' ? 'block' : 'none';
+  if (field === 'hasTaxDebt') document.getElementById('taxDebtField').style.display = state.hasTaxDebt === 'yes' ? 'block' : 'none';
+  recalc();
+}
+
+function updateAmount(sl) {
+  var v = parseInt(sl.value);
+  state.amount = v;
+  document.getElementById('amt1').textContent = v.toLocaleString();
+  var pct = ((v - parseInt(sl.min)) / (parseInt(sl.max) - parseInt(sl.min))) * 100;
+  sl.style.background = 'linear-gradient(90deg, var(--skyblue) ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  recalc();
+}
+
+function updateRevenue(sl) {
+  var v = parseInt(sl.value);
+  state.revenue = v;
+  document.getElementById('revInput').value = v.toLocaleString();
+  var pct = (v / 50000000) * 100;
+  sl.style.background = 'linear-gradient(90deg, var(--skyblue) ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  recalc();
+}
+
+function syncRevenueFromInput(el) {
+  var raw = el.value.replace(/[^0-9]/g, '');
+  var val = parseInt(raw) || 0;
+  val = Math.max(0, Math.min(50000000, val));
+  state.revenue = val;
+  document.getElementById('revSlider').value = val;
+  var pct = (val / 50000000) * 100;
+  document.getElementById('revSlider').style.background = 'linear-gradient(90deg, var(--skyblue) ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  recalc();
+}
+
+function formatRevenueInput(el) {
+  var raw = el.value.replace(/[^0-9]/g, '');
+  var val = parseInt(raw) || 0;
+  val = Math.max(0, Math.min(50000000, val));
+  val = Math.round(val / 50000) * 50000;
+  state.revenue = val;
+  document.getElementById('revSlider').value = val;
+  el.value = val.toLocaleString();
+  var pct = (val / 50000000) * 100;
+  document.getElementById('revSlider').style.background = 'linear-gradient(90deg, var(--skyblue) ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  recalc();
+}
+
+function recalc() {
+  // Read ALL form values into state
+  state.tradingDuration = document.getElementById('tradingDuration').value;
+  state.citizenship = document.getElementById('citizenship').value;
+  state.propertyValue = parseCur(document.getElementById('propertyValue'));
+  state.mortgageBalance = parseCur(document.getElementById('mortgageBalance'));
+  state.taxDebtAmount = parseCur(document.getElementById('taxDebtAmount'));
+  renderMatches();
+}
+
+function parseCur(el) { return el ? parseInt(el.value.replace(/[^0-9]/g,'')) || 0 : 0; }
+function fmt(n) { return n>=1000000?'$'+(n/1000000).toFixed(0)+'M':n>=1000?'$'+(n/1000)+'k':'$'+n; }
+
+function goStep(n) {
+  for (var i=1;i<=3;i++) {
+    var stepEl = document.getElementById('step'+i);
+    if (stepEl) stepEl.style.display = i===n ? 'block' : 'none';
+    var nav = document.getElementById('navStep'+i);
+    if (nav) nav.className = 'nav__step' + (i===n?' nav__step--active':'') + (i<n?' nav__step--done':'');
+  }
+  state.step = n;
+  // Always sync state from form fields before recalculating
+  var td = document.getElementById('tradingDuration');
+  if (td) state.tradingDuration = td.value;
+  var cz = document.getElementById('citizenship');
+  if (cz) state.citizenship = cz.value;
+  state.propertyValue = parseCur(document.getElementById('propertyValue'));
+  state.mortgageBalance = parseCur(document.getElementById('mortgageBalance'));
+  state.taxDebtAmount = parseCur(document.getElementById('taxDebtAmount'));
+  // Re-render sidebar + final results (both use same runCalc)
+  renderMatches();
+  if (n === 3) renderFinalResults();
+  window.scrollTo(0,0);
+}
+
+function renderFinalResults() {
+  var results = runCalc();
+  if (!results) return;
+  var eligible = [], ineligible = [];
+  var all = results.primary.concat(results.secondary);
+  all.forEach(function(m) { (m.eligible ? eligible : ineligible).push(m); });
+
+  var html = '';
+
+  // Clean results table
+  all.forEach(function(m) {
+    var isPrimary = results.primary.indexOf(m) !== -1;
+    var statusIcon = m.eligible
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--peach)" stroke-width="2.5" stroke-linecap="round" opacity="0.5"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+    var badge = isPrimary && m.eligible
+      ? '<span style="font-size:0.52rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;background:rgba(84,180,246,0.1);color:var(--skyblue);padding:2px 6px;border-radius:3px;margin-left:6px;">Primary</span>'
+      : '';
+    var dim = m.eligible ? '' : 'opacity:0.45;';
+
+    html += '<div style="display:grid;grid-template-columns:20px 1fr 72px 72px 80px;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid #f0f2f5;' + dim + '">';
+    html += '<div>' + statusIcon + '</div>';
+    html += '<div><div style="font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy);">' + m.info.label + badge + '</div>';
+    if (!m.eligible && m.reasons.length) {
+      html += '<div style="font-size:0.68rem;color:var(--peach);margin-top:1px;">' + m.reasons[0] + '</div>';
+    }
+    html += '</div>';
+    html += '<div style="text-align:right;"><div style="font-size:0.5rem;text-transform:uppercase;letter-spacing:0.5px;color:#a0aec0;">Rate</div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.82rem;color:var(--skyblue);">' + m.info.rate + '</div></div>';
+    html += '<div style="text-align:right;"><div style="font-size:0.5rem;text-transform:uppercase;letter-spacing:0.5px;color:#a0aec0;">Term</div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.82rem;color:var(--navy);">' + m.info.term + '</div></div>';
+    html += '<div style="text-align:right;"><div style="font-size:0.5rem;text-transform:uppercase;letter-spacing:0.5px;color:#a0aec0;">Est. Amount</div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.82rem;color:var(--navy);">' + m.amount + '</div></div>';
+    html += '</div>';
+  });
+
+  document.getElementById('finalResults').innerHTML = html;
+}
+
+function submitApplication() {
+  alert('Application submitted! In production, this sends an email to support@tradefunding.com.au with all your details and match results.');
+}
+
+// Init
+updateAmount(document.getElementById('amtSlider'));
+</script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

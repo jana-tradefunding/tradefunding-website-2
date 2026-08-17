@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meet Cashper, the AI-powered lending intelligence behind your Compare Report. Yes, he's a ghost. No, that's not weird. He's transparent (literally) and ready to help you compare 70+ lenders.">
+<title>Meet Cashper | Your Friendly Financial Ghost | Trade Funding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-styles.css">
+<style>
+/* ========================================
+   MEET CASHPER PAGE
+   ======================================== */
+
+/* --- Hero: copied from product-hero pattern (proven working) --- */
+.mc-hero {
+  position: relative;
+  background: linear-gradient(160deg, #001C44 0%, #002A5C 50%, #001838 100%);
+  padding: 160px 0 100px;
+  overflow: hidden;
+  color: #fff;
+}
+.mc-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 64px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+.mc-hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #54B4F6;
+  margin-bottom: 16px;
+}
+.mc-hero__title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.mc-hero__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  max-width: 520px;
+}
+.mc-hero__ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mc-hero__ghost img {
+  width: 260px;
+  height: auto;
+  filter: drop-shadow(0 16px 40px rgba(84,180,246,0.2));
+  animation: ghostFloat 4s ease-in-out infinite;
+}
+@keyframes ghostFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* --- Sections --- */
+.mc-section {
+  padding: 72px 0;
+}
+.mc-section--alt {
+  background: #FAFBFD;
+}
+.mc-section--navy {
+  background: linear-gradient(160deg, #001C44 0%, #002A5C 50%, #001838 100%);
+  color: #fff;
+}
+.mc-section__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.mc-section__inner h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+.mc-section--navy .mc-section__inner h2 {
+  color: #fff;
+}
+.mc-section__inner > p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 640px;
+  margin: 0 auto 16px;
+}
+
+/* --- Tech steps --- */
+.mc-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 40px auto 0;
+}
+.mc-tech-card {
+  background: var(--white);
+  border: 1px solid rgba(0,28,68,0.05);
+  border-radius: 14px;
+  padding: 28px 24px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mc-tech-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,28,68,0.06);
+}
+.mc-tech-card__num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(84,180,246,0.08);
+  color: #54B4F6;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.mc-tech-card h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.mc-tech-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- FAQ cards --- */
+.mc-faq-list {
+  max-width: 700px;
+  margin: 32px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.mc-faq {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px 28px;
+  border: 1px solid rgba(0,28,68,0.04);
+  box-shadow: 0 1px 3px rgba(0,28,68,0.03);
+  text-align: left;
+}
+.mc-faq h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.mc-faq p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* --- Speech bubbles --- */
+.mc-bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 40px auto 0;
+}
+.mc-bubble {
+  background: var(--white);
+  border-radius: 16px 16px 16px 4px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 12px rgba(0,28,68,0.04);
+  border: 1px solid rgba(0,28,68,0.04);
+  position: relative;
+  text-align: left;
+}
+.mc-bubble:nth-child(even) {
+  border-radius: 16px 16px 4px 16px;
+  margin-left: auto;
+}
+.mc-bubble__quote {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--navy);
+  line-height: 1.5;
+}
+.mc-bubble__context {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* --- Trait tags --- */
+.mc-traits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 36px;
+}
+.mc-trait {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mc-trait:nth-child(1) { border-color: #54B4F6; background: rgba(84,180,246,0.06); color: var(--navy); }
+.mc-trait:nth-child(2) { border-color: #FBB766; background: rgba(251,183,102,0.06); color: var(--navy); }
+.mc-trait:nth-child(3) { border-color: #FF5D5C; background: rgba(255,93,92,0.06); color: var(--navy); }
+.mc-trait:nth-child(4) { border-color: #54B4F6; background: rgba(84,180,246,0.06); color: var(--navy); }
+.mc-trait:nth-child(5) { border-color: #FBB766; background: rgba(251,183,102,0.06); color: var(--navy); }
+.mc-trait:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,28,68,0.06);
+}
+
+/* --- CTA --- */
+.mc-cta {
+  text-align: center;
+  padding: 100px 0;
+}
+.mc-cta__ghost {
+  width: 120px;
+  margin: 0 auto 32px;
+  filter: drop-shadow(0 8px 24px rgba(84,180,246,0.3));
+}
+.mc-cta h2 {
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-bottom: 16px;
+}
+.mc-cta p {
+  color: rgba(255,255,255,0.65);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+.mc-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 16px 36px;
+  border-radius: 50px;
+  background: #FF5D5C;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(255,93,92,0.3);
+  transition: all 0.3s ease;
+}
+.mc-cta__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,93,92,0.4);
+}
+
+/* --- Who is Cashper points --- */
+.mc-points {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 24px auto;
+  max-width: 560px;
+  text-align: left;
+}
+.mc-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.mc-point__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(84,180,246,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.mc-point__icon svg { width: 14px; height: 14px; }
+.mc-point p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.mc-point strong { color: var(--navy); }
+
+/* --- Reveal --- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .mc-hero__inner { grid-template-columns: 1fr 280px; gap: 40px; }
+  .mc-tech-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .mc-hero { padding: 120px 0 64px; }
+  .mc-hero__inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .mc-hero__ghost { order: -1; }
+  .mc-hero__ghost img { width: 180px; }
+  .mc-hero__sub { margin: 0 auto; }
+  .mc-tech-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .mc-bubbles { max-width: 100%; }
+  .mc-bubble:nth-child(even) { margin-left: 0; }
+  .mc-traits { gap: 10px; }
+  .mc-trait { font-size: 0.82rem; padding: 10px 20px; }
+  .mc-cta { padding: 64px 0; }
+}
+@media (max-width: 480px) {
+  .mc-hero { padding: 100px 0 48px; }
+  .mc-hero__title { font-size: 1.6rem; }
+  .mc-hero__ghost img { width: 150px; }
+  .mc-section { padding: 48px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo"><img src="assets/logo-navy.png" alt="Trade Funding" height="28"></a>
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Term Loans</span><a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a><a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a><a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Credit Lines</span><a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a><a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a><a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Invoice</span><a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance</a><a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a><a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Trade</span><a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a><a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a><a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Equipment</span><a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a><a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a><a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a></div>
+          <div class="dropdown-menu__category"><span class="dropdown-menu__heading">Property</span><a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a><a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a></div>
+          <div class="dropdown-menu__bottom"><a href="apply.html" class="dropdown-menu__cta">Not sure which product? Get your free Compare Report &rarr;</a></div>
+        </div>
+      </div>
+      <a href="resources.html" class="navbar__link">Resources</a>
+      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
+      <a href="about.html" class="navbar__link">About</a>
+    </div>
+    <div class="navbar__right">
+      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="resources.html" onclick="closeMobile()">Resources</a>
+  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+
+<!-- HERO -->
+<section class="mc-hero">
+  <div class="mc-hero__inner">
+    <div>
+      <p class="mc-hero__eyebrow reveal">Meet Cashper</p>
+      <h1 class="mc-hero__title reveal">"Yes, I'm a Ghost.<br>No, That's Not Weird."</h1>
+      <p class="mc-hero__sub reveal">You're probably wondering why a lending intelligence platform has a ghost. Fair question. The marketing team thought I should explain myself, so here I am. Fully transparent (literally) and ready to clear things up.</p>
+    </div>
+    <div class="mc-hero__ghost reveal">
+      <img src="assets/cashper.png" alt="Cashper">
+    </div>
+  </div>
+</section>
+
+
+<!-- WHO IS CASHPER -->
+<section class="mc-section">
+  <div class="container">
+    <div class="mc-section__inner reveal">
+      <h2>Who (or What) is Cashper?</h2>
+      <p>I'm Cashper, Trade Funding's resident ghost and voice of transparency. No tricks, no gimmicks, just straight answers about business finance.</p>
+      <p>The team chose me because finance can feel complicated, confusing, and, let's be honest, a little intimidating. My job is to make it clearer, make it simpler, and make sure you see through the noise to get the funding that fits your business.</p>
+      <p>A ghost might seem like a weird choice, but think about it:</p>
+    </div>
+    <div class="mc-points reveal">
+      <div class="mc-point">
+        <div class="mc-point__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <p><strong>I'm transparent.</strong> No hidden fees, no sneaky clauses, just clarity.</p>
+      </div>
+      <div class="mc-point">
+        <div class="mc-point__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <p><strong>I help you see through the confusion.</strong> Comparing lenders shouldn't feel like a guessing game.</p>
+      </div>
+      <div class="mc-point">
+        <div class="mc-point__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#54B4F6" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <p><strong>Finance shouldn't be scary.</strong> I make sure it isn't.</p>
+      </div>
+    </div>
+    <div class="mc-section__inner reveal">
+      <p style="font-style:italic;opacity:0.7;">And no, I don't haunt offices. That would be unprofessional.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- WHAT CASHPER DOES (Technology) -->
+<section class="mc-section mc-section--alt">
+  <div class="container">
+    <div class="mc-section__inner reveal">
+      <h2>What Cashper Actually Does</h2>
+      <p>Behind the friendly face, I'm an AI-powered lending intelligence engine. Here's how I build your personalised Compare Report:</p>
+    </div>
+    <div class="mc-tech-grid">
+      <div class="mc-tech-card reveal"><div class="mc-tech-card__num">1</div><h3>Lending Profile</h3><p>I absorb your business data and build a full lending profile: revenue, industry, trading history, security position.</p></div>
+      <div class="mc-tech-card reveal"><div class="mc-tech-card__num">2</div><h3>Provider Matrix</h3><p>Your profile is matched against 70+ lenders AND products based on your purpose of funds and business characteristics.</p></div>
+      <div class="mc-tech-card reveal"><div class="mc-tech-card__num">3</div><h3>Credit Assessment</h3><p>Individual credit engines, one for each lender, assess your creditworthiness against that lender's specific criteria.</p></div>
+      <div class="mc-tech-card reveal"><div class="mc-tech-card__num">4</div><h3>Indicative Offers</h3><p>Each engine produces personalised indicative terms. Not just "you might qualify", but actual estimated pricing.</p></div>
+      <div class="mc-tech-card reveal"><div class="mc-tech-card__num">5</div><h3>S.T.A.R. Scoring</h3><p>Offers are scored using our S.T.A.R. framework: the black and white facts about what each lender is offering, and what they want.</p></div>
+      <div class="mc-tech-card reveal"><div class="mc-tech-card__num">6</div><h3>Guided Execution</h3><p>Our team walks you through the report, helps you choose, and runs the loan through to settlement.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="mc-section">
+  <div class="container">
+    <div class="mc-section__inner reveal">
+      <h2>Everything You Didn't Know You Needed to Ask About Me</h2>
+    </div>
+    <div class="mc-faq-list">
+      <div class="mc-faq reveal"><h3>Why a ghost?</h3><p>Because finance shouldn't be scary. Trade Funding believes business owners should know exactly what they're signing up for. No mystery, no confusion, just clear comparisons and real choices.</p></div>
+      <div class="mc-faq reveal"><h3>Are you a lender?</h3><p>Nope. Lenders provide businesses with the funding they need, but not every option is the right fit for everyone. Trade Funding exists to help businesses compare their options confidently so they can choose the right lender for their needs.</p></div>
+      <div class="mc-faq reveal"><h3>What do you actually do?</h3><p>I make sure Trade Funding sticks to its promise of clarity, honesty, and no tricks. I don't push products or play favourites. Behind the scenes, I'm also the AI engine that pre-qualifies your business against 70+ lenders and generates your S.T.A.R. scored Compare Report.</p></div>
+      <div class="mc-faq reveal"><h3>What's your deal with transparency?</h3><p>It's kind of my thing. You can't get much more transparent than a ghost. Business owners deserve clear finance options, no hidden fees, and straight-up answers. If something doesn't add up, I call it out.</p></div>
+      <div class="mc-faq reveal"><h3>Can I trust you?</h3><p>Well, I can't hold a pen, so I'm definitely not signing you up for anything. Trade Funding doesn't do pushy sales tactics, and neither do I. You get the facts, you make the decisions. Simple.</p></div>
+      <div class="mc-faq reveal"><h3>Do you have a last name?</h3><p>Nope. Just Cashper. Like Beyonc&eacute;.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CASHPER'S VOICE -->
+<section class="mc-section mc-section--alt">
+  <div class="container">
+    <div class="mc-section__inner reveal">
+      <h2>Cashper's Voice</h2>
+      <p>Here's how Cashper sounds across the Trade Funding experience.</p>
+    </div>
+    <div class="mc-bubbles">
+      <div class="mc-bubble reveal"><div class="mc-bubble__quote">"No credit check. No commitment. Just clarity."</div><div class="mc-bubble__context">Form entry</div></div>
+      <div class="mc-bubble reveal"><div class="mc-bubble__quote">"Searching 70+ lenders... hang tight."</div><div class="mc-bubble__context">Loading state</div></div>
+      <div class="mc-bubble reveal"><div class="mc-bubble__quote">"Your Compare Report is ready!"</div><div class="mc-bubble__context">Delivery</div></div>
+      <div class="mc-bubble reveal"><div class="mc-bubble__quote">"Oops. Even ghosts get lost sometimes."</div><div class="mc-bubble__context">404 page</div></div>
+      <div class="mc-bubble reveal"><div class="mc-bubble__quote">"You wouldn't cross the road without looking both ways. Same goes for lending."</div><div class="mc-bubble__context">Educational</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CASHPER'S PERSONALITY -->
+<section class="mc-section">
+  <div class="container">
+    <div class="mc-section__inner reveal">
+      <h2>Cashper's Personality</h2>
+      <p>Five traits that define everything Cashper says and does.</p>
+    </div>
+    <div class="mc-traits reveal">
+      <span class="mc-trait">Warm</span>
+      <span class="mc-trait">Reassuring</span>
+      <span class="mc-trait">A little bit cheeky</span>
+      <span class="mc-trait">Never condescending</span>
+      <span class="mc-trait">Always on the customer's side</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="mc-section mc-section--navy mc-cta">
+  <div class="container">
+    <img src="assets/cashper.png" alt="Cashper" class="mc-cta__ghost reveal">
+    <h2 class="reveal">Ready to meet Cashper in action?</h2>
+    <p class="reveal">Get your free Compare Report and let Cashper pre-qualify your business against 70+ lenders. No pressure, just clear options.</p>
+    <a href="apply.html" class="mc-cta__btn reveal">Get My Free Compare Report &rarr;</a>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid">
+      <div class="footer__brand-col">
+        <a href="index.html" class="footer__logo" aria-label="Trade Funding"><img src="assets/logo-white-ghost.png" alt="Trade Funding"></a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers. Then we get it done. Free. No credit check. 24 hours.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Products</h4>
+        <div class="footer__links"><a href="business-term-loans.html">Term Loan</a><a href="business-line-of-credit.html">Line of Credit</a><a href="invoice-finance.html">Invoice Finance</a><a href="trade-finance.html">Trade Finance</a><a href="merchant-cash-advance.html">Merchant Cash Advance</a><a href="charge-card.html">Charge Card</a><a href="overdraft.html">Overdraft</a><a href="finance-lease.html">Finance Lease</a><a href="chattel-mortgage.html">Chattel Mortgage</a></div>
+        <div class="footer__links footer__links--more"><a href="operating-lease.html">Operating Lease</a><a href="debtor-finance.html">Debtor Finance</a><a href="fund-an-invoice.html">Fund an Invoice</a><a href="export-finance.html">Export Finance</a><a href="supply-chain-funding.html">Supply Chain</a><a href="r-and-d-funding.html">R&amp;D Funding</a><a href="second-mortgage.html">Second Mortgage</a><a href="self-employed-home-loan.html">Self-Employed Home Loan</a></div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Resources</h4>
+        <div class="footer__links"><a href="resources.html">All Guides &amp; Tools</a><a href="guides/compare-business-loans.html">Compare Business Loans</a><a href="guides/business-term-loans-guide.html">Term Loans Guide</a><a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a><a href="repayment-calculator.html">Repayment Calculator</a><a href="equipment-calculator.html">Equipment Calculator</a></div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Company</h4>
+        <div class="footer__links"><a href="about.html">About Us</a><a href="comparison-report.html">Compare Report</a><a href="meet-cashper.html">Meet Cashper</a><a href="apply.html">Get Started</a></div>
+      </div>
+    </div>
+    <div class="footer__disclaimer"><p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p></div>
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a><a href="credit-guide.html">Credit Guide</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+  window.closeMobile = function() {
+    if (hamburger) hamburger.classList.remove('open');
+    if (mobileNav) mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  // Scroll reveal
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+  }
+})();
+</script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

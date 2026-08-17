@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Page Not Found | Trade Funding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-styles.css">
+<style>
+  .error-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+  }
+
+  .error-section__inner {
+    max-width: 600px;
+  }
+
+  .error-section__image {
+    width: 140px;
+    height: auto;
+    margin-bottom: 32px;
+  }
+
+  .error-section h1 {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #001C44;
+    margin: 0 0 16px;
+  }
+
+  .error-section__subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.125rem;
+    color: #8896A6;
+    line-height: 1.6;
+    margin: 0 0 40px;
+  }
+
+  .error-section__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .error-section__pill {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 2px solid #001C44;
+    border-radius: 999px;
+    color: #001C44;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .error-section__pill:hover {
+    background: #001C44;
+    color: #fff;
+  }
+
+  .error-section__cta {
+    display: inline-block;
+    padding: 14px 36px;
+    background: #FF5D5C;
+    color: #fff;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .error-section__cta:hover {
+    opacity: 0.9;
+  }
+
+/* Enhanced mobile */
+@media (max-width: 768px) {
+  .error-page { padding: 60px 16px; min-height: 50vh; }
+  .error-page__title { font-size: 1.5rem; }
+  .error-page__links { flex-direction: column; gap: 8px; }
+  .error-page__link { width: 100%; text-align: center; }
+}
+@media (max-width: 480px) {
+  .error-page__illustration { width: 100px; }
+  .error-page__title { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Term Loans</span>
+            <a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Credit Lines</span>
+            <a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Invoice</span>
+            <a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance / Factoring</a>
+            <a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
+            <a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Trade</span>
+            <a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
+            <a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Equipment</span>
+            <a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Mortgage</span>
+            <a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+          </div>
+          <div class="dropdown-menu__bottom">
+            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <a href="resources.html" class="navbar__link">Resources</a>
+      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
+      <a href="about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
+  <a href="fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="resources.html" onclick="closeMobile()">Resources</a>
+  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+<!-- ============================================
+     404 CONTENT
+     ============================================ -->
+<section class="error-section">
+  <div class="error-section__inner">
+    <img src="assets/cashper.png" alt="Cashper" class="error-section__image">
+    <h1>This page has gone missing</h1>
+    <p class="error-section__subtitle">The page you're looking for doesn't exist or has moved. Let's get you back on track.</p>
+    <div class="error-section__links">
+      <a href="index.html" class="error-section__pill">Homepage</a>
+      <a href="resources.html" class="error-section__pill">Resources</a>
+      <a href="business-term-loans.html" class="error-section__pill">Term Loans</a>
+      <a href="invoice-finance.html" class="error-section__pill">Invoice Finance</a>
+      <a href="about.html" class="error-section__pill">About</a>
+    </div>
+    <a href="apply.html" class="error-section__cta">Get My Free Compare Report &rarr;</a>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid">
+
+      <!-- Column 1: Brand, contact, badges -->
+      <div class="footer__brand-col">
+        <a href="index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers, then we get it done. Free. No credit check. 24 hours.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Products -->
+      <div>
+        <h4 class="footer__heading">Products</h4>
+        <div class="footer__links">
+          <a href="business-term-loans.html">Term Loan</a>
+          <a href="business-line-of-credit.html">Line of Credit</a>
+          <a href="invoice-finance.html">Invoice Finance</a>
+          <a href="trade-finance.html">Trade Finance</a>
+          <a href="merchant-cash-advance.html">Merchant Cash Advance</a>
+          <a href="charge-card.html">Charge Card</a>
+          <a href="overdraft.html">Overdraft</a>
+          <a href="finance-lease.html">Finance Lease</a>
+          <a href="chattel-mortgage.html">Chattel Mortgage</a>
+        </div>
+        <div class="footer__links footer__links--more">
+          <a href="operating-lease.html">Operating Lease</a>
+          <a href="debtor-finance.html">Debtor Finance</a>
+          <a href="fund-an-invoice.html">Fund an Invoice</a>
+          <a href="export-finance.html">Export Finance</a>
+          <a href="supply-chain-funding.html">Supply Chain</a>
+          <a href="r-and-d-funding.html">R&amp;D Funding</a>
+          <a href="second-mortgage.html">Second Mortgage</a>
+          <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+        </div>
+      </div>
+
+      <!-- Column 3: Resources -->
+      <div>
+        <h4 class="footer__heading">Resources</h4>
+        <div class="footer__links">
+          <a href="resources.html">All Guides &amp; Tools</a>
+          <a href="guides/compare-business-loans.html">Compare Business Loans</a>
+          <a href="guides/business-term-loans-guide.html">Term Loans Guide</a>
+          <a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a>
+          <a href="repayment-calculator.html">Repayment Calculator</a>
+          <a href="equipment-calculator.html">Equipment Calculator</a>
+        </div>
+      </div>
+
+      <!-- Column 4: Company -->
+      <div>
+        <h4 class="footer__heading">Company</h4>
+        <div class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="comparison-report.html">Compare Report</a>
+          <a href="meet-cashper.html">Meet Cashper</a>
+          <a href="apply.html">Get Started</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="credit-guide.html">Credit Guide</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="cookie-consent.js"></script>
+</body>
+</html>

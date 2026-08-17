@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Calculate your business loan repayments: weekly, fortnightly, or monthly. Free calculator for term loans, lines of credit, and equipment finance.">
+<title>Business Loan Repayment Calculator Australia | Trade Funding</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tradefunding.com.au/repayment-calculator.html">
+<meta property="og:title" content="Business Loan Repayment Calculator Australia | Trade Funding">
+<meta property="og:description" content="Calculate your business loan repayments: weekly, fortnightly, or monthly. Free calculator for term loans, lines of credit, and equipment finance.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tradefunding.com.au/repayment-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-styles.css">
+
+<!-- WebApplication Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Business Loan Repayment Calculator",
+  "url": "https://tradefunding.com.au/repayment-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "AUD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Trade Funding",
+    "url": "https://tradefunding.com.au"
+  }
+}
+</script>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How are business loan repayments calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Business loan repayments are calculated using an amortisation formula: M = P x [r(1+r)^n] / [(1+r)^n - 1], where P is the principal (loan amount), r is the monthly interest rate (annual rate divided by 12), and n is the total number of monthly payments. This calculator converts the monthly figure to weekly and fortnightly equivalents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What factors affect my business loan repayment amount?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three main factors determine your repayment amount: the loan principal (how much you borrow), the interest rate (which depends on your credit profile, security offered, and lender), and the loan term (longer terms mean lower repayments but more total interest paid). Your Compare Report from Trade Funding will show you the exact rates and terms available to your business."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I choose weekly, fortnightly, or monthly repayments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choosing weekly or fortnightly repayments can save you money over the life of the loan because you effectively make slightly more payments per year, reducing the principal faster. Weekly repayments also align better with businesses that receive revenue weekly. However, monthly repayments are simpler to manage and align with most accounting cycles."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tradefunding.com.au/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Repayment Calculator",
+      "item": "https://tradefunding.com.au/repayment-calculator.html"
+    }
+  ]
+}
+</script>
+
+<style>
+
+/* ========================================
+   UTILITY
+   ======================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container--wide {
+  max-width: var(--max-width-wide);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 50px;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--peach);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(255,93,92,0.35);
+}
+
+.btn--primary:hover {
+  background: var(--peach-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,93,92,0.45);
+}
+
+/* ========================================
+   BREADCRUMB
+   ======================================== */
+.breadcrumb {
+  padding: 100px 0 0;
+}
+
+.breadcrumb__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 24px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.breadcrumb__inner a {
+  color: var(--skyblue);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb__inner a:hover {
+  color: var(--navy);
+}
+
+.breadcrumb__sep {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+/* ========================================
+   CALCULATOR HERO
+   ======================================== */
+.calc-hero {
+  padding: 40px 0 0;
+  text-align: center;
+}
+
+.calc-hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--skyblue);
+  margin-bottom: 12px;
+}
+
+.calc-hero__title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.calc-hero__sub {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ========================================
+   CALCULATOR SECTION
+   ======================================== */
+.calc-section {
+  padding: clamp(48px, 8vw, 96px) 0;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Inputs Panel */
+.calc-inputs {
+  background: var(--white);
+  border: 1px solid #e8ecf1;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+
+.calc-inputs__title {
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 32px;
+}
+
+.calc-field {
+  margin-bottom: 28px;
+}
+
+.calc-field:last-child {
+  margin-bottom: 0;
+}
+
+.calc-field__label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.calc-field__value {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.calc-field__value em {
+  font-style: normal;
+  color: var(--skyblue);
+}
+
+.calc-field__input-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.calc-field__text-input {
+  width: 140px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--navy);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.calc-field__text-input:focus {
+  border-color: var(--skyblue);
+  box-shadow: 0 0 0 3px rgba(84,180,246,0.1);
+}
+
+.calc-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  outline: none;
+  cursor: pointer;
+  flex: 1;
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 3px var(--skyblue);
+  cursor: pointer;
+}
+
+.calc-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 3px var(--skyblue);
+  cursor: pointer;
+  border: none;
+}
+
+.calc-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #a0aec0;
+  margin-top: 6px;
+}
+
+.calc-field__select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--navy);
+  background: white;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23718096' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.calc-field__select:focus {
+  border-color: var(--skyblue);
+  box-shadow: 0 0 0 3px rgba(84,180,246,0.1);
+}
+
+/* Results Panel */
+.calc-results {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+
+.calc-results__title {
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+
+.calc-result-item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.calc-result-item:last-child {
+  border-bottom: none;
+}
+
+.calc-result-item__label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.calc-result-item__value {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: var(--white);
+}
+
+.calc-result-item__value--highlight {
+  color: var(--skyblue);
+}
+
+.calc-result-item--secondary .calc-result-item__value {
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.85);
+}
+
+.calc-results__cta {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.calc-results__cta .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ========================================
+   FAQ SECTION
+   ======================================== */
+.calc-faq {
+  padding: clamp(64px, 8vw, 96px) 0;
+  background: var(--light-bg);
+}
+
+.calc-faq__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.calc-faq__title {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--navy);
+  margin-bottom: 48px;
+}
+
+.faq-item {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-item__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+.faq-item__question::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--skyblue);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.faq-item.open .faq-item__question::after {
+  content: '\2212';
+}
+
+.faq-item__answer {
+  padding: 0 24px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item.open .faq-item__answer {
+  padding: 0 24px 20px;
+  max-height: 300px;
+}
+
+.faq-item__answer p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+.calc-cta {
+  padding: clamp(64px, 8vw, 96px) 0;
+  text-align: center;
+}
+
+.calc-cta__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.calc-cta__title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.calc-cta__text {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* ========================================
+   ======================================== */
+
+   ======================================== */
+@media (max-width: 768px) {
+
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-inputs {
+    padding: 24px;
+  }
+
+  .calc-results {
+    padding: 24px;
+  }
+
+  .calc-field__input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calc-field__text-input {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .calc-result-item__value {
+    font-size: 1.4rem;
+  }
+}
+
+/* Enhanced mobile */
+@media (max-width: 768px) {
+  .calc-hero { padding: 100px 0 40px; }
+  .calc-layout { grid-template-columns: 1fr; gap: 24px; }
+  .calc-results { position: relative; top: auto; }
+  .faq-section { padding: 48px 0; }
+}
+@media (max-width: 480px) {
+  .calc-hero__title { font-size: 1.3rem; }
+  .calc-input__label { font-size: 0.78rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Term Loans</span>
+            <a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Credit Lines</span>
+            <a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Invoice</span>
+            <a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance / Factoring</a>
+            <a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
+            <a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Trade</span>
+            <a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
+            <a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Equipment</span>
+            <a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Mortgage</span>
+            <a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+          </div>
+          <div class="dropdown-menu__bottom">
+            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <a href="resources.html" class="navbar__link">Resources</a>
+      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
+      <a href="about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
+  <a href="fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="resources.html" onclick="closeMobile()">Resources</a>
+  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+<!-- ============================================
+     BREADCRUMB
+     ============================================ -->
+<div class="breadcrumb">
+  <div class="breadcrumb__inner">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <span>Repayment Calculator</span>
+  </div>
+</div>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="calc-hero">
+  <div class="container">
+    <p class="calc-hero__eyebrow">Free Calculator</p>
+    <h1 class="calc-hero__title">Business Loan Repayment Calculator</h1>
+    <p class="calc-hero__sub">Estimate your weekly, fortnightly, or monthly repayments for any business loan. Adjust the amount, rate, and term to see how they affect your repayments.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     CALCULATOR
+     ============================================ -->
+<section class="calc-section">
+  <div class="calc-grid">
+
+    <!-- INPUTS -->
+    <div class="calc-inputs">
+      <h2 class="calc-inputs__title">Loan Details</h2>
+
+      <!-- Loan Amount -->
+      <div class="calc-field">
+        <label class="calc-field__label" for="loanAmount">Loan Amount</label>
+        <div class="calc-field__value"><em id="loanAmountDisplay">$100,000</em></div>
+        <div class="calc-field__input-row">
+          <input type="range" id="loanAmountSlider" class="calc-slider" min="10000" max="5000000" step="10000" value="100000">
+          <input type="text" id="loanAmountInput" class="calc-field__text-input" value="$100,000" inputmode="numeric">
+        </div>
+        <div class="calc-slider-labels"><span>$10k</span><span>$5M</span></div>
+      </div>
+
+      <!-- Interest Rate -->
+      <div class="calc-field">
+        <label class="calc-field__label" for="interestRate">Annual Interest Rate</label>
+        <div class="calc-field__value"><em id="interestRateDisplay">12.0%</em></div>
+        <div class="calc-field__input-row">
+          <input type="range" id="interestRateSlider" class="calc-slider" min="5" max="35" step="0.1" value="12">
+          <input type="text" id="interestRateInput" class="calc-field__text-input" value="12.0%" inputmode="decimal">
+        </div>
+        <div class="calc-slider-labels"><span>5%</span><span>35%</span></div>
+      </div>
+
+      <!-- Loan Term -->
+      <div class="calc-field">
+        <label class="calc-field__label" for="loanTerm">Loan Term</label>
+        <select id="loanTerm" class="calc-field__select">
+          <option value="6">6 months</option>
+          <option value="12">12 months (1 year)</option>
+          <option value="24" selected>24 months (2 years)</option>
+          <option value="36">36 months (3 years)</option>
+          <option value="48">48 months (4 years)</option>
+          <option value="60">60 months (5 years)</option>
+          <option value="84">84 months (7 years)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="calc-results">
+      <h2 class="calc-results__title">Your Estimated Repayments</h2>
+
+      <div class="calc-result-item">
+        <div class="calc-result-item__label">Weekly Repayment</div>
+        <div class="calc-result-item__value calc-result-item__value--highlight" id="weeklyRepayment">$1,093</div>
+      </div>
+
+      <div class="calc-result-item">
+        <div class="calc-result-item__label">Fortnightly Repayment</div>
+        <div class="calc-result-item__value calc-result-item__value--highlight" id="fortnightlyRepayment">$2,186</div>
+      </div>
+
+      <div class="calc-result-item">
+        <div class="calc-result-item__label">Monthly Repayment</div>
+        <div class="calc-result-item__value calc-result-item__value--highlight" id="monthlyRepayment">$4,707</div>
+      </div>
+
+      <div class="calc-result-item calc-result-item--secondary">
+        <div class="calc-result-item__label">Total Interest Paid</div>
+        <div class="calc-result-item__value" id="totalInterest">$12,974</div>
+      </div>
+
+      <div class="calc-result-item calc-result-item--secondary">
+        <div class="calc-result-item__label">Total Cost of Loan</div>
+        <div class="calc-result-item__value" id="totalCost">$112,974</div>
+      </div>
+
+      <div class="calc-results__cta">
+        <a href="apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="calc-faq">
+  <div class="calc-faq__inner">
+    <h2 class="calc-faq__title">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-item__question">How are business loan repayments calculated?</button>
+      <div class="faq-item__answer">
+        <p>Business loan repayments are calculated using an amortisation formula: M = P &times; [r(1+r)<sup>n</sup>] / [(1+r)<sup>n</sup> &minus; 1], where P is the principal (loan amount), r is the monthly interest rate (annual rate divided by 12), and n is the total number of monthly payments. Weekly and fortnightly figures are derived from the monthly repayment: weekly = monthly &times; 12 / 52, fortnightly = monthly &times; 12 / 26.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question">What factors affect my business loan repayment amount?</button>
+      <div class="faq-item__answer">
+        <p>Three main factors determine your repayment amount: the loan principal (how much you borrow), the interest rate (which depends on your credit profile, security offered, and lender), and the loan term (longer terms mean lower repayments but more total interest paid). Your free Compare Report from Trade Funding will show you the exact rates and terms available to your business from 70+ lenders.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question">Should I choose weekly, fortnightly, or monthly repayments?</button>
+      <div class="faq-item__answer">
+        <p>Choosing weekly or fortnightly repayments can save you money over the life of the loan because you effectively make slightly more payments per year, reducing the principal faster. Weekly repayments also align better with businesses that receive revenue weekly. However, monthly repayments are simpler to manage and align with most accounting cycles. The best choice depends on your cash flow pattern.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CTA SECTION
+     ============================================ -->
+<section class="calc-cta">
+  <div class="calc-cta__inner">
+    <h2 class="calc-cta__title">Ready to See Real Rates?</h2>
+    <p class="calc-cta__text">This calculator gives you an estimate. For exact rates, terms, and repayments matched to your business, get your free Compare Report. We search 70+ lenders and show you who will actually approve you.</p>
+    <a href="apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
+  </div>
+</section>
+
+<!-- ============================================
+     ============================================ -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid">
+
+      <!-- Column 1: Brand, contact, badges -->
+      <div class="footer__brand-col">
+        <a href="index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers, then we get it done. Free. No credit check. 24 hours.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Products -->
+      <div>
+        <h4 class="footer__heading">Products</h4>
+        <div class="footer__links">
+          <a href="business-term-loans.html">Term Loan</a>
+          <a href="business-line-of-credit.html">Line of Credit</a>
+          <a href="invoice-finance.html">Invoice Finance</a>
+          <a href="trade-finance.html">Trade Finance</a>
+          <a href="merchant-cash-advance.html">Merchant Cash Advance</a>
+          <a href="charge-card.html">Charge Card</a>
+          <a href="overdraft.html">Overdraft</a>
+          <a href="finance-lease.html">Finance Lease</a>
+          <a href="chattel-mortgage.html">Chattel Mortgage</a>
+        </div>
+        <div class="footer__links footer__links--more">
+          <a href="operating-lease.html">Operating Lease</a>
+          <a href="debtor-finance.html">Debtor Finance</a>
+          <a href="fund-an-invoice.html">Fund an Invoice</a>
+          <a href="export-finance.html">Export Finance</a>
+          <a href="supply-chain-funding.html">Supply Chain</a>
+          <a href="r-and-d-funding.html">R&amp;D Funding</a>
+          <a href="second-mortgage.html">Second Mortgage</a>
+          <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+        </div>
+      </div>
+
+      <!-- Column 3: Resources -->
+      <div>
+        <h4 class="footer__heading">Resources</h4>
+        <div class="footer__links">
+          <a href="resources.html">All Guides &amp; Tools</a>
+          <a href="guides/compare-business-loans.html">Compare Business Loans</a>
+          <a href="guides/business-term-loans-guide.html">Term Loans Guide</a>
+          <a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a>
+          <a href="repayment-calculator.html">Repayment Calculator</a>
+          <a href="equipment-calculator.html">Equipment Calculator</a>
+        </div>
+      </div>
+
+      <!-- Column 4: Company -->
+      <div>
+        <h4 class="footer__heading">Company</h4>
+        <div class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="comparison-report.html">Compare Report</a>
+          <a href="meet-cashper.html">Meet Cashper</a>
+          <a href="apply.html">Get Started</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="credit-guide.html">Credit Guide</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // ---- Navbar scroll behavior ----
+  var navbar = document.getElementById('navbar');
+
+  function handleNavScroll() {
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  // ---- Mobile nav ----
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+
+  window.closeMobile = function() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  // ---- Calculator Logic ----
+  var loanAmountSlider = document.getElementById('loanAmountSlider');
+  var loanAmountInput = document.getElementById('loanAmountInput');
+  var loanAmountDisplay = document.getElementById('loanAmountDisplay');
+  var interestRateSlider = document.getElementById('interestRateSlider');
+  var interestRateInput = document.getElementById('interestRateInput');
+  var interestRateDisplay = document.getElementById('interestRateDisplay');
+  var loanTerm = document.getElementById('loanTerm');
+
+  function formatCurrency(val) {
+    return '$' + Math.round(val).toLocaleString('en-AU');
+  }
+
+  function parseCurrency(str) {
+    return parseFloat(str.replace(/[^0-9.]/g, '')) || 0;
+  }
+
+  function updateSliderFill(slider) {
+    var pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = 'linear-gradient(90deg, #54B4F6 ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  }
+
+  function calculate() {
+    var P = parseFloat(loanAmountSlider.value);
+    var annualRate = parseFloat(interestRateSlider.value);
+    var n = parseInt(loanTerm.value);
+
+    var r = annualRate / 100 / 12;
+    var monthly, totalInterest, totalCost;
+
+    if (r === 0) {
+      monthly = P / n;
+    } else {
+      monthly = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    totalCost = monthly * n;
+    totalInterest = totalCost - P;
+
+    var weekly = monthly * 12 / 52;
+    var fortnightly = monthly * 12 / 26;
+
+    document.getElementById('weeklyRepayment').textContent = formatCurrency(weekly);
+    document.getElementById('fortnightlyRepayment').textContent = formatCurrency(fortnightly);
+    document.getElementById('monthlyRepayment').textContent = formatCurrency(monthly);
+    document.getElementById('totalInterest').textContent = formatCurrency(totalInterest);
+    document.getElementById('totalCost').textContent = formatCurrency(totalCost);
+
+    // Update displays
+    loanAmountDisplay.textContent = formatCurrency(P);
+    loanAmountInput.value = formatCurrency(P);
+    interestRateDisplay.textContent = annualRate.toFixed(1) + '%';
+    interestRateInput.value = annualRate.toFixed(1) + '%';
+
+    updateSliderFill(loanAmountSlider);
+    updateSliderFill(interestRateSlider);
+  }
+
+  loanAmountSlider.addEventListener('input', calculate);
+  interestRateSlider.addEventListener('input', calculate);
+  loanTerm.addEventListener('change', calculate);
+
+  loanAmountInput.addEventListener('change', function() {
+    var val = parseCurrency(this.value);
+    val = Math.max(10000, Math.min(5000000, val));
+    val = Math.round(val / 10000) * 10000;
+    loanAmountSlider.value = val;
+    calculate();
+  });
+
+  interestRateInput.addEventListener('change', function() {
+    var val = parseFloat(this.value.replace(/[^0-9.]/g, '')) || 12;
+    val = Math.max(5, Math.min(35, val));
+    val = Math.round(val * 10) / 10;
+    interestRateSlider.value = val;
+    calculate();
+  });
+
+  // Initial calculation
+  calculate();
+
+  // ---- FAQ Accordion ----
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function(item) {
+    item.querySelector('.faq-item__question').addEventListener('click', function() {
+      var wasOpen = item.classList.contains('open');
+      faqItems.forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+})();
+</script>
+
+<script src="cookie-consent.js"></script>
+</body>
+</html>

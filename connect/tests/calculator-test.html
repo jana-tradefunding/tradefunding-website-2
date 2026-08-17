@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Calculator Tests</title>
+<style>body{font-family:monospace;padding:24px;line-height:1.6}.pass{color:green}.fail{color:red;font-weight:bold}</style>
+</head>
+<body>
+<h1>Calculator Tests</h1>
+<div id="results"></div>
+<script type="module">
+import {compute, formatMoney, formatJobs} from '../scripts/calculator.js';
+
+const out = document.getElementById('results');
+let pass=0, fail=0;
+function assert(name, expected, actual){
+  const ok = JSON.stringify(expected) === JSON.stringify(actual);
+  out.innerHTML += `<div class="${ok?'pass':'fail'}">${ok?'PASS':'FAIL'} — ${name}${ok?'':` — expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`}</div>`;
+  ok ? pass++ : fail++;
+}
+
+const r1 = compute({quotes:30, avgValue:20000, currentConv:17, uplift:10});
+assert('default current_jobs', 5, r1.currentJobs);
+assert('default impact_jobs', 8, r1.impactJobs);
+assert('default extra_per_month', 60000, r1.extraPerMonth);
+assert('default annual', 720000, r1.annualUplift);
+assert('default current_revenue', 100000, r1.currentRevenue);
+assert('default impact_revenue', 160000, r1.impactRevenue);
+
+const r2 = compute({quotes:5, avgValue:5000, currentConv:5, uplift:5});
+assert('small current_jobs', 0, r2.currentJobs);
+assert('small impact_jobs', 1, r2.impactJobs);
+
+const r3 = compute({quotes:200, avgValue:200000, currentConv:50, uplift:30});
+assert('large impact_jobs', 160, r3.impactJobs);
+assert('large annual', (160-100)*200000*12, r3.annualUplift);
+
+assert('formatMoney 480000', '$480,000', formatMoney(480000));
+assert('formatMoney 1500000', '$1,500,000', formatMoney(1500000));
+assert('formatMoney 0', '$0', formatMoney(0));
+assert('formatJobs 1', '1 extra transaction', formatJobs(1));
+assert('formatJobs 3', '3 extra transactions', formatJobs(3));
+assert('formatJobs 0', '0 extra transactions', formatJobs(0));
+
+out.innerHTML = `<h2>${pass} passed, ${fail} failed</h2>` + out.innerHTML;
+</script>
+</body>
+</html>

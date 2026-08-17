@@ -1,0 +1,8 @@
+{
+  "name": "vendor-landing",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}

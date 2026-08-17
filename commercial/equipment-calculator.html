@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Compare leasing vs buying business equipment. Calculate monthly payments and total costs for finance lease vs equipment loan.">
+<title>Equipment Finance Calculator: Lease vs Buy | Trade Funding</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tradefunding.com.au/equipment-calculator.html">
+<meta property="og:title" content="Equipment Finance Calculator: Lease vs Buy | Trade Funding">
+<meta property="og:description" content="Compare leasing vs buying business equipment. Calculate monthly payments and total costs for finance lease vs equipment loan.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tradefunding.com.au/equipment-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-styles.css">
+
+<!-- WebApplication Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Equipment Finance Calculator: Lease vs Buy",
+  "url": "https://tradefunding.com.au/equipment-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "AUD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Trade Funding",
+    "url": "https://tradefunding.com.au"
+  }
+}
+</script>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a finance lease and an equipment loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With a finance lease, the lender owns the equipment and you make regular payments to use it. At the end of the lease, you typically pay a residual value (usually 10% of the asset cost) to take ownership. With an equipment loan, you own the asset from day one and repay the full principal plus interest over the term. Loans generally have higher monthly payments but no balloon payment at the end."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to lease or buy equipment for my business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your situation. Leasing offers lower monthly payments (due to the residual) and may provide tax benefits since lease payments are typically fully deductible. Buying via a loan means you own the asset outright at the end and can claim depreciation. Leasing suits businesses that upgrade equipment frequently, while buying is better for long-term assets that hold their value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a residual or balloon payment on a finance lease?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A residual (or balloon) payment is a lump sum due at the end of a finance lease. It represents the estimated remaining value of the equipment. Typically set at 10-30% of the original asset cost, it reduces your regular payments during the lease term. At the end, you can pay the residual to own the asset, refinance it, or return the equipment."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tradefunding.com.au/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Equipment Calculator",
+      "item": "https://tradefunding.com.au/equipment-calculator.html"
+    }
+  ]
+}
+</script>
+
+<style>
+
+/* ========================================
+   UTILITY
+   ======================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container--wide {
+  max-width: var(--max-width-wide);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 50px;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--peach);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(255,93,92,0.35);
+}
+
+.btn--primary:hover {
+  background: var(--peach-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,93,92,0.45);
+}
+
+/* ========================================
+   BREADCRUMB
+   ======================================== */
+.breadcrumb {
+  padding: 100px 0 0;
+}
+
+.breadcrumb__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 24px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.breadcrumb__inner a {
+  color: var(--skyblue);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb__inner a:hover {
+  color: var(--navy);
+}
+
+.breadcrumb__sep {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+/* ========================================
+   CALCULATOR HERO
+   ======================================== */
+.calc-hero {
+  padding: 40px 0 0;
+  text-align: center;
+}
+
+.calc-hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--skyblue);
+  margin-bottom: 12px;
+}
+
+.calc-hero__title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.calc-hero__sub {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ========================================
+   CALCULATOR SECTION
+   ======================================== */
+.calc-section {
+  padding: clamp(48px, 8vw, 96px) 0;
+}
+
+.calc-section__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Inputs Panel */
+.calc-inputs {
+  background: var(--white);
+  border: 1px solid #e8ecf1;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+.calc-inputs__title {
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 32px;
+}
+
+.calc-inputs__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.calc-field {
+  margin-bottom: 0;
+}
+
+.calc-field--full {
+  grid-column: 1 / -1;
+}
+
+.calc-field__label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.calc-field__value {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.calc-field__value em {
+  font-style: normal;
+  color: var(--skyblue);
+}
+
+.calc-field__input-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.calc-field__text-input {
+  width: 140px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--navy);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.calc-field__text-input:focus {
+  border-color: var(--skyblue);
+  box-shadow: 0 0 0 3px rgba(84,180,246,0.1);
+}
+
+.calc-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  outline: none;
+  cursor: pointer;
+  flex: 1;
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 3px var(--skyblue);
+  cursor: pointer;
+}
+
+.calc-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 3px var(--skyblue);
+  cursor: pointer;
+  border: none;
+}
+
+.calc-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #a0aec0;
+  margin-top: 6px;
+}
+
+.calc-field__select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--navy);
+  background: white;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23718096' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.calc-field__select:focus {
+  border-color: var(--skyblue);
+  box-shadow: 0 0 0 3px rgba(84,180,246,0.1);
+}
+
+/* Comparison Cards */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.compare-card {
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.compare-card--lease {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.compare-card--loan {
+  background: var(--white);
+  border: 2px solid var(--navy);
+  color: var(--navy);
+}
+
+.compare-card__badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.compare-card--lease .compare-card__badge {
+  background: rgba(84,180,246,0.2);
+  color: var(--skyblue);
+}
+
+.compare-card--loan .compare-card__badge {
+  background: rgba(0,28,68,0.08);
+  color: var(--navy);
+}
+
+.compare-card__title {
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+}
+
+.compare-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.compare-card--loan .compare-card__row {
+  border-bottom: 1px solid #e8ecf1;
+}
+
+.compare-card__row:last-of-type {
+  border-bottom: none;
+}
+
+.compare-card__label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.compare-card--lease .compare-card__label {
+  color: rgba(255,255,255,0.6);
+}
+
+.compare-card--loan .compare-card__label {
+  color: var(--text-secondary);
+}
+
+.compare-card__value {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+.compare-card--lease .compare-card__value {
+  color: var(--skyblue);
+}
+
+.compare-card--loan .compare-card__value {
+  color: var(--navy);
+}
+
+.compare-card__note {
+  font-size: 0.82rem;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  line-height: 1.6;
+}
+
+.compare-card--lease .compare-card__note {
+  color: rgba(255,255,255,0.6);
+}
+
+.compare-card--loan .compare-card__note {
+  color: var(--text-secondary);
+  border-top-color: #e8ecf1;
+}
+
+/* Verdict Banner */
+.verdict-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, #0a2d5c 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 0;
+}
+
+.verdict-banner__text {
+  color: var(--white);
+}
+
+.verdict-banner__label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--skyblue);
+  margin-bottom: 4px;
+}
+
+.verdict-banner__title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.verdict-banner__savings {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  margin-top: 4px;
+}
+
+/* ========================================
+   FAQ SECTION
+   ======================================== */
+.calc-faq {
+  padding: clamp(64px, 8vw, 96px) 0;
+  background: var(--light-bg);
+}
+
+.calc-faq__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.calc-faq__title {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--navy);
+  margin-bottom: 48px;
+}
+
+.faq-item {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-item__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+.faq-item__question::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--skyblue);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.faq-item.open .faq-item__question::after {
+  content: '\2212';
+}
+
+.faq-item__answer {
+  padding: 0 24px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item.open .faq-item__answer {
+  padding: 0 24px 20px;
+  max-height: 300px;
+}
+
+.faq-item__answer p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+.calc-cta {
+  padding: clamp(64px, 8vw, 96px) 0;
+  text-align: center;
+}
+
+.calc-cta__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.calc-cta__title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.calc-cta__text {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* ========================================
+   ======================================== */
+
+   ======================================== */
+@media (max-width: 768px) {
+
+  .calc-inputs__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-inputs {
+    padding: 24px;
+  }
+
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-card {
+    padding: 24px;
+  }
+
+  .verdict-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .calc-field__input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calc-field__text-input {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .compare-card__value {
+    font-size: 1.1rem;
+  }
+}
+
+/* Enhanced mobile */
+@media (max-width: 768px) {
+  .calc-hero { padding: 100px 0 40px; }
+  .calc-layout { grid-template-columns: 1fr; gap: 24px; }
+  .calc-results-grid { grid-template-columns: 1fr; gap: 16px; }
+  .faq-section { padding: 48px 0; }
+}
+@media (max-width: 480px) {
+  .calc-hero__title { font-size: 1.3rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Term Loans</span>
+            <a href="business-term-loans.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128176;</span> Term Loan</a>
+            <a href="merchant-cash-advance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128179;</span> Merchant Cash Advance</a>
+            <a href="r-and-d-funding.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#128300;</span> R&amp;D Funding</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Credit Lines</span>
+            <a href="charge-card.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128179;</span> Charge Card</a>
+            <a href="business-line-of-credit.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128179;</span> Line of Credit</a>
+            <a href="overdraft.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127974;</span> Overdraft</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Invoice</span>
+            <a href="debtor-finance.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#128196;</span> Debtor Finance / Factoring</a>
+            <a href="fund-an-invoice.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#128196;</span> Fund an Invoice</a>
+            <a href="invoice-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#128196;</span> Invoice Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Trade</span>
+            <a href="export-finance.html"><span class="dd-icon" style="background:rgba(28,25,152,0.1);color:#7B78FF;">&#127758;</span> Export Finance</a>
+            <a href="supply-chain-funding.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127758;</span> Supply Chain Funding</a>
+            <a href="trade-finance.html"><span class="dd-icon" style="background:rgba(251,183,102,0.1);color:#FBB766;">&#127758;</span> Trade Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Equipment</span>
+            <a href="finance-lease.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Finance Lease</a>
+            <a href="operating-lease.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#9881;</span> Operating Lease</a>
+            <a href="chattel-mortgage.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#9881;</span> Chattel Mortgage</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Mortgage</span>
+            <a href="self-employed-home-loan.html"><span class="dd-icon" style="background:rgba(84,180,246,0.1);color:#54B4F6;">&#127970;</span> Self-Employed Home Loan</a>
+            <a href="second-mortgage.html"><span class="dd-icon" style="background:rgba(255,93,92,0.1);color:#FF5D5C;">&#127970;</span> Second Mortgage</a>
+          </div>
+          <div class="dropdown-menu__bottom">
+            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <a href="resources.html" class="navbar__link">Resources</a>
+      <a href="comparison-report.html" class="navbar__link">Compare Report</a>
+      <a href="about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="business-term-loans.html" onclick="closeMobile()">Term Loan</a>
+  <a href="merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
+  <a href="r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
+  <a href="charge-card.html" onclick="closeMobile()">Charge Card</a>
+  <a href="business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
+  <a href="overdraft.html" onclick="closeMobile()">Overdraft</a>
+  <a href="debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
+  <a href="fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
+  <a href="invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
+  <a href="export-finance.html" onclick="closeMobile()">Export Finance</a>
+  <a href="supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
+  <a href="trade-finance.html" onclick="closeMobile()">Trade Finance</a>
+  <a href="finance-lease.html" onclick="closeMobile()">Finance Lease</a>
+  <a href="operating-lease.html" onclick="closeMobile()">Operating Lease</a>
+  <a href="chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
+  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="resources.html" onclick="closeMobile()">Resources</a>
+  <a href="comparison-report.html" onclick="closeMobile()">Compare Report</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
+  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
+</div>
+
+<!-- ============================================
+     BREADCRUMB
+     ============================================ -->
+<div class="breadcrumb">
+  <div class="breadcrumb__inner">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <span>Equipment Calculator</span>
+  </div>
+</div>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="calc-hero">
+  <div class="container">
+    <p class="calc-hero__eyebrow">Lease vs Buy</p>
+    <h1 class="calc-hero__title">Equipment Finance Calculator</h1>
+    <p class="calc-hero__sub">Compare the total cost of a finance lease versus an equipment loan. See which option gives you lower monthly payments and the best overall deal.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     CALCULATOR
+     ============================================ -->
+<section class="calc-section">
+  <div class="calc-section__inner">
+
+    <!-- INPUTS -->
+    <div class="calc-inputs">
+      <h2 class="calc-inputs__title">Equipment &amp; Finance Details</h2>
+      <div class="calc-inputs__grid">
+
+        <!-- Equipment Cost -->
+        <div class="calc-field calc-field--full">
+          <label class="calc-field__label" for="equipCost">Equipment Cost</label>
+          <div class="calc-field__value"><em id="equipCostDisplay">$100,000</em></div>
+          <div class="calc-field__input-row">
+            <input type="range" id="equipCostSlider" class="calc-slider" min="5000" max="2000000" step="5000" value="100000">
+            <input type="text" id="equipCostInput" class="calc-field__text-input" value="$100,000" inputmode="numeric">
+          </div>
+          <div class="calc-slider-labels"><span>$5k</span><span>$2M</span></div>
+        </div>
+
+        <!-- Lease Rate -->
+        <div class="calc-field">
+          <label class="calc-field__label" for="leaseRate">Finance Lease Rate (p.a.)</label>
+          <div class="calc-field__value"><em id="leaseRateDisplay">8.0%</em></div>
+          <input type="range" id="leaseRateSlider" class="calc-slider" min="5" max="15" step="0.1" value="8">
+          <div class="calc-slider-labels"><span>5%</span><span>15%</span></div>
+        </div>
+
+        <!-- Loan Rate -->
+        <div class="calc-field">
+          <label class="calc-field__label" for="loanRate">Equipment Loan Rate (p.a.)</label>
+          <div class="calc-field__value"><em id="loanRateDisplay">10.0%</em></div>
+          <input type="range" id="loanRateSlider" class="calc-slider" min="7" max="20" step="0.1" value="10">
+          <div class="calc-slider-labels"><span>7%</span><span>20%</span></div>
+        </div>
+
+        <!-- Term -->
+        <div class="calc-field calc-field--full">
+          <label class="calc-field__label" for="equipTerm">Finance Term</label>
+          <select id="equipTerm" class="calc-field__select">
+            <option value="12">12 months (1 year)</option>
+            <option value="24">24 months (2 years)</option>
+            <option value="36" selected>36 months (3 years)</option>
+            <option value="48">48 months (4 years)</option>
+            <option value="60">60 months (5 years)</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COMPARISON CARDS -->
+    <div class="compare-grid">
+
+      <!-- Finance Lease Card -->
+      <div class="compare-card compare-card--lease">
+        <span class="compare-card__badge">Finance Lease</span>
+        <h3 class="compare-card__title">Lease the Equipment</h3>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Monthly Payment</span>
+          <span class="compare-card__value" id="leaseMonthly">$2,820</span>
+        </div>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Total Payments</span>
+          <span class="compare-card__value" id="leaseTotalPayments">$101,520</span>
+        </div>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Residual (10%)</span>
+          <span class="compare-card__value" id="leaseResidual">$10,000</span>
+        </div>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Total Cost</span>
+          <span class="compare-card__value" id="leaseTotalCost">$111,520</span>
+        </div>
+        <p class="compare-card__note">You pay a 10% residual/balloon at end of term to own the asset. Lower monthly payments during the lease period.</p>
+      </div>
+
+      <!-- Equipment Loan Card -->
+      <div class="compare-card compare-card--loan">
+        <span class="compare-card__badge">Equipment Loan</span>
+        <h3 class="compare-card__title">Buy the Equipment</h3>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Monthly Payment</span>
+          <span class="compare-card__value" id="loanMonthly">$3,227</span>
+        </div>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Total Payments</span>
+          <span class="compare-card__value" id="loanTotalPayments">$116,162</span>
+        </div>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Residual</span>
+          <span class="compare-card__value">$0</span>
+        </div>
+        <div class="compare-card__row">
+          <span class="compare-card__label">Total Cost</span>
+          <span class="compare-card__value" id="loanTotalCost">$116,162</span>
+        </div>
+        <p class="compare-card__note">You own the asset from day one. Full principal is repaid over the term with no balloon payment at the end.</p>
+      </div>
+
+    </div>
+
+    <!-- Verdict -->
+    <div class="verdict-banner">
+      <div class="verdict-banner__text">
+        <div class="verdict-banner__label">Verdict</div>
+        <div class="verdict-banner__title" id="verdictTitle">Finance Lease saves you more</div>
+        <div class="verdict-banner__savings" id="verdictSavings">You save $4,642 in total cost with a finance lease</div>
+      </div>
+      <a href="apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="calc-faq">
+  <div class="calc-faq__inner">
+    <h2 class="calc-faq__title">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-item__question">What is the difference between a finance lease and an equipment loan?</button>
+      <div class="faq-item__answer">
+        <p>With a finance lease, the lender owns the equipment and you make regular payments to use it. At the end of the lease, you typically pay a residual value (usually 10% of the asset cost) to take ownership. With an equipment loan, you own the asset from day one and repay the full principal plus interest over the term. Loans generally have higher monthly payments but no balloon payment at the end.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question">Is it better to lease or buy equipment for my business?</button>
+      <div class="faq-item__answer">
+        <p>It depends on your situation. Leasing offers lower monthly payments (due to the residual) and may provide tax benefits since lease payments are typically fully deductible. Buying via a loan means you own the asset outright at the end and can claim depreciation. Leasing suits businesses that upgrade equipment frequently, while buying is better for long-term assets that hold their value.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question">What is a residual or balloon payment on a finance lease?</button>
+      <div class="faq-item__answer">
+        <p>A residual (or balloon) payment is a lump sum due at the end of a finance lease. It represents the estimated remaining value of the equipment. Typically set at 10 to 30% of the original asset cost, it reduces your regular payments during the lease term. At the end, you can pay the residual to own the asset, refinance it, or return the equipment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CTA SECTION
+     ============================================ -->
+<section class="calc-cta">
+  <div class="calc-cta__inner">
+    <h2 class="calc-cta__title">Not Sure Which Option Suits You?</h2>
+    <p class="calc-cta__text">Get your free Compare Report and we will show you the best equipment finance options from 70+ lenders, including exact rates, terms, and which lenders will actually approve you.</p>
+    <a href="apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
+  </div>
+</section>
+
+<!-- ============================================
+     ============================================ -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid">
+
+      <!-- Column 1: Brand, contact, badges -->
+      <div class="footer__brand-col">
+        <a href="index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers, then we get it done. Free. No credit check. 24 hours.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Products -->
+      <div>
+        <h4 class="footer__heading">Products</h4>
+        <div class="footer__links">
+          <a href="business-term-loans.html">Term Loan</a>
+          <a href="business-line-of-credit.html">Line of Credit</a>
+          <a href="invoice-finance.html">Invoice Finance</a>
+          <a href="trade-finance.html">Trade Finance</a>
+          <a href="merchant-cash-advance.html">Merchant Cash Advance</a>
+          <a href="charge-card.html">Charge Card</a>
+          <a href="overdraft.html">Overdraft</a>
+          <a href="finance-lease.html">Finance Lease</a>
+          <a href="chattel-mortgage.html">Chattel Mortgage</a>
+        </div>
+        <div class="footer__links footer__links--more">
+          <a href="operating-lease.html">Operating Lease</a>
+          <a href="debtor-finance.html">Debtor Finance</a>
+          <a href="fund-an-invoice.html">Fund an Invoice</a>
+          <a href="export-finance.html">Export Finance</a>
+          <a href="supply-chain-funding.html">Supply Chain</a>
+          <a href="r-and-d-funding.html">R&amp;D Funding</a>
+          <a href="second-mortgage.html">Second Mortgage</a>
+          <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+        </div>
+      </div>
+
+      <!-- Column 3: Resources -->
+      <div>
+        <h4 class="footer__heading">Resources</h4>
+        <div class="footer__links">
+          <a href="resources.html">All Guides &amp; Tools</a>
+          <a href="guides/compare-business-loans.html">Compare Business Loans</a>
+          <a href="guides/business-term-loans-guide.html">Term Loans Guide</a>
+          <a href="guides/business-line-of-credit-guide.html">Line of Credit Guide</a>
+          <a href="repayment-calculator.html">Repayment Calculator</a>
+          <a href="equipment-calculator.html">Equipment Calculator</a>
+        </div>
+      </div>
+
+      <!-- Column 4: Company -->
+      <div>
+        <h4 class="footer__heading">Company</h4>
+        <div class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="comparison-report.html">Compare Report</a>
+          <a href="meet-cashper.html">Meet Cashper</a>
+          <a href="apply.html">Get Started</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="credit-guide.html">Credit Guide</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // ---- Navbar scroll behavior ----
+  var navbar = document.getElementById('navbar');
+
+  function handleNavScroll() {
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  // ---- Mobile nav ----
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+
+  window.closeMobile = function() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  // ---- Calculator Logic ----
+  var equipCostSlider = document.getElementById('equipCostSlider');
+  var equipCostInput = document.getElementById('equipCostInput');
+  var equipCostDisplay = document.getElementById('equipCostDisplay');
+  var leaseRateSlider = document.getElementById('leaseRateSlider');
+  var leaseRateDisplay = document.getElementById('leaseRateDisplay');
+  var loanRateSlider = document.getElementById('loanRateSlider');
+  var loanRateDisplay = document.getElementById('loanRateDisplay');
+  var equipTerm = document.getElementById('equipTerm');
+
+  function formatCurrency(val) {
+    return '$' + Math.round(val).toLocaleString('en-AU');
+  }
+
+  function parseCurrency(str) {
+    return parseFloat(str.replace(/[^0-9.]/g, '')) || 0;
+  }
+
+  function updateSliderFill(slider) {
+    var pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = 'linear-gradient(90deg, #54B4F6 ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  }
+
+  function amortise(principal, annualRate, months) {
+    var r = annualRate / 100 / 12;
+    if (r === 0) return principal / months;
+    return principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+  }
+
+  function calculate() {
+    var P = parseFloat(equipCostSlider.value);
+    var leaseRate = parseFloat(leaseRateSlider.value);
+    var loanRate = parseFloat(loanRateSlider.value);
+    var n = parseInt(equipTerm.value);
+    var residual = P * 0.10;
+
+    // Finance Lease: amortise (P - residual), then residual due at end
+    var leaseFinanced = P - residual;
+    var leaseMonthly = amortise(leaseFinanced, leaseRate, n);
+    var leaseTotalPayments = leaseMonthly * n;
+    var leaseTotalCost = leaseTotalPayments + residual;
+
+    // Equipment Loan: standard full amortisation
+    var loanMonthly = amortise(P, loanRate, n);
+    var loanTotalCost = loanMonthly * n;
+
+    // Update displays
+    equipCostDisplay.textContent = formatCurrency(P);
+    equipCostInput.value = formatCurrency(P);
+    leaseRateDisplay.textContent = leaseRate.toFixed(1) + '%';
+    loanRateDisplay.textContent = loanRate.toFixed(1) + '%';
+
+    document.getElementById('leaseMonthly').textContent = formatCurrency(leaseMonthly);
+    document.getElementById('leaseTotalPayments').textContent = formatCurrency(leaseTotalPayments);
+    document.getElementById('leaseResidual').textContent = formatCurrency(residual);
+    document.getElementById('leaseTotalCost').textContent = formatCurrency(leaseTotalCost);
+
+    document.getElementById('loanMonthly').textContent = formatCurrency(loanMonthly);
+    document.getElementById('loanTotalPayments').textContent = formatCurrency(loanTotalCost);
+    document.getElementById('loanTotalCost').textContent = formatCurrency(loanTotalCost);
+
+    // Verdict
+    var diff = Math.abs(leaseTotalCost - loanTotalCost);
+    var verdictTitle = document.getElementById('verdictTitle');
+    var verdictSavings = document.getElementById('verdictSavings');
+
+    if (leaseTotalCost < loanTotalCost) {
+      verdictTitle.textContent = 'Finance Lease saves you more';
+      verdictSavings.textContent = 'You save ' + formatCurrency(diff) + ' in total cost with a finance lease';
+    } else if (loanTotalCost < leaseTotalCost) {
+      verdictTitle.textContent = 'Equipment Loan saves you more';
+      verdictSavings.textContent = 'You save ' + formatCurrency(diff) + ' in total cost with an equipment loan';
+    } else {
+      verdictTitle.textContent = 'Both options cost the same';
+      verdictSavings.textContent = 'The total cost is identical for both finance options';
+    }
+
+    updateSliderFill(equipCostSlider);
+    updateSliderFill(leaseRateSlider);
+    updateSliderFill(loanRateSlider);
+  }
+
+  equipCostSlider.addEventListener('input', calculate);
+  leaseRateSlider.addEventListener('input', calculate);
+  loanRateSlider.addEventListener('input', calculate);
+  equipTerm.addEventListener('change', calculate);
+
+  equipCostInput.addEventListener('change', function() {
+    var val = parseCurrency(this.value);
+    val = Math.max(5000, Math.min(2000000, val));
+    val = Math.round(val / 5000) * 5000;
+    equipCostSlider.value = val;
+    calculate();
+  });
+
+  // Initial calculation
+  calculate();
+
+  // ---- FAQ Accordion ----
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function(item) {
+    item.querySelector('.faq-item__question').addEventListener('click', function() {
+      var wasOpen = item.classList.contains('open');
+      faqItems.forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+})();
+</script>
+
+<script src="cookie-consent.js"></script>
+</body>
+</html>

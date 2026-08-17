@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tradefunding.com.au/sitemap.xml

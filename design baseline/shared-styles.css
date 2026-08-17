@@ -1,0 +1,1136 @@
+/* ========================================
+   CSS CUSTOM PROPERTIES
+   ======================================== */
+:root {
+  --navy: #001C44;
+  --navy-blue: #1C1998;
+  --gold: #FBB766;
+  --gold-soft: #FFF7EC;
+  --skyblue: #54B4F6;
+  --peach: #FF5D5C;
+  --peach-soft: #FFF0F0;
+  --peach-hover: #e84847;
+  --peach-text: #C62E31; /* AA-accessible (5.5:1 on white) variant of --peach for use as text/link color */
+  --gold: #FBB766;
+  --white: #FFFFFF;
+  --light-bg: #F5F7FA;
+  --report-bg: #F0F4F8;
+  --text-primary: #001C44;
+  --text-secondary: #4A5568;
+  --text-light: rgba(255,255,255,0.85);
+  --border-neutral: rgba(0,28,68,0.12);
+  --surface-alt: #F7FAFD;
+  --shadow-sm: 0 1px 3px rgba(0,28,68,0.08);
+  --shadow-md: 0 4px 16px rgba(0,28,68,0.1);
+  --shadow-lg: 0 8px 32px rgba(0,28,68,0.12);
+  --shadow-xl: 0 16px 48px rgba(0,28,68,0.16);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --font-heading: 'Work Sans', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --max-width: 1200px;
+  --max-width-wide: 1400px;
+
+  /* ---- Per-channel accent tokens (tokens.md §2) ----
+     One shared brand base (navy / skyblue / gold / peach) with a
+     pillar-specific primary + navy accent layered on top. ---- */
+  --tf-commercial-primary: var(--navy);
+  --tf-commercial-primary-alt: var(--navy-blue);
+  --tf-commercial-accent: var(--skyblue);
+
+  --tf-connect-primary: var(--gold);
+  --tf-connect-primary-soft: #FFF7EC;
+  --tf-connect-accent: var(--navy);
+  --tf-connect-accent-alt: var(--navy-blue);
+
+  --tf-personalproperty-primary: var(--peach);
+  --tf-personalproperty-primary-soft: #FFF0F0;
+  --tf-personalproperty-accent: var(--navy);
+  --tf-personalproperty-accent-alt: var(--navy-blue);
+}
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ========================================
+   ACCESSIBILITY BASELINE
+   ======================================== */
+/* Visible keyboard focus on every interactive element site-wide */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--skyblue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced-motion preferences everywhere, not just .reveal —
+   this is a blanket safety net so hover lifts, dropdowns, and any
+   inline/page-level transitions collapse to instant, static states. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Guard against horizontal overflow on small viewports */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.container--wide {
+  max-width: var(--max-width-wide);
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 20px;
+  color: var(--navy);
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 50px;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--skyblue);
+  color: var(--navy);
+  box-shadow: 0 4px 16px rgba(84,180,246,0.35);
+}
+
+.btn--primary:hover {
+  background: #3FA3EE;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(84,180,246,0.45);
+}
+
+.btn--primary:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+}
+
+.btn--outline {
+  border: 2px solid rgba(255,255,255,0.5);
+  color: var(--white);
+}
+
+.btn--outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--white);
+}
+
+.btn--outline-dark {
+  border: 2px solid var(--navy);
+  color: var(--navy);
+}
+
+.btn--outline-dark:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ========================================
+   REVEAL / SCROLL ANIMATIONS
+   ======================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ========================================
+   NAVBAR — Canonical styles (do NOT duplicate in inline styles)
+   ======================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 16px 0;
+  transition: all var(--transition-base);
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(0,28,68,0.08);
+}
+
+.navbar.transparent {
+  background: transparent;
+  box-shadow: none;
+}
+
+.navbar.scrolled {
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  padding: 10px 0;
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo img {
+  height: 36px;
+  width: auto;
+  transition: filter var(--transition-base), opacity var(--transition-base);
+}
+
+/* White logo on transparent/navy navbar using CSS filter */
+.navbar.transparent .navbar__logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* Original dark navy logo on white/scrolled navbar */
+.navbar.scrolled .navbar__logo img,
+.navbar:not(.transparent) .navbar__logo img {
+  filter: none;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.navbar__link {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.navbar.transparent .navbar__link {
+  color: rgba(255,255,255,0.9);
+}
+
+.navbar.scrolled .navbar__link {
+  color: var(--text-primary);
+}
+
+.navbar__link:hover {
+  color: var(--skyblue);
+}
+
+.navbar__link--dropdown {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 16px;
+  margin-bottom: -16px;
+}
+
+.navbar__link--dropdown::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  transition: transform var(--transition-fast);
+}
+
+.navbar__link--dropdown:hover::after {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu — 3-column grid */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  padding: 20px;
+  min-width: 680px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px 20px;
+}
+
+.navbar__link--dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.dropdown-menu__category {
+  padding: 8px 0;
+}
+
+.dropdown-menu__heading {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--skyblue);
+  padding: 4px 12px 8px;
+  border-bottom: 2px solid rgba(84,180,246,0.15);
+  margin-bottom: 6px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  font-weight: 400;
+  transition: background var(--transition-fast);
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: var(--light-bg);
+}
+
+.dropdown-menu__bottom {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--light-bg);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+/* "Shop by purpose" quick-links — purpose-driven navigation that
+   sits alongside the category grid without duplicating it */
+.dropdown-menu__purpose-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  padding: 0 4px 8px;
+  display: block;
+}
+
+.dropdown-menu__purpose-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 4px 12px;
+}
+
+.dropdown-menu__purpose-row a {
+  display: inline-block;
+  width: auto;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: var(--light-bg);
+  color: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dropdown-menu__purpose-row a:hover {
+  background: var(--skyblue-soft, rgba(84,180,246,0.15));
+  color: var(--navy);
+}
+
+.dropdown-menu__cta {
+  display: block;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--peach-text);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.dropdown-menu__cta:hover {
+  background: rgba(255,93,92,0.05);
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navbar__cta {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 12px 24px;
+  border-radius: 50px;
+  background: var(--skyblue);
+  color: var(--navy);
+  transition: all var(--transition-base);
+}
+
+.navbar__cta:hover {
+  background: #3FA3EE;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(84,180,246,0.4);
+}
+
+/* Hamburger */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 28px;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.navbar__hamburger span {
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--navy);
+  transition: all var(--transition-base);
+}
+
+.navbar.transparent .navbar__hamburger span { background: var(--white); }
+.navbar.scrolled .navbar__hamburger span { background: var(--navy); }
+
+.navbar__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.navbar__hamburger.open span:nth-child(2) { opacity: 0; }
+.navbar__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--white);
+  z-index: 999;
+  padding: 100px 32px 40px;
+  overflow-y: auto;
+}
+
+.mobile-nav.open { display: block; }
+
+.mobile-nav a {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--navy);
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-nav .btn {
+  margin-top: 24px;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .navbar__links { display: none; }
+  .navbar__hamburger { display: flex; }
+  .navbar__right { gap: 16px; }
+  .navbar__cta { display: none; }
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  background: #00122E;
+  padding: 64px 0 0;
+  color: rgba(255,255,255,0.7);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px 48px;
+  margin-bottom: 48px;
+}
+
+.footer__brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.footer__logo img {
+  height: 44px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.footer__brand-desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  margin-top: 16px;
+  max-width: 320px;
+  color: rgba(255,255,255,0.55);
+}
+
+.footer__contact {
+  margin-top: 20px;
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.825rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.footer__badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.footer__badge {
+  padding: 5px 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.2px;
+}
+
+.footer__heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: 0.2px;
+}
+
+.footer__links a {
+  display: block;
+  padding: 4px 0;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  transition: color var(--transition-fast);
+}
+
+.footer__links a:hover {
+  color: var(--skyblue);
+}
+
+.footer__links--more {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer__bottom-text {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.footer__bottom-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__bottom-links a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  transition: color var(--transition-fast);
+}
+
+.footer__bottom-links a:hover { color: var(--skyblue); }
+
+/* Footer Disclaimer */
+.footer__disclaimer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 16px 0;
+  margin-top: 32px;
+}
+.footer__disclaimer p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+  text-align: center;
+}
+.footer__disclaimer a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: underline;
+}
+.footer__disclaimer a:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+/* Cookie Consent Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--navy, #001C44);
+  color: #fff;
+  z-index: 9999;
+  padding: 16px 24px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+}
+.cookie-banner__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.cookie-banner__text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+.cookie-banner__text a {
+  color: var(--skyblue, #54B4F6);
+  text-decoration: underline;
+}
+.cookie-banner__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.cookie-banner__accept {
+  background: var(--skyblue, #54B4F6);
+  color: var(--navy, #001C44);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cookie-banner__accept:hover { opacity: 0.9; }
+.cookie-banner__decline {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.cookie-banner__decline:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+@media (max-width: 600px) {
+  .cookie-banner__inner { flex-direction: column; text-align: center; }
+  .cookie-banner__actions { justify-content: center; }
+}
+
+/* ========================================
+   CHANNEL SWITCHER — "One Brand, Three Channels"
+   Capsule toggle used in the navbar on all three
+   channel pages. Always renders all 3 channels
+   (Commercial / Personal & Property / Connect) and
+   always stays visible — it never relies on hover
+   to reveal itself, at any viewport width.
+   ======================================== */
+.channel-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(0,28,68,0.04);
+  border: 1px solid var(--border-neutral);
+  border-radius: 50px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.navbar.transparent .channel-switch {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.channel-switch__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 9px 16px;
+  border-radius: 50px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.navbar.transparent .channel-switch__option {
+  color: rgba(255,255,255,0.85);
+}
+
+/* Inactive options: subtle, accessible hover feedback */
+.channel-switch__option:hover {
+  background: rgba(0,28,68,0.04);
+  color: var(--navy);
+}
+
+.navbar.transparent .channel-switch__option:hover {
+  background: rgba(255,255,255,0.16);
+  color: var(--white);
+}
+
+.channel-switch__option:focus-visible {
+  outline: 2px solid var(--skyblue);
+  outline-offset: 2px;
+}
+
+/* Active channel: opaque fill + distinct text, not just a link */
+.channel-switch__option[aria-current="page"] {
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(0,28,68,0.22);
+  cursor: default;
+}
+
+.channel-switch__option[aria-current="page"]:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.navbar.transparent .channel-switch__option[aria-current="page"] {
+  background: var(--skyblue);
+  color: var(--navy);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+.navbar.transparent .channel-switch__option[aria-current="page"]:hover {
+  background: var(--skyblue);
+  color: var(--navy);
+}
+
+/* "Commercial" option is represented as a Home glyph, not a text
+   label — square up the padding and size the glyph to match the
+   line-height of the text options either side of it. */
+.channel-switch__option--home {
+  padding: 9px 15px;
+}
+
+.channel-switch__option--home svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .channel-switch__option--home { padding: 8px 12px; }
+}
+
+@media (max-width: 640px) {
+  .channel-switch__option--home { padding: 7px 10px; }
+  .channel-switch__option--home svg { width: 14px; height: 14px; }
+}
+
+/* Per-channel accent on the active pill (tokens.md §2). Commercial
+   keeps the existing navy/skyblue treatment above unchanged; Connect
+   and Personal & Property lead with their own primary tint and use
+   navy as the on-tint text/accent color, carried over from the base
+   rule's contrast pattern. These selectors are more specific than the
+   generic [aria-current="page"] rules above, so they win regardless
+   of navbar.transparent/scrolled state. */
+nav[data-channel="connect"] .channel-switch__option[aria-current="page"] {
+  background: var(--tf-connect-primary);
+  color: var(--tf-connect-accent);
+  box-shadow: 0 2px 10px rgba(251,183,102,0.4);
+}
+
+nav[data-channel="connect"] .channel-switch__option[aria-current="page"]:hover {
+  background: var(--tf-connect-primary);
+  color: var(--tf-connect-accent);
+}
+
+nav[data-channel="personalproperty"] .channel-switch__option[aria-current="page"] {
+  background: var(--tf-personalproperty-primary);
+  color: var(--tf-personalproperty-accent);
+  box-shadow: 0 2px 10px rgba(255,93,92,0.35);
+}
+
+nav[data-channel="personalproperty"] .channel-switch__option[aria-current="page"]:hover {
+  background: var(--tf-personalproperty-primary);
+  color: var(--tf-personalproperty-accent);
+}
+
+/* Short labels swap in on narrow viewports so the switcher never
+   needs to hide — see 640px breakpoint below. Screen readers always
+   get the full name via aria-label on the <a>, regardless of which
+   span is visible, so nothing meaningful is lost when it's truncated. */
+.channel-switch__short { display: none; }
+
+@media (max-width: 900px) {
+  .channel-switch__option { padding: 8px 13px; font-size: 0.78rem; }
+}
+
+@media (max-width: 640px) {
+  .channel-switch { gap: 1px; padding: 3px; }
+  .channel-switch__option { padding: 7px 10px; font-size: 0.72rem; }
+  .channel-switch__full { display: none; }
+  .channel-switch__short { display: inline; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .channel-switch__option { transition: none; }
+}
+
+/* Mobile nav variant */
+.mobile-nav__switch {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--light-bg);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.mobile-nav__switch-label {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  padding: 4px 8px 0;
+}
+
+.mobile-nav__switch a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: none;
+  padding: 12px 14px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========================================
+   FORM SYSTEM — shared across channels.
+   Used by connect.html's partner sign-up form. Field naming in the
+   HTML follows a flat, CRM-friendly schema (see comments in
+   connect.html) so this markup can be lifted wholesale into a POST
+   payload without translation.
+   ======================================== */
+.form-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 20px;
+}
+
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field--full { grid-column: 1 / -1; }
+
+.form-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--navy);
+}
+
+.form-label .form-optional {
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: var(--white);
+  border: 1.5px solid var(--border-neutral);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  min-height: 44px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
+}
+
+.form-textarea { min-height: 96px; resize: vertical; }
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--cn-accent, var(--skyblue));
+  box-shadow: 0 0 0 3px rgba(234,179,8,0.15);
+}
+
+.form-input[aria-invalid="true"],
+.form-select[aria-invalid="true"] {
+  border-color: var(--peach);
+}
+
+.form-error {
+  font-size: 0.76rem;
+  color: var(--peach-text);
+  min-height: 1em;
+}
+
+.form-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-radio-pill {
+  position: relative;
+}
+
+.form-radio-pill input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  margin: 0;
+}
+
+.form-radio-pill span {
+  display: block;
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: 1.5px solid var(--border-neutral);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--navy);
+  transition: all var(--transition-fast);
+}
+
+.form-radio-pill input:checked + span {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.form-radio-pill input:focus-visible + span {
+  outline: 2px solid var(--skyblue);
+  outline-offset: 2px;
+}
+
+.form-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.form-checkbox-row input {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.form-checkbox-row label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.form-checkbox-row a { color: var(--navy); text-decoration: underline; }
+
+.form-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.form-status {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.form-status[data-state="success"] { color: var(--success, #10B981); }
+.form-status[data-state="error"] { color: var(--peach-text); }
+
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1024px) {
+  .footer__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .navbar__links { display: none; }
+  .navbar__hamburger { display: flex; }
+  .navbar__right { gap: 16px; }
+  .navbar__cta { display: none; }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer__brand-col { text-align: center; align-items: center; }
+  .footer__brand-desc { max-width: 100%; }
+  .footer__badges { justify-content: center; }
+  .footer__contact { text-align: left; }
+
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer__bottom-links { justify-content: center; flex-wrap: wrap; }
+
+  .footer__disclaimer p { font-size: 0.72rem; }
+}
+
+@media (max-width: 480px) {
+  .footer__badges { gap: 6px; }
+  .footer__badge { font-size: 0.62rem; padding: 4px 8px; }
+  .footer__heading { font-size: 0.8rem; margin-bottom: 12px; }
+  .footer__links a { font-size: 0.78rem; padding: 3px 0; }
+}

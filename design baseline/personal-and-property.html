@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Personal & Property Finance from Trade Funding. Home loans, self-employed mortgages, second mortgages and investment property finance compared across specialist lenders.">
+<title>Personal & Property Finance | Trade Funding</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tradefunding.com.au/personal-and-property.html">
+<meta property="og:title" content="Personal & Property Finance | Trade Funding">
+<meta property="og:description" content="Home loans and property finance for the self-employed. Compare specialist lenders side by side.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tradefunding.com.au/personal-and-property.html">
+<meta property="og:site_name" content="Trade Funding">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-styles.css">
+<link rel="stylesheet" href="product-styles.css">
+
+<style>
+  /* ===== Channel B: Personal & Property — Peach primary/dominant, Navy accent (tokens.md §2.3) ===== */
+  :root {
+    --pp-accent: var(--peach);            /* #FF5D5C — primary, dominant surface/CTA color */
+    --pp-accent-dark: #E14544;            /* deeper peach for borders/hover on peach surfaces */
+    --pp-accent-soft: var(--peach-soft);  /* #FFF0F0 */
+    --pp-accent-softer: rgba(255,93,92,0.08);
+  }
+
+  /* Hero — peach is now the dominant surface; navy is the accent/ink on top of it */
+  .pp-hero {
+    position: relative;
+    background: linear-gradient(160deg, var(--peach) 0%, #FF8382 55%, var(--peach-soft) 100%);
+    padding: 150px 0 100px;
+    overflow: hidden;
+    color: var(--navy);
+  }
+  .pp-hero::before {
+    content: '';
+    position: absolute;
+    top: -25%;
+    right: -8%;
+    width: 620px;
+    height: 620px;
+    background: radial-gradient(circle, rgba(0,28,68,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pp-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 64px;
+    align-items: center;
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .pp-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--white);
+    margin-bottom: 18px;
+    padding: 6px 14px 6px 10px;
+    border-radius: 20px;
+    background: var(--navy);
+  }
+  .pp-hero__eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--white); }
+  .pp-hero__title { font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.1; margin-bottom: 20px; color: var(--navy); }
+  .pp-hero__title span { color: var(--navy-blue); }
+  .pp-hero__lead { font-size: 1.1rem; color: rgba(0,28,68,0.72); max-width: 520px; line-height: 1.7; margin-bottom: 32px; }
+  .pp-hero__cta-group { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+  .pp-btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-heading); font-weight: 700; font-size: 1rem;
+    padding: 16px 32px; border-radius: 50px;
+    background: var(--navy); color: var(--white);
+    box-shadow: 0 6px 20px rgba(0,28,68,0.28);
+    transition: all var(--transition-base);
+  }
+  .pp-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,28,68,0.38); background: var(--navy-blue); }
+  .pp-btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem;
+    padding: 16px 24px; border-radius: 50px;
+    border: 1.5px solid rgba(0,28,68,0.3); color: var(--navy);
+    transition: all var(--transition-base);
+  }
+  .pp-btn-secondary:hover { border-color: var(--navy); background: rgba(0,28,68,0.08); }
+  .pp-hero__trust { display: flex; gap: 22px; flex-wrap: wrap; }
+  .pp-hero__trust-item { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: rgba(0,28,68,0.7); }
+  .pp-hero__trust-item svg { width: 15px; height: 15px; color: var(--navy); flex-shrink: 0; }
+
+  /* Hero visual card — a white panel that pops off the peach hero */
+  .pp-card {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(0,28,68,0.12);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    backdrop-filter: blur(6px);
+    box-shadow: var(--shadow-lg);
+  }
+  .pp-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(0,28,68,0.08); }
+  .pp-card__head-title { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; color: var(--navy); }
+  .pp-card__head-sub { font-size: 0.75rem; color: rgba(0,28,68,0.5); margin-top: 3px; }
+  .pp-card__badge { font-family: var(--font-heading); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 5px 10px; border-radius: 20px; background: var(--navy); color: var(--white); }
+  .pp-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed rgba(0,28,68,0.1); }
+  .pp-row:last-of-type { border-bottom: none; }
+  .pp-row__lender { display: flex; align-items: center; gap: 10px; }
+  .pp-row__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pp-accent); }
+  .pp-row__name { font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem; color: var(--navy); }
+  .pp-row__type { font-size: 0.7rem; color: rgba(0,28,68,0.5); }
+  .pp-row__rate { font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; color: var(--navy-blue); text-align: right; }
+  .pp-row__rate-sub { font-size: 0.65rem; color: rgba(0,28,68,0.45); font-weight: 400; }
+  .pp-card__footer { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(0,28,68,0.08); display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: rgba(0,28,68,0.45); }
+
+  /* Stat bar */
+  .pp-stats { background: var(--white); border-bottom: 1px solid #eee; }
+  .pp-stats__inner { max-width: var(--max-width-wide); margin: 0 auto; padding: 28px 32px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .pp-stats__item { flex: 1; min-width: 160px; text-align: center; }
+  .pp-stats__value { font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; color: var(--navy); }
+  .pp-stats__label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px; }
+  .pp-stats__divider { width: 1px; background: #eee; }
+  @media (max-width: 768px) { .pp-stats__divider { display: none; } }
+
+  /* Product tiles */
+  .pp-products { padding: clamp(56px,7vw,90px) 0; background: var(--light-bg); }
+  .pp-products__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .pp-product-card {
+    background: var(--white); border-radius: var(--radius-lg); padding: 28px;
+    border-top: 3px solid var(--pp-accent);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+  .pp-product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .pp-product-card__icon { width: 46px; height: 46px; border-radius: 12px; background: var(--pp-accent-soft); color: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .pp-product-card__icon svg { width: 22px; height: 22px; }
+  .pp-product-card__name { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+  .pp-product-card__desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; }
+  .pp-product-card__link { font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem; color: var(--navy); }
+  @media (max-width: 900px) { .pp-products__grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .pp-products__grid { grid-template-columns: 1fr; } }
+
+  /* Why section */
+  .pp-why { padding: clamp(56px,7vw,90px) 0; background: var(--white); }
+  .pp-why__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 12px; }
+  .pp-why-item { text-align: center; padding: 0 12px; }
+  .pp-why-item__icon { width: 56px; height: 56px; border-radius: 50%; background: var(--pp-accent-soft); color: var(--navy); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .pp-why-item__icon svg { width: 26px; height: 26px; }
+  .pp-why-item__title { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+  .pp-why-item__desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; }
+  @media (max-width: 768px) { .pp-why__grid { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* Comparison strip */
+  .pp-compare { padding: clamp(56px,7vw,90px) 0; background: var(--light-bg); }
+  .pp-compare__table { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+  .pp-compare__row { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; align-items: center; padding: 16px 24px; border-bottom: 1px solid #EFF2F6; }
+  .pp-compare__row:last-child { border-bottom: none; }
+  .pp-compare__row--head { background: var(--navy); color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; }
+  .pp-compare__lender { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 700; color: var(--navy); }
+  .pp-compare__lender-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pp-accent); flex-shrink: 0; }
+  .pp-compare__cell { font-size: 0.88rem; color: var(--text-secondary); }
+  .pp-compare__cell strong { color: var(--navy); font-family: var(--font-heading); }
+  .pp-compare__row--best { background: var(--pp-accent-softer); }
+  @media (max-width: 700px) {
+    .pp-compare__row { grid-template-columns: 1.3fr 1fr 1fr; font-size: 0.8rem; }
+    .pp-compare__row > *:nth-child(4) { display: none; }
+  }
+
+  /* FAQ */
+  .pp-faq { padding: clamp(56px,7vw,90px) 0; background: var(--white); max-width: 800px; margin: 0 auto; }
+  .pp-faq-item { border-bottom: 1px solid #E8ECF1; }
+  .pp-faq-item summary { cursor: pointer; list-style: none; padding: 20px 4px; font-family: var(--font-heading); font-weight: 600; font-size: 1rem; color: var(--navy); display: flex; justify-content: space-between; align-items: center; }
+  .pp-faq-item summary::-webkit-details-marker { display: none; }
+  .pp-faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--navy); transition: transform var(--transition-fast); }
+  .pp-faq-item[open] summary::after { transform: rotate(45deg); }
+  .pp-faq-item p { padding: 0 4px 20px; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; }
+
+  /* Bottom CTA — peach-dominant, navy ink (tokens.md §2.3) */
+  .pp-cta { padding: clamp(56px,7vw,90px) 0; text-align: center; background: linear-gradient(160deg, var(--peach) 0%, var(--peach-soft) 100%); color: var(--navy); }
+  .pp-cta h2 { font-size: clamp(1.7rem,3.4vw,2.4rem); margin-bottom: 14px; color: var(--navy); }
+  .pp-cta p { color: rgba(0,28,68,0.72); max-width: 520px; margin: 0 auto 28px; }
+
+  /* Navbar sits on the peach hero now (was navy/dark) — flip to dark-on-light,
+     same treatment as Commercial's index.html override. Without this the
+     white logo/links/channel-switch text the base transparent-navbar rules
+     assume for a dark hero become invisible on the light peach background. */
+  .navbar.transparent { background: rgba(255,255,255,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,28,68,0.06); }
+  .navbar.transparent .navbar__logo img { filter: none; }
+  .navbar.transparent .navbar__link { color: var(--navy); }
+  .navbar.transparent .navbar__hamburger span { background: var(--navy); }
+  .navbar.transparent .channel-switch { border-color: rgba(0,28,68,0.18); background: rgba(0,28,68,0.04); }
+  .navbar.transparent .channel-switch__option { color: var(--navy); }
+  .navbar.transparent .channel-switch__option:hover { background: rgba(0,28,68,0.06); color: var(--navy); }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR — Channel B (Personal & Property)
+     ============================================ -->
+<nav class="navbar transparent" id="navbar" data-channel="personalproperty">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <div class="navbar__link navbar__link--dropdown">
+        Products
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Term Loans</span>
+            <a href="business-term-loans.html">Term Loan</a>
+            <a href="merchant-cash-advance.html">Merchant Cash Advance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Credit Lines</span>
+            <a href="charge-card.html">Charge Card</a>
+            <a href="business-line-of-credit.html">Line of Credit</a>
+            <a href="overdraft.html">Overdraft</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Invoice</span>
+            <a href="debtor-finance.html">Debtor Finance / Factoring</a>
+            <a href="fund-an-invoice.html">Fund an Invoice</a>
+            <a href="invoice-finance.html">Invoice Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Trade</span>
+            <a href="export-finance.html">Export Finance</a>
+            <a href="supply-chain-funding.html">Supply Chain Funding</a>
+            <a href="trade-finance.html">Trade Finance</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Equipment</span>
+            <a href="finance-lease.html">Finance Lease</a>
+            <a href="operating-lease.html">Operating Lease</a>
+            <a href="chattel-mortgage.html">Chattel Mortgage</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Mortgage</span>
+            <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+            <a href="second-mortgage.html">Second Mortgage</a>
+          </div>
+          <div class="dropdown-menu__category">
+            <span class="dropdown-menu__heading">Other</span>
+            <a href="r-and-d-funding.html">R&amp;D Funding</a>
+          </div>
+          <div class="dropdown-menu__bottom">
+            <span class="dropdown-menu__purpose-label">Shop by purpose</span>
+            <div class="dropdown-menu__purpose-row">
+              <a href="self-employed-home-loan.html">Buying a home</a>
+              <a href="second-mortgage.html">Accessing equity</a>
+              <a href="apply.html?purpose=purchase_residential_property">Investment property</a>
+              <a href="apply.html?purpose=refinance">Refinancing</a>
+            </div>
+            <a href="comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <a href="personal-and-property.html#products" class="navbar__link">Our Lenders</a>
+      <a href="personal-and-property.html#why" class="navbar__link">Why Us</a>
+      <a href="personal-and-property.html#faq" class="navbar__link">FAQ</a>
+      <a href="about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+        <a href="index.html" class="channel-switch__option channel-switch__option--home" aria-label="Commercial (Home)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        </a>
+        <a href="personal-and-property.html" class="channel-switch__option" aria-current="page" aria-label="Personal &amp; Property">
+          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+        </a>
+        <a href="connect.html" class="channel-switch__option" aria-label="Connect">
+          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+        </a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav__switch">
+    <span class="mobile-nav__switch-label">Trade Funding also does</span>
+    <a href="index.html" onclick="closeMobile()">Commercial Finance &rarr;</a>
+    <a href="connect.html" onclick="closeMobile()">Trade Funding Connect &rarr;</a>
+  </div>
+  <a href="self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
+  <a href="second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
+  <a href="personal-and-property.html#products" onclick="closeMobile()">Our Lenders</a>
+  <a href="personal-and-property.html#why" onclick="closeMobile()">Why Us</a>
+  <a href="personal-and-property.html#faq" onclick="closeMobile()">FAQ</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get Started &rarr;</a>
+</div>
+
+<main>
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="pp-hero">
+  <div class="pp-hero__inner">
+    <div>
+      <span class="pp-hero__eyebrow"><span class="pp-hero__eyebrow-dot"></span> Personal &amp; Property Finance</span>
+      <h1 class="pp-hero__title">Home loans built for people the banks find <span>complicated.</span></h1>
+      <p class="pp-hero__lead">Self-employed, multiple income streams, or an unusual property? We compare low-doc, alt-doc and specialist lenders so you can buy, refinance, or invest &mdash; without the bank runaround.</p>
+      <div class="pp-hero__cta-group">
+        <a href="apply.html?channel=personal" class="pp-btn-primary">Get My Free Compare Report &rarr;</a>
+        <a href="#products" class="pp-btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+          See our products
+        </a>
+      </div>
+      <div class="pp-hero__trust">
+        <span class="pp-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> No credit check to compare</span>
+        <span class="pp-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Low-doc &amp; alt-doc options</span>
+        <span class="pp-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Specialist lender panel</span>
+      </div>
+    </div>
+
+    <div class="pp-card">
+      <div class="pp-card__head">
+        <div>
+          <div class="pp-card__head-title">Compare Report</div>
+          <div class="pp-card__head-sub">Self-Employed Home Loan &bull; $650,000</div>
+        </div>
+        <span class="pp-card__badge">Preview</span>
+      </div>
+      <div class="pp-row">
+        <div class="pp-row__lender"><span class="pp-row__dot"></span><div><div class="pp-row__name">Pepper Money</div><div class="pp-row__type">Alt-doc &bull; 80% LVR</div></div></div>
+        <div class="pp-row__rate">6.79%<div class="pp-row__rate-sub">p.a. comparison</div></div>
+      </div>
+      <div class="pp-row">
+        <div class="pp-row__lender"><span class="pp-row__dot"></span><div><div class="pp-row__name">Liberty</div><div class="pp-row__type">Low-doc &bull; 75% LVR</div></div></div>
+        <div class="pp-row__rate">7.05%<div class="pp-row__rate-sub">p.a. comparison</div></div>
+      </div>
+      <div class="pp-row">
+        <div class="pp-row__lender"><span class="pp-row__dot"></span><div><div class="pp-row__name">Thinktank</div><div class="pp-row__type">Full-doc &bull; 80% LVR</div></div></div>
+        <div class="pp-row__rate">7.19%<div class="pp-row__rate-sub">p.a. comparison</div></div>
+      </div>
+      <div class="pp-card__footer">
+        <span>Sample data &bull; report is personalised</span>
+        <span>25+ lenders</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     STATS BAR
+     ============================================ -->
+<div class="pp-stats">
+  <div class="pp-stats__inner">
+    <div class="pp-stats__item"><div class="pp-stats__value">$100K &ndash; $5M</div><div class="pp-stats__label">Loan amounts</div></div>
+    <div class="pp-stats__divider"></div>
+    <div class="pp-stats__item"><div class="pp-stats__value">up to 80% LVR</div><div class="pp-stats__label">Low &amp; alt-doc</div></div>
+    <div class="pp-stats__divider"></div>
+    <div class="pp-stats__item"><div class="pp-stats__value">from 6.2% p.a.</div><div class="pp-stats__label">Interest rates</div></div>
+    <div class="pp-stats__divider"></div>
+    <div class="pp-stats__item"><div class="pp-stats__value">25+ lenders</div><div class="pp-stats__label">Specialist panel</div></div>
+  </div>
+</div>
+
+<!-- ============================================
+     PRODUCTS
+     ============================================ -->
+<section class="pp-products" id="products">
+  <div class="container">
+    <div class="product-section__header">
+      <p class="product-section__eyebrow" style="color:var(--navy);">Products</p>
+      <h2 class="product-section__title">Property finance for every situation</h2>
+      <p class="product-section__subtitle">From your first home to your fifth investment property.</p>
+    </div>
+    <div class="pp-products__grid">
+      <a href="self-employed-home-loan.html" class="pp-product-card" style="display:block;">
+        <div class="pp-product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3 class="pp-product-card__name">Self-Employed Home Loan</h3>
+        <p class="pp-product-card__desc">Low-doc and alt-doc mortgages for business owners who don't fit the standard bank criteria.</p>
+        <span class="pp-product-card__link">Compare lenders &rarr;</span>
+      </a>
+      <a href="second-mortgage.html" class="pp-product-card" style="display:block;">
+        <div class="pp-product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <h3 class="pp-product-card__name">Second Mortgage</h3>
+        <p class="pp-product-card__desc">Access equity without disturbing your existing first mortgage or its rate.</p>
+        <span class="pp-product-card__link">Compare lenders &rarr;</span>
+      </a>
+      <a href="apply.html?purpose=purchase_residential_property" class="pp-product-card" style="display:block;">
+        <div class="pp-product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M13 21V11l6 4v6"/></svg></div>
+        <h3 class="pp-product-card__name">Investment Property Loans</h3>
+        <p class="pp-product-card__desc">Grow your portfolio with interest-only, offset, and construction options compared side by side.</p>
+        <span class="pp-product-card__link">Compare lenders &rarr;</span>
+      </a>
+      <a href="apply.html?purpose=refinance" class="pp-product-card" style="display:block;">
+        <div class="pp-product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 22v-6h6"/><path d="M3.5 9a9 9 0 0 1 15-4L21 8M2.5 15a9 9 0 0 0 15 4l3-4"/></svg></div>
+        <h3 class="pp-product-card__name">Refinance</h3>
+        <p class="pp-product-card__desc">Move to a better rate or release equity without the paperwork headache.</p>
+        <span class="pp-product-card__link">Compare lenders &rarr;</span>
+      </a>
+      <a href="apply.html?purpose=purchase_commercial_property" class="pp-product-card" style="display:block;">
+        <div class="pp-product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+        <h3 class="pp-product-card__name">Commercial Property</h3>
+        <p class="pp-product-card__desc">Buy your premises or a commercial investment through a specialist property lender.</p>
+        <span class="pp-product-card__link">Compare lenders &rarr;</span>
+      </a>
+      <a href="credit-guide.html" class="pp-product-card" style="display:block;">
+        <div class="pp-product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4M12 17h.01"/></svg></div>
+        <h3 class="pp-product-card__name">Not sure which fits?</h3>
+        <p class="pp-product-card__desc">Talk to a specialist and we'll match you to the right property finance product.</p>
+        <span class="pp-product-card__link">Talk to us &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     WHY
+     ============================================ -->
+<section class="pp-why" id="why">
+  <div class="container">
+    <div class="product-section__header">
+      <p class="product-section__eyebrow" style="color:var(--navy);">Why Personal &amp; Property</p>
+      <h2 class="product-section__title">Built for borrowers the banks say no to</h2>
+    </div>
+    <div class="pp-why__grid">
+      <div class="pp-why-item">
+        <div class="pp-why-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <h3 class="pp-why-item__title">Low-doc &amp; alt-doc friendly</h3>
+        <p class="pp-why-item__desc">Business Activity Statements, accountant letters, or bank statements &mdash; we know which lenders accept what.</p>
+      </div>
+      <div class="pp-why-item">
+        <div class="pp-why-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 class="pp-why-item__title">No impact on your credit score</h3>
+        <p class="pp-why-item__desc">We compare against lender policy first. A credit check only happens once you choose to proceed.</p>
+      </div>
+      <div class="pp-why-item">
+        <div class="pp-why-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3 class="pp-why-item__title">A specialist panel</h3>
+        <p class="pp-why-item__desc">25+ lenders who specifically write low-doc, alt-doc and non-standard property finance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     COMPARISON STRIP
+     ============================================ -->
+<section class="pp-compare">
+  <div class="container">
+    <div class="product-section__header">
+      <p class="product-section__eyebrow" style="color:var(--navy);">Sample Comparison</p>
+      <h2 class="product-section__title">See how lenders stack up</h2>
+      <p class="product-section__subtitle">Indicative rates for a $650,000 self-employed home loan at 80% LVR.</p>
+    </div>
+    <div class="pp-compare__table">
+      <div class="pp-compare__row pp-compare__row--head">
+        <div>Lender</div><div>Doc Type</div><div>Max LVR</div><div>Rate (p.a.)</div>
+      </div>
+      <div class="pp-compare__row pp-compare__row--best">
+        <div class="pp-compare__lender"><span class="pp-compare__lender-dot"></span>Pepper Money</div>
+        <div class="pp-compare__cell">Alt-doc</div>
+        <div class="pp-compare__cell">80%</div>
+        <div class="pp-compare__cell"><strong>6.79%</strong></div>
+      </div>
+      <div class="pp-compare__row">
+        <div class="pp-compare__lender"><span class="pp-compare__lender-dot"></span>Liberty</div>
+        <div class="pp-compare__cell">Low-doc</div>
+        <div class="pp-compare__cell">75%</div>
+        <div class="pp-compare__cell"><strong>7.05%</strong></div>
+      </div>
+      <div class="pp-compare__row">
+        <div class="pp-compare__lender"><span class="pp-compare__lender-dot"></span>Thinktank</div>
+        <div class="pp-compare__cell">Full-doc</div>
+        <div class="pp-compare__cell">80%</div>
+        <div class="pp-compare__cell"><strong>7.19%</strong></div>
+      </div>
+      <div class="pp-compare__row">
+        <div class="pp-compare__lender"><span class="pp-compare__lender-dot"></span>Selfco</div>
+        <div class="pp-compare__cell">Alt-doc</div>
+        <div class="pp-compare__cell">70%</div>
+        <div class="pp-compare__cell"><strong>7.35%</strong></div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:0.78rem;color:var(--text-secondary);margin-top:16px;">Sample rates for illustration only. Your personalised Compare Report reflects your actual circumstances.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="pp-faq" id="faq">
+  <div class="product-section__header" style="text-align:left;max-width:none;margin-bottom:24px;">
+    <p class="product-section__eyebrow" style="color:var(--navy);">FAQ</p>
+    <h2 class="product-section__title">Common questions</h2>
+  </div>
+  <details class="pp-faq-item" open>
+    <summary>Can I get a home loan if I'm self-employed?</summary>
+    <p>Yes. We work with lenders who specialise in low-doc and alt-doc lending, using tools like BAS, accountant declarations, or bank statements instead of two years of tax returns.</p>
+  </details>
+  <details class="pp-faq-item">
+    <summary>Will comparing affect my credit score?</summary>
+    <p>No. We compare your situation against lender policy first. A credit check is only run once you choose to proceed with a specific lender.</p>
+  </details>
+  <details class="pp-faq-item">
+    <summary>What's the difference between low-doc and alt-doc?</summary>
+    <p>Low-doc typically means reduced income verification (e.g. a signed declaration), while alt-doc means alternative evidence of income (like BAS or bank statements) rather than full financials.</p>
+  </details>
+  <details class="pp-faq-item">
+    <summary>Do you also do commercial or business finance?</summary>
+    <p>Yes &mdash; that's our core Commercial channel. <a href="index.html" style="color:var(--navy);font-weight:600;">Visit Trade Funding Commercial &rarr;</a></p>
+  </details>
+</section>
+
+<!-- ============================================
+     BOTTOM CTA
+     ============================================ -->
+<section class="pp-cta">
+  <div class="container">
+    <h2>Know before you apply.</h2>
+    <p>Get your free, personalised Compare Report across our specialist property lending panel &mdash; no credit check, no obligation.</p>
+    <a href="apply.html?channel=personal" class="pp-btn-primary">Get My Free Compare Report &rarr;</a>
+  </div>
+</section>
+
+</main>
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid">
+      <div class="footer__brand-col">
+        <a href="index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="logo-white.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify you against a specialist lender panel and deliver a personalised Compare Report. Free. No credit check.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; Sydney, Australia</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Personal &amp; Property</h4>
+        <div class="footer__links">
+          <a href="self-employed-home-loan.html">Self-Employed Home Loan</a>
+          <a href="second-mortgage.html">Second Mortgage</a>
+          <a href="apply.html?purpose=purchase_residential_property">Investment Property</a>
+          <a href="apply.html?purpose=refinance">Refinance</a>
+          <a href="apply.html?purpose=purchase_commercial_property">Commercial Property</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Resources</h4>
+        <div class="footer__links">
+          <a href="resources.html">All Guides &amp; Tools</a>
+          <a href="credit-guide.html">Credit Guide</a>
+          <a href="repayment-calculator.html">Repayment Calculator</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Company</h4>
+        <div class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="apply.html">Get Started</a>
+        </div>
+        <h4 class="footer__heading" style="margin-top:24px;">Other Channels</h4>
+        <div class="footer__links">
+          <a href="index.html">Commercial Finance</a>
+          <a href="connect.html">Trade Funding Connect</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="credit-guide.html">Read our Credit Guide</a> | <a href="terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="credit-guide.html">Credit Guide</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll state
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 40) { navbar.classList.remove('transparent'); navbar.classList.add('scrolled'); }
+    else { navbar.classList.add('transparent'); navbar.classList.remove('scrolled'); }
+  });
+
+  // Mobile nav toggle
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', function () {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }
+
+  // Reveal-on-scroll
+  var reveals = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(function (el) { io.observe(el); });
+</script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>
