@@ -1,6 +1,6 @@
 # CLAUDE.md — Trade Funding Site Rebuild
 
-**Status: v2.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally).
+**Status: v3.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally).
 
 ## Project in one paragraph
 
@@ -20,6 +20,12 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 10. **One phase, one prompt, one review cycle** — don't chain multiple phases from `prompts.md` in a single uninterrupted run.
 11. **Flag contradictions instead of silently resolving them** — e.g. the `self-employed-home-loan.html` channel-placement call (hit-list item 43); the `commercial-property-finance` overlap with `/second-mortgage/`. (Connect's audience-framing question is now resolved — see below — no longer an open contradiction.)
 12. **Naming:** always **"Personal & Property"** (with ampersand) in user-facing copy; the URL slug/folder is the hyphenated, spelled-out **`personal-and-property`**. Don't mix these conventions.
+13. **`ChannelSwitcher` always shows all three channels, on every page, no exceptions** — Home icon + "Home" text (Commercial, never the word "Commercial"), Connect, Personal & Property. The current channel gets a distinct `.active` state (underline/bold/accent-tinted). This overrides any earlier "hide the current channel" logic you might find referenced in older notes.
+14. **Header and footer markup must be byte-for-byte identical across every page**, on every channel — same wrapper `div`s, same classes, same order, sourced from `commercial/components/navbar.html` / `footer.html`. Diff against the canonical component after touching any page; a single divergence causes a visible layout jump between pages.
+15. **Every link and asset path is root-relative** (`/connect/about.html`, `/commercial/assets/logo-navy.png`) — never relative (`../`, bare filenames). Relative paths break silently for any page more than one folder deep.
+16. **Replace em-dashes (`—`) with a spaced hyphen (` - `)**, never a bare hyphen jammed between words.
+17. **No spaces in any folder or file name, anywhere in the repo.** Vercel routing breaks on them — see the `personal and property/` vs. `personal-and-property/` duplicate flagged in Phase 5.5.
+18. **Don't start Phase 6 (Payload conversion) until Phase 5.5's `docs/cleanup-report.md` exists** and any flagged-but-unconfirmed items have been resolved with me.
 
 ## Tech stack quick reference
 
@@ -58,12 +64,13 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - `docs/Executive Questionnaire for Personal and Property and Connect.docx` — **returned with real answers** (uses "Individuals" as the internal working name for what this project calls Personal & Property — same pillar). Primary strategic input for Personal & Property and Connect copy — see `plan.md` §5.2 for the extracted content and `research-notes.md` (Phase 3.1 output) for the page-ready version.
 - `connect/docs/design-spec.md` / `implementation-plan.md` — Connect's original build spec, still authoritative for token values (now partially superseded in *role* — not values — by tokens.md's dominant/accent flip)
 - `plan.md`, `buildspec.md`, `prompts.md` — this project's own planning docs
+- `docs/cleanup-report.md` — Phase 5.5 output; don't start Phase 6 until this exists
 
 ## Commands
 
 (Fill in once the Payload/Next.js scaffold exists in Prompt 6 — do not guess these before the scaffold is created.)
 
-## Open items currently in effect (check plan.md §1–2, §5 for full context)
+## Open items currently in effect (check plan.md §1–2, §5, §8 for full context)
 
 - Nav label wording pending Matt's final call: "Products" / "Why Us" / "Partners" (structural) vs. "What Funding Do I Need?" / "Why Trade Funding?" / "Offer Funding Solutions" (placeholder copy)
 - `self-employed-home-loan.html` channel placement (hit-list item 43) — undecided, Claude Code to call and document
@@ -71,6 +78,7 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - Broker Portal referral process / commission structure — not covered by the Executive Questionnaire, still needs direct Matt/Ben input before Phase 3.2 copy can be drafted for that page
 - Home hero final copy — still pending sign-off despite locked directional agreement
 - Deferred blockers (address, lender logos, GoogleReviews count, hello@ routing) — scheduled for Phase 3 kickoff, not before
+- Phase 5.5 cleanup not yet run: `personal and property/` (spaces) duplicate folder still needs deleting; `debtor-finance.html`, `trade-funding-website-application.html`, and (once the Guides Hub absorbs it) `resources.html` still need secure deletion, each with its redirect documented for Phase 6
 
 **Resolved since v2:** Connect's audience framing (design-spec vs. newer notes) is no longer an open conflict — the returned Executive Questionnaire confirms "B2B providers, equipment of any kind sold B2B, and/or professional services" as the locked audience. See `buildspec.md` §5.
 

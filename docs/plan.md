@@ -1,10 +1,10 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v2 — updated after tokens.md (Phase 1 output) and the revised `Master Information Architecture & Sitemap.md` were delivered, plus the team's hit list with comments.**
+**Status: v3 — updated for a smoother Phase 5 (multi-page raw-HTML build) and a new Phase 5.5 cleanup pass, after reviewing the latest zip.**
 
-**Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (**updated version**, now the canonical IA/architecture doc), `tokens.md` (**finalized Phase 1 output**, supersedes this plan's earlier color placeholders), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, and the `commercial/`, `connect/`, and `design baseline/` folders in the project zip.
+**Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (canonical IA/architecture doc), `tokens.md` (finalized Phase 1 output), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, `docs/research-notes.md` and `docs/copy-final.md` (Phase 3 outputs), and the `commercial/`, `connect/`, `personal-and-property/`, and `design baseline/` folders in the project zip.
 
-**What changed since v1:** the site architecture is now **one Next.js app with sub-path routing** (`/`, `/connect/*`, `/personal-and-property/*`) sharing **one Vercel deployment and one Payload backend** — not three subdomains/three Vercel projects as this plan originally assumed. Branding is locked (not placeholder) per `tokens.md`. The `design baseline/` folder in the zip is a **color-and-button reference only** — it is explicitly out of scope as a build artifact and must never be copied wholesale into the real site; its decisions get applied to the real `commercial/`, `connect/`, and new Personal & Property files. Blockers involving Matt/Ben (address, lender logos, hero copy sign-off) are **deliberately deferred** — flagged throughout, but not chased until Phase 3.
+**What's new in v3:** Phase 5 is expanded to cover the things that make a 30+ page raw-HTML build actually feel smooth rather than like a stack of disconnected documents — pixel-identical headers across every page, root-relative (not relative) paths for every link/asset, correctly spaced em-dash replacements, and explicit coverage of the Guides Hub + guide articles + calculator tools (previously under-specified). The `ChannelSwitcher`'s behavior is also revised: it now **always shows all three channels** (Home icon+text for Commercial, plus Connect, plus Personal & Property) with a clear active-state indicator, overriding the original "hide the current channel" logic from Phase 2. A new **Phase 5.5 — Pre-Conversion Cleanup** sits between Phase 5 and Phase 6, covering the duplicate `personal and property/` (with spaces) folder, secure deletion of retired files, and a general file-organization pass before anything gets migrated into Payload.
 
 ---
 
@@ -79,11 +79,12 @@ Connect's shift is bigger than a simple accent swap — it **inverts** the exist
 **Locked structural decisions**, now reflected in `Master Information Architecture & Sitemap.md` §2A/§2B/§11:
 
 - **`ChannelSwitcher` component** replaces the old idea of three equal-weighted nav buttons. It's a top-bar control (like a region/country selector), sitting **above or beside** — never inline with — Commercial's own primary nav, so "Products / Why Us / Partners" is never diluted by channel-switching UI.
-  - On `/` (Commercial): switcher shows two selectable targets, **Connect** and **Personal & Property** — no explicit "Commercial" label on the home page itself, consistent with "yes, that's your home site."
-  - On `/connect/*` and `/personal-and-property/*`: switcher shows the current channel name plus **Home** as an explicit way back.
-  - Icon-plus-label on desktop, icon-only on mobile — same treatment as the home icon.
-  - 🟡 **Known bug to fix (Phase 4/5):** on the home page, the other two toggle options aren't currently visible. Fix: **set the switcher's border and text to navy blue while on the home page** so both alternate options remain legible against the light background. This is a contrast fix, not a redesign.
-- **Home icon:** icon + "Home" text label on desktop, icon-only on mobile — locked, no longer a placeholder. Commercial *is* the home page; the two terms are used interchangeably in prompts/specs, but "Commercial" itself never appears as a nav label.
+  - 🔁 **Updated behavior (overrides the original "hide the current channel" logic below):** for the static-HTML build in Phase 5, the switcher **always shows all three channels on every page, regardless of which one you're currently on** — Commercial, Connect, and Personal & Property are all visible, all the time. This is a deliberate override of the original plan (which only showed the two *other* channels) because navigating between 30+ raw HTML files needs a switcher that doesn't visually shift its own content between pages — always-three keeps the control itself stable while only its *active state* changes.
+  - **Commercial is always rendered as the Home icon + "Home" text — never the word "Commercial."** Connect renders as "Connect." Personal & Property renders as "Personal & Property." All three appear together, every time.
+  - **Active state (new, required):** since all three are always visible, the current channel must be visually distinguished — a clear `.active` CSS state (underline, bold text, or a brand-color background/border tinted to the *current* channel's accent from `tokens.md`) applied to whichever of the three matches the page you're on. Without this, a visitor has no way to tell which channel they're currently viewing.
+  - Icon-plus-label on desktop, icon-only on mobile for all three entries, not just Home.
+  - 🟡 **Contrast fix, generalized:** the original bug ("other two toggle options aren't visible on the home page") is fixed by the always-show-three + active-state approach above, but re-verify contrast for the *inactive* two entries against each channel's own accent background (Commercial's light background, Connect's gold, Personal & Property's peach) — not just the home page in isolation.
+- **Home icon:** icon + "Home" text label on desktop, icon-only on mobile — locked, no longer a placeholder. Commercial *is* the home page; the two terms are used interchangeably in prompts/specs, but "Commercial" itself never appears as a nav label — it's always the Home icon + "Home" text, including inside the always-visible `ChannelSwitcher`.
 - **Contact:** removed from top nav entirely, lives in the footer only. A floating contact button is evaluated separately, not bundled into this decision.
 - **Products:** stays in the primary nav as a grouped hover-expand list (Term Loans, Credit Lines, Invoice, Trade, Equipment, Personal & Property, Other) — no emoji/icon grid. A dedicated `/business-loans/` full-menu page exists for users directed there. No product page is ever deleted for nav decluttering.
 - **Why Us:** purpose-driven navigation, reintroduced alongside Products as a second path into the same underlying pages.
@@ -231,22 +232,76 @@ Once `copy-final.md` is approved, hand it to Claude Code via the updated Prompt 
 
 ---
 
-## 7. Phase 5 — HTML/Page Production (updated)
+## 7. Phase 5 — HTML/Page Production (expanded — smoother multi-page navigation, guides/tools, path hygiene)
 
-- **Commercial** — reconcile existing HTML against Phase 2 nav changes, Phase 3 copy, the fix list (broken reviews carousel, non-functional "Unlock your full report" button, "How it works" navy panel alignment, lender logo updates once supplied, em-dash removal, tile-sizing fixes, payoff-line reword), the Resources-page image swap, and the `self-employed-home-loan.html` channel decision (hit-list item 43).
-- **Connect** — apply the Phase 4 color-flip work above to the real `connect/index.html` (and `terms.html`/`privacy.html` as needed for consistent nav/footer), remove all remaining "Fundit" references (check `connect/README.md` too), and confirm "Become a Partner" is the single primary CTA (reconcile against the old two-CTA design-spec pattern — "Request a call" / "Register your business" — these become supporting actions, not competitors to the primary CTA).
-- **Personal & Property** — this is genuinely net-new page production: home + 8 loan-type pages (`owner-occupied-home-loans`, `investment-property-loans`, `refinancing`, `construction-loans`, `commercial-property-finance`, `smsf-loans`, `personal-loans`, `debt-consolidation`) + `apply` (shared engine, parameterized) + `about`, per `Master Information Architecture & Sitemap.md` §7. Structure/copy comes from that IA skeleton plus the Executive Questionnaire once supplied — do not invent page content from the design-baseline reference file, which is styling-only.
+**Why this phase got bigger:** with 30+ raw HTML files (not yet a Next.js app), anything that differs between pages — header markup, path style, dash characters — creates a visible "jump" or a broken link the moment someone clicks between pages. The items below are all in service of making that raw-HTML phase feel like one smooth site, not a stack of independent documents.
+
+### 7.1 Header must be pixel-perfect and identical across every page
+
+The HTML structure, padding, and CSS classes for the header (and footer) must be **100% identical, byte-for-byte in structure**, across all 30+ pages — Commercial, Connect, and Personal & Property alike. A single missing wrapper `div`, a reordered class, or an extra space on one page causes a visible layout "jump" when the browser paints the next page, breaking the single-page-app-like feel the raw HTML needs to fake.
+
+- Treat `commercial/components/navbar.html` and `commercial/components/footer.html` as the **single canonical source** for header/footer markup. Every page — including `connect/*` and `personal-and-property/*` — includes this exact markup (via whatever include mechanism the static build uses), never a hand-copied or re-typed variant.
+- After building/updating any page, diff its header/footer DOM against the canonical component. Any divergence is a bug, not a style choice.
+
+### 7.2 ChannelSwitcher — build the overridden, always-three-visible version
+
+Per the updated §4 above: build the switcher so **Commercial (Home icon + "Home" text), Connect, and Personal & Property are all visible on every page, all the time**, with a clear `.active` state (underline, bold, or brand-tinted background) marking whichever one matches the current page. Do not build the original "hide the current channel" version — that logic is explicitly overridden for this phase.
+
+### 7.3 Root-relative paths everywhere (not relative paths)
+
+Pages live at the root (`commercial/index.html` → `/`), in subfolders (`connect/index.html` → `/connect/`), and in sub-subfolders (`commercial/guides/lease-vs-buy.html` → `/guides/lease-vs-buy/`). A relative path (`../assets/logo.png`, `href="about.html"`) resolves differently depending on how deep the current page sits — it'll look fine on the homepage and silently break the moment you're two folders deep.
+
+**Rule: every header link, footer link, CSS `<link>`, and image `src` uses a root-relative path** (starting with `/`), e.g. `href="/connect/about.html"`, `src="/commercial/assets/logo-navy.png"` — never a relative path (`../`, bare filenames like `about.html`). Apply this consistently across Commercial, Connect, and Personal & Property; it's the single biggest reason a "it worked on the homepage" bug shows up two folders deep.
+
+### 7.4 Em-dash replacement — spaced hyphens, not squished ones
+
+Per the earlier em-dash removal task: replace every em-dash (`—`) with a **spaced hyphen (` - `)**, not a bare hyphen (`-`) jammed directly between words — a bare hyphen can visually squish adjacent words together if the surrounding spacing isn't handled, while a spaced hyphen reads cleanly and matches how the character is actually used in running text.
+
+### 7.5 Don't skip the Guides Hub or the Tools/Calculators — build them from `copy-final.md`
+
+Phase 5 work must explicitly include (not just the product pages):
+- The **Guides & Resources Hub** (`/guides/`, per `Master Information Architecture & Sitemap.md` §4) — a real hub/landing page linking out to every guide below, not just the existing `resources.html` left as-is.
+- Every **long-form guide article** listed in the IA doc §4 (e.g. `compare-business-loans`, `best-line-of-credit`, `business-line-of-credit-guide`, `business-charge-card-guide`, `business-overdraft-guide`, `business-term-loans-guide`, `business-loan-bad-credit`, `invoice-vs-debtor-finance`, `lease-vs-buy`) — using `copy-final.md` for any copy that document covers, not invented fresh.
+- Both **calculator tools** (`repayment-calculator.html`, `equipment-calculator.html`) — confirmed present and correctly cross-linked from the Guides Hub and from their respective product pages (Finance Lease, Operating Lease, Chattel Mortgage), per IA §5.
+
+Do not treat product pages as the whole of Phase 5 — the Guides Hub and the two calculators are equally in-scope and were previously under-specified here.
+
+### 7.6 Per-channel production tasks (as before, now read alongside 7.1–7.5)
+
+- **Commercial** — reconcile existing HTML against Phase 2 nav changes, Phase 3 copy, the fix list (broken reviews carousel, non-functional "Unlock your full report" button, "How it works" navy panel alignment, lender logo updates once supplied, em-dash removal *per 7.4*, tile-sizing fixes, payoff-line reword), the Resources-page image swap, the Guides Hub + guide articles + calculators from 7.5, and the `self-employed-home-loan.html` channel decision (hit-list item 43).
+- **Connect** — apply the Phase 4 color-flip work to the real `connect/index.html` (and `terms.html`/`privacy.html`), remove all remaining "Fundit" references, confirm "Become a Partner" is the single primary CTA, and apply 7.1–7.4 (header parity, switcher, root-relative paths, em-dash spacing) consistently.
+- **Personal & Property** — genuinely net-new page production: home + 8 loan-type pages + `apply` + `about`, per IA §7 and `copy-final.md`, built with the same header-parity, switcher, root-relative-path, and em-dash rules from 7.1–7.4 from the very first page — don't build it first and retrofit path/header consistency later.
 
 ---
 
-## 8. Phase 6 — Conversion to Payload CMS + Vercel Publish (architecture rewritten)
+## 8. Phase 5.5 — Pre-Conversion Cleanup & File Organization (NEW)
+
+**Purpose:** before anything gets converted into Payload collections in Phase 6, do a dedicated housekeeping pass on the raw file structure. This phase exists because Phase 5 production naturally creates loose ends — duplicate folders, retired-but-not-deleted files, unused assets — that are cheap to fix now and expensive to carry into the CMS migration.
+
+**Concrete cleanup tasks:**
+
+1. **Delete the duplicate Personal & Property folder.** The project currently has both `personal-and-property/` (correct) and `personal and property/` (with spaces — currently empty, but a real risk if anything ever gets saved into it). **Delete `personal and property/` entirely.** Spaces in folder names break Vercel routing; there must be exactly one Personal & Property folder, correctly named.
+2. **Securely delete retired files**, per the Duplicate Resolution Log in `Master Information Architecture & Sitemap.md` §9 — don't just stop linking to them, actually remove them so they don't linger as ghost/crawlable pages:
+   - `commercial/debtor-finance.html` — confirm its unique content was merged into `commercial/invoice-finance.html` first (per §9 item 4), then delete the file and confirm the `/debtor-finance/` → `/invoice-finance/` redirect is documented for Phase 6.
+   - `commercial/trade-funding-website-application.html` — confirm `apply.html` is the live, complete version, then delete the legacy file and confirm the redirect to `/apply/` is documented for Phase 6.
+   - `commercial/resources.html` — once the Guides Hub (7.5) is live at `/guides/`, confirm whether this file's content has been fully absorbed into the hub; if so, delete it and confirm the `/resources/` → `/guides/` redirect is documented for Phase 6. If any unique content still only exists in `resources.html`, migrate it into the Guides Hub first.
+3. **Audit for unused assets** — orphaned images, unreferenced CSS classes/rules, unused JS files (across `commercial/`, `connect/`, and `personal-and-property/`) that nothing in the final page set actually links to or uses. Flag before deleting anything not explicitly named above — don't silently remove assets you're not sure are unused.
+4. **Verify folder structure matches the IA doc exactly**: `commercial/` (root-level pages + `guides/` + `components/` + `assets/`), `connect/` (with its own `branding/`/`styles/`/`api/`), `personal-and-property/` (single, correctly named, no duplicates) — flag anything that doesn't match this shape.
+5. **Run the header/footer parity check from 7.1 across every remaining page** as a final gate — confirm no page's header/footer markup has silently drifted from the canonical component during Phase 5 production.
+6. **Produce `cleanup-report.md`** documenting: files deleted (with reasoning), files flagged as possibly-unused but not deleted (pending confirmation), and any header/path inconsistencies found and fixed. Keep this report in `docs/` alongside the other planning docs.
+
+Do not begin Phase 6 (Payload conversion) until `cleanup-report.md` exists and the folder structure is clean — migrating a messy file tree into Payload collections just moves the mess into the CMS.
+
+---
+
+## 9. Phase 6 — Conversion to Payload CMS + Vercel Publish (architecture rewritten)
 
 **One Next.js app, one Vercel project, one Payload backend, three route groups.** This replaces this plan's original three-Vercel-projects assumption. Full technical detail lives in `buildspec.md` — in short:
 
 1. One Next.js app with route groups: `app/(commercial)/`, `app/connect/`, `app/personal-and-property/`.
 2. Payload collections modeled with an explicit `parent` relationship field (Business Loans, Trade Finance, Connect, Personal & Property, Guides & Resources) for breadcrumbs/nav-grouping only — this field never affects the actual URL, which is always flat and explicit.
 3. Shared header shell (channel-switcher-aware), footer, and legal globals (`FooterLegal`: single ACL/AFCA component) render across all three channels from one Payload global each — not duplicated per channel.
-4. Redirects (`trade-funding-website-application.html` → `/apply/`, `/resources/` → `/guides/`, retired `debtor-finance.html` → `/invoice-finance/` after content merge) live in Vercel/Next.js redirects config, checked against the Duplicate Resolution Log in `Master Information Architecture & Sitemap.md` §9 as the single source of truth.
+4. Redirects (`trade-funding-website-application.html` → `/apply/`, `/resources/` → `/guides/`, retired `debtor-finance.html` → `/invoice-finance/` after content merge — all confirmed deleted in Phase 5.5) live in Vercel/Next.js redirects config, checked against the Duplicate Resolution Log in `Master Information Architecture & Sitemap.md` §9 as the single source of truth.
 5. `GoogleReviews` component per `buildspec.md` §6 — unchanged in spec, but its real-count blocker is now explicitly scheduled for Phase 3 (see §1 above), not chased early.
 6. Deploy: one Vercel project, sub-path routing preserves one domain's SEO authority across all three channels, and makes `ChannelSwitcher` a same-origin route change rather than a cross-domain redirect.
 
@@ -257,5 +312,5 @@ See `prompts.md` for the updated, phase-by-phase Claude Code prompts.
 ## Suggested order of operations across tools (unchanged from v1)
 
 1. **Claude (web chat):** Phase 0 hit-list review, Phase 3 copy iteration, blocker chasing.
-2. **Claude Code (terminal):** Phases 2, 4, 5, 6 — anything that edits/creates files.
-3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session.
+2. **Claude Code (terminal):** Phases 2, 4, 5, 5.5, 6 — anything that edits/creates files.
+3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session. Don't start Phase 6 until Phase 5.5's `cleanup-report.md` exists.

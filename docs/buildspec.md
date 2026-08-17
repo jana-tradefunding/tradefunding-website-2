@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding: HTML → Next.js + Payload CMS → Vercel
 
-**Status: v2 — rewritten to match the updated `Master Information Architecture & Sitemap.md` (sub-path routing, single deployment) and the finalized `tokens.md` branding decisions.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
+**Status: v3 — adds static-HTML build hygiene rules (header parity, root-relative paths, em-dash spacing), the always-three-visible `ChannelSwitcher` override, and the Phase 5.5 cleanup spec.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
 
 ---
 
@@ -39,13 +39,13 @@ Per `Master Information Architecture & Sitemap.md` §1/§11: Commercial, Connect
 - Each route group applies its own accent theme (from `tokens.md`) and its own nav state, but shares the same underlying component library.
 - Switching channels via `ChannelSwitcher` is a same-origin route change (`/` ↔ `/connect/` ↔ `/personal-and-property/`), never a cross-domain redirect. This preserves one domain's accumulated SEO authority across all three channels — the reason this replaced the original subdomain idea.
 
-### `ChannelSwitcher` component spec
+### `ChannelSwitcher` component spec (updated — always-three-visible, overrides earlier "hide current channel" spec)
 
 - Top-bar control, visually/functionally like a region or country selector — a compact dropdown or segmented control anchored top-right or top-left, **outside** the main product-navigation row (Products / Why Us / Partners must never visually compete with it).
-- **On `/` (Commercial):** no explicit "Commercial" label — shows two selectable targets, **Connect** and **Personal & Property**.
-- **On `/connect/*` and `/personal-and-property/*`:** shows the current channel name plus **Home** as an explicit one-click way back.
-- Icon-plus-label on desktop, icon-only on mobile.
-- 🟡 **Bug fix required:** on the home page, the other two toggle options currently aren't visible. Fix: set the switcher's border and text color to navy blue (`--navy`, `#001C44`) while on the Commercial route group, so both alternate options stay legible against the light home-page background. This is a CSS/contrast fix on the existing component, not a redesign.
+- **Always shows all three channels, on every page, regardless of which one is current:** Home icon + "Home" text (Commercial — never the word "Commercial"), **Connect**, **Personal & Property**. This overrides the earlier spec, which only showed the two *other* channels and hid the current one — that approach doesn't hold up well across a 30+ page raw-HTML build where the switcher itself needs to look and behave identically on every page.
+- **Active state (required):** the current channel gets a distinct `.active` CSS treatment — underline, bold text, or a background/border tinted to that channel's own accent color from `tokens.md` (skyblue for Commercial, gold for Connect, peach for Personal & Property). This is what tells the visitor where they are, now that all three are always visible.
+- Icon-plus-label on desktop, icon-only on mobile, for all three entries.
+- Contrast: verify all three entries (active and inactive states) against each channel's own background — Commercial's light background, Connect's gold-dominant hero, Personal & Property's peach-dominant hero — not just a single "home page" case.
 
 ---
 
@@ -155,3 +155,26 @@ Same requirements as before — responsive, `next/script` `strategy="lazyOnload"
 - Reuse `commercial/sitemap.xml` / `commercial/robots.txt` as the starting point; regenerate dynamically from the `pages`/`guides` collections once migrated.
 - Pre-fill every migrated page's `seo.metaTitle`/`metaDescription` from the existing HTML's `<title>`/meta description, cross-checked against `SEO_Audit_Report.md` and `SEO Roadmap.md` for already-identified fixes to apply during migration.
 - All Phase 3 copy work must run against `SEO_Audit_Report.md`'s comments as explicit guardrails — see the updated `prompts.md` Prompt 3 for how this is operationalized as a checklist rather than background reading.
+
+---
+
+## 10. Static-HTML build hygiene (NEW — for the Phase 5 raw-HTML build, before Next.js exists)
+
+These rules apply specifically to the 30+ static HTML pages produced in Phase 5, before the Payload/Next.js conversion in Phase 6 — they exist because a raw multi-folder HTML build breaks in ways a Next.js app wouldn't.
+
+- **Header/footer parity:** `commercial/components/navbar.html` and `commercial/components/footer.html` are the single canonical markup source. Every page on every channel includes this exact markup — same wrapper `div`s, same classes, same padding — never a hand-copied variant. A single missing wrapper causes a visible layout jump between pages.
+- **Root-relative paths only:** every `href` and `src` — nav links, footer links, CSS `<link>` tags, images — must be root-relative (`/connect/about.html`, `/commercial/assets/logo-navy.png`), never relative (`../assets/logo.png`, bare `about.html`). Relative paths resolve differently depending on folder depth and will silently break for any page more than one folder deep, even though they look fine from the homepage.
+- **Em-dash replacement:** replace `—` with a **spaced hyphen** (` - `), not a bare hyphen jammed between words — bare hyphens can visually squish adjacent words together.
+- **No spaces in folder or file names**, anywhere in the site tree — Vercel routing breaks on them. See Phase 5.5 for the specific `personal and property/` duplicate this rule catches.
+
+---
+
+## 11. Phase 5.5 — Cleanup spec (companion to plan.md §8)
+
+Concrete technical detail for the cleanup phase between HTML production and Payload conversion:
+
+- **Delete** `personal and property/` (the space-containing duplicate of `personal-and-property/`) entirely.
+- **Delete**, after confirming redirects are documented per §4 above: `commercial/debtor-finance.html`, `commercial/trade-funding-website-application.html`, and `commercial/resources.html` (only once its content is fully absorbed into the new `/guides/` hub from §5.5's guides-hub task).
+- **Audit, don't blind-delete:** unreferenced CSS rules, orphaned images, unused JS — flag candidates in `cleanup-report.md` for confirmation before removing anything not explicitly named above.
+- **Re-run the header/footer parity check** (§10) across every page as a gate before Phase 6 starts.
+- Output: `docs/cleanup-report.md`, listing what was deleted and why, what's flagged but unconfirmed, and any path/header issues found and fixed.

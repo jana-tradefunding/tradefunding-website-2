@@ -1,6 +1,6 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v2 — updated for the single-app/sub-path architecture, finalized `tokens.md`, the updated Master IA doc, and the deferred-blockers sequencing.** Run these one at a time inside your project folder, which should now contain `commercial/`, `connect/`, `design baseline/` (reference only — see note below), `docs/`, `tokens.md`, `Master Information Architecture & Sitemap.md`, `plan.md`, `buildspec.md`, and `CLAUDE.md`.
+**Status: v3 — adds Phase 5 static-HTML build hygiene (header parity, root-relative paths, em-dash spacing, guides/tools coverage), the always-three-visible `ChannelSwitcher` override, and a new Prompt 5.5 cleanup pass.** Run these one at a time inside your project folder, which should now contain `commercial/`, `connect/`, `personal-and-property/`, `design baseline/` (reference only — see note below), `docs/`, `tokens.md`, `Master Information Architecture & Sitemap.md`, `plan.md`, `buildspec.md`, and `CLAUDE.md`.
 
 **Reminder before every session:** `design baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy — only as something to read for color/contrast decisions that then get applied to the real `commercial/`, `connect/`, and new Personal & Property files.
 
@@ -62,7 +62,7 @@ either file.
 
 ---
 
-## Prompt 2 — Site architecture / nav (Phase 2)
+## Prompt 2 — Site architecture / nav (Phase 2 — updated: always-three-visible switcher)
 
 ```
 Read Master Information Architecture & Sitemap.md §2A, §2B, and §11 in
@@ -70,9 +70,15 @@ full, plus the existing commercial/components/navbar.html and
 commercial/components/footer.html.
 
 Produce nav-spec.md describing:
-1. The ChannelSwitcher component's behavior on each of the three route
-   groups (per §2A), including the navy-blue contrast fix noted in
-   plan.md §4.
+1. The ChannelSwitcher component: it must ALWAYS show all three channels,
+   on every page, regardless of which one is current — Home icon +
+   "Home" text (never the word "Commercial"), Connect, and Personal &
+   Property. This overrides any earlier "hide the current channel" logic.
+   Include a clear .active CSS state (underline, bold, or a background/
+   border tinted to that channel's own accent color from tokens.md) on
+   whichever of the three matches the current page, so the visitor can
+   tell where they are. Verify contrast for all three entries against
+   each channel's own background per buildspec.md §2.
 2. The Products / Why Us / Partners primary nav (Commercial), each mapped
    to its structural role AND the pending Matt-approval placeholder
    wording from plan.md §4 ("What Funding Do I Need?" / "Why Trade
@@ -166,30 +172,93 @@ This becomes the checklist for the React component build in Phase 6.
 
 ---
 
-## Prompt 5 — Personal & Property page production (Phase 5, net-new)
+## Prompt 5 — Page production, all channels (Phase 5 — expanded for build hygiene + guides/tools)
 
 ```
-Read Master Information Architecture & Sitemap.md §7 in full and
-buildspec.md §6.
+Read plan.md §7 (all of 7.1–7.6) and buildspec.md §10 in full before
+touching any file.
 
-Produce the Personal & Property page skeleton as static HTML (matching
-the existing commercial/ and connect/ conventions) for: home,
-owner-occupied-home-loans, investment-property-loans, refinancing,
-construction-loans, commercial-property-finance, smsf-loans,
-personal-loans, debt-consolidation, apply, and about — all under a new
-personal-and-property/ folder, using the color/button decisions from
-Prompt 1b (peach-dominant, navy accent, white hero card panel, navy
-icons).
+Standing rules for every page you touch or create in this step, no
+exceptions:
+- Header/footer markup must be byte-for-byte identical to
+  commercial/components/navbar.html and commercial/components/footer.html
+  — same wrapper divs, same classes, same order. Diff against the
+  canonical component after each page.
+- Every href/src (nav links, footer links, CSS <link>, images) must be
+  root-relative (e.g. /connect/about.html, /commercial/assets/
+  logo-navy.png) — never relative (../, bare filenames).
+- Replace every em-dash (—) with a spaced hyphen ( - ), not a bare hyphen.
+- Build the ChannelSwitcher per Prompt 2's updated spec: all three
+  channels always visible, with the .active state on the current one.
 
-Use placeholder copy clearly marked [DRAFT — pending Executive
-Questionnaire content] for anything beyond structural headings — do not
-invent substantive product copy for the 8 loan types from the
-design-baseline reference file, since that file is styling-only.
+Then, specifically:
 
-Flag, rather than resolve, the self-employed-home-loan.html channel
-placement question (hit-list item 43) and the commercial-property-finance
-overlap with /second-mortgage/ and /self-employed-home-loan/ noted in
-buildspec.md §6.
+1. Personal & Property (net-new): build home, owner-occupied-home-loans,
+   investment-property-loans, refinancing, construction-loans,
+   commercial-property-finance, smsf-loans, personal-loans,
+   debt-consolidation, apply, and about under personal-and-property/,
+   using copy-final.md for any copy it covers and the color/button
+   decisions from Prompt 1b. Flag, don't resolve, the
+   self-employed-home-loan.html channel-placement question (hit-list
+   item 43) and the commercial-property-finance overlap noted in
+   buildspec.md §6.
+
+2. Guides Hub + guide articles + calculators (previously missing from
+   this phase): build/confirm the /guides/ hub landing page linking out
+   to every guide in Master Information Architecture & Sitemap.md §4
+   (compare-business-loans, best-line-of-credit,
+   business-line-of-credit-guide, business-charge-card-guide,
+   business-overdraft-guide, business-term-loans-guide,
+   business-loan-bad-credit, invoice-vs-debtor-finance, lease-vs-buy),
+   using copy-final.md where it has copy for these. Confirm both
+   calculators (repayment-calculator.html, equipment-calculator.html)
+   are present, correctly linked from the hub and their related product
+   pages, and follow the same header/path/em-dash rules above.
+
+3. Commercial and Connect reconciliation: apply copy-final.md, the
+   known fix list (broken reviews carousel, "Unlock your full report"
+   button, "How it works" panel alignment, tile sizing, payoff-line
+   reword, Resources-page image swap), and remove all remaining
+   "Fundit" references from Connect.
+
+Show me a diff before writing changes to any existing file; new files
+can be created directly but flag each one you add.
+```
+
+---
+
+## Prompt 5.5 — Pre-conversion cleanup (Phase 5.5 — NEW, run after Prompt 5, before Prompt 6)
+
+```
+Read plan.md §8 and buildspec.md §11 in full.
+
+1. Delete the "personal and property" folder (the space-containing
+   duplicate of personal-and-property/) entirely.
+
+2. Confirm commercial/debtor-finance.html's unique content has been
+   merged into commercial/invoice-finance.html (per Master Information
+   Architecture & Sitemap.md §9), then delete the file. Confirm
+   commercial/trade-funding-website-application.html is superseded by
+   apply.html, then delete it. Confirm commercial/resources.html's
+   content is fully absorbed into the new /guides/ hub from Prompt 5,
+   then delete it. Document the corresponding redirect for each
+   (/debtor-finance/ → /invoice-finance/, /apply-old/ → /apply/,
+   /resources/ → /guides/) in a running list for Phase 6 — do not
+   configure the actual redirects yet, that's a Phase 6 task.
+
+3. Audit for unused assets (orphaned images, unreferenced CSS rules,
+   unused JS) across commercial/, connect/, and personal-and-property/.
+   List candidates rather than deleting anything not explicitly named
+   in step 2 — flag for my confirmation first.
+
+4. Re-run the header/footer parity check from Prompt 5 across every
+   remaining page as a final gate.
+
+5. Produce docs/cleanup-report.md: what was deleted and why, what's
+   flagged but unconfirmed, and any header/path issues found and fixed.
+
+Do not begin any Payload/Next.js scaffolding (Prompt 6) until this
+report exists and I've confirmed the flagged items.
 ```
 
 ---
@@ -238,14 +307,17 @@ Do not touch any other HTML file until I approve this pattern.
 ## Prompt 8 — Batch-convert remaining pages
 
 ```
+Read docs/cleanup-report.md first to confirm the file tree is clean and
+no retired files remain.
+
 Using the approved pattern from business-term-loans.html, convert the
 remaining commercial/*.html product and guide pages, then connect/*.html,
 then the Personal & Property pages built in Prompt 5 — one page at a
 time, committing after each. Preserve every URL exactly as listed in
 Master Information Architecture & Sitemap.md, and apply the Duplicate
-Resolution Log (§9) redirects exactly as specified — do not invent
-additional redirects. Stop and flag me if any page doesn't cleanly fit
-the established pattern.
+Resolution Log (§9) redirects exactly as specified, including the ones
+flagged in cleanup-report.md — do not invent additional redirects. Stop
+and flag me if any page doesn't cleanly fit the established pattern.
 ```
 
 ---
@@ -264,10 +336,11 @@ commands to run myself.
 
 ---
 
-## General rules (unchanged)
+## General rules (updated)
 
 - Tell Claude Code which files to read *before* it edits anything.
 - Ask for a diff before large edits, especially anything touching more than one file.
-- Never delete existing pages/routes to "declutter."
+- Never delete existing pages/routes to "declutter" — only delete files explicitly named as retired in `plan.md`/`buildspec.md` (and only after Phase 5.5 confirms it).
 - One phase per prompt.
 - Never treat `design baseline/` as anything other than a color/button reference — it is not part of the build.
+- Header/footer markup must be identical across every page; every link/asset path must be root-relative; em-dashes become spaced hyphens (` - `); no spaces in any folder or file name.
