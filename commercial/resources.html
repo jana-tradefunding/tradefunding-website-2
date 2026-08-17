@@ -13,7 +13,7 @@
 
 <style>
 /* ========================================
-   RESOURCES HUB  -  Editorial Content Hub
+   RESOURCES HUB - Editorial Content Hub
    ======================================== */
 
 /* --- Hero: Left-aligned, asymmetric --- */
@@ -188,7 +188,7 @@
 }
 
 /* ========================================
-   FEATURED ARTICLE  -  Cinematic
+   FEATURED ARTICLE - Cinematic
    ======================================== */
 .rh-featured {
   display: grid;
@@ -362,7 +362,7 @@
 .rh-featured:hover .rh-featured__cta { gap: 14px; }
 
 /* ========================================
-   PRODUCT GUIDE CARDS  -  Bento asymmetric
+   PRODUCT GUIDE CARDS - Bento asymmetric
    ======================================== */
 .rh-guides-grid {
   display: grid;
@@ -475,7 +475,7 @@
 .rh-guide:hover .rh-guide__product-link { gap: 10px; }
 
 /* ========================================
-   COMPARISON CARDS  -  Editorial, wider
+   COMPARISON CARDS - Editorial, wider
    ======================================== */
 .rh-comp-grid {
   display: grid;
@@ -550,7 +550,7 @@
 }
 
 /* ========================================
-   TOOLS  -  Standalone blocks, not cards
+   TOOLS - Standalone blocks, not cards
    ======================================== */
 .rh-tools-grid {
   display: grid;
@@ -618,7 +618,7 @@
 .rh-tool:hover .rh-tool__cta { gap: 10px; }
 
 /* ========================================
-   INLINE CTA  -  Bordered, not full-bleed
+   INLINE CTA - Bordered, not full-bleed
    ======================================== */
 .rh-cta {
   border: 1px solid rgba(0,28,68,0.06);
@@ -809,6 +809,25 @@
 <body>
 
 <!-- NAVBAR -->
+<!-- UTILITY BAR - top tier, ChannelSwitcher only -->
+<div class="utility-bar">
+  <div class="utility-bar__inner">
+    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        <span class="channel-switch__full">Home</span>
+      </a>
+      <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+      </a>
+      <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
     <a href="/commercial/index.html" class="navbar__logo">
@@ -866,28 +885,9 @@
       <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
       <a href="/commercial/resources.html" class="navbar__link">Resources</a>
       <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
-      <a href="/commercial/about.html" class="navbar__link">About</a>
     </div>
 
     <div class="navbar__right">
-      <!-- ChannelSwitcher  -  CLAUDE.md rule 13 / buildspec.md §2A:
-           always all three channels, every page, no exceptions. Home
-           icon + "Home" text represents Commercial (never the word
-           "Commercial"). Whichever option matches the current page
-           carries class="active" (plus aria-current="page" for a11y). -->
-      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-          <span class="channel-switch__full">Home</span>
-        </a>
-        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
-          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
-        </a>
-        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
-          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-        </a>
-      </div>
-      <a href="/commercial/apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -924,10 +924,7 @@
     <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
     <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
-  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
 </div>
-
-
 <!-- ============ HERO ============ -->
 <section class="rh-hero">
   <div class="rh-hero__inner">

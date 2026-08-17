@@ -463,7 +463,7 @@
 }
 
 /* ========================================
-   HERO  -  Hybrid Engine (Qualifier + Mini Report)
+   HERO - Hybrid Engine (Qualifier + Mini Report)
    ======================================== */
 .hero {
   background: var(--navy);
@@ -1106,7 +1106,7 @@
 }
 
 /* ========================================
-   WHAT YOU GET  -  S.T.A.R. + BUSINESS OVERVIEW
+   WHAT YOU GET - S.T.A.R. + BUSINESS OVERVIEW
    ======================================== */
 .wyg-section {
   padding: clamp(80px, 10vw, 120px) 0;
@@ -1473,7 +1473,7 @@
 }
 
 /* ========================================
-   HOW IT WORKS  -  3-CARD HORIZONTAL
+   HOW IT WORKS - 3-CARD HORIZONTAL
    ======================================== */
 /* Dark section */
 .hiw-section {
@@ -1504,7 +1504,7 @@
   margin-bottom: 48px;
 }
 
-/* Cards with layered shadows  -  Stripe-style depth */
+/* Cards with layered shadows - Stripe-style depth */
 .hiw-card {
   background: var(--white);
   border: 1px solid rgba(0,28,68,0.06);
@@ -1535,7 +1535,7 @@
 /* Card 3 accent: green gradient */
 .hiw-card--step3 { --accent-start: #FBB766; --accent-end: #e8a050; }
 
-/* Embedded mockup area  -  dark panel inside white card */
+/* Embedded mockup area - dark panel inside white card */
 .hiw-card__mockup {
   padding: 20px 20px 0;
   min-height: 180px;
@@ -1547,7 +1547,7 @@
   margin: 12px 12px 0;
 }
 
-/* Mockup inner  -  floating UI panel */
+/* Mockup inner - floating UI panel */
 .hiw-mockup {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
@@ -1856,7 +1856,7 @@
   100% { transform: translateX(-50%); }
 }
 
-/* Lender logo tiles  -  greywash default, colour on hover */
+/* Lender logo tiles - greywash default, colour on hover */
 .lender-logo {
   flex-shrink: 0;
   width: 148px;
@@ -2140,7 +2140,7 @@
 }
 
 /* ========================================
-   FINAL CTA  -  CONVERSATIONAL QUALIFIER
+   FINAL CTA - CONVERSATIONAL QUALIFIER
    ======================================== */
 .final-cta {
   padding: clamp(80px, 10vw, 120px) 0;
@@ -2629,7 +2629,7 @@
   .container { padding: 0 16px; }
 }
 
-/* What You Get report  -  mobile responsive */
+/* What You Get report - mobile responsive */
 @media (max-width: 768px) {
   .wyg-report [style*="grid-template-columns:40px"] {
     grid-template-columns: 32px 1fr !important;
@@ -2661,7 +2661,7 @@
   }
 }
 
-/* Mobile sticky CTA  -  per spec requirement */
+/* Mobile sticky CTA - per spec requirement */
 .mobile-sticky-cta {
   display: none;
   position: fixed;
@@ -2710,7 +2710,7 @@
   overflow: hidden;
 }
 
-/* Light section watermarks  -  very faint navy ghost */
+/* Light section watermarks - very faint navy ghost */
 .product-how::after,
 .product-compare::after,
 .product-eligibility::after,
@@ -2750,7 +2750,7 @@
   top: -20px;
 }
 
-/* Dark section watermarks  -  white/lighter ghost */
+/* Dark section watermarks - white/lighter ghost */
 .product-hero::after,
 .final-cta::after,
 .product-cta::after,
@@ -2809,13 +2809,13 @@
 
 /* ========================================
    PREMIUM ENHANCEMENTS v2
-   Additive improvements  -  better transitions,
+   Additive improvements - better transitions,
    shadows, hover states, micro-interactions
    ======================================== */
 
 /* --- Smoother transition curve (taste-skill: MOTION_INTENSITY 6) --- */
 :root {
-  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+--ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- Premium button enhancements --- */
@@ -3027,12 +3027,12 @@ html {
 }
 
 /* ========================================
-   TASTE-SKILL PASS  -  DENSITY:4, VARIANCE:8
+   TASTE-SKILL PASS - DENSITY:4, VARIANCE:8
    Diffusion shadows, Art Gallery spacing,
    Liquid Glass, Spotlight effects, Grain
    ======================================== */
 
-/* --- DENSITY:4 Art Gallery spacing  -  generous section gaps --- */
+/* --- DENSITY:4 Art Gallery spacing - generous section gaps --- */
 .pillars,
 .wyg-section,
 .products,
@@ -3048,7 +3048,7 @@ html {
   padding-bottom: clamp(96px, 12vw, 144px);
 }
 
-/* --- Diffusion shadows  -  wide-spreading, light (taste-skill Rule 4) --- */
+/* --- Diffusion shadows - wide-spreading, light (taste-skill Rule 4) --- */
 .pillar-card {
   box-shadow: 0 1px 2px rgba(0, 28, 68, 0.04);
 }
@@ -3099,14 +3099,14 @@ html {
   box-shadow: 0 24px 56px -12px rgba(0, 28, 68, 0.12), 0 0 0 1px rgba(84, 180, 246, 0.12);
 }
 
-/* --- Form inputs  -  accent glow on focus (taste-skill Rule 6) --- */
+/* --- Form inputs - accent glow on focus (taste-skill Rule 6) --- */
 .qualifier__input:focus {
   border-color: var(--skyblue);
   box-shadow: 0 0 0 4px rgba(84, 180, 246, 0.12);
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* --- Qualifier step  -  glow when active (taste-skill: Liquid Glass) --- */
+/* --- Qualifier step - glow when active (taste-skill: Liquid Glass) --- */
 .qualifier__step.active {
   box-shadow:
     0 8px 40px rgba(0, 0, 0, 0.2),
@@ -3114,36 +3114,36 @@ html {
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* --- Step number  -  active glow ring --- */
+/* --- Step number - active glow ring --- */
 .qualifier__step.active .qualifier__step-num {
   box-shadow: 0 0 0 4px rgba(84, 180, 246, 0.15), 0 4px 16px rgba(84, 180, 246, 0.25);
 }
 
-/* --- HIW cards  -  subtle glow on dark background --- */
+/* --- HIW cards - subtle glow on dark background --- */
 .hiw-card {
   box-shadow: 0 4px 24px rgba(0,0,0,0.2);
 }
 
-/* --- Lender marquee  -  clean, refined --- */
+/* --- Lender marquee - clean, refined --- */
 .lender-logo:active {
   transform: translateY(0) scale(0.98);
   background: rgba(84, 180, 246, 0.06);
 }
 
-/* --- Reviews rating badge  -  refined depth --- */
+/* --- Reviews rating badge - refined depth --- */
 .reviews__rating-badge {
   box-shadow: 0 4px 16px rgba(0, 28, 68, 0.04);
 }
 
-/* --- Footer  -  subtle top gradient line per taste-skill --- */
+/* --- Footer - subtle top gradient line per taste-skill --- */
 
 
-/* --- S.T.A.R. card  -  no box shadow (left-border accent mode) --- */
+/* --- S.T.A.R. card - no box shadow (left-border accent mode) --- */
 .star-card {
   box-shadow: none;
 }
 
-/* --- Mobile override  -  single column collapse (taste-skill MOBILE OVERRIDE) --- */
+/* --- Mobile override - single column collapse (taste-skill MOBILE OVERRIDE) --- */
 @media (max-width: 768px) {
   .pillars,
   .wyg-section,
@@ -3173,7 +3173,7 @@ html {
 }
 
 /* ========================================
-   PRODUCT CATEGORIES  -  6-CARD GRID
+   PRODUCT CATEGORIES - 6-CARD GRID
    ======================================== */
 .product-categories {
   padding: clamp(96px, 12vw, 144px) 0;
@@ -3185,7 +3185,7 @@ html {
   margin-bottom: 56px;
 }
 
-/* 🟢 Fix (Team Comments  -  Isabella): the old asymmetric 3/2/1/1/2/3
+/* 🟢 Fix (Team Comments - Isabella): the old asymmetric 3/2/1/1/2/3
    column-span mosaic made tiles wildly different widths despite
    holding the same amount of content. Evenly sized 3-up grid instead. */
 .product-categories__grid {
@@ -3293,7 +3293,7 @@ html {
 }
 
 /* ========================================
-   BUSINESS CALCULATORS  -  SPLIT LAYOUT
+   BUSINESS CALCULATORS - SPLIT LAYOUT
    ======================================== */
 .calculators {
   padding: clamp(64px, 8vw, 100px) 0;
@@ -3439,7 +3439,7 @@ html {
 }
 
 /* ========================================
-   FUNDING GUIDES  -  FEATURED + 4 CARDS
+   FUNDING GUIDES - FEATURED + 4 CARDS
    ======================================== */
 .guides {
   padding: clamp(96px, 12vw, 144px) 0;
@@ -3618,7 +3618,7 @@ html {
 }
 
 /* ========================================
-   SOCIAL PROOF  -  MERGED SECTION
+   SOCIAL PROOF - MERGED SECTION
    ======================================== */
 .social-proof {
   padding: clamp(96px, 12vw, 144px) 0;
@@ -3799,7 +3799,7 @@ html {
 }
 
 /* ========================================
-   NEW SECTIONS  -  RESPONSIVE
+   NEW SECTIONS - RESPONSIVE
    ======================================== */
 @media (max-width: 1024px) {
   .product-categories__grid { grid-template-columns: repeat(2, 1fr); }
@@ -3828,7 +3828,7 @@ html {
   .social-proof__reviews-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
 }
 
-/* Staggered reveal animations  -  60ms intervals (Motion Intensity 6) */
+/* Staggered reveal animations - 60ms intervals (Motion Intensity 6) */
 .product-categories__grid > *:nth-child(1) { transition-delay: 0ms; }
 .product-categories__grid > *:nth-child(2) { transition-delay: 60ms; }
 .product-categories__grid > *:nth-child(3) { transition-delay: 120ms; }
@@ -3863,19 +3863,19 @@ html {
 
 /* --- Stripe easing variable --- */
 :root {
-  --stripe-ease: cubic-bezier(0.215, 0.61, 0.355, 1);
-  --stripe-shadow: 0 4px 24px rgba(0,28,68,0.06);
-  --stripe-shadow-hover: 0 32px 64px -12px rgba(0,28,68,0.12);
+--stripe-ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+--stripe-shadow: 0 4px 24px rgba(0,28,68,0.06);
+--stripe-shadow-hover: 0 32px 64px -12px rgba(0,28,68,0.12);
 }
 
 /* ==========================================
-   SECTION 4: WHAT YOU GET  -  S.T.A.R. Cards
+   SECTION 4: WHAT YOU GET - S.T.A.R. Cards
    ========================================== */
 .wyg-section {
   background: var(--white) !important;
 }
 
-/* S.T.A.R. Cards  -  Left-border accent, no card box (Anti-Card / Density 4) */
+/* S.T.A.R. Cards - Left-border accent, no card box (Anti-Card / Density 4) */
 .star-card {
   background: transparent !important;
   border: none !important;
@@ -3905,7 +3905,7 @@ html {
 .star-cards .star-card:nth-child(3) { --star-accent-start: #FBB766; --star-accent-end: #e8a050; }
 .star-cards .star-card:nth-child(4) { --star-accent-start: #FF5D5C; --star-accent-end: #e84847; }
 
-/* Business Overview  -  wrap in white card with dark navy panel */
+/* Business Overview - wrap in white card with dark navy panel */
 .biz-overview {
   background: var(--white) !important;
   border: 1px solid rgba(0,28,68,0.06) !important;
@@ -3925,7 +3925,7 @@ html {
 }
 
 /* ==========================================
-   SECTION 5: PRODUCT CATEGORIES  -  6 Cards
+   SECTION 5: PRODUCT CATEGORIES - 6 Cards
    ========================================== */
 .product-categories {
   background: var(--light-bg) !important;
@@ -4158,7 +4158,7 @@ html {
   background: var(--light-bg) !important;
 }
 
-/* Featured article  -  layered shadow + gradient overlay */
+/* Featured article - layered shadow + gradient overlay */
 .guide-featured {
   border: 1px solid rgba(0,28,68,0.06) !important;
   border-radius: 16px !important;
@@ -4174,7 +4174,7 @@ html {
 
 /* Featured visual overlay handled above */
 
-/* Guide cards  -  white + thin border + hover lift */
+/* Guide cards - white + thin border + hover lift */
 .guide-card {
   border: 1px solid rgba(0,28,68,0.06) !important;
   border-radius: 16px !important;
@@ -4188,7 +4188,7 @@ html {
   box-shadow: var(--stripe-shadow-hover) !important;
 }
 
-/* Category tags  -  prominent coloured pill backgrounds */
+/* Category tags - prominent coloured pill backgrounds */
 .guide-card__tag {
   background: rgba(84,180,246,0.1) !important;
   padding: 4px 12px !important;
@@ -4227,7 +4227,7 @@ html {
   background: var(--white) !important;
 }
 
-/* Case study cards  -  layered shadow + gradient accent at top */
+/* Case study cards - layered shadow + gradient accent at top */
 .sp-case-card {
   border: 1px solid rgba(0,28,68,0.06) !important;
   border-radius: 16px !important;
@@ -4241,7 +4241,7 @@ html {
   box-shadow: var(--stripe-shadow-hover) !important;
 }
 
-/* Funded badge  -  more prominent coloured pill */
+/* Funded badge - more prominent coloured pill */
 .sp-case-card__funded-badge {
   background: rgba(255,255,255,0.3) !important;
   padding: 3px 14px !important;
@@ -4252,7 +4252,7 @@ html {
   backdrop-filter: blur(4px);
 }
 
-/* Google 5.0 badge  -  premium feel with glow */
+/* Google 5.0 badge - premium feel with glow */
 .social-proof__badge {
   padding: 16px 36px !important;
   border-radius: var(--radius-xl) !important;
@@ -4279,7 +4279,7 @@ html {
   font-size: 1.4rem !important;
 }
 
-/* Review cards  -  Density 4: clean list with border-top dividers, no card boxes */
+/* Review cards - Density 4: clean list with border-top dividers, no card boxes */
 .social-proof__reviews-grid .review-card {
   background: transparent !important;
   border: none !important;
@@ -4298,7 +4298,7 @@ html {
   background: rgba(0,28,68,0.015) !important;
 }
 
-/* Quote mark decoration  -  subtle, still present */
+/* Quote mark decoration - subtle, still present */
 .social-proof__reviews-grid .review-card::before {
   content: '\201C';
   position: absolute;
@@ -4312,7 +4312,7 @@ html {
   z-index: 0;
 }
 
-/* Stagger delays for social proof review cards  -  60ms intervals */
+/* Stagger delays for social proof review cards - 60ms intervals */
 .social-proof__reviews-grid > *:nth-child(1) { transition-delay: 0ms; }
 .social-proof__reviews-grid > *:nth-child(2) { transition-delay: 60ms; }
 .social-proof__reviews-grid > *:nth-child(3) { transition-delay: 120ms; }
@@ -4321,7 +4321,7 @@ html {
 .social-proof__reviews-grid > *:nth-child(6) { transition-delay: 300ms; }
 
 /* ==========================================
-   RESPONSIVE  -  Stripe upgrade mobile fixes
+   RESPONSIVE - Stripe upgrade mobile fixes
    ========================================== */
 @media (max-width: 768px) {
   .calc-card__mockup {
@@ -4338,7 +4338,7 @@ html {
 }
 
 /* ==========================================
-   TASTE-SKILL REFINEMENT  -  ACTIVE STATES,
+   TASTE-SKILL REFINEMENT - ACTIVE STATES,
    TYPOGRAPHY, DENSITY, VARIANCE FIXES
    ========================================== */
 
@@ -4465,7 +4465,7 @@ html {
 }
 .qualifier__trust-item { color: rgba(0,28,68,0.65); }
 
-/* Proof ticker  -  on light bg */
+/* Proof ticker - on light bg */
 .proof-ticker { border-top: 1px solid rgba(0,28,68,0.08); }
 .proof-ticker::before { background: linear-gradient(90deg, #F5F8FC, transparent); }
 .proof-ticker::after  { background: linear-gradient(-90deg, #EDF3FA, transparent); }
@@ -4481,23 +4481,23 @@ html {
 .proof-ticker__google-text { color: rgba(0,28,68,0.6); }
 .proof-ticker__google-text strong { color: var(--navy); }
 
-/* Mini report card  -  becomes an elevated dark panel on light bg */
+/* Mini report card - becomes an elevated dark panel on light bg */
 .hero__report-wrap { filter: drop-shadow(0 20px 48px rgba(0,28,68,0.18)); }
 
-/* Navbar  -  flip transparent state to dark-on-light */
+/* Navbar - flip transparent state to dark-on-light */
 .navbar.transparent { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,28,68,0.06); }
 .navbar.transparent .navbar__logo img { filter: none; }
 .navbar.transparent .navbar__link { color: var(--navy); }
 .navbar.transparent .navbar__hamburger span { background: var(--navy); }
 
-/* Trust bar "5.0"  -  was hard-coded white */
+/* Trust bar "5.0" - was hard-coded white */
 .hero__trust-bar-item strong { color: var(--navy) !important; }
 
-/* S.T.A.R. "S" dot  -  restore indigo on light hero */
+/* S.T.A.R. "S" dot - restore indigo on light hero */
 .hero .star-dot--s,
 .mini-report .star-dot--s { background: #1C1998 !important; }
 
-/* Mini report card  -  light theme */
+/* Mini report card - light theme */
 .mini-report {
   background: #FFFFFF;
   border: 1px solid rgba(0,28,68,0.08);
@@ -4538,7 +4538,7 @@ html {
 }
 .mini-report__footer-text { color: rgba(0,28,68,0.5); }
 
-/* Star tooltip  -  keep dark (reads as a popover over a light card) */
+/* Star tooltip - keep dark (reads as a popover over a light card) */
 </style>
 </head>
 <body>
@@ -4546,6 +4546,25 @@ html {
 <!-- ============================================
      NAVBAR
      ============================================ -->
+<!-- UTILITY BAR - top tier, ChannelSwitcher only -->
+<div class="utility-bar">
+  <div class="utility-bar__inner">
+    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        <span class="channel-switch__full">Home</span>
+      </a>
+      <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+      </a>
+      <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
 <nav class="navbar transparent" id="navbar">
   <div class="navbar__inner">
     <a href="/commercial/index.html" class="navbar__logo">
@@ -4603,28 +4622,9 @@ html {
       <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
       <a href="/commercial/resources.html" class="navbar__link">Resources</a>
       <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
-      <a href="/commercial/about.html" class="navbar__link">About</a>
     </div>
 
     <div class="navbar__right">
-      <!-- ChannelSwitcher  -  CLAUDE.md rule 13 / buildspec.md §2A:
-           always all three channels, every page, no exceptions. Home
-           icon + "Home" text represents Commercial (never the word
-           "Commercial"). Whichever option matches the current page
-           carries class="active" (plus aria-current="page" for a11y). -->
-      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-          <span class="channel-switch__full">Home</span>
-        </a>
-        <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
-          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
-        </a>
-        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
-          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-        </a>
-      </div>
-      <a href="/commercial/apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -4661,34 +4661,9 @@ html {
     <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
     <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
-  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
 </div>
-  <a href="/commercial/business-term-loans.html" onclick="closeMobile()">Term Loan</a>
-  <a href="/commercial/merchant-cash-advance.html" onclick="closeMobile()">Merchant Cash Advance</a>
-  <a href="/commercial/r-and-d-funding.html" onclick="closeMobile()">R&amp;D Funding</a>
-  <a href="/commercial/charge-card.html" onclick="closeMobile()">Charge Card</a>
-  <a href="/commercial/business-line-of-credit.html" onclick="closeMobile()">Line of Credit</a>
-  <a href="/commercial/overdraft.html" onclick="closeMobile()">Overdraft</a>
-  <a href="/commercial/debtor-finance.html" onclick="closeMobile()">Debtor Finance</a>
-  <a href="/commercial/fund-an-invoice.html" onclick="closeMobile()">Fund an Invoice</a>
-  <a href="/commercial/invoice-finance.html" onclick="closeMobile()">Invoice Finance</a>
-  <a href="/commercial/export-finance.html" onclick="closeMobile()">Export Finance</a>
-  <a href="/commercial/supply-chain-funding.html" onclick="closeMobile()">Supply Chain Funding</a>
-  <a href="/commercial/trade-finance.html" onclick="closeMobile()">Trade Finance</a>
-  <a href="/commercial/finance-lease.html" onclick="closeMobile()">Finance Lease</a>
-  <a href="/commercial/operating-lease.html" onclick="closeMobile()">Operating Lease</a>
-  <a href="/commercial/chattel-mortgage.html" onclick="closeMobile()">Chattel Mortgage</a>
-  <a href="/commercial/self-employed-home-loan.html" onclick="closeMobile()">Self-Employed Home Loan</a>
-  <a href="/commercial/second-mortgage.html" onclick="closeMobile()">Second Mortgage</a>
-  <a href="/commercial/resources.html" onclick="closeMobile()">Resources</a>
-  <a href="/commercial/comparison-report.html" onclick="closeMobile()">Compare Report</a>
-  <a href="/commercial/about.html" onclick="closeMobile()">About</a>
-  <a href="/commercial/meet-cashper.html" onclick="closeMobile()">Meet Cashper</a>
-  <a href="/commercial/apply.html" class="btn btn--primary" onclick="closeMobile()">Get My Free Compare Report &rarr;</a>
-</div>
-
 <!-- ============================================
-     SECTION 1  -  HERO (Hybrid Engine)
+     SECTION 1 - HERO (Hybrid Engine)
      ============================================ -->
 <section class="hero" id="hero">
   <div class="hero__glow hero__glow--1" aria-hidden="true"></div>
@@ -4698,10 +4673,14 @@ html {
 
     <!-- Trust bar -->
     <div class="hero__trust-bar">
-      <div class="hero__trust-bar-item">
+      <!-- 🔴 BLOCKED - NEEDS: real Google review count (plan.md §1; Team
+           Comments - Isabella flagged the old static "31 reviews" figure
+           as stale/non-updating). Honest fallback: stars + link-out only,
+           no invented number. -->
+      <a class="hero__trust-bar-item" href="#google-reviews" style="text-decoration:none;">
         <span class="hero__trust-bar-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span><strong style="color:white;">5.0</strong> Google (31 reviews)</span>
-      </div>
+        <span><strong style="color:white;">5.0</strong> on Google</span>
+      </a>
       <div class="hero__trust-bar-divider"></div>
       <div class="hero__trust-bar-item">ACL 387856</div>
       <div class="hero__trust-bar-divider"></div>
@@ -4715,18 +4694,11 @@ html {
 
       <!-- LEFT: Headline + Compact Qualifier -->
       <div class="hero__content">
-        <!-- 🔴 DRAFT - PENDING SIGN-OFF (copy-final.md §Home, plan.md §5.0):
-             directional-only replacement hero, not yet approved - do NOT
-             swap the live headline below for this without Matt's sign-off.
-             "Business finance shouldn't mean reading through hundreds of
-             lenders you'll never qualify for. We match your business - and
-             the people behind it - with funding that actually fits."
-             This would replace the current hero because the locked
-             messaging direction leads with the *why* (personalised,
-             qualified options) rather than the *how* (the S.T.A.R. scoring
-             mechanism the live headline currently opens with). -->
+        <!-- Approved why-first hero copy per copy-final.md §Home / plan.md
+             §5.0 - leads with the why (personalised, qualified options)
+             rather than the S.T.A.R. scoring mechanism. -->
         <p class="hero__eyebrow">Australia's Lending Intelligence Platform</p>
-        <h1 class="hero__title">Every option. Scored for your business.<br><span>Then we get it done.</span></h1>
+        <h1 class="hero__title">Business finance shouldn't mean reading through hundreds of lenders you'll never qualify for.<br><span>We match your business - and the people behind it - with funding that actually fits.</span></h1>
         <p class="hero__sub">Know before you apply. Our S.T.A.R. Compare Report shows personalised offers from 70+ lenders, scored against the facts that matter. Our team then helps you secure the best one.</p>
 
         <div class="qualifier">
@@ -4868,12 +4840,6 @@ html {
 .channel-strip__desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
 @media (max-width: 768px) { .channel-strip__grid { grid-template-columns: 1fr; } }
 </style>
-<section class="why-first">
-  <div class="container why-first__inner">
-    <p>Reviewing 70+ lenders and hundreds of products on your own risks wasted time - and a search history of credit applications that can quietly damage your file. That's the reason Trade Funding exists: one free, no-credit-check Compare Report that shows the options that actually qualify, before you commit to anything.</p>
-  </div>
-</section>
-
 <section class="google-reviews-strip" id="google-reviews">
   <div class="container">
     <!-- 🔴 BLOCKED - NEEDS: real Google review count/rating and a confirmed
@@ -4887,6 +4853,12 @@ html {
       <span class="google-reviews-strip__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       <span>See what real customers say about us on Google</span>
     </a>
+  </div>
+</section>
+
+<section class="why-first">
+  <div class="container why-first__inner">
+    <p>Reviewing 70+ lenders and hundreds of products on your own risks wasted time - and a search history of credit applications that can quietly damage your file. That's the reason Trade Funding exists: one free, no-credit-check Compare Report that shows the options that actually qualify, before you commit to anything.</p>
   </div>
 </section>
 
@@ -4912,17 +4884,17 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 3  -  HOW IT WORKS (Pitch Deck Port)
+     SECTION 3 - HOW IT WORKS (Pitch Deck Port)
      ============================================ -->
 <style>
-/* How It Works  -  ported from pitch deck */
+/* How It Works - ported from pitch deck */
 .hiw2 { padding: 80px 0 0; background: #FAFBFD; }
 .hiw2__header { text-align: center; margin-bottom: 48px; }
 .hiw2__eyebrow { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #54B4F6; margin-bottom: 14px; }
 .hiw2__title { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.6rem,3.5vw,2.4rem); color: var(--navy); margin-bottom: 16px; }
 .hiw2__desc { font-size: 1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.7; }
 
-/* The Engine Flow  -  matches pitch deck Slide 6 layout */
+/* The Engine Flow - matches pitch deck Slide 6 layout */
 .hiw2__engine { background: linear-gradient(160deg, #001C44 0%, #002A5C 50%, #001838 100%); padding: 56px 0; color: #fff; overflow: hidden; }
 .hiw2__flow { display: grid; grid-template-columns: 1fr 40px 2fr 40px 1fr; gap: 12px; align-items: stretch; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .hiw2__stage { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
@@ -4931,7 +4903,7 @@ html {
 .hiw2__card--input { gap: 9px; }
 .hiw2__card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.5); border-bottom: 1px dashed rgba(255,255,255,0.06); padding-bottom: 8px; }
 .hiw2__card-row:last-child { border-bottom: none; }
-/* 🟢 Fix (Team Comments  -  Isabella): the Step 01 Input row's Business
+/* 🟢 Fix (Team Comments - Isabella): the Step 01 Input row's Business
    name value is long enough to wrap and drift out of line with the
    other rows under align-items:baseline. Center-align the row and
    clip the value to one line instead. */
@@ -5006,7 +4978,7 @@ html {
     </div>
   </div>
 
-  <!-- The Engine Flow  -  Input → Cashper → Output -->
+  <!-- The Engine Flow - Input → Cashper → Output -->
   <div class="hiw2__engine">
     <div class="hiw2__flow reveal">
 
@@ -5074,7 +5046,7 @@ html {
       </div>
 
       <div style="max-width:960px;margin:0 auto;">
-        <!-- Step 1  -  Report snippet (peek) -->
+        <!-- Step 1 - Report snippet (peek) -->
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;margin-bottom:64px;">
           <div style="background:var(--white);border-radius:14px;border:1px solid rgba(0,28,68,0.06);overflow:hidden;box-shadow:0 4px 24px rgba(0,28,68,0.06);position:relative;">
             <!-- Report header -->
@@ -5159,7 +5131,7 @@ html {
   </div>
 </section>
 
-<!-- Cashper engine animation  -  ported from pitch deck -->
+<!-- Cashper engine animation - ported from pitch deck -->
 <script>
 (function(){
   var grid = document.getElementById('hiwGrid2');
@@ -5181,7 +5153,7 @@ html {
     tiles.push(tile);
   }
 
-  // Animation loop  -  matches pitch deck timing
+  // Animation loop - matches pitch deck timing
   var started = false;
   var obs = new IntersectionObserver(function(entries) {
     if (entries[0].isIntersecting && !started) {
@@ -5258,7 +5230,7 @@ html {
 </script>
 
 <!-- ============================================
-     SECTION 4  -  WHAT YOU GET (S.T.A.R. + BUSINESS OVERVIEW)
+     SECTION 4 - WHAT YOU GET (S.T.A.R. + BUSINESS OVERVIEW)
      ============================================ -->
 <section class="wyg-section reveal" id="what-you-get">
   <div class="container container--wide">
@@ -5324,7 +5296,7 @@ html {
           </div>
           <!-- Rows -->
           <div style="padding:6px 0;">
-            <!-- Row 1  -  Best match -->
+            <!-- Row 1 - Best match -->
             <div style="display:grid;grid-template-columns:40px 1.4fr 0.8fr 0.6fr 0.6fr 0.6fr 1fr;gap:10px;align-items:center;padding:12px 22px;background:linear-gradient(90deg,rgba(251,183,102,0.08),rgba(84,180,246,0.06));border-left:3px solid #FBB766;">
               <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FBB766,#FF5D5C);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:0.78rem;color:#fff;">1</span>
               <div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.82rem;color:var(--navy);">Pinnacle Lending</div><div style="font-size:0.62rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-top:1px;">Tier-1 non-bank</div></div>
@@ -5363,7 +5335,7 @@ html {
                 </div>
               </div>
             </div>
-            <!-- Rows 2-4  -  blurred to draw focus to #1 and S.T.A.R. -->
+            <!-- Rows 2-4 - blurred to draw focus to #1 and S.T.A.R. -->
             <div style="position:relative;">
               <div style="filter:blur(2px);opacity:0.45;">
                 <div style="display:grid;grid-template-columns:40px 1.4fr 0.8fr 0.6fr 0.6fr 0.6fr 1fr;gap:10px;align-items:center;padding:10px 22px;border-bottom:1px solid rgba(0,28,68,0.04);">
@@ -5412,7 +5384,7 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 4  -  PRODUCT CATEGORIES (6 CARDS)
+     SECTION 4 - PRODUCT CATEGORIES (6 CARDS)
      ============================================ -->
 <section class="product-categories reveal" id="products">
   <div class="container">
@@ -5488,7 +5460,7 @@ html {
 
 
 <!-- ============================================
-     SECTION 5  -  LENDER PANEL
+     SECTION 5 - LENDER PANEL
      ============================================ -->
 <section class="lenders reveal" id="lenders">
   <div class="container">
@@ -5580,7 +5552,7 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 6  -  BUSINESS CALCULATORS
+     SECTION 6 - BUSINESS CALCULATORS
      ============================================ -->
 <section class="calculators reveal" id="calculators">
   <div class="container">
@@ -5700,7 +5672,7 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 7  -  FUNDING GUIDES
+     SECTION 7 - FUNDING GUIDES
      ============================================ -->
 <section class="guides reveal" id="guides">
   <div class="container">
@@ -5886,7 +5858,7 @@ html {
 </section>
 
 <!-- ============================================
-     SECTION 8  -  SOCIAL PROOF (CASES + REVIEWS)
+     SECTION 8 - SOCIAL PROOF (CASES + REVIEWS)
      ============================================ -->
 <section class="social-proof reveal" id="social-proof">
   <div class="container container--wide">
@@ -5894,7 +5866,7 @@ html {
       <!-- 🔴 BLOCKED - NEEDS: actual current Google review count/rating and
            a confirmed real widget provider/script/API key (plan.md §1,
            §5.0; buildspec.md §7). The old static "5.0 / 31 reviews" figure
-           was flagged as stale and non-updating (Team Comments  -  Isabella).
+           was flagged as stale and non-updating (Team Comments - Isabella).
            Honest fallback: link out to the real listing, no invented number. -->
       <a class="social-proof__badge" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener" aria-label="See our reviews on Google">
         <div class="social-proof__badge-stars">
@@ -6043,8 +6015,8 @@ html {
 
     <!-- CTA -->
     <div class="social-proof__cta">
-      <!-- 🟢 Fix (Team Comments  -  Isabella / plan.md §5.0): don't repeat
-           the same Compare Report CTA in every section  -  this instance now
+      <!-- 🟢 Fix (Team Comments - Isabella / plan.md §5.0): don't repeat
+           the same Compare Report CTA in every section - this instance now
            routes to Google Reviews for variety, per the flagged feedback. -->
       <a href="#google-reviews" class="social-proof__cta-link">See what 100+ Australian businesses say about us &rarr;</a>
     </div>
@@ -6290,7 +6262,7 @@ html {
 })();
 
 // ============================================
-// HERO QUALIFIER  -  Lender data & reactive report
+// HERO QUALIFIER - Lender data & reactive report
 // ============================================
 var heroLenders = {
   growth: [
@@ -6460,7 +6432,7 @@ heroUpdate();
     if (!a) return;
     var href = a.getAttribute('href');
     if (!href) return;
-    // Match apply.html at start or after /  -  ignore if already has a query string
+    // Match apply.html at start or after / - ignore if already has a query string
     if (/^apply\.html(\?|$)/.test(href) && href.indexOf('?') === -1) {
       a.setAttribute('href', 'apply.html' + buildQualifierQuery());
     }
@@ -6468,7 +6440,7 @@ heroUpdate();
 })();
 </script>
 
-<!-- Mobile Sticky CTA  -  spec requirement -->
+<!-- Mobile Sticky CTA - spec requirement -->
 <a href="/commercial/apply.html" class="mobile-sticky-cta">Get My Free Compare Report &rarr;</a>
 
 <script src="/commercial/cookie-consent.js"></script>

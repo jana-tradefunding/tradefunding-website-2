@@ -33,6 +33,25 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- NAVBAR - CANONICAL (see commercial/components/navbar.html; CLAUDE.md rule 14) -->
+<!-- UTILITY BAR - top tier, ChannelSwitcher only -->
+<div class="utility-bar">
+  <div class="utility-bar__inner">
+    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        <span class="channel-switch__full">Home</span>
+      </a>
+      <a href="/connect/index.html" class="channel-switch__option active active--connect" aria-current="page" aria-label="Connect">
+        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+      </a>
+      <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
+        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
     <a href="/connect/index.html" class="navbar__logo">
@@ -44,23 +63,9 @@
       <a href="/connect/for-vendors.html" class="navbar__link">For Vendors</a>
       <a href="/connect/for-customers.html" class="navbar__link">For Customers</a>
       <a href="/connect/faqs.html" class="navbar__link">FAQs</a>
-      <a href="/connect/about.html" class="navbar__link">About</a>
     </div>
 
     <div class="navbar__right">
-      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-          <span class="channel-switch__full">Home</span>
-        </a>
-        <a href="/connect/index.html" class="channel-switch__option active active--connect" aria-current="page" aria-label="Connect">
-          <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
-        </a>
-        <a href="/personal-and-property/index.html" class="channel-switch__option" aria-label="Personal &amp; Property">
-          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-        </a>
-      </div>
-      <a href="/connect/for-vendors.html" class="navbar__cta">Become a Partner &rarr;</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -80,7 +85,6 @@
     <a href="/commercial/index.html" onclick="closeMobile()">Business Loans &rarr;</a>
     <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
-  <a href="/connect/for-vendors.html" class="btn btn--primary" onclick="closeMobile()">Become a Partner &rarr;</a>
 </div>
 <script>
 (function() {
@@ -157,7 +161,7 @@
       <li>Pages visited, time spent on pages, and referring URLs</li>
       <li>Cookie identifiers and analytics data (see Section 6)</li>
     </ul>
-    <p>We collect Personal Information directly from you wherever practicable  -  for example, when you complete an online enquiry form, call our team, or email us. We may also collect information from third parties such as credit reporting bodies, identity verification services, and publicly available sources where permitted by law.</p>
+    <p>We collect Personal Information directly from you wherever practicable - for example, when you complete an online enquiry form, call our team, or email us. We may also collect information from third parties such as credit reporting bodies, identity verification services, and publicly available sources where permitted by law.</p>
 
     <h2>3. How Do We Use Your Information?</h2>
     <p>We use your Personal Information only for the purposes for which it was collected, or as otherwise permitted by the APPs. These purposes include:</p>
@@ -210,7 +214,7 @@
     <h2>8. Access and Correction</h2>
     <p>You have the right to request access to the Personal Information we hold about you, and to request that we correct any information that is inaccurate, out of date, incomplete, irrelevant, or misleading.</p>
     <p>To make an access or correction request, please contact us in writing using the details set out in Section 11 below. We will respond to your request within a reasonable timeframe and, in any event, within 30 days. We may need to verify your identity before granting access.</p>
-    <p>In some circumstances, we may decline an access or correction request where permitted by the APPs  -  for example, where providing access would unreasonably impact the privacy of another individual, or where the information relates to a legal matter. If we decline your request, we will provide written reasons and advise you of the steps you may take to escalate the matter.</p>
+    <p>In some circumstances, we may decline an access or correction request where permitted by the APPs - for example, where providing access would unreasonably impact the privacy of another individual, or where the information relates to a legal matter. If we decline your request, we will provide written reasons and advise you of the steps you may take to escalate the matter.</p>
 
     <h2>9. Complaints</h2>
     <p>If you believe we have breached your privacy or handled your Personal Information in a manner inconsistent with this Privacy Policy or the APPs, we encourage you to contact us in the first instance so that we can attempt to resolve your concern promptly.</p>

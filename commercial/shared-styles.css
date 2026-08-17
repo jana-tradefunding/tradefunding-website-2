@@ -2,39 +2,40 @@
    CSS CUSTOM PROPERTIES
    ======================================== */
 :root {
-  --navy: #001C44;
-  --navy-blue: #1C1998;
-  --navy-deep: #000C22;
-  --skyblue: #54B4F6;
-  --skyblue-soft: #EAF4FE;
-  --peach: #FF5D5C;
-  --peach-soft: #FFF0F0;
-  --peach-hover: #e84847;
-  --gold: #FBB766;
-  --gold-soft: #FFF7EC;
-  --success: #10B981;
-  --white: #FFFFFF;
-  --light-bg: #F5F7FA;
-  --report-bg: #F0F4F8;
-  --text-primary: #001C44;
-  --text-secondary: #4A5568;
-  --text-light: rgba(255,255,255,0.85);
-  --border-neutral: rgba(0,28,68,0.12);
-  --shadow-sm: 0 1px 3px rgba(0,28,68,0.08);
-  --shadow-md: 0 4px 16px rgba(0,28,68,0.1);
-  --shadow-lg: 0 8px 32px rgba(0,28,68,0.12);
-  --shadow-xl: 0 16px 48px rgba(0,28,68,0.16);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --font-heading: 'Work Sans', sans-serif;
-  --font-body: 'Roboto', sans-serif;
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.5s ease;
-  --max-width: 1200px;
-  --max-width-wide: 1400px;
+--navy: #001C44;
+--navy-blue: #1C1998;
+--navy-deep: #000C22;
+--skyblue: #54B4F6;
+--skyblue-soft: #EAF4FE;
+--peach: #FF5D5C;
+--peach-soft: #FFF0F0;
+--peach-hover: #e84847;
+--gold: #FBB766;
+--gold-soft: #FFF7EC;
+--success: #10B981;
+--white: #FFFFFF;
+--light-bg: #F5F7FA;
+--report-bg: #F0F4F8;
+--text-primary: #001C44;
+--text-secondary: #4A5568;
+--text-light: rgba(255,255,255,0.85);
+--border-neutral: rgba(0,28,68,0.12);
+--shadow-sm: 0 1px 3px rgba(0,28,68,0.08);
+--shadow-md: 0 4px 16px rgba(0,28,68,0.1);
+--shadow-lg: 0 8px 32px rgba(0,28,68,0.12);
+--shadow-xl: 0 16px 48px rgba(0,28,68,0.16);
+--radius-sm: 8px;
+--radius-md: 12px;
+--radius-lg: 16px;
+--radius-xl: 24px;
+--font-heading: 'Work Sans', sans-serif;
+--font-body: 'Roboto', sans-serif;
+--transition-fast: 0.2s ease;
+--transition-base: 0.3s ease;
+--transition-slow: 0.5s ease;
+--max-width: 1200px;
+--max-width-wide: 1400px;
+--utility-bar-height: 37px;
 
   /* ---- Per-channel accent tokens (tokens.md §2) ----
      One shared brand base (navy / skyblue / gold / peach) with a
@@ -43,19 +44,19 @@
      other two channels' tokens are defined here too so the shared
      ChannelSwitcher can render their active-pill colors correctly
      while linking out from the Commercial navbar. ---- */
-  --tf-commercial-primary: var(--navy);
-  --tf-commercial-primary-alt: var(--navy-blue);
-  --tf-commercial-accent: var(--skyblue);
+--tf-commercial-primary: var(--navy);
+--tf-commercial-primary-alt: var(--navy-blue);
+--tf-commercial-accent: var(--skyblue);
 
-  --tf-connect-primary: var(--gold);
-  --tf-connect-primary-soft: var(--gold-soft);
-  --tf-connect-accent: var(--navy);
-  --tf-connect-accent-alt: var(--navy-blue);
+--tf-connect-primary: var(--gold);
+--tf-connect-primary-soft: var(--gold-soft);
+--tf-connect-accent: var(--navy);
+--tf-connect-accent-alt: var(--navy-blue);
 
-  --tf-personalproperty-primary: var(--peach);
-  --tf-personalproperty-primary-soft: var(--peach-soft);
-  --tf-personalproperty-accent: var(--navy);
-  --tf-personalproperty-accent-alt: var(--navy-blue);
+--tf-personalproperty-primary: var(--peach);
+--tf-personalproperty-primary-soft: var(--peach-soft);
+--tf-personalproperty-accent: var(--navy);
+--tf-personalproperty-accent-alt: var(--navy-blue);
 }
 
 /* ========================================
@@ -71,6 +72,9 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Two-tier fixed header (utility bar + navbar) - keep in-page anchor
+     links (#how-it-works, #products, etc.) from landing under it. */
+  scroll-padding-top: calc(var(--utility-bar-height, 37px) + 80px);
 }
 
 body {
@@ -198,11 +202,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================
-   NAVBAR  -  Canonical styles (do NOT duplicate in inline styles)
+   UTILITY BAR - top tier, ChannelSwitcher only. Sits above the main
+   navbar and is independent of .navbar.transparent/.scrolled - always
+   the same light, neutral background regardless of hero state, so
+   there is no dark-hero contrast case to special-case here.
+   ======================================== */
+.utility-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
+  background: rgba(0,28,68,0.03);
+  border-bottom: 1px solid rgba(0,28,68,0.06);
+}
+
+.utility-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 6px 32px;
+}
+
+/* ========================================
+   NAVBAR - Canonical styles (do NOT duplicate in inline styles)
    ======================================== */
 .navbar {
   position: fixed;
-  top: 0;
+  top: var(--utility-bar-height, 37px);
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -305,7 +334,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: rotate(180deg);
 }
 
-/* Dropdown menu  -  3-column grid */
+/* Dropdown menu - 3-column grid */
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -403,24 +432,6 @@ h1, h2, h3, h4, h5, h6 {
 .navbar__right {
   display: flex;
   align-items: center;
-  gap: 24px;
-}
-
-.navbar__cta {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 12px 24px;
-  border-radius: 50px;
-  background: var(--peach);
-  color: var(--white);
-  transition: all var(--transition-base);
-}
-
-.navbar__cta:hover {
-  background: var(--peach-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255,93,92,0.4);
 }
 
 /* Hamburger */
@@ -452,20 +463,19 @@ h1, h2, h3, h4, h5, h6 {
 .navbar__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* ========================================
-   CHANNEL SWITCHER  -  "One Brand, Three Channels"
-   Capsule toggle in the navbar, outside the primary nav row (Products /
-   Resources / About never compete with it). On Commercial's home page it
-   shows a Home glyph (current channel, no text label) plus two selectable
-   targets: Connect and Personal & Property.
+   CHANNEL SWITCHER - "One Brand, Three Channels"
+   Lives in the top utility bar (above the main nav row), not inside it,
+   so Products / Why Us / Resources / Partners never compete with it.
+   Always sits on the utility bar's own light, constant background, so
+   there is no separate .navbar.transparent contrast case to handle here.
+   Inactive tabs: crisp navy text, transparent background - no shadows,
+   no glow, no pseudo-element bleed. Active tab: accent-tinted per
+   channel, flat (no box-shadow).
    ======================================== */
 .channel-switch {
   display: flex;
   align-items: center;
   gap: 2px;
-  background: rgba(0,28,68,0.04);
-  border: 1px solid var(--border-neutral);
-  border-radius: 50px;
-  padding: 4px;
   flex-shrink: 0;
 }
 
@@ -475,16 +485,17 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.82rem;
-  padding: 9px 16px;
+  font-size: 0.78rem;
+  padding: 6px 14px;
   border-radius: 50px;
-  color: var(--text-secondary);
+  color: var(--navy);
+  background: transparent;
   white-space: nowrap;
   transition: all 0.2s ease;
 }
 
 .channel-switch__option:hover {
-  background: rgba(0,28,68,0.04);
+  background: rgba(0,28,68,0.06);
   color: var(--navy);
 }
 
@@ -493,11 +504,11 @@ h1, h2, h3, h4, h5, h6 {
   outline-offset: 2px;
 }
 
+/* Commercial (Home) active state: navy background, white text. */
 .channel-switch__option.active,
 .channel-switch__option[aria-current="page"] {
   background: var(--navy);
   color: var(--white);
-  box-shadow: 0 2px 8px rgba(0,28,68,0.22);
   cursor: default;
 }
 
@@ -507,54 +518,29 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--white);
 }
 
-/* Per-channel active tint  -  the active pill takes on the current
+/* Per-channel active tint - the active pill takes on the current
    channel's own accent color (tokens.md §2), not a flat navy on every
-   page, per buildspec.md §2A. */
+   page, per buildspec.md §2A. Flat fills only - no box-shadow/glow. */
 .channel-switch__option.active--connect {
   background: var(--tf-connect-primary);
   color: var(--navy);
 }
+/* Peach active pill uses navy ink, not white: white-on-peach measures
+   3.01:1 (fails the 4.5:1 bar), navy-on-peach measures 5.58:1. */
 .channel-switch__option.active--personalproperty {
   background: var(--tf-personalproperty-primary);
-  color: var(--white);
+  color: var(--navy);
 }
 
 .channel-switch__option--home {
-  padding: 9px 15px 9px 12px;
+  padding: 6px 13px 6px 10px;
   gap: 6px;
 }
 
 .channel-switch__option--home svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
-}
-
-/* 🟡 Contrast fix (buildspec.md §2 / plan.md §4): this page's hero
-   flips .navbar.transparent to a light background (see the hero override
-   below), so the base .navbar.transparent rules elsewhere in this file  - 
-   written for a dark hero  -  must not apply to the switcher here. Force
-   navy border/text so the Connect and Personal & Property options stay
-   legible against the light home-page background, instead of rendering
-   near-white text on a near-white pill. */
-.navbar.transparent .channel-switch {
-  border-color: rgba(0,28,68,0.18);
-  background: rgba(0,28,68,0.04);
-}
-
-.navbar.transparent .channel-switch__option {
-  color: var(--navy);
-}
-
-.navbar.transparent .channel-switch__option:hover {
-  background: rgba(0,28,68,0.06);
-  color: var(--navy);
-}
-
-.navbar.transparent .channel-switch__option.active,
-.navbar.transparent .channel-switch__option[aria-current="page"] {
-  background: var(--navy);
-  color: var(--white);
 }
 
 @media (max-width: 900px) {
@@ -644,8 +630,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .navbar__links { display: none; }
   .navbar__hamburger { display: flex; }
-  .navbar__right { gap: 16px; }
-  .navbar__cta { display: none; }
 }
 
 /* ========================================
@@ -664,7 +648,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 48px;
 }
 
-/* Condensed 2-column footer (Phase 5 Part 1)  -  brand column + one
+/* Condensed 2-column footer (Phase 5 Part 1) - brand column + one
    link column holding three grouped sub-lists, so the footer reads
    as two columns sitewide instead of four. */
 .footer__grid--condensed {
@@ -885,8 +869,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .navbar__links { display: none; }
   .navbar__hamburger { display: flex; }
-  .navbar__right { gap: 16px; }
-  .navbar__cta { display: none; }
 
   .footer__grid {
     grid-template-columns: 1fr;

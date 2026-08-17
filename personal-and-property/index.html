@@ -3,68 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DRAFT — Personal &amp; Property Finance from Trade Funding. Compare home loans, investment property finance, construction and SMSF lending across a specialist lender panel.">
+<meta name="description" content="DRAFT - Personal &amp; Property Finance from Trade Funding. Compare home loans, investment property finance, construction and SMSF lending across a specialist lender panel.">
 <title>Personal &amp; Property Finance | Trade Funding (Draft)</title>
 <meta name="robots" content="noindex, nofollow">
-<!-- 🟡 Phase 4 design-token baseline only — draft copy, not final. Do not index. -->
+<!-- 🟡 Phase 4 design-token baseline only - draft copy, not final. Do not index. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 /* ========================================================
-   TOKENS — locked base + Personal & Property accent overrides
-   (tokens.md §1 / §2.3 — no off-token colors introduced)
+   TOKENS - locked base + Personal & Property accent overrides
+   (tokens.md §1 / §2.3 - no off-token colors introduced)
    ======================================================== */
 :root {
-  --navy: #001C44;
-  --navy-blue: #1C1998;
-  --navy-deep: #000C22;
+--navy: #001C44;
+--navy-blue: #1C1998;
+--navy-deep: #000C22;
 
-  --skyblue: #54B4F6;
-  --skyblue-soft: #EAF4FE;
+--skyblue: #54B4F6;
+--skyblue-soft: #EAF4FE;
 
-  --peach: #FF5D5C;
-  --peach-soft: #FFF0F0;
+--peach: #FF5D5C;
+--peach-soft: #FFF0F0;
 
-  --gold: #FBB766;
-  --gold-soft: #FFF7EC;
+--gold: #FBB766;
+--gold-soft: #FFF7EC;
 
-  --success: #10B981;
+--success: #10B981;
 
-  --white: #FFFFFF;
-  --bg-soft: #F5F8FC;
+--white: #FFFFFF;
+--bg-soft: #F5F8FC;
 
-  /* Ink scale — derived from navy, not new hex values */
-  --ink-900: var(--navy);
-  --ink-600: rgba(0,28,68,0.66);
-  --ink-400: rgba(0,28,68,0.48);
-  --ink-200: rgba(0,28,68,0.28);
+  /* Ink scale - derived from navy, not new hex values */
+--ink-900: var(--navy);
+--ink-600: rgba(0,28,68,0.66);
+--ink-400: rgba(0,28,68,0.48);
+--ink-200: rgba(0,28,68,0.28);
 
   /* Per-channel tokens (tokens.md §2.3) */
-  --tf-personalproperty-primary: var(--peach);
-  --tf-personalproperty-primary-soft: var(--peach-soft);
-  --tf-personalproperty-accent: var(--navy);
-  --tf-personalproperty-accent-alt: var(--navy-blue);
+--tf-personalproperty-primary: var(--peach);
+--tf-personalproperty-primary-soft: var(--peach-soft);
+--tf-personalproperty-accent: var(--navy);
+--tf-personalproperty-accent-alt: var(--navy-blue);
 
-  --font-heading: 'Work Sans', sans-serif;
-  --font-body: 'Roboto', sans-serif;
+--font-heading: 'Work Sans', sans-serif;
+--font-body: 'Roboto', sans-serif;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+--radius-sm: 8px;
+--radius-md: 12px;
+--radius-lg: 16px;
+--radius-xl: 24px;
 
-  --shadow-sm: 0 1px 3px rgba(0,28,68,0.08);
-  --shadow-md: 0 4px 16px rgba(0,28,68,0.10);
-  --shadow-lg: 0 8px 32px rgba(0,28,68,0.14);
-  --shadow-xl: 0 16px 48px rgba(0,28,68,0.18);
+--shadow-sm: 0 1px 3px rgba(0,28,68,0.08);
+--shadow-md: 0 4px 16px rgba(0,28,68,0.10);
+--shadow-lg: 0 8px 32px rgba(0,28,68,0.14);
+--shadow-xl: 0 16px 48px rgba(0,28,68,0.18);
 
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.3s ease;
+--transition-fast: 0.2s ease;
+--transition-base: 0.3s ease;
 
-  --max-width: 1200px;
-  --max-width-wide: 1400px;
+--max-width: 1200px;
+--max-width-wide: 1400px;
+--utility-bar-height: 37px;
 }
 
 /* ========================================================
@@ -102,7 +103,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  /* Contrast check: peach (#FF5D5C) on white is only 3.01:1 — fails the
+  /* Contrast check: peach (#FF5D5C) on white is only 3.01:1 - fails the
      4.5:1 bar for this small a label, so this uses navy instead (5.58:1). */
   color: var(--navy);
   margin-bottom: 14px;
@@ -153,11 +154,31 @@ button { font-family: inherit; cursor: pointer; }
 .btn--outline:hover { border-color: var(--navy); background: rgba(0,28,68,0.06); }
 
 /* ========================================================
-   NAVBAR
+   UTILITY BAR - top tier, ChannelSwitcher only. Always sits on its
+   own light, constant background - no dark-hero contrast case here.
+   ======================================================== */
+.utility-bar {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 1001;
+  background: rgba(0,28,68,0.03);
+  border-bottom: 1px solid rgba(0,28,68,0.06);
+}
+.utility-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 6px 32px;
+}
+
+/* ========================================================
+   NAVBAR - logo + primary nav only, no CTA
    ======================================================== */
 .navbar {
   position: fixed;
-  top: 0; left: 0; width: 100%;
+  top: var(--utility-bar-height, 37px); left: 0; width: 100%;
   z-index: 1000;
   padding: 14px 0;
   background: rgba(255,255,255,0.7);
@@ -189,22 +210,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .navbar__link:hover { color: var(--peach); }
 
-.navbar__right { display: flex; align-items: center; gap: 18px; }
-.navbar__cta {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.88rem;
-  padding: 12px 22px;
-  border-radius: 50px;
-  background: var(--peach);
-  /* Contrast check: white text on peach measures 3.01:1, which fails the
-     4.5:1 bar this text is small enough to need — navy text on peach
-     measures 5.58:1 and clears it, so navy ink is used here instead. */
-  color: var(--navy);
-  transition: all var(--transition-base);
-  box-shadow: 0 4px 14px rgba(255,93,92,0.35);
-}
-.navbar__cta:hover { background: var(--peach-soft); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(255,93,92,0.25); }
+.navbar__right { display: flex; align-items: center; }
 
 .navbar__hamburger {
   display: none;
@@ -221,20 +227,17 @@ button { font-family: inherit; cursor: pointer; }
 .navbar__hamburger.open span:nth-child(2) { opacity: 0; }
 .navbar__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-/* ---- Channel switcher (buildspec.md §2 / project brief markup) ----
-   Active pill uses peach background. Measured contrast: white text on
-   peach is 3.01:1 (fails the 4.5:1 bar this label's small text size
-   needs); navy text on peach is 5.58:1 (clears it) — so the active
-   pill uses navy ink, matching the .navbar__cta fix applied for the
-   same reason. */
+/* ---- Channel switcher ----
+   Inactive tabs: crisp navy text, transparent background - no shadows,
+   no glow. Active tab: accent-tinted per channel, flat fill (no
+   box-shadow) - this is the fix for the red/coral glow bug that
+   previously sat on the Personal & Property active pill. Peach active
+   pill uses navy ink, not white: white-on-peach measures 3.01:1 (fails
+   the 4.5:1 bar), navy-on-peach measures 5.58:1. */
 .channel-switch {
   display: flex;
   align-items: center;
   gap: 2px;
-  background: rgba(0,28,68,0.04);
-  border: 1px solid rgba(0,28,68,0.12);
-  border-radius: 50px;
-  padding: 4px;
   flex-shrink: 0;
 }
 .channel-switch__option {
@@ -244,23 +247,32 @@ button { font-family: inherit; cursor: pointer; }
   gap: 6px;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.82rem;
-  padding: 9px 16px;
+  font-size: 0.78rem;
+  padding: 6px 14px;
   border-radius: 50px;
-  color: var(--ink-600);
+  color: var(--navy);
+  background: transparent;
   white-space: nowrap;
   transition: all 0.2s ease;
 }
-.channel-switch__option:hover { background: rgba(0,28,68,0.04); color: var(--navy); }
+.channel-switch__option:hover { background: rgba(0,28,68,0.06); color: var(--navy); }
 .channel-switch__option:focus-visible { outline: 2px solid var(--skyblue); outline-offset: 2px; }
+.channel-switch__option.active,
 .channel-switch__option[aria-current="page"] {
-  background: var(--peach);
-  color: var(--navy);
-  box-shadow: 0 2px 8px rgba(255,93,92,0.35);
+  background: var(--navy);
+  color: var(--white);
   cursor: default;
 }
-.channel-switch__option--home svg { width: 16px; height: 16px; flex-shrink: 0; }
-.channel-switch__option--home { color: var(--navy); }
+.channel-switch__option.active--connect {
+  background: var(--gold);
+  color: var(--navy);
+}
+.channel-switch__option.active--personalproperty {
+  background: var(--peach);
+  color: var(--navy);
+}
+.channel-switch__option--home svg { width: 15px; height: 15px; flex-shrink: 0; }
+.channel-switch__option--home { padding: 6px 13px 6px 10px; }
 .channel-switch__short { display: none; }
 @media (max-width: 900px) { .channel-switch__option { padding: 8px 13px; font-size: 0.78rem; } }
 @media (max-width: 640px) {
@@ -303,12 +315,11 @@ button { font-family: inherit; cursor: pointer; }
 
 @media (max-width: 900px) {
   .navbar__links { display: none; }
-  .navbar__cta { display: none; }
   .navbar__hamburger { display: flex; }
 }
 
 /* ========================================================
-   HERO — peach-dominant, navy accent (tokens.md §2.3 / buildspec §6)
+   HERO - peach-dominant, navy accent (tokens.md §2.3 / buildspec §6)
    ======================================================== */
 .hero {
   position: relative;
@@ -359,7 +370,7 @@ button { font-family: inherit; cursor: pointer; }
 .hero__trust-item { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; font-weight: 500; color: rgba(0,28,68,0.72); }
 .hero__trust-item svg { width: 16px; height: 16px; color: var(--navy); flex-shrink: 0; }
 
-/* Hero card panel — WHITE surface, NAVY ink (buildspec §6.3 — never peach) */
+/* Hero card panel - WHITE surface, NAVY ink (buildspec §6.3 - never peach) */
 .hero__card {
   background: var(--white);
   border: 1px solid rgba(0,28,68,0.10);
@@ -388,7 +399,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ========================================================
-   PRODUCT GRID — 8 Personal & Property loan types
+   PRODUCT GRID - 8 Personal & Property loan types
    Icons: navy on peach-soft (buildspec §6.4)
    ======================================================== */
 .products { padding: clamp(60px, 7vw, 100px) 0; background: var(--bg-soft); }
@@ -439,7 +450,7 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 768px) { .why__grid { grid-template-columns: 1fr; gap: 30px; } }
 
 /* ========================================================
-   BOTTOM CTA — peach-dominant, navy ink
+   BOTTOM CTA - peach-dominant, navy ink
    ======================================================== */
 .cta {
   padding: clamp(60px, 7vw, 100px) 0;
@@ -476,33 +487,36 @@ button { font-family: inherit; cursor: pointer; }
 </head>
 <body>
 
-<!-- ============================================
-     NAVBAR — Personal & Property
-     ============================================ -->
+<!-- HEADER - Personal & Property (two-tier: utility bar + main nav,
+     no CTA button, no About in primary nav - matches the canonical
+     structure in commercial/components/navbar.html) -->
+<div class="utility-bar">
+  <div class="utility-bar__inner">
+    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        <span class="channel-switch__full">Home</span>
+      </a>
+      <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+      </a>
+      <a href="/personal-and-property/index.html" class="channel-switch__option active active--personalproperty" aria-current="page" aria-label="Personal &amp; Property">
+        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">Trade Funding<span>.</span></a>
+    <a href="/personal-and-property/index.html" class="navbar__logo">Trade Funding<span>.</span></a>
 
     <div class="navbar__links">
-      <a href="#products" class="navbar__link">Products</a>
-      <a href="#why" class="navbar__link">Why Us</a>
-      <a href="about.html" class="navbar__link">About</a>
+      <a href="/personal-and-property/index.html#products" class="navbar__link">Products</a>
+      <a href="/personal-and-property/index.html#why" class="navbar__link">Why Us</a>
     </div>
 
     <div class="navbar__right">
-      <!-- ChannelSwitcher — buildspec.md §2 / project brief:
-           on /personal-and-property/* pages, show ONLY "Home" (back to
-           Commercial) and this channel's own name as the active pill. -->
-      <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-        <a href="../commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-          <span class="channel-switch__full">Home</span>
-        </a>
-        <a href="index.html" class="channel-switch__option" aria-current="page" aria-label="Personal &amp; Property">
-          <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
-        </a>
-      </div>
-      <a href="apply.html" class="navbar__cta">Get My Free Compare Report &rarr;</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -512,29 +526,29 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- Mobile nav -->
 <div class="mobile-nav" id="mobileNav">
+  <a href="/personal-and-property/index.html#products" onclick="closeMobile()">Products</a>
+  <a href="/personal-and-property/index.html#why" onclick="closeMobile()">Why Us</a>
+  <a href="/personal-and-property/about.html" onclick="closeMobile()">About</a>
   <div class="mobile-nav__switch">
     <span class="mobile-nav__switch-label">Trade Funding also does</span>
-    <a href="../commercial/index.html" onclick="closeMobile()">Commercial Finance &rarr;</a>
+    <a href="/commercial/index.html" onclick="closeMobile()">Business Loans &rarr;</a>
+    <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
   </div>
-  <a href="#products" onclick="closeMobile()">Products</a>
-  <a href="#why" onclick="closeMobile()">Why Us</a>
-  <a href="about.html" onclick="closeMobile()">About</a>
-  <a href="apply.html" class="btn btn--primary" onclick="closeMobile()">Get Started &rarr;</a>
 </div>
 
 <main>
 
   <!-- ============================================
-       HERO — peach-dominant, navy accent
+       HERO - peach-dominant, navy accent
        ============================================ -->
   <section class="hero">
     <div class="hero__inner">
       <div>
         <span class="hero__eyebrow"><span class="hero__eyebrow-dot"></span> Personal &amp; Property Finance</span>
         <h1 class="hero__title">Home &amp; property loans built for people the banks find <em>complicated.</em></h1>
-        <p class="hero__lead">DRAFT COPY — Self-employed, multiple income streams, or an unusual property? We compare low-doc, alt-doc and specialist lenders so you can buy, build, refinance, or invest — without the bank runaround.</p>
+        <p class="hero__lead">DRAFT COPY - Self-employed, multiple income streams, or an unusual property? We compare low-doc, alt-doc and specialist lenders so you can buy, build, refinance, or invest - without the bank runaround.</p>
         <div class="hero__cta-group">
-          <a href="apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
+          <a href="/personal-and-property/apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
           <a href="#products" class="btn btn--outline">See our loan types</a>
         </div>
         <div class="hero__trust">
@@ -574,68 +588,68 @@ button { font-family: inherit; cursor: pointer; }
   </section>
 
   <!-- ============================================
-       PRODUCTS — 8 Personal & Property loan types
+       PRODUCTS - 8 Personal & Property loan types
        ============================================ -->
   <section class="products" id="products">
     <div class="container container--wide">
       <div class="section-header reveal">
         <span class="s-eyebrow">Products</span>
         <h2 class="s-headline">Property &amp; personal finance for every situation</h2>
-        <p class="s-subhead">DRAFT COPY — from your first home to your fifth investment property. Full page-level detail and lender panel to follow in Phase 3.</p>
+        <p class="s-subhead">DRAFT COPY - from your first home to your fifth investment property. Full page-level detail and lender panel to follow in Phase 3.</p>
       </div>
 
       <div class="products__grid">
 
-        <a href="owner-occupied-home-loans.html" class="product-card reveal">
+        <a href="/personal-and-property/owner-occupied-home-loans.html" class="product-card reveal">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <h3 class="product-card__name">Owner-Occupied Home Loans</h3>
           <p class="product-card__desc">Compare lenders for the home you live in, including self-employed and low-doc options.</p>
           <span class="product-card__link">Compare lenders &rarr;</span>
         </a>
 
-        <a href="investment-property-loans.html" class="product-card reveal delay-1">
+        <a href="/personal-and-property/investment-property-loans.html" class="product-card reveal delay-1">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M9 21V13h6v8"/><path d="M3 8l9-5 9 5"/></svg></div>
           <h3 class="product-card__name">Investment Property Loans</h3>
           <p class="product-card__desc">Grow your portfolio with lending structured around rental income and equity.</p>
           <span class="product-card__link">Compare lenders &rarr;</span>
         </a>
 
-        <a href="refinancing.html" class="product-card reveal delay-2">
+        <a href="/personal-and-property/refinancing.html" class="product-card reveal delay-2">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
           <h3 class="product-card__name">Refinancing</h3>
           <p class="product-card__desc">Switch lenders for a better rate, unlock equity, or consolidate your existing loans.</p>
           <span class="product-card__link">Compare lenders &rarr;</span>
         </a>
 
-        <a href="construction-loans.html" class="product-card reveal delay-3">
+        <a href="/personal-and-property/construction-loans.html" class="product-card reveal delay-3">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h20"/><path d="M4 20V10l4-3 4 3v10"/><path d="M12 20v-6l4-3 4 3v6"/></svg></div>
           <h3 class="product-card__name">Construction Loans</h3>
           <p class="product-card__desc">Progressive-drawdown finance for building a new home or major renovation.</p>
           <span class="product-card__link">Compare lenders &rarr;</span>
         </a>
 
-        <a href="commercial-property-finance.html" class="product-card reveal">
+        <a href="/personal-and-property/commercial-property-finance.html" class="product-card reveal">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></svg></div>
           <h3 class="product-card__name">Commercial Property Finance</h3>
           <p class="product-card__desc">Finance for offices, retail, warehouses and other commercial premises.</p>
           <span class="product-card__link">Compare lenders &rarr;</span>
         </a>
 
-        <a href="smsf-loans.html" class="product-card reveal delay-1">
+        <a href="/personal-and-property/smsf-loans.html" class="product-card reveal delay-1">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
           <h3 class="product-card__name">SMSF Loans</h3>
           <p class="product-card__desc">Property lending structured for Self-Managed Super Fund trustees.</p>
           <span class="product-card__link">Compare lenders &rarr;</span>
         </a>
 
-        <a href="personal-loans.html" class="product-card reveal delay-2">
+        <a href="/personal-and-property/personal-loans.html" class="product-card reveal delay-2">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg></div>
           <h3 class="product-card__name">Personal Loans</h3>
           <p class="product-card__desc">Unsecured or secured lending for personal needs, compared side by side.</p>
           <span class="product-card__link">Compare lenders &rarr;</span>
         </a>
 
-        <a href="debt-consolidation.html" class="product-card reveal delay-3">
+        <a href="/personal-and-property/debt-consolidation.html" class="product-card reveal delay-3">
           <div class="product-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8l4 4-4 4"/><path d="M3 12h18"/><path d="M7 8L3 12l4 4"/></svg></div>
           <h3 class="product-card__name">Debt Consolidation</h3>
           <p class="product-card__desc">Roll multiple debts into a single, simpler repayment against your property or income.</p>
@@ -654,7 +668,7 @@ button { font-family: inherit; cursor: pointer; }
       <div class="section-header reveal">
         <span class="s-eyebrow">Why Us</span>
         <h2 class="s-headline">Why compare with Trade Funding</h2>
-        <p class="s-subhead">DRAFT COPY — placeholder reasons pending Phase 3 sign-off.</p>
+        <p class="s-subhead">DRAFT COPY - placeholder reasons pending Phase 3 sign-off.</p>
       </div>
       <div class="why__grid">
         <div class="why-item reveal">
@@ -682,15 +696,15 @@ button { font-family: inherit; cursor: pointer; }
   <section class="cta">
     <div class="container">
       <h2>Ready to compare your options?</h2>
-      <p>DRAFT COPY — get a free, no-obligation Compare Report across our Personal &amp; Property lender panel.</p>
-      <a href="apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
+      <p>DRAFT COPY - get a free, no-obligation Compare Report across our Personal &amp; Property lender panel.</p>
+      <a href="/personal-and-property/apply.html" class="btn btn--primary">Get My Free Compare Report &rarr;</a>
     </div>
   </section>
 
 </main>
 
 <!-- ============================================
-     FOOTER (placeholder — legal/ACL copy carried over
+     FOOTER (placeholder - legal/ACL copy carried over
      from the existing Commercial footer, not invented here;
      full FooterLegal global component per CLAUDE.md §Hard rule 8
      lands in the Next.js build)
@@ -699,34 +713,34 @@ button { font-family: inherit; cursor: pointer; }
   <div class="container container--wide">
     <div class="footer__grid">
       <div>
-        <a href="index.html" class="footer__logo">Trade Funding<span>.</span></a>
-        <p class="footer__brand-desc">Personal &amp; Property Finance from Trade Funding. DRAFT placeholder copy — company address pending, see CLAUDE.md Hard Rule 4.</p>
+        <a href="/personal-and-property/index.html" class="footer__logo">Trade Funding<span>.</span></a>
+        <p class="footer__brand-desc">Personal &amp; Property Finance from Trade Funding. DRAFT placeholder copy - company address pending, see CLAUDE.md Hard Rule 4.</p>
       </div>
       <div>
         <h4 class="footer__heading">Products</h4>
         <div class="footer__links">
-          <a href="owner-occupied-home-loans.html">Owner-Occupied Home Loans</a>
-          <a href="investment-property-loans.html">Investment Property Loans</a>
-          <a href="refinancing.html">Refinancing</a>
-          <a href="construction-loans.html">Construction Loans</a>
-          <a href="commercial-property-finance.html">Commercial Property Finance</a>
-          <a href="smsf-loans.html">SMSF Loans</a>
-          <a href="personal-loans.html">Personal Loans</a>
-          <a href="debt-consolidation.html">Debt Consolidation</a>
+          <a href="/personal-and-property/owner-occupied-home-loans.html">Owner-Occupied Home Loans</a>
+          <a href="/personal-and-property/investment-property-loans.html">Investment Property Loans</a>
+          <a href="/personal-and-property/refinancing.html">Refinancing</a>
+          <a href="/personal-and-property/construction-loans.html">Construction Loans</a>
+          <a href="/personal-and-property/commercial-property-finance.html">Commercial Property Finance</a>
+          <a href="/personal-and-property/smsf-loans.html">SMSF Loans</a>
+          <a href="/personal-and-property/personal-loans.html">Personal Loans</a>
+          <a href="/personal-and-property/debt-consolidation.html">Debt Consolidation</a>
         </div>
       </div>
       <div>
         <h4 class="footer__heading">Company</h4>
         <div class="footer__links">
-          <a href="about.html">About Us</a>
-          <a href="apply.html">Get Started</a>
+          <a href="/personal-and-property/about.html">About Us</a>
+          <a href="/personal-and-property/apply.html">Get Started</a>
           <a href="../commercial/index.html">Commercial Finance</a>
           <a href="../connect/index.html">Trade Funding Connect</a>
         </div>
       </div>
     </div>
     <div class="footer__disclaimer">
-      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. ACL 387856. (Placeholder disclaimer — final legal copy lives in the shared FooterLegal component, not duplicated per channel.)</p>
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. ACL 387856. (Placeholder disclaimer - final legal copy lives in the shared FooterLegal component, not duplicated per channel.)</p>
     </div>
     <div class="footer__bottom">
       <p>&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
