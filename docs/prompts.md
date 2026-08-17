@@ -1,12 +1,33 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v4 — adds Prompt 5-fix to collapse the two-tier header regression back into one strip. Everything else unchanged from v3 (Phase 5 build hygiene, always-three-visible `ChannelSwitcher`, Phase 5.5 cleanup).** Run these one at a time inside your project folder, which should now contain `commercial/`, `connect/`, `personal-and-property/`, `design baseline/` (reference only — see note below), `docs/`, `tokens.md`, `Master Information Architecture & Sitemap.md`, `plan.md`, `buildspec.md`, and `CLAUDE.md`.
+**Status: v5 — reordered into strict chronological (run-this-then-this) order, with a status snapshot based on the zip you most recently sent.** Statuses below reflect what's actually in your files right now, not what should theoretically be done — re-check after every session, since this snapshot goes stale the moment you run something new.
 
-**Reminder before every session:** `design baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy — only as something to read for color/contrast decisions that then get applied to the real `commercial/`, `connect/`, and new Personal & Property files.
+**Reminder before every session:** `design baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
 ---
 
-## Prompt 0 — Hit list (Phase 0) — already run once; re-run only if new comments arrive
+## Status snapshot (from your latest zip)
+
+| # | Prompt | Status | Evidence |
+|---|---|---|---|
+| 1 | Branding tokens | ✅ Done | `tokens.md` exists at root, locked |
+| 1b | Apply tokens to real HTML | ✅ Done | `connect/index.html` uses real `--gold` tokens; `personal-and-property/styles/main.css` defines `--peach` |
+| 0 | Hit list (`hitlist.md`) | ⬜ Not run | No `hitlist.md` found — low priority, its content is already folded into `plan.md` §2, but produce it if you want a standalone tracker |
+| 2 | Nav spec (`nav-spec.md`) | ⬜ Not run | No `nav-spec.md` found — the nav itself got built anyway inside Prompt 5, but the standalone spec doc doesn't exist |
+| 3.1 | Research (`research-notes.md`) | ✅ Done | `docs/research-notes.md` exists |
+| 3.2 | Copy creation (`copy-final.md`) | ✅ Done | `docs/copy-final.md` exists |
+| 3b | Apply approved copy | ✅ Done (at least partially) | Commercial home hero copy is in place with correctly spaced hyphens — spot-check other pages before assuming it's everywhere |
+| 4 | Component inventory (`design/components.md`) | ⬜ Not run | No `design/components.md` found — low priority, doesn't block Phase 6 but makes it slower |
+| 5 | Page production | ✅ Done — **you ran this one** | `personal-and-property/*` (11 pages), `commercial/guides/index.html` hub, both calculators all present |
+| 5-fix | Collapse two-tier header | 🔴 **Not run — run this next** | `commercial/components/navbar.html` still has the `.utility-bar` + `.navbar` two-tier structure, and **because Prompt 5 ran first, it's now been copied into 62 of your 66 HTML files** — see the updated Prompt 5-fix below, scope has grown since you last saw this prompt |
+| 5.5 | Pre-conversion cleanup | ⬜ Not run | `personal and property/` (spaces) duplicate is already gone — good, no action needed there. But `commercial/debtor-finance.html` and `commercial/trade-funding-website-application.html` are both still present and need secure deletion once redirects are confirmed |
+| 6–9 | Payload/Next.js/Vercel | ⬜ Not started | No `/site` app scaffold present yet — correctly sequenced after 5-fix and 5.5 |
+
+**What this means for you right now:** run **Prompt 5-fix next**, before anything else — it now needs to touch far more files than originally scoped, since Prompt 5 propagated the two-tier header into all the new Personal & Property and Guides pages too. Then run Prompt 5.5 (cleanup). Prompts 0, 2, and 4 are optional documentation steps you can go back for later — they don't block anything downstream.
+
+---
+
+## Prompt 0 — Hit list (Phase 0) — ⬜ NOT RUN (optional, low priority)
 
 ```
 Read plan.md §1 and §2, Team Comments.md, Master Information Architecture &
@@ -24,13 +45,13 @@ Do not touch any other files in this step.
 
 ---
 
-## Prompt 1 — Branding tokens (Phase 1) — DONE, tokens.md already exists
+## Prompt 1 — Branding tokens (Phase 1) — ✅ DONE
 
-No action needed here — `tokens.md` is finalized. If you need to regenerate or extend it (e.g. a fourth channel is added later), read the existing `tokens.md` first and treat every value in it as locked unless I say otherwise.
+No action needed — `tokens.md` is finalized. If you need to regenerate or extend it later, read the existing `tokens.md` first and treat every value in it as locked unless told otherwise.
 
 ---
 
-## Prompt 1b — Apply tokens to the real HTML files (Phase 4 — new, replaces the old "design baseline" step)
+## Prompt 1b — Apply tokens to the real HTML files (Phase 4) — ✅ DONE
 
 ```
 Read tokens.md and buildspec.md §2 (ChannelSwitcher spec) and §5 (Connect
@@ -62,7 +83,7 @@ either file.
 
 ---
 
-## Prompt 2 — Site architecture / nav (Phase 2 — updated: always-three-visible switcher)
+## Prompt 2 — Site architecture / nav (Phase 2) — ⬜ NOT RUN (optional — nav was built anyway inside Prompt 5, this just produces the standalone spec doc)
 
 ```
 Read Master Information Architecture & Sitemap.md §2A, §2B, and §11 in
@@ -74,11 +95,12 @@ Produce nav-spec.md describing:
    on every page, regardless of which one is current — Home icon +
    "Home" text (never the word "Commercial"), Connect, and Personal &
    Property. This overrides any earlier "hide the current channel" logic.
-   Include a clear .active CSS state (underline, bold, or a background/
-   border tinted to that channel's own accent color from tokens.md) on
-   whichever of the three matches the current page, so the visitor can
-   tell where they are. Verify contrast for all three entries against
-   each channel's own background per buildspec.md §2.
+   It renders inside the SAME single header row as the logo and primary
+   nav — never as a separate tier. Include a clear .active CSS state
+   (underline, bold, or a background/border tinted to that channel's own
+   accent color from tokens.md) on whichever of the three matches the
+   current page. Verify contrast for all three entries against each
+   channel's own background per buildspec.md §2.
 2. The Products / Why Us / Partners primary nav (Commercial), each mapped
    to its structural role AND the pending Matt-approval placeholder
    wording from plan.md §4 ("What Funding Do I Need?" / "Why Trade
@@ -96,9 +118,7 @@ with them.
 
 ---
 
-## Prompt 3.1 — Research (Phase 3.1 — do in Claude web chat, not Claude Code)
-
-*(Run this first. The Executive Questionnaire has already been returned with real strategic input for Personal & Property and Connect — this step organizes it into a page-ready reference, it doesn't generate it from scratch.)*
+## Prompt 3.1 — Research (Phase 3.1) — ✅ DONE
 
 ```
 Read docs/Executive Questionnaire for Personal and Property and Connect.docx,
@@ -115,9 +135,7 @@ count). Do not draft any actual page copy in this step — reference
 document only.
 ```
 
-## Prompt 3.2 — Copy creation (Phase 3.2 — do in Claude web chat, not Claude Code)
-
-*(Run this once `research-notes.md` exists and you've chased down anything marked "STILL NEEDED" that you can realistically get before drafting.)*
+## Prompt 3.2 — Copy creation (Phase 3.2) — ✅ DONE
 
 ```
 Read research-notes.md, plan.md §5.0 (locked messaging direction + copy-
@@ -139,7 +157,7 @@ Output copy-final.md at the project root, ready to be added back into the
 project zip before Phase 4/5 building begins.
 ```
 
-## Prompt 3b — Apply approved copy (after copy-final.md is signed off)
+## Prompt 3b — Apply approved copy — ✅ DONE (at least the Commercial home hero — spot-check the rest)
 
 ```
 Read copy-final.md.
@@ -154,7 +172,7 @@ alter layout, only copy. Show me a diff before writing changes.
 
 ---
 
-## Prompt 4 — Design component inventory (Phase 4)
+## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 6 but speeds it up)
 
 ```
 Read tokens.md, commercial/shared-styles.css, commercial/product-styles.css,
@@ -172,7 +190,7 @@ This becomes the checklist for the React component build in Phase 6.
 
 ---
 
-## Prompt 5 — Page production, all channels (Phase 5 — expanded for build hygiene + guides/tools)
+## Prompt 5 — Page production, all channels (Phase 5) — ✅ DONE (you ran this one — see 5-fix below for the fallout)
 
 ```
 Read plan.md §7 (all of 7.1–7.6) and buildspec.md §10 in full before
@@ -225,33 +243,71 @@ Show me a diff before writing changes to any existing file; new files
 can be created directly but flag each one you add.
 ```
 
+**⚠️ Known side effect of having run this before Prompt 5-fix:** because `commercial/components/navbar.html` still had the two-tier header at the time this ran, every new page this prompt created (all 11 Personal & Property pages, the Guides Hub) copied that same two-tier structure faithfully — that's the header-parity rule working correctly, just propagating a bug that existed in the canonical source at the time. This isn't a new mistake; it's why Prompt 5-fix below now has a wider blast radius than it did when it was first written.
+
 ---
 
-## Prompt 5.5 — Pre-conversion cleanup (Phase 5.5 — NEW, run after Prompt 5, before Prompt 6)
+## Prompt 5-fix — Collapse the two-tier header back into one strip — 🔴 NOT RUN, RUN THIS NEXT
+
+*(Your `commercial/components/navbar.html` builds the header as two tiers — a `.utility-bar` strip containing only the ChannelSwitcher, sitting above the `.navbar` strip with the logo and primary nav. Because Prompt 5 ran first, this has now been copied into 62 of your 66 HTML files. This prompt fixes the canonical component first, then re-propagates the fix everywhere it's needed — it does not rebuild anything from scratch.)*
+
+```
+Read plan.md §4 and §7.2 and buildspec.md §2 — both specify a SINGLE
+header strip, not two tiers.
+
+Step 1: Rewrite commercial/components/navbar.html to collapse the current
+.utility-bar + .navbar two-tier structure into one row:
+logo (left) -> primary nav: Products / Why Us / Resources / Partners
+(center) -> ChannelSwitcher (right), showing Home icon+text / Connect /
+Personal & Property with the .active state on the current one. Remove
+the .utility-bar div entirely and move the channel-switch markup inside
+.navbar__inner, adjusting flexbox/grid so it sits at the right edge of
+the same row as the logo and nav links (collapsing to the existing
+hamburger-accessible mobile list, same as today). Show me this rewritten
+file first, before touching anything else.
+
+Step 2 (after I approve step 1): find every HTML file in commercial/,
+connect/, and personal-and-property/ that still contains the old
+.utility-bar two-tier structure (grep for "utility-bar" — as of your last
+audit this was 62 of 66 files) and replace its header with the corrected
+single-strip version, adjusting the ChannelSwitcher's .active state and
+any channel-specific nav links per page as needed. Do this in batches by
+folder (all of commercial/ first, then connect/, then
+personal-and-property/), showing me a sample diff from each folder before
+continuing to the next.
+
+Step 3: re-run the header/footer parity check (diff every page's header
+against the corrected canonical component) as a final gate.
+```
+
+---
+
+## Prompt 5.5 — Pre-conversion cleanup (Phase 5.5) — ⬜ NOT RUN — run after 5-fix
 
 ```
 Read plan.md §8 and buildspec.md §11 in full.
 
-1. Delete the "personal and property" folder (the space-containing
-   duplicate of personal-and-property/) entirely.
+1. Confirm the "personal and property" folder (spaces) no longer exists
+   in this repo — it doesn't as of the last check, but re-confirm before
+   proceeding, since it re-appearing would break Vercel routing.
 
 2. Confirm commercial/debtor-finance.html's unique content has been
    merged into commercial/invoice-finance.html (per Master Information
    Architecture & Sitemap.md §9), then delete the file. Confirm
    commercial/trade-funding-website-application.html is superseded by
    apply.html, then delete it. Confirm commercial/resources.html's
-   content is fully absorbed into the new /guides/ hub from Prompt 5,
-   then delete it. Document the corresponding redirect for each
-   (/debtor-finance/ → /invoice-finance/, /apply-old/ → /apply/,
-   /resources/ → /guides/) in a running list for Phase 6 — do not
-   configure the actual redirects yet, that's a Phase 6 task.
+   content is fully absorbed into the /guides/ hub (already built in
+   Prompt 5), then delete it. Document the corresponding redirect for
+   each (/debtor-finance/ → /invoice-finance/, old application page →
+   /apply/, /resources/ → /guides/) in a running list for Phase 6 — do
+   not configure the actual redirects yet, that's a Phase 6 task.
 
 3. Audit for unused assets (orphaned images, unreferenced CSS rules,
    unused JS) across commercial/, connect/, and personal-and-property/.
    List candidates rather than deleting anything not explicitly named
    in step 2 — flag for my confirmation first.
 
-4. Re-run the header/footer parity check from Prompt 5 across every
+4. Re-run the header/footer parity check from Prompt 5-fix across every
    remaining page as a final gate.
 
 5. Produce docs/cleanup-report.md: what was deleted and why, what's
@@ -263,37 +319,7 @@ report exists and I've confirmed the flagged items.
 
 ---
 
-## Prompt 5-fix — Collapse the two-tier header back into one strip (regression fix, run this now)
-
-*(Your current `commercial/components/navbar.html` builds the header as two tiers — a `.utility-bar` strip containing only the ChannelSwitcher, sitting above the `.navbar` strip with the logo and primary nav. That came from an ambiguous earlier instruction, not a mistake on your end. This prompt fixes the canonical component and re-propagates it — don't just re-run the original Phase 5 prompt and hope for a different result.)*
-
-```
-Read plan.md §4 and §7.2 and buildspec.md §2 — both now specify a SINGLE
-header strip, not two tiers.
-
-Rewrite commercial/components/navbar.html to collapse the current
-.utility-bar + .navbar two-tier structure into one row:
-logo (left) -> primary nav: Products / Why Us / Resources / Partners
-(center) -> ChannelSwitcher (right), showing Home icon+text / Connect /
-Personal & Property with the .active state on the current one.
-
-Do not introduce a new wrapper tier to achieve this - remove the
-.utility-bar div entirely and move the channel-switch markup inside
-.navbar__inner, styled to sit at the right edge of the same row as the
-logo and nav links (adjust flexbox/grid on .navbar__inner accordingly,
-collapsing to a hamburger-accessible list on mobile same as today).
-
-Once commercial/components/navbar.html is fixed and I've approved it,
-re-propagate this single corrected header to every page across
-commercial/, connect/, and personal-and-property/ that currently has the
-two-tier version, and re-run the header/footer parity check from
-Prompt 5. Show me the rewritten navbar.html first, before touching any
-other file.
-```
-
----
-
-## Prompt 6 — Payload CMS scaffold (Phase 6, core conversion — architecture updated)
+## Prompt 6 — Payload CMS scaffold (Phase 6) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §2 and §3 in full.
@@ -315,12 +341,13 @@ to content migration.
 
 ---
 
-## Prompt 7 — Migrate one page end-to-end (Phase 6, do before batch-converting)
+## Prompt 7 — Migrate one page end-to-end (Phase 6) — ⬜ NOT STARTED
 
 ```
 Convert exactly one page — commercial/business-term-loans.html — into a
 Payload-backed page using the collections scaffolded in Prompt 6 and the
-component inventory in design/components.md.
+component inventory in design/components.md (if Prompt 4 was run — if
+not, work directly from the existing HTML/CSS instead).
 
 Show me:
 1. The Payload collection entry (content) this page becomes, including
@@ -334,7 +361,7 @@ Do not touch any other HTML file until I approve this pattern.
 
 ---
 
-## Prompt 8 — Batch-convert remaining pages
+## Prompt 8 — Batch-convert remaining pages — ⬜ NOT STARTED
 
 ```
 Read docs/cleanup-report.md first to confirm the file tree is clean and
@@ -352,7 +379,7 @@ and flag me if any page doesn't cleanly fit the established pattern.
 
 ---
 
-## Prompt 9 — Vercel deploy (single project — updated)
+## Prompt 9 — Vercel deploy (Phase 6) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §8.
@@ -366,7 +393,7 @@ commands to run myself.
 
 ---
 
-## General rules (updated)
+## General rules (unchanged)
 
 - Tell Claude Code which files to read *before* it edits anything.
 - Ask for a diff before large edits, especially anything touching more than one file.

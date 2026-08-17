@@ -1,6 +1,6 @@
 # CLAUDE.md — Trade Funding Site Rebuild
 
-**Status: v4.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally).
+**Status: v5.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally).
 
 ## Project in one paragraph
 
@@ -78,8 +78,8 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - Broker Portal referral process / commission structure — not covered by the Executive Questionnaire, still needs direct Matt/Ben input before Phase 3.2 copy can be drafted for that page
 - Home hero final copy — still pending sign-off despite locked directional agreement
 - Deferred blockers (address, lender logos, GoogleReviews count, hello@ routing) — scheduled for Phase 3 kickoff, not before
-- Phase 5.5 cleanup not yet run: `personal and property/` (spaces) duplicate folder still needs deleting; `debtor-finance.html`, `trade-funding-website-application.html`, and (once the Guides Hub absorbs it) `resources.html` still need secure deletion, each with its redirect documented for Phase 6
-- **Active regression to fix:** `commercial/components/navbar.html` currently builds a two-tier header (separate `.utility-bar` strip + `.navbar` strip) — needs collapsing into one strip per `plan.md` §7.2 and `prompts.md` Prompt 5-fix, then re-propagating to every page.
+- Phase 5.5 cleanup not yet run: the `personal and property/` (spaces) duplicate folder is confirmed gone already; `commercial/debtor-finance.html` and `commercial/trade-funding-website-application.html` still need secure deletion, each with its redirect documented for Phase 6
+- **Active regression to fix, run next:** `commercial/components/navbar.html` still builds a two-tier header (separate `.utility-bar` strip + `.navbar` strip). Because Phase 5 (page production) already ran, **this has propagated into 62 of 66 HTML files** across Commercial, Connect, and Personal & Property — see `prompts.md` Prompt 5-fix for the two-step fix (correct the canonical component, then re-propagate in batches by folder).
 
 **Resolved since v2:** Connect's audience framing (design-spec vs. newer notes) is no longer an open conflict — the returned Executive Questionnaire confirms "B2B providers, equipment of any kind sold B2B, and/or professional services" as the locked audience. See `buildspec.md` §5.
 

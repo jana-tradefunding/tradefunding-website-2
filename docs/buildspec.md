@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding: HTML → Next.js + Payload CMS → Vercel
 
-**Status: v4 — corrects the `ChannelSwitcher` placement spec, which was ambiguous enough to produce a real two-tier header in the live build.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
+**Status: v5 — notes that Phase 5 (page production) ran before the header fix, so the two-tier bug propagated into 62 of 66 HTML files, not just the original set; §11 updated accordingly.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
 
 ---
 
@@ -41,7 +41,7 @@ Per `Master Information Architecture & Sitemap.md` §1/§11: Commercial, Connect
 
 ### `ChannelSwitcher` component spec (updated — single strip, always-three-visible; overrides earlier two-tier-implying spec)
 
-- **Renders inside the single header strip, alongside the logo and primary nav — never as a separate tier/utility bar above or below it.** One row: logo (left) → Products / Why Us / Resources / Partners (center) → `ChannelSwitcher` (right, compact segmented control or dropdown). 🔴 **Correction:** an earlier version of this spec described the switcher as a "top-bar control... outside the main product-navigation row," which was ambiguous enough to produce a real two-tier header (a `.utility-bar` strip on top, a separate `.navbar` strip below). That interpretation is now explicitly wrong — there is exactly one header strip.
+- **Renders inside the single header strip, alongside the logo and primary nav — never as a separate tier/utility bar above or below it.** One row: logo (left) → Products / Why Us / Resources / Partners (center) → `ChannelSwitcher` (right, compact segmented control or dropdown). 🔴 **Correction, and updated scope:** an earlier version of this spec described the switcher as a "top-bar control... outside the main product-navigation row," which was ambiguous enough to produce a real two-tier header (a `.utility-bar` strip on top, a separate `.navbar` strip below). That interpretation is now explicitly wrong — there is exactly one header strip. **Because Phase 5 (page production) ran before this fix, the two-tier structure has since been copied into 62 of 66 HTML files** (Commercial, Connect, and Personal & Property alike) — the fix now needs to touch the canonical component *and* re-propagate across all affected files, not just correct one source file. See `prompts.md` Prompt 5-fix.
 - **Always shows all three channels, on every page, regardless of which one is current:** Home icon + "Home" text (Commercial — never the word "Commercial"), **Connect**, **Personal & Property**. This overrides the earlier spec, which only showed the two *other* channels and hid the current one — that approach doesn't hold up well across a 30+ page raw-HTML build where the switcher itself needs to look and behave identically on every page.
 - **Active state (required):** the current channel gets a distinct `.active` CSS treatment — underline, bold text, or a background/border tinted to that channel's own accent color from `tokens.md` (skyblue for Commercial, gold for Connect, peach for Personal & Property). This is what tells the visitor where they are, now that all three are always visible.
 - Icon-plus-label on desktop, icon-only on mobile, for all three entries.
@@ -173,8 +173,8 @@ These rules apply specifically to the 30+ static HTML pages produced in Phase 5,
 
 Concrete technical detail for the cleanup phase between HTML production and Payload conversion:
 
-- **Delete** `personal and property/` (the space-containing duplicate of `personal-and-property/`) entirely.
-- **Delete**, after confirming redirects are documented per §4 above: `commercial/debtor-finance.html`, `commercial/trade-funding-website-application.html`, and `commercial/resources.html` (only once its content is fully absorbed into the new `/guides/` hub from §5.5's guides-hub task).
+- **Confirm gone** — `personal and property/` (the space-containing duplicate of `personal-and-property/`) is no longer present as of the latest zip. Re-verify at the start of this phase in case it reappears.
+- **Delete**, after confirming redirects are documented per §4 above: `commercial/debtor-finance.html`, `commercial/trade-funding-website-application.html` (both still present as of the latest zip), and `commercial/resources.html` (only once its content is fully absorbed into the `/guides/` hub, already built in Phase 5).
 - **Audit, don't blind-delete:** unreferenced CSS rules, orphaned images, unused JS — flag candidates in `cleanup-report.md` for confirmation before removing anything not explicitly named above.
 - **Re-run the header/footer parity check** (§10) across every page as a gate before Phase 6 starts.
 - Output: `docs/cleanup-report.md`, listing what was deleted and why, what's flagged but unconfirmed, and any path/header issues found and fixed.
