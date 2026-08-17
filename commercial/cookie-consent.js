@@ -7,7 +7,7 @@
   banner.className = 'cookie-banner';
   banner.innerHTML =
     '<div class="cookie-banner__inner">' +
-      '<p class="cookie-banner__text">We use cookies to improve your experience and analyse site traffic. By continuing to use this site, you consent to our use of cookies. <a href="privacy.html">Privacy Policy</a></p>' +
+      '<p class="cookie-banner__text">We use cookies to improve your experience and analyse site traffic. By continuing to use this site, you consent to our use of cookies. <a href="/commercial/privacy.html">Privacy Policy</a></p>' +
       '<div class="cookie-banner__actions">' +
         '<button class="cookie-banner__accept" id="cookie-accept">Accept</button>' +
         '<button class="cookie-banner__decline" id="cookie-decline">Decline</button>' +

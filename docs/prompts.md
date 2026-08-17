@@ -1,6 +1,6 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v3 — adds Phase 5 static-HTML build hygiene (header parity, root-relative paths, em-dash spacing, guides/tools coverage), the always-three-visible `ChannelSwitcher` override, and a new Prompt 5.5 cleanup pass.** Run these one at a time inside your project folder, which should now contain `commercial/`, `connect/`, `personal-and-property/`, `design baseline/` (reference only — see note below), `docs/`, `tokens.md`, `Master Information Architecture & Sitemap.md`, `plan.md`, `buildspec.md`, and `CLAUDE.md`.
+**Status: v4 — adds Prompt 5-fix to collapse the two-tier header regression back into one strip. Everything else unchanged from v3 (Phase 5 build hygiene, always-three-visible `ChannelSwitcher`, Phase 5.5 cleanup).** Run these one at a time inside your project folder, which should now contain `commercial/`, `connect/`, `personal-and-property/`, `design baseline/` (reference only — see note below), `docs/`, `tokens.md`, `Master Information Architecture & Sitemap.md`, `plan.md`, `buildspec.md`, and `CLAUDE.md`.
 
 **Reminder before every session:** `design baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy — only as something to read for color/contrast decisions that then get applied to the real `commercial/`, `connect/`, and new Personal & Property files.
 
@@ -259,6 +259,36 @@ Read plan.md §8 and buildspec.md §11 in full.
 
 Do not begin any Payload/Next.js scaffolding (Prompt 6) until this
 report exists and I've confirmed the flagged items.
+```
+
+---
+
+## Prompt 5-fix — Collapse the two-tier header back into one strip (regression fix, run this now)
+
+*(Your current `commercial/components/navbar.html` builds the header as two tiers — a `.utility-bar` strip containing only the ChannelSwitcher, sitting above the `.navbar` strip with the logo and primary nav. That came from an ambiguous earlier instruction, not a mistake on your end. This prompt fixes the canonical component and re-propagates it — don't just re-run the original Phase 5 prompt and hope for a different result.)*
+
+```
+Read plan.md §4 and §7.2 and buildspec.md §2 — both now specify a SINGLE
+header strip, not two tiers.
+
+Rewrite commercial/components/navbar.html to collapse the current
+.utility-bar + .navbar two-tier structure into one row:
+logo (left) -> primary nav: Products / Why Us / Resources / Partners
+(center) -> ChannelSwitcher (right), showing Home icon+text / Connect /
+Personal & Property with the .active state on the current one.
+
+Do not introduce a new wrapper tier to achieve this - remove the
+.utility-bar div entirely and move the channel-switch markup inside
+.navbar__inner, styled to sit at the right edge of the same row as the
+logo and nav links (adjust flexbox/grid on .navbar__inner accordingly,
+collapsing to a hamburger-accessible list on mobile same as today).
+
+Once commercial/components/navbar.html is fixed and I've approved it,
+re-propagate this single corrected header to every page across
+commercial/, connect/, and personal-and-property/ that currently has the
+two-tier version, and re-run the header/footer parity check from
+Prompt 5. Show me the rewritten navbar.html first, before touching any
+other file.
 ```
 
 ---

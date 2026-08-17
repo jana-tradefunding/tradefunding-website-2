@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding: HTML → Next.js + Payload CMS → Vercel
 
-**Status: v3 — adds static-HTML build hygiene rules (header parity, root-relative paths, em-dash spacing), the always-three-visible `ChannelSwitcher` override, and the Phase 5.5 cleanup spec.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
+**Status: v4 — corrects the `ChannelSwitcher` placement spec, which was ambiguous enough to produce a real two-tier header in the live build.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
 
 ---
 
@@ -39,9 +39,9 @@ Per `Master Information Architecture & Sitemap.md` §1/§11: Commercial, Connect
 - Each route group applies its own accent theme (from `tokens.md`) and its own nav state, but shares the same underlying component library.
 - Switching channels via `ChannelSwitcher` is a same-origin route change (`/` ↔ `/connect/` ↔ `/personal-and-property/`), never a cross-domain redirect. This preserves one domain's accumulated SEO authority across all three channels — the reason this replaced the original subdomain idea.
 
-### `ChannelSwitcher` component spec (updated — always-three-visible, overrides earlier "hide current channel" spec)
+### `ChannelSwitcher` component spec (updated — single strip, always-three-visible; overrides earlier two-tier-implying spec)
 
-- Top-bar control, visually/functionally like a region or country selector — a compact dropdown or segmented control anchored top-right or top-left, **outside** the main product-navigation row (Products / Why Us / Partners must never visually compete with it).
+- **Renders inside the single header strip, alongside the logo and primary nav — never as a separate tier/utility bar above or below it.** One row: logo (left) → Products / Why Us / Resources / Partners (center) → `ChannelSwitcher` (right, compact segmented control or dropdown). 🔴 **Correction:** an earlier version of this spec described the switcher as a "top-bar control... outside the main product-navigation row," which was ambiguous enough to produce a real two-tier header (a `.utility-bar` strip on top, a separate `.navbar` strip below). That interpretation is now explicitly wrong — there is exactly one header strip.
 - **Always shows all three channels, on every page, regardless of which one is current:** Home icon + "Home" text (Commercial — never the word "Commercial"), **Connect**, **Personal & Property**. This overrides the earlier spec, which only showed the two *other* channels and hid the current one — that approach doesn't hold up well across a 30+ page raw-HTML build where the switcher itself needs to look and behave identically on every page.
 - **Active state (required):** the current channel gets a distinct `.active` CSS treatment — underline, bold text, or a background/border tinted to that channel's own accent color from `tokens.md` (skyblue for Commercial, gold for Connect, peach for Personal & Property). This is what tells the visitor where they are, now that all three are always visible.
 - Icon-plus-label on desktop, icon-only on mobile, for all three entries.
@@ -129,7 +129,7 @@ This is genuinely net-new, not a conversion. Structure and page list come from `
 
 **Flagged, unresolved cross-channel overlap:** `/personal-and-property/commercial-property-finance/` needs a cross-check against `/second-mortgage/` and `/self-employed-home-loan/` (Commercial channel, §3.6) once both channels have final copy — don't resolve this silently, flag it.
 
-**Channel placement decision needed (hit-list item 43) — DECIDED in Phase 5 Part 1:** `self-employed-home-loan.html` **stays live in Commercial at its existing URL** (`/self-employed-home-loan/`). Per CLAUDE.md hard rule 1, no existing product/guide URL is ever deleted, and this page already carries whatever SEO equity it has accrued at that address. Rather than migrating it into Personal & Property (which would require a redirect and risk losing that equity), it becomes a **cross-link**: the Commercial page gets an outbound link to Personal & Property's home/owner-occupied hub ("also comparing a standard home loan? See Personal & Property options"), and Personal & Property's product pages (`owner-occupied-home-loans`, `commercial-property-finance`) link back to it for the self-employed-specific angle. This keeps both channels independently indexable without duplicating the same product under two URLs. The pre-existing overlap flag against `/second-mortgage/` and `/personal-and-property/commercial-property-finance/` remains open and unresolved — carried forward, not silently closed by this call.
+**Channel placement decision needed (hit-list item 43):** `self-employed-home-loan.html` currently sits in the Commercial product taxonomy as a category outlier (property/consumer lending inside an otherwise commercial-lending set). With Personal & Property now standing up, Claude Code should decide — and document the reasoning for — whether this becomes a cross-link between channels or an eventual migration into Personal & Property. Don't decide silently; note the call made and why.
 
 ---
 

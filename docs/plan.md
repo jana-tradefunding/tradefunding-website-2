@@ -1,6 +1,6 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v3 — updated for a smoother Phase 5 (multi-page raw-HTML build) and a new Phase 5.5 cleanup pass, after reviewing the latest zip.**
+**Status: v4 — fixes an ambiguous ChannelSwitcher placement instruction that produced a two-tier header (utility strip + nav strip) instead of one single header row.**
 
 **Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (canonical IA/architecture doc), `tokens.md` (finalized Phase 1 output), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, `docs/research-notes.md` and `docs/copy-final.md` (Phase 3 outputs), and the `commercial/`, `connect/`, `personal-and-property/`, and `design baseline/` folders in the project zip.
 
@@ -78,7 +78,7 @@ Connect's shift is bigger than a simple accent swap — it **inverts** the exist
 
 **Locked structural decisions**, now reflected in `Master Information Architecture & Sitemap.md` §2A/§2B/§11:
 
-- **`ChannelSwitcher` component** replaces the old idea of three equal-weighted nav buttons. It's a top-bar control (like a region/country selector), sitting **above or beside** — never inline with — Commercial's own primary nav, so "Products / Why Us / Partners" is never diluted by channel-switching UI.
+- **`ChannelSwitcher` component** replaces the old idea of three equal-weighted nav buttons. **It lives in the exact same single header row as the logo and primary nav — never a separate tier, strip, or bar above/below it.** One row: logo (left) → Products / Why Us / Resources / Partners (center) → `ChannelSwitcher` (right). 🔴 **Correction:** an earlier version of this plan said the switcher should sit "above or beside" the main nav — that phrasing was ambiguous and led to a literal two-tier header being built (a top utility strip with just the switcher, a second strip below with the logo/nav). That's now explicitly wrong. There is exactly one horizontal header strip, always.
   - 🔁 **Updated behavior (overrides the original "hide the current channel" logic below):** for the static-HTML build in Phase 5, the switcher **always shows all three channels on every page, regardless of which one you're currently on** — Commercial, Connect, and Personal & Property are all visible, all the time. This is a deliberate override of the original plan (which only showed the two *other* channels) because navigating between 30+ raw HTML files needs a switcher that doesn't visually shift its own content between pages — always-three keeps the control itself stable while only its *active state* changes.
   - **Commercial is always rendered as the Home icon + "Home" text — never the word "Commercial."** Connect renders as "Connect." Personal & Property renders as "Personal & Property." All three appear together, every time.
   - **Active state (new, required):** since all three are always visible, the current channel must be visually distinguished — a clear `.active` CSS state (underline, bold text, or a brand-color background/border tinted to the *current* channel's accent from `tokens.md`) applied to whichever of the three matches the page you're on. Without this, a visitor has no way to tell which channel they're currently viewing.
@@ -243,9 +243,11 @@ The HTML structure, padding, and CSS classes for the header (and footer) must be
 - Treat `commercial/components/navbar.html` and `commercial/components/footer.html` as the **single canonical source** for header/footer markup. Every page — including `connect/*` and `personal-and-property/*` — includes this exact markup (via whatever include mechanism the static build uses), never a hand-copied or re-typed variant.
 - After building/updating any page, diff its header/footer DOM against the canonical component. Any divergence is a bug, not a style choice.
 
-### 7.2 ChannelSwitcher — build the overridden, always-three-visible version
+### 7.2 ChannelSwitcher — build the overridden, always-three-visible version, in one strip
 
-Per the updated §4 above: build the switcher so **Commercial (Home icon + "Home" text), Connect, and Personal & Property are all visible on every page, all the time**, with a clear `.active` state (underline, bold, or brand-tinted background) marking whichever one matches the current page. Do not build the original "hide the current channel" version — that logic is explicitly overridden for this phase.
+Per the updated §4 above: build the switcher so **Commercial (Home icon + "Home" text), Connect, and Personal & Property are all visible on every page, all the time**, with a clear `.active` state (underline, bold, or brand-tinted background) marking whichever one matches the current page. Do not build the original "hide the current channel" version — that logic is explicitly overridden for this phase. **The switcher renders inside the single header strip, alongside the logo and primary nav — never as its own separate utility bar/tier.** If you're fixing an existing two-tier header (see 🔴 note below), collapse it into one row rather than rebuilding from scratch.
+
+🔴 **Known regression to fix, not just re-prompt for:** an earlier ambiguous instruction ("sits above or beside the main nav") led to a real two-tier header being built — a `.utility-bar` strip containing only the `ChannelSwitcher`, sitting above the `.navbar` strip with the logo and primary nav. This is now explicitly wrong per the correction in §4. Don't just re-run the original Phase 5 prompt expecting a different result — the ambiguity that caused it has been fixed here, so use the corrective prompt in `prompts.md` ("Prompt 5-fix") to collapse the existing two tiers into one strip, rather than regenerating the header from scratch and hoping it comes out differently.
 
 ### 7.3 Root-relative paths everywhere (not relative paths)
 

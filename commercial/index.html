@@ -2037,48 +2037,6 @@
   background: var(--white);
 }
 
-.reviews__header {
-  text-align: center;
-  margin-bottom: 56px;
-}
-
-.reviews__rating-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--white);
-  border: 2px solid var(--gold);
-  border-radius: var(--radius-xl);
-  padding: 12px 28px;
-  margin-bottom: 24px;
-  box-shadow: var(--shadow-sm);
-}
-
-.reviews__rating-number {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 2rem;
-  color: var(--navy);
-}
-
-.reviews__rating-stars {
-  color: var(--gold);
-  font-size: 1.2rem;
-  display: flex;
-  gap: 2px;
-}
-
-.reviews__rating-text {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.reviews__carousel {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
 .review-card {
   background: var(--white);
   border: 1px solid #E8ECF1;
@@ -2608,12 +2566,6 @@
     margin: 0 auto;
   }
 
-  .reviews__carousel {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
   .form__row {
     grid-template-columns: 1fr;
   }
@@ -2974,13 +2926,6 @@
 .results__grid > *:nth-child(3) { transition-delay: 200ms; }
 .results__grid > *:nth-child(4) { transition-delay: 300ms; }
 
-.reviews__carousel > *:nth-child(1) { transition-delay: 0ms; }
-.reviews__carousel > *:nth-child(2) { transition-delay: 100ms; }
-.reviews__carousel > *:nth-child(3) { transition-delay: 200ms; }
-.reviews__carousel > *:nth-child(4) { transition-delay: 300ms; }
-.reviews__carousel > *:nth-child(5) { transition-delay: 400ms; }
-.reviews__carousel > *:nth-child(6) { transition-delay: 500ms; }
-
 /* --- Footer link hover enhancement --- */
 
 /* --- Mobile nav link hover --- */
@@ -3005,16 +2950,6 @@
 .result-card:nth-child(2) .result-card__top { background: linear-gradient(135deg, var(--peach), #FF7A6E); }
 .result-card:nth-child(3) .result-card__top { background: linear-gradient(135deg, var(--gold), #FCC88A); }
 .result-card:nth-child(4) .result-card__top { background: linear-gradient(135deg, var(--navy-blue), #4B48CC); }
-
-/* --- Reviews rating badge subtle pulse --- */
-.reviews__rating-badge {
-  transition: all 0.3s var(--ease-premium);
-}
-
-.reviews__rating-badge:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 16px rgba(251, 183, 102, 0.15);
-}
 
 /* --- Smooth scroll anchor offset for fixed nav --- */
 html {
@@ -3128,11 +3063,6 @@ html {
 .lender-logo:active {
   transform: translateY(0) scale(0.98);
   background: rgba(84, 180, 246, 0.06);
-}
-
-/* --- Reviews rating badge - refined depth --- */
-.reviews__rating-badge {
-  box-shadow: 0 4px 16px rgba(0, 28, 68, 0.04);
 }
 
 /* --- Footer - subtle top gradient line per taste-skill --- */
@@ -4783,7 +4713,7 @@ html {
           </div>
           <div class="report-header-row"><span></span><span>Lender</span><span style="text-align:right;">Rate</span><span style="text-align:right;">Amount</span><span style="text-align:right;">Score</span></div>
           <div class="mini-report__body" id="lenderRows"></div>
-          <div class="mini-report__unlock"><div id="lockedRows"></div><div class="mini-report__unlock-overlay"><div class="mini-report__unlock-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Unlock your full report</div></div></div>
+          <div class="mini-report__unlock"><div id="lockedRows"></div><div class="mini-report__unlock-overlay"><button type="button" class="mini-report__unlock-btn" onclick="goToApplication()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Unlock your full report</button></div></div>
           <div class="mini-report__footer"><span class="mini-report__footer-text">Sample &bull; Your report is personalised</span><span class="mini-report__footer-count"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/></svg> 70+ lenders</span></div>
         </div>
       </div>
@@ -6047,7 +5977,7 @@ html {
         <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
           <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
         </a>
-        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and deliver personalised, S.T.A.R. scored offers - then we get it done. Free. No credit check. 24 hours.</p>
+        <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
         <div class="footer__contact">
           <div class="footer__contact-item">&#128222; 1300 161 641</div>
           <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>

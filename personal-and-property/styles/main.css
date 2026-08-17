@@ -1,0 +1,88 @@
+/* ============================================================
+   Trade Funding — Personal & Property
+   Page-specific stylesheet. Loaded ALONGSIDE /commercial/shared-
+   styles.css (header/footer/ChannelSwitcher/button/container chrome
+   already defined there - not redefined here, per CLAUDE.md rule 14
+   and buildspec.md §10). This file only adds the peach-dominant,
+   navy-accent sections specific to this channel (tokens.md §2.3,
+   buildspec.md §6). Pattern mirrors connect/styles/main.css.
+   ============================================================ */
+
+/* ---------- Section heading classes (tokens.md §1.4 naming,
+   tinted to this channel's own accent per Connect's precedent) ---------- */
+.s-eyebrow{font-family:var(--font-heading);font-weight:700;font-size:0.8rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--navy);margin-bottom:16px;display:block}
+.s-headline{font-family:var(--font-heading);font-weight:800;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;letter-spacing:-0.02em;margin:0 0 16px;color:var(--navy)}
+.s-subhead{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--text-secondary);max-width:640px;margin:0 auto 44px;line-height:1.7}
+.section-header{text-align:center;margin-bottom:44px}
+
+/* ---------- Hero — peach-dominant, navy accent (buildspec §6.1/6.2) ---------- */
+.pp-hero{position:relative;padding:calc(var(--utility-bar-height,37px) + 100px) 0 96px;overflow:hidden;background:linear-gradient(160deg,var(--peach) 0%,#FF8382 55%,var(--peach-soft) 100%);}
+.pp-hero::before{content:'';position:absolute;top:-22%;right:-6%;width:640px;height:640px;background:radial-gradient(circle,rgba(0,28,68,0.10) 0%,transparent 70%);pointer-events:none}
+.pp-hero__grid{display:grid;grid-template-columns:1fr 460px;gap:56px;align-items:center;position:relative;z-index:1}
+.pp-hero__eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--white);background:var(--navy);padding:7px 16px 7px 12px;border-radius:20px;margin-bottom:20px}
+.pp-hero__eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--white)}
+.pp-hero__title{font-size:clamp(2.2rem,4.4vw,3.5rem);line-height:1.12;color:var(--navy);margin-bottom:18px}
+.pp-hero__lead{font-size:1.1rem;color:rgba(0,28,68,0.72);max-width:520px;line-height:1.7;margin-bottom:30px}
+.pp-hero__cta-group{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
+.pp-hero__trust{display:flex;gap:20px;flex-wrap:wrap}
+.pp-hero__trust-item{display:flex;align-items:center;gap:7px;font-size:0.85rem;font-weight:500;color:rgba(0,28,68,0.72)}
+.pp-hero__trust-item svg{width:16px;height:16px;color:var(--navy);flex-shrink:0}
+
+/* Hero card panel — WHITE surface, NAVY ink, never a peach panel (buildspec §6.3) */
+.pp-hero__card{background:var(--white);border:1px solid rgba(0,28,68,0.10);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-xl);color:var(--navy)}
+.pp-hero__card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(0,28,68,0.08)}
+.pp-hero__card-title{font-family:var(--font-heading);font-weight:700;font-size:0.95rem;color:var(--navy)}
+.pp-hero__card-sub{font-size:0.75rem;color:var(--text-secondary);margin-top:3px}
+.pp-hero__card-badge{font-family:var(--font-heading);font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:5px 10px;border-radius:20px;background:var(--navy);color:var(--white)}
+.pp-hero__row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px dashed rgba(0,28,68,0.12)}
+.pp-hero__row:last-of-type{border-bottom:none}
+.pp-hero__row-lender{display:flex;align-items:center;gap:10px}
+.pp-hero__row-dot{width:8px;height:8px;border-radius:50%;background:var(--peach);flex-shrink:0}
+.pp-hero__row-name{font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)}
+.pp-hero__row-type{font-size:0.7rem;color:var(--text-secondary)}
+.pp-hero__row-rate{font-family:var(--font-heading);font-weight:700;font-size:0.9rem;color:var(--navy-blue);text-align:right}
+.pp-hero__row-rate-sub{font-size:0.64rem;color:var(--text-secondary);font-weight:400}
+.pp-hero__card-footer{margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,28,68,0.08);display:flex;align-items:center;justify-content:space-between;font-size:0.7rem;color:var(--text-secondary)}
+@media (max-width:1080px){.pp-hero__grid{grid-template-columns:1fr}.pp-hero__card{max-width:460px}}
+
+/* ---------- Products grid — 8 loan types, navy icons on peach-soft (buildspec §6.4) ---------- */
+.pp-products{padding:clamp(60px,7vw,100px) 0;background:var(--light-bg)}
+.pp-products__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.pp-card{display:block;background:var(--white);border-radius:var(--radius-lg);padding:26px;border-top:3px solid var(--peach);box-shadow:var(--shadow-sm);transition:transform var(--transition-base),box-shadow var(--transition-base)}
+.pp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.pp-card__icon{width:46px;height:46px;border-radius:12px;background:var(--peach-soft);color:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.pp-card__icon svg{width:22px;height:22px}
+.pp-card__name{font-family:var(--font-heading);font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:8px}
+.pp-card__desc{font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:12px}
+.pp-card__link{font-family:var(--font-heading);font-weight:600;font-size:0.82rem;color:var(--navy)}
+@media (max-width:1100px){.pp-products__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.pp-products__grid{grid-template-columns:1fr}}
+
+/* ---------- Credibility / Why Us — customers helped, transparency, testimonials
+   (leads with credibility per Q06, NOT approval-speed/rate-range framing) ---------- */
+.pp-why{padding:clamp(60px,7vw,100px) 0;background:var(--white)}
+.pp-why__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.pp-why-item{text-align:center;padding:0 12px}
+.pp-why-item__icon{width:58px;height:58px;border-radius:50%;background:var(--peach-soft);color:var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.pp-why-item__icon svg{width:26px;height:26px}
+.pp-why-item__title{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:8px}
+.pp-why-item__desc{font-size:0.92rem;color:var(--text-secondary);line-height:1.65}
+@media (max-width:768px){.pp-why__grid{grid-template-columns:1fr;gap:30px}}
+
+/* ---------- Objection-handling strip (Q04 - "can TF actually deliver") ---------- */
+.pp-objection{padding:clamp(48px,6vw,72px) 0;background:var(--navy);color:var(--white)}
+.pp-objection__inner{display:flex;gap:28px;align-items:flex-start;max-width:900px;margin:0 auto}
+.pp-objection__icon{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:rgba(255,93,92,0.18);color:var(--peach);display:flex;align-items:center;justify-content:center}
+.pp-objection__icon svg{width:24px;height:24px}
+.pp-objection h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:10px;color:var(--white)}
+.pp-objection p{color:rgba(255,255,255,0.78);line-height:1.7;font-size:1rem}
+@media (max-width:768px){.pp-objection__inner{flex-direction:column;text-align:center;align-items:center}}
+
+/* ---------- Bottom CTA — peach-dominant, navy ink ---------- */
+.pp-cta{padding:clamp(60px,7vw,100px) 0;text-align:center;background:linear-gradient(160deg,var(--peach) 0%,var(--peach-soft) 100%)}
+.pp-cta h2{font-size:clamp(1.8rem,3.4vw,2.5rem);color:var(--navy);margin-bottom:14px}
+.pp-cta p{color:rgba(0,28,68,0.72);max-width:540px;margin:0 auto 30px;font-size:1.02rem}
+
+/* ---------- Compliance note strip (visible dev marker, not published copy) ---------- */
+.pp-compliance-note{background:#FFF7EC;border-top:1px dashed rgba(0,28,68,0.2);border-bottom:1px dashed rgba(0,28,68,0.2);padding:14px 0;font-size:0.78rem;color:var(--text-secondary);text-align:center}
+.pp-compliance-note strong{color:var(--navy)}

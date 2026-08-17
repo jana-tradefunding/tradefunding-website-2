@@ -1,6 +1,6 @@
 # CLAUDE.md — Trade Funding Site Rebuild
 
-**Status: v3.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally).
+**Status: v4.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally).
 
 ## Project in one paragraph
 
@@ -21,7 +21,7 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 11. **Flag contradictions instead of silently resolving them** — e.g. the `self-employed-home-loan.html` channel-placement call (hit-list item 43); the `commercial-property-finance` overlap with `/second-mortgage/`. (Connect's audience-framing question is now resolved — see below — no longer an open contradiction.)
 12. **Naming:** always **"Personal & Property"** (with ampersand) in user-facing copy; the URL slug/folder is the hyphenated, spelled-out **`personal-and-property`**. Don't mix these conventions.
 13. **`ChannelSwitcher` always shows all three channels, on every page, no exceptions** — Home icon + "Home" text (Commercial, never the word "Commercial"), Connect, Personal & Property. The current channel gets a distinct `.active` state (underline/bold/accent-tinted). This overrides any earlier "hide the current channel" logic you might find referenced in older notes.
-14. **Header and footer markup must be byte-for-byte identical across every page**, on every channel — same wrapper `div`s, same classes, same order, sourced from `commercial/components/navbar.html` / `footer.html`. Diff against the canonical component after touching any page; a single divergence causes a visible layout jump between pages.
+14. **Header is a single strip — logo, primary nav, and `ChannelSwitcher` all in the same row.** Never build the switcher as a separate tier/utility bar above or below the main nav. (An earlier ambiguous instruction caused exactly this two-tier mistake once already — see `plan.md` §7.2 for the fix; don't repeat it.) Header and footer markup must otherwise be byte-for-byte identical across every page, on every channel — same wrapper `div`s, same classes, same order, sourced from `commercial/components/navbar.html` / `footer.html`. Diff against the canonical component after touching any page.
 15. **Every link and asset path is root-relative** (`/connect/about.html`, `/commercial/assets/logo-navy.png`) — never relative (`../`, bare filenames). Relative paths break silently for any page more than one folder deep.
 16. **Replace em-dashes (`—`) with a spaced hyphen (` - `)**, never a bare hyphen jammed between words.
 17. **No spaces in any folder or file name, anywhere in the repo.** Vercel routing breaks on them — see the `personal and property/` vs. `personal-and-property/` duplicate flagged in Phase 5.5.
@@ -79,6 +79,7 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - Home hero final copy — still pending sign-off despite locked directional agreement
 - Deferred blockers (address, lender logos, GoogleReviews count, hello@ routing) — scheduled for Phase 3 kickoff, not before
 - Phase 5.5 cleanup not yet run: `personal and property/` (spaces) duplicate folder still needs deleting; `debtor-finance.html`, `trade-funding-website-application.html`, and (once the Guides Hub absorbs it) `resources.html` still need secure deletion, each with its redirect documented for Phase 6
+- **Active regression to fix:** `commercial/components/navbar.html` currently builds a two-tier header (separate `.utility-bar` strip + `.navbar` strip) — needs collapsing into one strip per `plan.md` §7.2 and `prompts.md` Prompt 5-fix, then re-propagating to every page.
 
 **Resolved since v2:** Connect's audience framing (design-spec vs. newer notes) is no longer an open conflict — the returned Executive Questionnaire confirms "B2B providers, equipment of any kind sold B2B, and/or professional services" as the locked audience. See `buildspec.md` §5.
 

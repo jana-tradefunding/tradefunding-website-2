@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get your Personal &amp; Property finance options - one application, every lender who'll actually consider you. Powered by Trade Funding's shared apply engine.">
+<title>Apply | Personal &amp; Property Finance | Trade Funding</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tradefunding.com.au/personal-and-property/apply.html">
+<meta property="og:title" content="Apply | Personal &amp; Property Finance | Trade Funding">
+<meta property="og:description" content="Get your options - one application, every lender who'll actually consider you.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tradefunding.com.au/personal-and-property/apply.html">
+<meta property="og:site_name" content="Trade Funding">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Shared header/footer/ChannelSwitcher/button chrome - CLAUDE.md rule 14 -->
+<link rel="stylesheet" href="/commercial/shared-styles.css">
+<!-- Personal & Property page-specific stylesheet (peach-dominant, navy accent - tokens.md §2.3) -->
+<link rel="stylesheet" href="/personal-and-property/styles/main.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Trade Funding",
+  "url": "https://tradefunding.com.au",
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Australian Credit Licence",
+    "recognizedBy": {"@type": "Organization", "name": "ASIC"},
+    "name": "ACL 387856"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER - CANONICAL structure per commercial/components/navbar.html
+     and CLAUDE.md rule 14. Wrapper divs/classes/order identical; only
+     the channel-switch active state and this channel's own primary-nav
+     links differ, per navbar.html's own header comment.
+     ============================================ -->
+<div class="utility-bar">
+  <div class="utility-bar__inner">
+    <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
+      <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        <span class="channel-switch__full">Home</span>
+      </a>
+      <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
+        <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
+      </a>
+      <a href="/personal-and-property/index.html" class="channel-switch__option active active--personalproperty" aria-current="page" aria-label="Personal &amp; Property">
+        <span class="channel-switch__full">Personal &amp; Property</span><span class="channel-switch__short">P&amp;P</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="/personal-and-property/index.html" class="navbar__logo">
+      <img src="/commercial/assets/logo-navy.png" alt="Trade Funding" height="28">
+    </a>
+
+    <div class="navbar__links">
+      <a href="/personal-and-property/index.html#products" class="navbar__link">Loan Types</a>
+      <a href="/personal-and-property/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/personal-and-property/about.html" class="navbar__link">About</a>
+    </div>
+
+    <div class="navbar__right">
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/personal-and-property/owner-occupied-home-loans.html" onclick="closeMobile()">Owner-Occupied Home Loans</a>
+  <a href="/personal-and-property/investment-property-loans.html" onclick="closeMobile()">Investment Property Loans</a>
+  <a href="/personal-and-property/refinancing.html" onclick="closeMobile()">Refinancing</a>
+  <a href="/personal-and-property/construction-loans.html" onclick="closeMobile()">Construction Loans</a>
+  <a href="/personal-and-property/commercial-property-finance.html" onclick="closeMobile()">Commercial Property Finance</a>
+  <a href="/personal-and-property/smsf-loans.html" onclick="closeMobile()">SMSF Loans</a>
+  <a href="/personal-and-property/personal-loans.html" onclick="closeMobile()">Personal Loans</a>
+  <a href="/personal-and-property/debt-consolidation.html" onclick="closeMobile()">Debt Consolidation</a>
+  <a href="/personal-and-property/about.html" onclick="closeMobile()">About</a>
+  <div class="mobile-nav__switch">
+    <span class="mobile-nav__switch-label">Trade Funding also does</span>
+    <a href="/commercial/index.html" onclick="closeMobile()">Business Loans &rarr;</a>
+    <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- ============================================
+       HERO - entry page only. Per Master IA §7, this channel shares
+       the core /commercial/apply.html intake engine (one intake engine,
+       three entry points, same pattern as Connect) - not a separate
+       multi-step form build.
+       ============================================ -->
+  <section class="pp-hero">
+    <div class="container" style="max-width:720px;text-align:center;">
+      <span class="pp-hero__eyebrow"><span class="pp-hero__eyebrow-dot"></span> Personal &amp; Property Finance</span>
+      <h1 class="pp-hero__title">Get your options - one application, every lender who'll actually consider you.</h1>
+      <p class="pp-hero__lead" style="max-width:100%;margin-left:auto;margin-right:auto;">Before you commit to a product, see what's actually available across our specialist panel. One short application gets you a clear picture of your real options - not just the one that was easiest to get you into.</p>
+      <div class="pp-hero__cta-group" style="justify-content:center;">
+        <a href="/commercial/apply.html?channel=personal-and-property" class="btn btn--primary">Start your application &rarr;</a>
+      </div>
+      <div class="pp-hero__trust" style="justify-content:center;">
+        <span class="pp-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> No credit check to compare</span>
+        <span class="pp-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Specialist lender panel</span>
+        <span class="pp-hero__trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> No obligation to proceed</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="pp-compliance-note">
+    <strong>Compliance review pending:</strong> all claims/guarantee-adjacent language on this channel needs sign-off before publish - consumer-lending regulation note, plan.md §5.2 / copy-final.md.
+  </div>
+
+</main>
+
+<!-- ============================================
+     FOOTER - CANONICAL wrapper structure per commercial/components/
+     footer.html and CLAUDE.md rule 14; content customised to this
+     channel per the same pattern already used in connect/index.html.
+     FooterLegal disclaimer strip is the componentized-once instance
+     per CLAUDE.md rule 8 - not reworded per channel.
+     ============================================ -->
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid footer__grid--condensed">
+
+      <!-- Column 1: Brand, contact, badges -->
+      <div class="footer__brand-col">
+        <a href="/commercial/index.html" class="footer__logo" aria-label="Trade Funding">
+          <img src="/commercial/assets/logo-white-ghost.png" alt="Trade Funding">
+        </a>
+        <p class="footer__brand-desc">Personal &amp; property finance for the people who run your business. We compare a specialist lender panel so you see your real options first.</p>
+        <div class="footer__contact">
+          <div class="footer__contact-item">&#128222; 1300 161 641</div>
+          <div class="footer__contact-item">&#128231; hello@tradefunding.com.au</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
+        </div>
+        <div class="footer__badges">
+          <span class="footer__badge">ACL 387856</span>
+          <span class="footer__badge">AFCA Member</span>
+          <span class="footer__badge">CAFBA</span>
+          <span class="footer__badge">Fintech Australia</span>
+        </div>
+      </div>
+
+      <!-- Column 2: condensed sitemap -->
+      <div class="footer__links-col">
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Loan Types</h4>
+          <div class="footer__links">
+            <a href="/personal-and-property/owner-occupied-home-loans.html">Owner-Occupied Home Loans</a>
+            <a href="/personal-and-property/investment-property-loans.html">Investment Property Loans</a>
+            <a href="/personal-and-property/refinancing.html">Refinancing</a>
+            <a href="/personal-and-property/construction-loans.html">Construction Loans</a>
+            <a href="/personal-and-property/commercial-property-finance.html">Commercial Property Finance</a>
+            <a href="/personal-and-property/smsf-loans.html">SMSF Loans</a>
+            <a href="/personal-and-property/personal-loans.html">Personal Loans</a>
+            <a href="/personal-and-property/debt-consolidation.html">Debt Consolidation</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="/personal-and-property/about.html">About Personal &amp; Property</a>
+            <a href="https://tradefunding.com.au">tradefunding.com.au</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/personal-and-property/apply.html">Get Started</a>
+          </div>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__heading">Legal</h4>
+          <div class="footer__links">
+            <a href="/commercial/credit-guide.html">Credit Guide</a>
+            <a href="/commercial/privacy.html">Privacy Policy</a>
+            <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FooterLegal (global, componentized once per CLAUDE.md rule 8) -->
+    <div class="footer__disclaimer">
+      <p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. <a href="/commercial/credit-guide.html">Read our Credit Guide</a> | <a href="/commercial/terms.html">Terms &amp; Conditions</a> | ACL 387856</p>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">&copy; 2026 Trade Funding Pty Ltd. All rights reserved. Australian Credit Licence 387856.</p>
+      <div class="footer__bottom-links">
+        <a href="/commercial/privacy.html">Privacy Policy</a>
+        <a href="/commercial/terms.html">Terms &amp; Conditions</a>
+        <a href="/commercial/credit-guide.html">Credit Guide</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var navbar = document.getElementById('navbar');
+  function handleScroll() {
+    if (window.scrollY > 60) { navbar.classList.add('scrolled'); }
+    else { navbar.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', function () {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  window.closeMobile = function () {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  };
+
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+      });
+    }, { rootMargin: '-10% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
