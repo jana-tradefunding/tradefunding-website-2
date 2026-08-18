@@ -41,12 +41,11 @@ function validate(payload) {
   return { errors, clean: { name, business, email, phone, sell, volume, message } };
 }
 
-async function sendEmail({ clean }) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) throw new Error('RESEND_API_KEY not configured');
+async function sendEmail({ clean, config }) {
+  if (!config.resendApiKey) throw new Error('RESEND_API_KEY not configured');
 
-  const to = process.env.LEAD_EMAIL_TO || 'support@tradefunding.com.au';
-  const from = process.env.LEAD_EMAIL_FROM || 'Trade Funding Connect Enquiries <noreply@tradefunding.au>';
+  const to = config.leadEmailTo;
+  const from = config.leadEmailFrom;
 
   const html = `
     <h2 style="font-family:system-ui,sans-serif;color:#001D43;">New Trade Funding Connect enquiry</h2>
@@ -65,7 +64,7 @@ async function sendEmail({ clean }) {
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      'Authorization': `Bearer ${config.resendApiKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -82,9 +81,8 @@ async function sendEmail({ clean }) {
   }
 }
 
-async function sendSlack({ clean }) {
-  const url = process.env.SLACK_WEBHOOK_URL;
-  if (!url) return; // optional — don't fail if Slack not configured
+async function sendSlack({ clean, config }) {
+  if (!config.slackWebhookUrl) return; // optional — don't fail if Slack not configured
 
   const text = [
     `*New Trade Funding Connect enquiry*`,
@@ -98,7 +96,7 @@ async function sendSlack({ clean }) {
     `_Source: connect.tradefunding.com.au_`
   ].filter(Boolean).join('\n');
 
-  await fetch(url, {
+  await fetch(config.slackWebhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ text })
@@ -106,6 +104,13 @@ async function sendSlack({ clean }) {
 }
 
 export default async function handler(req, res) {
+  const config = {
+    resendApiKey: process.env.RESEND_API_KEY,
+    leadEmailTo: process.env.LEAD_EMAIL_TO || 'support@tradefunding.com.au',
+    leadEmailFrom: process.env.LEAD_EMAIL_FROM || 'Trade Funding Connect Enquiries <noreply@tradefunding.au>',
+    slackWebhookUrl: process.env.SLACK_WEBHOOK_URL
+  };
+
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'method_not_allowed' });
@@ -172,8 +177,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    await sendEmail({ clean });
-    await sendSlack({ clean }).catch(err => console.error('Slack notify failed', err));
+    await sendEmail({ clean, config });
+    await sendSlack({ clean, config }).catch(err => console.error('Slack notify failed', err));
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Form submission failed', err);

@@ -1,5 +1,27 @@
+// pure, testable — no DOM references (architecture-review-report.md §1.2,
+// plan.md §10.4 item 5). Mirrors connect/scripts/calculator.js's compute()
+// pattern: module scope, outside the DOM-wiring IIFE below.
+function calcMonthly({ principal, annualRatePct, months, mode }) {
+  if (mode === 'APR') {
+    var r = annualRatePct / 100 / 12;
+    var n = months;
+    var M;
+    if (r === 0) { M = n > 0 ? principal / n : 0; }
+    else { M = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1); }
+    return { monthly: M, total: M * n, interest: M * n - principal };
+  } else {
+    var R = annualRatePct / 100;
+    var T = months / 12;
+    var N = months;
+    var total = principal + principal * R * T;
+    var monthly = N > 0 ? total / N : 0;
+    return { monthly: monthly, total: total, interest: total - principal };
+  }
+}
+
 (function () {
   'use strict';
+  if (typeof document === 'undefined') return;
 
   // ─── 1. Comparison Switcher ────────────────────────────────────────────────
 
@@ -107,34 +129,14 @@
       sliderEl.style.background = 'linear-gradient(to right, #54B4F6 ' + pct + '%, rgba(255,255,255,0.15) ' + pct + '%)';
     }
 
-    function calcMonthly() {
-      var P = getAmount();
-      var annualRate = parseFloat(rateEl.value) || 0;
-      var months = parseInt(termEl.value, 10) || 12;
-
-      if (mode === 'APR') {
-        var r = annualRate / 100 / 12;
-        var n = months;
-        var M;
-        if (r === 0) {
-          M = n > 0 ? P / n : 0;
-        } else {
-          M = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-        }
-        return { monthly: M, total: M * n, interest: M * n - P };
-      } else {
-        var R = annualRate / 100;
-        var T = months / 12;
-        var N = months;
-        var total = P + P * R * T;
-        var monthly = N > 0 ? total / N : 0;
-        return { monthly: monthly, total: total, interest: total - P };
-      }
-    }
-
     function updateCalc() {
       updateSliderBg();
-      var res = calcMonthly();
+      var res = calcMonthly({
+        principal: getAmount(),
+        annualRatePct: parseFloat(rateEl.value) || 0,
+        months: parseInt(termEl.value, 10) || 12,
+        mode: mode
+      });
       resultEl.textContent = fmt(res.monthly) + '/mo';
       if (totalEl)    totalEl.textContent    = fmt(res.total);
       if (interestEl) interestEl.textContent = fmt(res.interest);
