@@ -143,6 +143,8 @@
   ]
 }
 </script>
+<!-- Cloudflare Turnstile widget script (security-audit-report.md Finding 3 / plan.md 8.5) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -1237,6 +1239,11 @@
             <label for="rc-message">Anything we should know <span class="conv-field__optional">(optional)</span></label>
             <textarea id="rc-message" name="message" maxlength="500" rows="3"></textarea>
           </div>
+          <!-- Cloudflare Turnstile widget — TEST site key (always-passes, flagged in
+               chat before this diff). Swap for the real Site Key from the
+               Cloudflare dashboard before production deploy; matching server-side
+               secret lives in connect/api/_lib/turnstile.js. -->
+          <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
           <button type="submit" class="btn btn--primary btn--lg conv-form__submit">Register my business</button>
           <p class="conv-form__privacy">By submitting, you agree to our <a href="/connect/privacy.html">Privacy Policy</a> &amp; <a href="/connect/terms.html">Terms</a>. We'll never share your details with third parties without permission.</p>
         </form>

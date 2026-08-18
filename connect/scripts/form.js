@@ -14,12 +14,25 @@
   const FORM_ENDPOINT = '/api/request-call';
   const TOKEN_ENDPOINT = '/api/form-token';
 
+  // Cloudflare Turnstile response token, read from the widget rendered in the
+  // form (security-audit-report.md Finding 3 / plan.md 8.5). Sent as-is to
+  // both /api/form-token and /api/request-call per their existing server-side
+  // checks (_lib/turnstile.js) — both endpoints verify it independently, so
+  // if Cloudflare ever rejects it as already-consumed on the second call,
+  // that's the thing to check first during the 8.11 live-deploy pass.
+  function getTurnstileToken(){
+    return (window.turnstile && typeof window.turnstile.getResponse === 'function')
+      ? (window.turnstile.getResponse() || '')
+      : '';
+  }
+
   let formToken = null;
   let tokenFetchPromise = null;
-  function fetchFormToken(){
+  function fetchFormToken(turnstileToken){
     if(formToken) return Promise.resolve(formToken);
     if(tokenFetchPromise) return tokenFetchPromise;
-    tokenFetchPromise = fetch(TOKEN_ENDPOINT, { credentials: 'same-origin' })
+    const query = new URLSearchParams({ turnstile_token: turnstileToken || getTurnstileToken() });
+    tokenFetchPromise = fetch(`${TOKEN_ENDPOINT}?${query}`, { credentials: 'same-origin' })
       .then(r => r.ok ? r.json() : Promise.reject(new Error('token_fetch_failed')))
       .then(data => {
         formToken = data.token;
@@ -101,13 +114,19 @@
       return;
     }
 
+    const turnstileToken = getTurnstileToken();
+    if(!turnstileToken){
+      alert('Please complete the verification challenge before submitting.');
+      return;
+    }
+
     submitBtn.disabled = true;
     const originalLabel = submitBtn.textContent;
     submitBtn.textContent = 'Sending…';
 
     let token;
     try {
-      token = await fetchFormToken();
+      token = await fetchFormToken(turnstileToken);
     } catch(err){
       console.error('Token fetch failed', err);
       submitBtn.disabled = false;
@@ -125,7 +144,8 @@
       volume: form.querySelector('#rc-volume') ? form.querySelector('#rc-volume').value : '',
       message: form.querySelector('#rc-message').value.trim(),
       hp_token: form.querySelector('#rc-hp-token') ? form.querySelector('#rc-hp-token').value : '',
-      form_token: token
+      form_token: token,
+      turnstile_token: turnstileToken
     };
 
     try {

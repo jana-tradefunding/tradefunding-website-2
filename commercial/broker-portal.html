@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="/shared/styles/chrome.css">
 <link rel="stylesheet" href="/commercial/shared-styles.css">
 <link rel="stylesheet" href="/commercial/product-styles.css">
+<!-- Cloudflare Turnstile widget script (security-audit-report.md Finding 3 / plan.md 8.5) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <style>
 /* ========================================
@@ -360,6 +362,33 @@
   box-shadow: 0 8px 28px rgba(255,93,92,0.5);
 }
 
+.bp-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.bp-form__success {
+  padding: 40px 32px;
+  background: rgba(16,185,129,0.08);
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.bp-form__success-ico { margin-bottom: 18px; }
+
+.bp-form__success h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--navy);
+}
+
+.bp-form__success p { color: var(--text-secondary); }
+
 @media (max-width: 900px) {
   .bp-why__grid { grid-template-columns: 1fr; }
 }
@@ -649,9 +678,14 @@
 <!-- 5. LEAD FORM -->
 <section class="bp-form-section" id="bp-lead-form">
   <div class="bp-form-section__inner">
-    <form class="bp-form">
+    <form class="bp-form" method="post">
       <h3 class="bp-form__title">Partner with us</h3>
       <p class="bp-form__subtitle">Tell us a little about your brokerage and we'll be in touch.</p>
+
+      <div class="bp-form__hp" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+        <label for="bp-hp-token">If you are human, leave this empty</label>
+        <input type="text" id="bp-hp-token" name="hp_token" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore="true"/>
+      </div>
 
       <div class="bp-form__field">
         <label class="bp-form__label" for="bp-name">Name</label>
@@ -673,8 +707,21 @@
         <input class="bp-form__input" type="tel" id="bp-phone" name="phone" required>
       </div>
 
+      <!-- Cloudflare Turnstile widget — TEST site key (always-passes, flagged in
+           chat before this diff). Swap for the real Site Key from the Cloudflare
+           dashboard before production deploy; matching server-side secret lives
+           in connect/api/_lib/turnstile.js. Required so this form's shared
+           _lib/form-token.js check (same endpoint connect/index.html uses) can
+           actually issue a token. -->
+      <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
+
       <button type="submit" class="bp-form__submit">Partner with us &rarr;</button>
     </form>
+    <div class="bp-form__success" id="bp-form-success" hidden>
+      <div class="bp-form__success-ico" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <h3>Thanks — we've got your details.</h3>
+      <p>One of our team will be in touch shortly to talk through partnering with Trade Funding.</p>
+    </div>
   </div>
 </section>
 
@@ -764,5 +811,6 @@
 
 <script src="/commercial/product-page.js"></script>
 <script src="/shared/scripts/consent.js"></script>
+<script src="/commercial/broker-form.js"></script>
 </body>
 </html>
