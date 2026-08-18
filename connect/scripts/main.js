@@ -101,27 +101,7 @@
   }
 })();
 
-// ---------- Cookie consent bar ----------
-(function(){
-  const STORAGE_KEY = 'tf-connect-cookie-consent';
-  const bar = document.getElementById('cookie-bar');
-  if(!bar) return;
-
-  let existing = null;
-  try { existing = localStorage.getItem(STORAGE_KEY); } catch(e){}
-
-  if(!existing){
-    bar.hidden = false;
-    requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add('is-visible')));
-  }
-
-  bar.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-cookie-action]');
-    if(!btn) return;
-    const choice = btn.dataset.cookieAction;
-    try { localStorage.setItem(STORAGE_KEY, choice); } catch(e){}
-    bar.classList.remove('is-visible');
-    setTimeout(() => { bar.hidden = true; }, 350);
-    document.dispatchEvent(new CustomEvent('cookie-consent-changed', { detail: { choice } }));
-  });
-})();
+// Cookie consent bar moved to shared/scripts/consent.js (Phase 7 §10.4
+// item 4) - consolidated with commercial's implementation, one cookie
+// key used by every channel instead of this file's old localStorage
+// mechanism.

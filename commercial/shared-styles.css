@@ -176,67 +176,7 @@
   background: rgba(255,93,92,0.05);
 }
 
-/* Cookie Consent Banner - injected at runtime by commercial/cookie-
-   consent.js (banner.className = 'cookie-banner') across most of
-   Commercial. Not used by Connect/Personal & Property, which use a
-   separate .cookie-bar mechanism instead (plan.md §10.4 item 4 flags
-   consolidating the two - out of scope here). */
-.cookie-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--navy, #001C44);
-  color: #fff;
-  z-index: 9999;
-  padding: 16px 24px;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
-}
-.cookie-banner__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.cookie-banner__text {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.85);
-  margin: 0;
-}
-.cookie-banner__text a {
-  color: var(--skyblue, #54B4F6);
-  text-decoration: underline;
-}
-.cookie-banner__actions {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-.cookie-banner__accept {
-  background: var(--peach, #FF5D5C);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.cookie-banner__accept:hover { opacity: 0.9; }
-.cookie-banner__decline {
-  background: transparent;
-  color: rgba(255,255,255,0.7);
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-.cookie-banner__decline:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
-@media (max-width: 600px) {
-  .cookie-banner__inner { flex-direction: column; text-align: center; }
-  .cookie-banner__actions { justify-content: center; }
-}
+/* Cookie consent banner moved to shared/styles/chrome.css (Phase 7
+   §10.4 item 4 - the two channels' incompatible implementations were
+   consolidated into shared/scripts/consent.js, one .cookie-bar markup
+   shape used everywhere). */
