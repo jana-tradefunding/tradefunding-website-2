@@ -1,6 +1,6 @@
 # CLAUDE.md — Trade Funding Site Rebuild
 
-**Status: v6.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally). **The old "Phase 6 — Payload conversion" is now Phase 7; a new Phase 6 (Build Quality & Architecture Fix Pass) runs first — see plan.md §9.**
+**Status: v7.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally). **Payload conversion is now Phase 8. A new Phase 7 (Pre-Migration Remediation — address/email fixes, updated nav wording, and fixes from three new review reports) runs first — see plan.md §10.**
 
 ## Project in one paragraph
 
@@ -11,7 +11,7 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 1. **Never delete an existing product or guide page/route.** Every URL in `Master Information Architecture & Sitemap.md` must keep resolving.
 2. **`design baseline/` is a color-and-button reference only — it is never part of the build.** Never copy, import, or deploy anything from that folder directly. Its color/contrast decisions get re-applied by hand to the real `commercial/`, `connect/`, and new Personal & Property files.
 3. **One app, one Vercel project, sub-path routing.** Commercial/Connect/Personal & Property are three route groups in one Next.js app (`app/(commercial)/`, `app/connect/`, `app/personal-and-property/`) — never scaffold or deploy them as separate apps, separate Vercel projects, or subdomains.
-4. **Never guess the company address.** Leave it as an explicit unresolved placeholder with required-before-publish validation. This blocker (along with lender logos, hero copy sign-off, and the hello@ routing question) is **scheduled for resolution at Phase 3 kickoff** per `plan.md` §1 — don't chase it before then, but don't forget it either.
+4. **Never guess the company address.** The office address for Credit Guide/Terms/footer display is now supplied (see Phase 7, plan.md §10.1) and must be labeled "Office Address" specifically — not "Registered Address" and not unlabeled — since it isn't necessarily the ASIC-registered business address. Lender logos and hero copy sign-off remain genuine open blockers. The `hello@`→`support@` **inbox routing/access question is still unconfirmed** (Ben Lyons) even after the site's displayed email address is updated — don't treat a display-copy change as resolving the operational question.
 5. **Never invent lender logo files or fabricate a Google Reviews script/API key/review count.** Leave clearly marked TODOs until the real assets/credentials are supplied.
 6. **Don't publish final hero copy without explicit sign-off.** Treat `plan.md`'s placeholder hero copy as a draft in the CMS until told otherwise.
 7. **Keep the Cashper mascot wherever it currently appears.**
@@ -25,8 +25,11 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 15. **Every link and asset path is root-relative** (`/connect/about.html`, `/commercial/assets/logo-navy.png`) — never relative (`../`, bare filenames). Relative paths break silently for any page more than one folder deep.
 16. **Replace em-dashes (`—`) with a spaced hyphen (` - `)**, never a bare hyphen jammed between words.
 17. **No spaces in any folder or file name, anywhere in the repo.** Vercel routing breaks on them — see the `personal and property/` vs. `personal-and-property/` duplicate flagged in Phase 5.5.
-18. **Don't start Phase 7 (Payload conversion) until Phase 6's `docs/fix-report.md` exists** and the templating-vs-migrate-now decision (plan.md §9.3) has been made explicitly with the team.
+18. **Don't start Phase 8 (Payload conversion) until Phase 7's `docs/remediation-report.md` exists**, and Phase 6's templating-vs-migrate-now decision has been made explicitly with the team.
 19. **Any shared markup (header, footer, dropdown) lives at exactly one canonical source and gets re-propagated everywhere, including root-level pages that live outside a channel folder** — `contact.html` at the repo root was missed by an earlier propagation pass for exactly this reason. Don't assume "sitewide" excludes files that aren't inside `commercial/`, `connect/`, or `personal-and-property/`.
+20. **Nav label wording changes are cumulative — always check `plan.md` §10.2 for the current final wording before touching the primary nav.** It's been locked and re-locked more than once already; don't assume an older note (even one in this file) is still current without checking.
+21. **Never build a new form/endpoint that duplicates origin-check, token-verification, rate-limiting, or HTML-escaping logic that already exists.** Use the shared `connect/api/_lib/` module (see `buildspec.md` §13) once it exists — a security fix applied there should never need re-applying in three separate handler files.
+22. **Never ship a form that silently discards user input.** If a real backend endpoint genuinely isn't ready, disable the submit control and show a clear "coming soon, email us at [address]" message instead of a working-looking form that does nothing — this applies sitewide, not just to the two forms already flagged in the security audit.
 
 ## Tech stack quick reference
 
@@ -66,21 +69,25 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - `connect/docs/design-spec.md` / `implementation-plan.md` — Connect's original build spec, still authoritative for token values (now partially superseded in *role* — not values — by tokens.md's dominant/accent flip)
 - `plan.md`, `buildspec.md`, `prompts.md` — this project's own planning docs
 - `docs/cleanup-report.md` — Phase 5.5 output (done)
-- `docs/fix-report.md` — Phase 6 output; don't start Phase 7 until this exists
+- `docs/fix-report.md` — Phase 6 output (done)
+- `docs/remediation-report.md` — Phase 7 output; don't start Phase 8 until this exists
+- `security-audit-report.md`, `architecture-review-report.md`, `dependency-risk-report.md` — the three source reports Phase 7 remediates; keep for reference, don't delete after Phase 7 closes since Phase 8's dependency audit will need re-running against the same five categories
 
 ## Commands
 
-(Fill in once the Payload/Next.js scaffold exists in Prompt 6 — do not guess these before the scaffold is created.)
+(Fill in once the Payload/Next.js scaffold exists in Phase 8 — do not guess these before the scaffold is created. `connect/package.json` gets `npm test` / `npm run lint` added in Phase 7 — see `buildspec.md` §13.)
 
-## Open items currently in effect (check plan.md §1–2, §5, §9 for full context)
+## Open items currently in effect (check plan.md §1–2, §5, §9, §10 for full context)
 
 - `self-employed-home-loan.html` channel placement (hit-list item 43) — undecided, Claude Code to call and document
 - `commercial-property-finance` vs. `/second-mortgage/` / `/self-employed-home-loan/` overlap — flagged, unresolved
 - Broker Portal referral process / commission structure — not covered by the Executive Questionnaire, still needs direct Matt/Ben input before Phase 3.2 copy can be drafted for that page
 - Home hero final copy — still pending sign-off despite locked directional agreement
-- Deferred blockers (address, lender logos, GoogleReviews count, hello@ routing) — scheduled for Phase 3 kickoff, not before
-- **Phase 6 (new, not started) — full fix list in plan.md §9:** `contact.html` header miss, missing trust bar, `design baseline/`/test-harness still in the deploy tree, 9 relative-path files in `commercial/guides/`, ~3,000+ inline styles, 0/62 pages with `<header>` landmark (21/62 have `<main>`), unlinked footer badges, Commercial's hamburger missing `aria-expanded`, non-accessible S.T.A.R. tooltip, `apply.html`'s 4 `<h1>`s, 34 pages missing `<meta name="robots">`, stale `sitemap.xml`, "Partners" nav still pointing at legacy Broker Portal instead of Connect, missing "Become a Partner" CTA in Commercial, tripled ACL number in the footer, and Personal & Property missing the reveal-animation treatment. Plus one real decision to make with the team: adopt a templating layer, or treat this as the last raw-HTML pass before Phase 7.
+- Lender logos, GoogleReviews real count — still genuinely unresolved
+- `hello@` → `support@` inbox routing/access — still unconfirmed (Ben Lyons), independent of the Phase 7 display-copy change
+- **"Compare Options" nav mapping (Phase 7, plan.md §10.2)** — flagged, not resolved: most likely `comparison-report.html`, needs confirmation. Also unresolved: where the Guides Hub and `about.html` live in the new 4-item nav.
+- **Phase 7 (new, not started) — full list in plan.md §10:** company address + email fill-in, nav wording update, and remediation of all findings in `security-audit-report.md`, `architecture-review-report.md`, and `dependency-risk-report.md` — see those three files and `buildspec.md` §13 for technical detail.
 
-**Resolved since v5:** Nav label wording is now locked ("What Funding Do I Need?" / "Offer Funding Solutions" / "Why Trade Funding?") — no longer pending Matt's call. Connect's audience framing (design-spec vs. newer notes) was resolved earlier via the Executive Questionnaire — see `buildspec.md` §5.
+**Resolved since v6:** Phase 6 (Build Quality & Architecture Fix Pass) is done, confirmed via git log. Nav label wording from Phase 6 has since been superseded again in Phase 7 (see item 20 above and §10.2) — don't apply the Phase 6 wording, it's stale.
 
 Update this section as decisions come back from the team.

@@ -1,12 +1,12 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v6 — adds Phase 6 (Build Quality & Architecture Fix Pass), a new set of prompts inserted between the (now complete) Phase 5.5 cleanup and Payload conversion, which is renumbered Phase 7. Everything is listed below in strict chronological run order.**
+**Status: v7 — adds Phase 7 (Pre-Migration Remediation), a new set of prompts inserted between the (now complete) Phase 6 build-quality pass and Payload conversion, which is renumbered Phase 8. Everything is listed below in strict chronological run order.**
 
-**Reminder before every session:** `design baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
+**Reminder before every session:** `design baseline/` (now `_internal/_DO-NOT-DEPLOY-design-baseline/`, per Phase 6) is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
 ---
 
-## Status snapshot (from your latest zip)
+## Status snapshot (from your latest zip + the three new review reports)
 
 | # | Prompt | Status | Evidence |
 |---|---|---|---|
@@ -17,14 +17,15 @@
 | 3.1 | Research (`research-notes.md`) | ✅ Done | `docs/research-notes.md` exists |
 | 3.2 | Copy creation (`copy-final.md`) | ✅ Done | `docs/copy-final.md` exists |
 | 3b | Apply approved copy | ✅ Done (at least partially) | Commercial home hero copy is in place with correctly spaced hyphens |
-| 4 | Component inventory (`design/components.md`) | ⬜ Not run | Optional, doesn't block Phase 7 |
+| 4 | Component inventory (`design/components.md`) | ⬜ Not run | Optional, doesn't block Phase 8 |
 | 5 | Page production | ✅ Done | `personal-and-property/*` (11 pages), `commercial/guides/index.html` hub, both calculators all present |
-| 5-fix | Collapse two-tier header | ✅ Done, with one miss | Every folder-scoped page is fixed; `contact.html` at the repo root still has the old two-tier structure — pick up in Phase 6 below |
+| 5-fix | Collapse two-tier header | ✅ Done, with one miss | `contact.html` at the repo root still had the old structure — fixed in Phase 6.1 |
 | 5.5 | Pre-conversion cleanup | ✅ Done | `docs/cleanup-report.md` exists; retired files and the spaced-name duplicate are confirmed gone |
-| **6** | **Build quality & architecture fix pass (NEW)** | 🔴 **Not started — run these next, in order** | Full list surfaced by your team's site review (`TF_Site_v_07.docx`) — see Prompts 6.1–6.7 below |
-| 7–10 | Payload/Next.js/Vercel (formerly 6–9) | ⬜ Not started | No `/site` app scaffold present yet — correctly sequenced after Phase 6 |
+| **6** | Build quality & architecture fix pass | ✅ **Done** | Confirmed via `git log` — six Phase 6 commits (6.1 through 6.6) |
+| **7** | **Pre-Migration Remediation (NEW)** | 🔴 **Not started — run these next, in order** | Address/email blockers, updated nav wording, and fixes from `security-audit-report.md`, `architecture-review-report.md`, `dependency-risk-report.md` — see Prompts 7.0–7.13 below |
+| 8–11 | Payload/Next.js/Vercel (formerly 7–10) | ⬜ Not started | No `/site` app scaffold present yet — correctly sequenced after Phase 7 |
 
-**What this means for you right now:** run the Phase 6 prompts below, in order (6.1 → 6.7), then the Phase 6 decision prompt (6.8, a discussion not a code change), before touching Phase 7. Prompts 0, 2, and 4 are still optional and don't block anything downstream.
+**What this means for you right now:** run the Phase 7 prompts below, in order (7.0 → 7.13), before touching Phase 8. Prompts 0, 2, and 4 are still optional and don't block anything downstream.
 
 ---
 
@@ -173,7 +174,7 @@ alter layout, only copy. Show me a diff before writing changes.
 
 ---
 
-## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 7 but speeds it up)
+## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 8 but speeds it up)
 
 ```
 Read tokens.md, commercial/shared-styles.css, commercial/product-styles.css,
@@ -320,7 +321,7 @@ report exists and I've confirmed the flagged items.
 
 ---
 
-## Prompt 6.1 — Finish header propagation + trust bar + locked nav labels — 🔴 NOT RUN, RUN THIS FIRST
+## Prompt 6.1 — Finish header propagation + trust bar + locked nav labels — ✅ DONE (nav wording superseded again in Phase 7 — see Prompt 7.2)
 
 ```
 Read plan.md §9.1 and buildspec.md §12.
@@ -354,7 +355,7 @@ personal-and-property/), same as the last header fix.
 
 ---
 
-## Prompt 6.2 — Remove what shouldn't be in the deployable tree — ⬜ NOT RUN
+## Prompt 6.2 — Remove what shouldn't be in the deployable tree — ✅ DONE
 
 ```
 Read plan.md §9.2.
@@ -372,7 +373,7 @@ Show me the diff/move plan before executing.
 
 ---
 
-## Prompt 6.3 — Path & templating debt — ⬜ NOT RUN
+## Prompt 6.3 — Path & templating debt — ✅ DONE
 
 ```
 Read plan.md §9.3 and buildspec.md §12.
@@ -394,7 +395,7 @@ plan.md §9.3, I'll decide with the team.
 
 ---
 
-## Prompt 6.4 — Accessibility pass — ⬜ NOT RUN
+## Prompt 6.4 — Accessibility pass — ✅ DONE
 
 ```
 Read plan.md §9.4.
@@ -420,7 +421,7 @@ Show me a diff before writing changes to any file.
 
 ---
 
-## Prompt 6.5 — SEO/meta hygiene — ⬜ NOT RUN
+## Prompt 6.5 — SEO/meta hygiene — ✅ DONE
 
 ```
 Read plan.md §9.5 and docs/SEO_Audit_Report.md.
@@ -439,7 +440,7 @@ Show me the sitemap.xml diff before writing it.
 
 ---
 
-## Prompt 6.6 — Nav/CTA routing fixes — ⬜ NOT RUN
+## Prompt 6.6 — Nav/CTA routing fixes — ✅ DONE
 
 ```
 Read plan.md §9.6.
@@ -458,7 +459,7 @@ Show me a diff before writing changes.
 
 ---
 
-## Prompt 6.7 — Personal & Property animation parity — ⬜ NOT RUN
+## Prompt 6.7 — Personal & Property animation parity — ✅ DONE (assumed — confirm if not yet verified)
 
 ```
 Read plan.md §9.7 and tokens.md §1.5.
@@ -472,7 +473,7 @@ implementation.
 
 ---
 
-## Prompt 6.8 — Templating decision + fix report (do this in Claude web chat, not Claude Code)
+## Prompt 6.8 — Templating decision + fix report — ✅ DONE (confirm `docs/fix-report.md` reflects the decision made)
 
 *(This is a discussion, not a code change — surface the real tradeoff from plan.md §9.3 and decide with the team before Claude Code produces the closing report.)*
 
@@ -501,7 +502,275 @@ report.
 
 ---
 
-## Prompt 7 — Payload CMS scaffold (Phase 7) — ⬜ NOT STARTED
+## Prompt 7.0 — Commit current work — 🔴 NOT RUN, RUN THIS FIRST
+
+```
+Check git status. If there are uncommitted changes, commit them now with
+a sensible message describing what they are. If the tree is already
+clean, confirm that and move on — don't force an empty commit.
+```
+
+---
+
+## Prompt 7.1 — Address + email fixes (Commercial) — ⬜ NOT RUN
+
+```
+Read plan.md §10.1.
+
+1. Fill in all 4 confirmed placeholder spots — commercial/credit-guide.html
+   (body list item + footer contact item) and commercial/terms.html
+   (§13 "Post" reference + footer contact item) — with:
+
+   Office Address: Level 8, 387 George Street, Sydney, NSW, 2000
+
+   Label it explicitly "Office Address" in every spot — not "Registered
+   Address," not unlabeled.
+
+2. Replace every occurrence of hello@tradefunding.com.au with
+   support@tradefunding.com.au, sitewide. Connect already uses support@
+   consistently — confirm that and leave it untouched. Personal & Property
+   (all 11 pages) and roughly half of Commercial's pages still use hello@.
+
+3. Do NOT touch anything related to hello@ actually routing/forwarding to
+   support@ — that's a separate, still-unconfirmed operational question
+   for Ben Lyons (inbox access), not a site-content change. Leave
+   CLAUDE.md's note on this exactly as-is.
+
+Show me a diff before writing changes; list every file touched by the
+email replacement in step 2.
+```
+
+---
+
+## Prompt 7.2 — Update Commercial's top-level nav wording — ⬜ NOT RUN
+
+```
+Read plan.md §10.2.
+
+Update Commercial's primary nav labels to their new, final wording:
+Funding Solutions | Compare Options | Partners | Why Choose Us?
+
+Mapping (confirm each against the live markup before changing):
+- "What Funding Do I Need?" -> "Funding Solutions" (same dropdown/structure)
+- "Offer Funding Solutions" (currently routes to /connect/for-vendors.html)
+  -> "Partners" (same destination)
+- "Why Trade Funding?" -> "Why Choose Us?"
+- "Compare Options" is a new fourth item with no existing nav slot -
+  do NOT silently pick its destination. Flag it to me: my best guess is
+  comparison-report.html, but confirm before wiring the link. Also flag,
+  don't decide, where the Guides Hub (/guides/) and about.html should
+  live now that the top-level list doesn't name them.
+
+Apply consistently across every Commercial page's header and any
+footer/mobile-nav mirror of these links. Show me a diff of the canonical
+navbar.html first, then propagate.
+```
+
+---
+
+## Prompt 7.3 — HTML-include build step (architecture fix, highest leverage — do before further edits) — ⬜ NOT RUN
+
+```
+Read plan.md §10.4 item 1 and architecture-review-report.md §4.2.
+
+Add a minimal build-time HTML-include step (e.g. a small Node script
+using posthtml-include, or a five-line custom script) that replaces
+<!-- include:navbar --> / <!-- include:footer --> style markers with the
+canonical component's contents at commit or CI time, instead of the
+current manual copy-paste-into-62-files approach. connect/package.json
+already declares "type": "module" and Node >=20 - use that, no new
+runtime dependency needed for the site itself (devDependency only, if
+any).
+
+Do not run this across all 62 files as a one-shot rewrite - first show
+me the script working correctly against 2-3 sample pages (one per
+channel), then propagate once I approve the approach.
+```
+
+---
+
+## Prompt 7.4 — Extract shared chrome CSS — ⬜ NOT RUN
+
+```
+Read plan.md §10.4 item 2 and architecture-review-report.md §1.1.
+
+Extract the header/footer/ChannelSwitcher/button/container CSS that
+Connect and Personal & Property currently pull from
+commercial/shared-styles.css into a new, channel-agnostic
+shared/styles/chrome.css, referenced by all three channels.
+commercial/shared-styles.css keeps only genuinely Commercial-specific
+rules after the split. No visual change expected - this is a file-
+structure fix, not a redesign. Show me a diff before writing changes,
+and confirm all three channels still render identically after the move.
+```
+
+---
+
+## Prompt 7.5 — Extract shared serverless library (`_lib/`) — ⬜ NOT RUN
+
+```
+Read plan.md §10.4 item 3 and architecture-review-report.md §2.1.
+
+Create connect/api/_lib/ with origin-check.js (fromAllowedOrigin),
+form-token.js (issueToken/verifyToken), rate-limit.js (stub for now -
+the real Upstash-backed implementation lands in Prompt 7.6), and
+html-escape.js (escapeHtml) - extracted from the existing logic in
+connect/api/form-token.js and connect/api/request-call.js. Update both
+existing files to import from _lib/ instead of containing this logic
+inline. Do not change behavior - this is a pure extraction. Show me a
+diff before writing changes.
+```
+
+---
+
+## Prompt 7.6 — Security Critical: fix rate limiting — ⬜ NOT RUN
+
+```
+Read plan.md §10.3 item 1 and security-audit-report.md Finding 2 in full.
+
+Replace the in-memory Map-based rate limiter in
+connect/api/_lib/rate-limit.js (from Prompt 7.5) with an Upstash
+Redis-backed sliding-window limiter (@upstash/ratelimit + @upstash/redis),
+matching the report's exact fix: 3/hour and 10/day per IP, using
+UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN env vars. Update
+connect/.env.example with the two new variables and a comment on where
+to get them (Upstash free tier, or Vercel KV as a drop-in alternative).
+Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 7.7 — Security High: add a real anti-abuse check — ⬜ NOT RUN
+
+```
+Read plan.md §10.3 item 2 and security-audit-report.md Finding 1 in full.
+
+Add Cloudflare Turnstile verification to connect/api/_lib/origin-check.js
+(or a new sibling module), called from both form-token.js and
+request-call.js alongside - not instead of - the existing Origin/Referer
+check. Add TURNSTILE_SECRET_KEY to connect/.env.example. Note the
+matching front-end change needed (adding the Turnstile widget/script to
+connect/index.html's request-call form) as a follow-up - flag it, don't
+silently skip it.
+```
+
+---
+
+## Prompt 7.8 — Security Medium: wire the two silently-broken forms — ⬜ NOT RUN
+
+```
+Read plan.md §10.3 item 3 and security-audit-report.md Finding 5 in full.
+
+For commercial/contact.html (action="#", does nothing) and the
+comparison-report download gate in product-page.js (fakes a "Sent to
+[email]" success, discards the address): build a real endpoint for each
+using the connect/api/_lib/ shared modules from Prompt 7.5, following
+request-call.js's pattern. If a real endpoint genuinely can't be
+finished in this pass, disable the submit control instead and show
+"Coming soon - email us at support@tradefunding.com.au" rather than a
+form that silently discards input - tell me which path you're taking
+for each of the two forms before implementing.
+```
+
+---
+
+## Prompt 7.9 — Security Medium: fix the Broker Portal form — ⬜ NOT RUN
+
+```
+Read plan.md §10.3 item 4 and security-audit-report.md Finding 3 in full.
+
+commercial/broker-portal.html's form has no method/action, defaulting to
+GET and leaking name/email/phone into the URL, browser history, referrer
+headers, and server logs. Add a real POST endpoint (/api/broker-lead),
+built from connect/api/_lib/, and wire the form to it with a submit
+handler (mirroring connect/scripts/form.js's pattern). Show me a diff
+before writing changes.
+```
+
+---
+
+## Prompt 7.10 — Security Low: add secret rotation support — ⬜ NOT RUN
+
+```
+Read plan.md §10.3 item 5 and security-audit-report.md Finding 4 in full.
+
+Add a KEY_VERSION prefix (e.g. "v1.") to the HMAC token format in
+connect/api/_lib/form-token.js so FORM_TOKEN_SECRET can be rotated later
+without breaking in-flight tokens. Also confirm (report back to me,
+don't just assume) whether FORM_TOKEN_SECRET was actually generated via
+openssl rand -hex 32 in Vercel's dashboard, per the existing
+.env.example comment, rather than left as a placeholder.
+```
+
+---
+
+## Prompt 7.11 — Architecture: consolidate cookie-consent — ⬜ NOT RUN
+
+```
+Read plan.md §10.4 item 4 and architecture-review-report.md §2.2.
+
+Consolidate connect/scripts/main.js's localStorage-based cookie-consent
+check (key: tf-connect-cookie-consent) and commercial/cookie-consent.js's
+document.cookie-based check (key: blc_cookie_consent - a legacy codename,
+retire it) into one shared implementation in shared/scripts/consent.js,
+using a single new cookie key (e.g. tf_cookie_consent) so consent state
+carries across channels via the ChannelSwitcher instead of re-prompting.
+Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 7.12 — Architecture: testability refactors — ⬜ NOT RUN
+
+```
+Read plan.md §10.4 items 5-6 and architecture-review-report.md §1.2 and §3.2.
+
+1. Refactor calcMonthly() in commercial/product-page.js into a pure
+   function taking { principal, annualRatePct, months, mode } and
+   returning { monthly, total, interest } - no DOM references inside it -
+   mirroring connect/scripts/calculator.js's compute() pattern. Keep a
+   thin DOM-reading wrapper calling it.
+
+2. Refactor connect/api/request-call.js to read all required env vars
+   once at the top of handler(), passed down as a plain config object to
+   sendEmail()/sendSlack(), rather than reading process.env deep inside
+   those functions.
+
+No behavior change expected in either case - this is purely to make both
+independently unit-testable. Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 7.13 — Dependency fixes + tests + closing report — ⬜ NOT RUN
+
+```
+Read plan.md §10.5, buildspec.md §13, and dependency-risk-report.md in full.
+
+1. Update connect/package.json with the exact devDependencies/scripts
+   block from dependency-risk-report.md (vitest ^2.1.0, eslint ^9.13.0;
+   "test": "vitest run", "lint": "eslint ."). No production dependencies.
+
+2. Write vitest unit tests covering: calcMonthly() and compute() (the
+   amortization/rate math from Prompt 7.12 and calculator.js), the rate
+   limiter's pure logic (post-Upstash migration from Prompt 7.6), and
+   HMAC token verification (form-token.js). Run npm test and confirm
+   they pass before moving on.
+
+3. Produce docs/remediation-report.md summarizing everything fixed
+   across Prompts 7.0-7.12, in order, referencing which finding/item
+   from each of the three source reports it addresses. Include the two
+   open flags from Prompt 7.2 ("Compare Options" mapping, Resources/
+   About placement) and confirm the hello@ -> support@ inbox-routing
+   question from Prompt 7.1 is still open and unresolved by this phase.
+
+Do not begin Phase 8 (Payload conversion) until this report exists and
+I've reviewed it.
+```
+
+---
+
+## Prompt 8 — Payload CMS scaffold (Phase 8) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §2 and §3 in full.
@@ -523,11 +792,11 @@ to content migration.
 
 ---
 
-## Prompt 8 — Migrate one page end-to-end (Phase 7) — ⬜ NOT STARTED
+## Prompt 9 — Migrate one page end-to-end (Phase 8) — ⬜ NOT STARTED
 
 ```
 Convert exactly one page — commercial/business-term-loans.html — into a
-Payload-backed page using the collections scaffolded in Prompt 7 and the
+Payload-backed page using the collections scaffolded in Prompt 8 and the
 component inventory in design/components.md (if Prompt 4 was run — if
 not, work directly from the existing HTML/CSS instead).
 
@@ -543,7 +812,7 @@ Do not touch any other HTML file until I approve this pattern.
 
 ---
 
-## Prompt 9 — Batch-convert remaining pages — ⬜ NOT STARTED
+## Prompt 10 — Batch-convert remaining pages — ⬜ NOT STARTED
 
 ```
 Read docs/cleanup-report.md first to confirm the file tree is clean and
@@ -561,7 +830,7 @@ and flag me if any page doesn't cleanly fit the established pattern.
 
 ---
 
-## Prompt 10 — Vercel deploy (Phase 7) — ⬜ NOT STARTED
+## Prompt 11 — Vercel deploy (Phase 8) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §8.

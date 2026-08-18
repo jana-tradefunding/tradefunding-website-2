@@ -1,6 +1,6 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v6 — inserts a new Phase 6 (Build Quality & Architecture Fix Pass), based on a full-site review (`TF_Site_v_07.docx`) done after Phase 5.5 cleanup. The old "Phase 6 — Payload CMS conversion" is renumbered to Phase 7; nothing after it changes except the number.**
+**Status: v7 — inserts a new Phase 7 (Pre-Migration Remediation) covering the address/email blockers, an updated nav wording, and fixes from three new review reports (security, architecture, dependency-risk). The old "Phase 7 — Payload CMS conversion" is renumbered to Phase 8.**
 
 ## Current build status (check before running anything)
 
@@ -9,13 +9,13 @@
 | 0 — Hit list | Optional, not produced as a standalone file — content already folded into §2 below |
 | 1 — Branding tokens | ✅ Done (`tokens.md`) |
 | 2 — Site architecture / nav | Nav is built into the live pages; the standalone `nav-spec.md` doc was never produced (optional) |
-| 3 — Copy (research → copy-final.md → applied) | ✅ Done — `research-notes.md` and `copy-final.md` exist; hero copy is applied on Commercial's home page at least |
+| 3 — Copy (research → copy-final.md → applied) | ✅ Done |
 | 4 — Design component inventory | Optional, not produced (`design/components.md`) |
-| 5 — HTML/page production | ✅ Done — Personal & Property (11 pages), Guides Hub, both calculators all built |
-| 5.2 — ChannelSwitcher header fix | ✅ Done, with one miss — `contact.html` at the repo root still has the old two-tier header; every folder-scoped page is fixed |
-| 5.5 — Pre-conversion cleanup | ✅ Done (`docs/cleanup-report.md` exists; retired files and the spaced-name duplicate are gone) |
-| **6 — Build quality & architecture fix pass** | 🔴 **New phase — not started. Do this before Phase 7.** See §9 below. |
-| 7 — Payload/Vercel conversion (formerly "Phase 6") | Not started — waits on Phase 6 |
+| 5 — HTML/page production | ✅ Done |
+| 5.5 — Pre-conversion cleanup | ✅ Done (`docs/cleanup-report.md`) |
+| 6 — Build quality & architecture fix pass | ✅ Done — confirmed via git log (six Phase 6 commits, 6.1 through 6.6) |
+| **7 — Pre-Migration Remediation (NEW)** | 🔴 **Not started. Do this next.** See §10 below. |
+| 8 — Payload/Vercel conversion (formerly "Phase 7") | Not started — waits on Phase 7 |
 
 **Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (canonical IA/architecture doc), `tokens.md` (finalized Phase 1 output), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, `docs/research-notes.md` and `docs/copy-final.md` (Phase 3 outputs), and the `commercial/`, `connect/`, `personal-and-property/`, and `design baseline/` folders in the project zip.
 
@@ -104,7 +104,7 @@ Connect's shift is bigger than a simple accent swap — it **inverts** the exist
 - **Products:** stays in the primary nav as a grouped hover-expand list (Term Loans, Credit Lines, Invoice, Trade, Equipment, Personal & Property, Other) — no emoji/icon grid. A dedicated `/business-loans/` full-menu page exists for users directed there. No product page is ever deleted for nav decluttering.
 - **Why Us:** purpose-driven navigation, reintroduced alongside Products as a second path into the same underlying pages.
 - **Partners:** covers Broker Portal and, contextually, Connect's "Become a Partner" acquisition path.
-- ✅ **Nav label wording — now locked (was previously placeholder pending Matt's call):** "Products" → **"What Funding Do I Need?"**, "Why Us" → **"Why Trade Funding?"**, "Partners" → **"Offer Funding Solutions"**. Confirmed final per the Phase 6 site review (`TF_Site_v_07.docx`) — no longer a placeholder, apply as-is.
+- 🔁 **Nav label wording — locked in Phase 6, then changed again in Phase 7 (see §10.2):** the Phase 6 site review (`TF_Site_v_07.docx`) locked in "Products" → "What Funding Do I Need?", "Why Us" → "Why Trade Funding?", "Partners" → "Offer Funding Solutions". This has since been superseded — see §10.2 for the current, final wording ("Funding Solutions | Compare Options | Partners | Why Choose Us?").
 
 ---
 
@@ -293,21 +293,21 @@ Do not treat product pages as the whole of Phase 5 — the Guides Hub and the tw
 
 ## 8. Phase 5.5 — Pre-Conversion Cleanup & File Organization (NEW)
 
-**Purpose:** before Phase 6's fix pass and Phase 7's Payload conversion, do a dedicated housekeeping pass on the raw file structure. This phase exists because Phase 5 production naturally creates loose ends — duplicate folders, retired-but-not-deleted files, unused assets — that are cheap to fix now and expensive to carry into the CMS migration.
+**Purpose:** before Phase 6's fix pass, Phase 7's remediation pass, and Phase 8's Payload conversion, do a dedicated housekeeping pass on the raw file structure. This phase exists because Phase 5 production naturally creates loose ends — duplicate folders, retired-but-not-deleted files, unused assets — that are cheap to fix now and expensive to carry into the CMS migration.
 
 **Concrete cleanup tasks:**
 
 1. **Delete the duplicate Personal & Property folder.** The project currently has both `personal-and-property/` (correct) and `personal and property/` (with spaces — currently empty, but a real risk if anything ever gets saved into it). **Delete `personal and property/` entirely.** Spaces in folder names break Vercel routing; there must be exactly one Personal & Property folder, correctly named.
 2. **Securely delete retired files**, per the Duplicate Resolution Log in `Master Information Architecture & Sitemap.md` §9 — don't just stop linking to them, actually remove them so they don't linger as ghost/crawlable pages:
-   - `commercial/debtor-finance.html` — confirm its unique content was merged into `commercial/invoice-finance.html` first (per §9 item 4), then delete the file and confirm the `/debtor-finance/` → `/invoice-finance/` redirect is documented for Phase 7.
-   - `commercial/trade-funding-website-application.html` — confirm `apply.html` is the live, complete version, then delete the legacy file and confirm the redirect to `/apply/` is documented for Phase 7.
-   - `commercial/resources.html` — once the Guides Hub (7.5) is live at `/guides/`, confirm whether this file's content has been fully absorbed into the hub; if so, delete it and confirm the `/resources/` → `/guides/` redirect is documented for Phase 7. If any unique content still only exists in `resources.html`, migrate it into the Guides Hub first.
+   - `commercial/debtor-finance.html` — confirm its unique content was merged into `commercial/invoice-finance.html` first (per §9 item 4), then delete the file and confirm the `/debtor-finance/` → `/invoice-finance/` redirect is documented for Phase 8.
+   - `commercial/trade-funding-website-application.html` — confirm `apply.html` is the live, complete version, then delete the legacy file and confirm the redirect to `/apply/` is documented for Phase 8.
+   - `commercial/resources.html` — once the Guides Hub (7.5) is live at `/guides/`, confirm whether this file's content has been fully absorbed into the hub; if so, delete it and confirm the `/resources/` → `/guides/` redirect is documented for Phase 8. If any unique content still only exists in `resources.html`, migrate it into the Guides Hub first.
 3. **Audit for unused assets** — orphaned images, unreferenced CSS classes/rules, unused JS files (across `commercial/`, `connect/`, and `personal-and-property/`) that nothing in the final page set actually links to or uses. Flag before deleting anything not explicitly named above — don't silently remove assets you're not sure are unused.
 4. **Verify folder structure matches the IA doc exactly**: `commercial/` (root-level pages + `guides/` + `components/` + `assets/`), `connect/` (with its own `branding/`/`styles/`/`api/`), `personal-and-property/` (single, correctly named, no duplicates) — flag anything that doesn't match this shape.
 5. **Run the header/footer parity check from 7.1 across every remaining page** as a final gate — confirm no page's header/footer markup has silently drifted from the canonical component during Phase 5 production.
 6. **Produce `cleanup-report.md`** documenting: files deleted (with reasoning), files flagged as possibly-unused but not deleted (pending confirmation), and any header/path inconsistencies found and fixed. Keep this report in `docs/` alongside the other planning docs.
 
-Do not begin Phase 7 (Payload conversion) until `cleanup-report.md` exists and the folder structure is clean — migrating a messy file tree into Payload collections just moves the mess into the CMS. (Phase 6, the build-quality fix pass, still sits between this cleanup and Phase 7 — see below.)
+Do not begin Phase 8 (Payload conversion) until `cleanup-report.md` exists and the folder structure is clean — migrating a messy file tree into Payload collections just moves the mess into the CMS. (Phase 6, the build-quality fix pass, and Phase 7, the pre-migration remediation pass, both still sit between this cleanup and Phase 8 — see below.)
 
 ---
 
@@ -360,7 +360,66 @@ Do not begin Phase 7 (Payload conversion) until `cleanup-report.md` exists and t
 
 ---
 
-## 10. Phase 7 — Conversion to Payload CMS + Vercel Publish (formerly "Phase 6"; architecture unchanged, just renumbered)
+## 10. Phase 7 — Pre-Migration Remediation (NEW)
+
+**Why this phase exists:** three independent review reports (security, architecture, dependency-risk) landed after Phase 6 closed, plus a handful of real content blockers (address, email) and a nav-wording change came in directly from the team. All of it needs resolving before Payload conversion, for the same reason Phase 6 came before it: fixing a broken pattern is cheaper now than migrating it into a CMS component and fixing it there.
+
+### 10.0 Commit current work
+
+Before starting: commit the current working tree with a sensible message. (As of the zip reviewed for this update, `git status` shows a clean tree through Phase 6's six commits — so this may be a no-op, but confirm at the start of every phase regardless, as standing practice.)
+
+### 10.1 Fill in the company address + email blockers (Commercial)
+
+- **Exact locations confirmed in the live files** — there are 4 placeholder spots across two files, not 3: `commercial/credit-guide.html` (a body list item around line 208, and a footer contact item around line 295) and `commercial/terms.html` (the §13 "Post" reference around line 318, and a footer contact item around line 340).
+- Fill each with the supplied address, **explicitly labeled "Office Address"** — not "Registered Address" and not unlabeled — since this is the office/correspondence address, not necessarily the ASIC-registered business address:
+  > Office Address: Level 8, 387 George Street, Sydney, NSW, 2000
+- ⚖️ **Not legal advice — flag for your own compliance check:** Credit Guides for Australian Credit Licence holders generally need to disclose contact details, but whether the *registered* address specifically is required (versus a genuine office/contact address) is worth confirming with whoever manages your ACL compliance. Labeling this accurately as "Office Address," rather than presenting it as the registered address, is the safer disclosure choice regardless of that answer.
+- **Email — confirmed sitewide replacement needed:** Connect already uses `support@tradefunding.com.au` consistently across all 8 of its pages (no changes needed there). **Personal & Property (all 11 pages) uses `hello@tradefunding.com.au` exclusively, and roughly half of Commercial's pages are still on `hello@` too** — 51 files total need `hello@tradefunding.com.au` replaced with `support@tradefunding.com.au`.
+- **`hello@` → `support@` routing and inbox access remains genuinely unconfirmed** (Ben Lyons, per `CLAUDE.md`'s deferred-blocker list) — this is an operational question, not a site-content fix, and stays open regardless of the display-copy change above. Don't close this item out just because the displayed email address changed.
+
+### 10.2 Update Commercial's top-level nav wording (supersedes the Phase 6.1 lock)
+
+**New, final wording: Funding Solutions | Compare Options | Partners | Why Choose Us?**
+
+Mapping onto what Phase 6.1/6.6 already built (confirmed against the live files and git history):
+- "What Funding Do I Need?" → **"Funding Solutions"** — same dropdown/structure, label only changes.
+- "Offer Funding Solutions" (this was the *Partners*-role label locked in 6.1, then routed to Connect's `for-vendors.html` in 6.6) → **"Partners"** — same destination, label reverts to the more literal term. Don't let the reused word "Solutions" cause confusion with the new "Funding Solutions" item — these are two different nav slots.
+- "Why Trade Funding?" → **"Why Choose Us?"**
+- 🟡 **"Compare Options" is a new fourth item, not part of the original 3-item structural pattern** — flagging rather than silently deciding: this most likely maps to `comparison-report.html` (the existing Compare Report page/CTA), promoting it from a CTA button to a top-level nav item. Confirm this mapping. Also confirm where the Guides Hub (`/guides/`) and `about.html` — both currently reachable via nav in some form — should live now that the top-level list doesn't name them explicitly (footer-only, folded into one of the four dropdowns, or a 5th item are all plausible; not resolved here to avoid overreaching on a nav-architecture call that isn't mine to make).
+
+Apply consistently across every Commercial page's header, plus any footer/mobile-nav mirror of these same links.
+
+### 10.3 Security audit remediation (priority order per the security report)
+
+1. **[Critical] Fix rate limiting.** `connect/api/request-call.js`'s in-memory `Map`-based limiter doesn't actually work across Vercel's stateless, per-instance serverless runtime — an attacker can send effectively unlimited requests, each triggering a real Resend email and Slack post. Replace with an Upstash Redis-backed sliding-window limiter (`@upstash/ratelimit` + `@upstash/redis`).
+2. **[High] Add a real anti-abuse check.** The Origin/Referer "same-origin" check in both `form-token.js` and `request-call.js` is trivially forgeable by any non-browser client (`curl` with the right headers defeats it completely). Add Cloudflare Turnstile (or hCaptcha/reCAPTCHA) verification alongside — not instead of — the existing checks.
+3. **[Medium] Wire the two silently-broken forms.** `commercial/contact.html` (`action="#"`, submits nowhere) and the comparison-report download gate in `product-page.js` (fakes a "Sent to [email]" success message, discards the address entirely) both need a real endpoint before launch, or an explicit disabled "coming soon" state if the endpoint genuinely isn't ready. Do not ship either as a working-looking form that silently discards user data.
+4. **[Medium] Fix the Broker Portal form.** No `method`/`action` means it defaults to `GET`, leaking name/email/phone into the URL, browser history, referrer headers sent to third parties, and server/CDN logs. Force `POST` to a real endpoint (new `/api/broker-lead`, mirroring `request-call.js`'s pattern).
+5. **[Low] Add secret rotation support.** Prefix `FORM_TOKEN_SECRET`-signed tokens with a key version (`v1.`) so the secret can be rotated later without breaking in-flight tokens; confirm the secret was actually generated per-environment (`openssl rand -hex 32`) rather than left as a placeholder in Vercel's dashboard.
+
+### 10.4 Architecture review remediation (priority per the report's own "highest leverage" call-out)
+
+1. **[Do first — highest leverage]** Add a minimal HTML-include build step (e.g. `posthtml-include`, or a five-line custom Node script) so `navbar.html` / `footer.html` / `how-it-works.html` get physically included at commit/CI time instead of manually re-copied into 62+ files. This single fix directly addresses the failure mode behind both the two-tier header regression (Phase 5) and the `contact.html` propagation miss (Phase 6) — and it doesn't require waiting for Phase 8.
+2. **Extract shared chrome CSS** out of `commercial/shared-styles.css` into a new, channel-agnostic `shared/styles/chrome.css` — Connect and Personal & Property already silently depend on Commercial's stylesheet for header/footer/switcher/button/container styling; the folder structure should reflect that dependency honestly rather than hiding it.
+3. **Extract a shared serverless library** (`connect/api/_lib/`: `origin-check.js`, `form-token.js`, `rate-limit.js`, `html-escape.js`) **before** building the new `broker-lead` and `contact` endpoints from 10.3 — otherwise the Turnstile/Upstash fixes above need to be re-applied identically across three or four near-duplicate handler files instead of landing once in a shared module.
+4. **Consolidate cookie-consent** to one implementation with one shared cookie key — Connect's `localStorage`-based check (`tf-connect-cookie-consent`) and Commercial's `document.cookie`-based check (`blc_cookie_consent`, a legacy internal codename worth dropping too) currently disagree, so switching channels via the `ChannelSwitcher` re-prompts the cookie banner. Cookie-based is the better choice of the two, since it's server-readable if Phase 8's Next.js middleware ever needs it.
+5. **Refactor `calcMonthly()`** in `commercial/product-page.js` into a pure function — mirroring `connect/scripts/calculator.js`'s already-correct `compute()` pattern — separating the amortization math from the DOM reads. This is what makes the loan-repayment calculation unit-testable at all.
+6. **Refactor `request-call.js`'s env-var reads** to happen once at the top of `handler()`, passed down as a plain config object, rather than deep inside `sendEmail()`/`sendSlack()` — makes the handler mockable/testable without mutating real environment variables.
+7. **Flag for Phase 8 acceptance criteria, not immediate action:** the two large CSS files (`product-styles.css` at 3,150 lines, `shared-styles.css` at 1,001) should not get copy-pasted forward into the Next.js app as single files. Name "no single CSS file over ~500 lines, component-scoped only" as an explicit Phase 8 acceptance criterion now, while it's easy to agree on.
+8. **Housekeeping, not urgent:** `_internal/_DO-NOT-DEPLOY-design-baseline/`'s CSS copy is already 135 lines out of sync with the real one and will keep drifting. Plan to move it out of the git repo entirely (Figma, a separate reference repo) once its reference value is exhausted.
+9. **Pre-launch checklist item, not urgent:** if `commercial/` or `personal-and-property/` are ever deployed as their own separate Vercel project before Phase 8's consolidation, copy `connect/vercel.json`'s security-headers block over first — right now only Connect's routes get `X-Content-Type-Options` / `X-Frame-Options` / `Referrer-Policy` / `Permissions-Policy`.
+
+### 10.5 Dependency risk remediation
+
+- Add the recommended `devDependencies` to `connect/package.json` (`vitest`, `eslint`) plus `test`/`lint` scripts — no production runtime dependencies are being added, this only enables testing/linting the two serverless functions in CI before deploy.
+- Once 10.4's refactors land (pure `calcMonthly()`, pure `request-call.js` config handling), write `vitest` unit tests covering: the amortization math, the rate limiter's pure logic (post-Upstash-migration), and HMAC token verification — the highest-value, lowest-effort tests given what 10.4 just made testable.
+- **Re-run this exact dependency analysis again once Phase 8's Payload/Next.js `package.json` exists, and before its first production deploy** — the dependency report is explicit that it needs to be redone at that point, once a real dependency tree (Next.js, Payload, a Postgres driver, a Blob adapter) exists to audit.
+
+**Output:** `docs/remediation-report.md`, documenting what was fixed from each of the three source reports, in the order above, plus the two open flags from 10.2 (the "Compare Options" mapping, and where Resources/About now live) and confirmation that the `hello@`→`support@` inbox-routing question from 10.1 is still open, unresolved by this phase. Don't start Phase 8 (Payload conversion) until this exists.
+
+---
+
+## 11. Phase 8 — Conversion to Payload CMS + Vercel Publish (formerly "Phase 7"; architecture unchanged, just renumbered)
 
 **One Next.js app, one Vercel project, one Payload backend, three route groups.** This replaces this plan's original three-Vercel-projects assumption. Full technical detail lives in `buildspec.md` — in short:
 
@@ -378,5 +437,5 @@ See `prompts.md` for the updated, phase-by-phase Claude Code prompts.
 ## Suggested order of operations across tools (unchanged from v1)
 
 1. **Claude (web chat):** Phase 0 hit-list review, Phase 3 copy iteration, blocker chasing.
-2. **Claude Code (terminal):** Phases 2, 4, 5, 5.5, 6, 7 — anything that edits/creates files.
-3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session. Don't start Phase 7 until Phase 6's `docs/fix-report.md` exists.
+2. **Claude Code (terminal):** Phases 2, 4, 5, 5.5, 6, 7, 8 — anything that edits/creates files.
+3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session. Don't start Phase 8 until Phase 7's `docs/remediation-report.md` exists.

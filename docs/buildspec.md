@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding: HTML → Next.js + Payload CMS → Vercel
 
-**Status: v6 — adds §12, the technical companion to plan.md's new Phase 6 (Build Quality & Architecture Fix Pass). The Payload/Vercel conversion is renumbered Phase 7 throughout (was "Phase 6" in earlier versions).** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
+**Status: v7 — adds §13, the technical companion to plan.md's new Phase 7 (Pre-Migration Remediation). The Payload/Vercel conversion is renumbered Phase 8 throughout.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
 
 ---
 
@@ -160,7 +160,7 @@ Same requirements as before — responsive, `next/script` `strategy="lazyOnload"
 
 ## 10. Static-HTML build hygiene (NEW — for the Phase 5 raw-HTML build, before Next.js exists)
 
-These rules apply specifically to the 60+ static HTML pages produced in Phase 5, before the Payload/Next.js conversion in Phase 7 — they exist because a raw multi-folder HTML build breaks in ways a Next.js app wouldn't.
+These rules apply specifically to the 60+ static HTML pages produced in Phase 5, before the Payload/Next.js conversion in Phase 8 — they exist because a raw multi-folder HTML build breaks in ways a Next.js app wouldn't.
 
 - **Header/footer parity:** `commercial/components/navbar.html` and `commercial/components/footer.html` are the single canonical markup source. Every page on every channel includes this exact markup — same wrapper `div`s, same classes, same padding — never a hand-copied variant. A single missing wrapper causes a visible layout jump between pages.
 - **Root-relative paths only:** every `href` and `src` — nav links, footer links, CSS `<link>` tags, images — must be root-relative (`/connect/about.html`, `/commercial/assets/logo-navy.png`), never relative (`../assets/logo.png`, bare `about.html`). Relative paths resolve differently depending on folder depth and will silently break for any page more than one folder deep, even though they look fine from the homepage.
@@ -191,4 +191,46 @@ Technical detail for each fix area — full rationale lives in `plan.md` §9:
 - **Inline styles → tokens:** a mechanical find-and-replace pass, file by file, converting inline `style="color: #54B4F6"`-type declarations into class references (`.icon--sky`) defined once in a shared stylesheet driven by `tokens.md` values — no visual change expected, just markup cleanup.
 - **Accessibility landmarks:** `<header>`/`<main>` wrap at the canonical component/template level (same principle as the header-parity rule in §10) so the fix propagates the same way any other header change does.
 - **`sitemap.xml`:** regenerate from an actual directory listing of live pages rather than hand-maintaining it further, to prevent this kind of drift recurring.
-- **Templating decision (9.3):** if the team chooses option (a) — adopt a templating layer — do this *before* any further Phase 5-style raw HTML production, since it changes how header/footer changes propagate from here on. If the team chooses option (b) — treat Phase 6 as the last raw-HTML pass — proceed directly to Phase 7 once `docs/fix-report.md` is complete.
+- **Templating decision (9.3):** if the team chooses option (a) — adopt a templating layer — do this *before* any further Phase 5-style raw HTML production, since it changes how header/footer changes propagate from here on. If the team chooses option (b) — treat Phase 6 as the last raw-HTML pass — proceed to Phase 7 (pre-migration remediation, §13) once `docs/fix-report.md` is complete, then Phase 8.
+
+---
+
+## 13. Phase 7 — Pre-Migration Remediation (companion to plan.md §10)
+
+Technical detail for each fix area — full rationale and priority order live in `plan.md` §10.
+
+**Address/email (10.1):** two content spots per file, four total — `commercial/credit-guide.html` and `commercial/terms.html` each have a body-content placeholder and a separate footer placeholder. A single find-and-replace across all HTML files for `hello@tradefunding.com.au` → `support@tradefunding.com.au` covers the 51 affected files (Connect needs none — already consistent).
+
+**Nav wording (10.2):** a label-only change on the existing four-slot header structure built in Phase 6 — no new dropdown logic, no new destination URLs except the new "Compare Options" mapping, which should be confirmed before wiring.
+
+**Security fixes (10.3), technical notes:**
+- Rate limiting → `@upstash/ratelimit` + `@upstash/redis`, `UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN` env vars, sliding-window limiter per IP, separate hourly/daily buckets as today but backed by shared external state instead of a per-instance `Map`.
+- Turnstile: `TURNSTILE_SECRET_KEY` env var, verify server-side inside the existing origin-check flow, not replacing it.
+- New endpoints needed: `/api/broker-lead` (Broker Portal form), a real endpoint for `commercial/contact.html`, and a real (or explicitly disabled) path for the comparison-report download gate — all should import from the shared `_lib/` (see architecture fix below) rather than re-implementing origin-check/token/rate-limit/escape logic.
+- Token rotation: `KEY_VERSION` prefix (`v1.{payload}.{hmac}`) so `FORM_TOKEN_SECRET_V2` can be introduced later without breaking in-flight tokens.
+
+**Architecture fixes (10.4), technical notes:**
+- HTML-include step: a Node script (matches `connect/package.json`'s existing `"type": "module"`, Node 20+ — no new runtime dependency needed) that replaces `<!-- include:navbar -->`-style markers with canonical file contents at commit/CI time. Wire this in before doing any further manual page edits, since it changes how every subsequent header/footer change gets applied.
+- Shared chrome CSS: new `shared/styles/chrome.css`, referenced by all three channels; `commercial/shared-styles.css` keeps only genuinely Commercial-specific rules after the split.
+- `connect/api/_lib/`: `origin-check.js` (`fromAllowedOrigin(req, allowedOrigins)`), `form-token.js` (`issueToken`/`verifyToken`), `rate-limit.js` (the Upstash-backed limiter, in one place), `html-escape.js` (`escapeHtml`). Every new and existing endpoint imports from here going forward.
+- Cookie consent: one shared cookie key (recommend retiring both `tf-connect-cookie-consent` and `blc_cookie_consent` in favor of a new, non-legacy-named key, e.g. `tf_cookie_consent`), implemented once in `shared/scripts/consent.js`.
+- `calcMonthly()` and `request-call.js` refactors: pure-function extraction only, no behavior change — these exist specifically to make 10.5's test suite possible.
+
+**Dependency fixes (10.5), technical notes:** exact `connect/package.json` diff from the dependency report:
+```json
+{
+  "name": "vendor-landing",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "vitest": "^2.1.0",
+    "eslint": "^9.13.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "lint": "eslint ."
+  }
+}
+```
+No production dependencies added. Re-audit this file (and the new one that appears once Phase 8's Payload/Next.js scaffold exists) with the same five-category dependency analysis before Phase 8's first production deploy.
