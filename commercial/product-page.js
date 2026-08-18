@@ -197,38 +197,21 @@
 
   function initDownloadGate() {
     var downloadBtn     = document.querySelector('.pc-calc__download-btn');
-    var downloadForm    = document.querySelector('.pc-calc__download-form');
-    var downloadSubmit  = document.querySelector('.pc-calc__download-submit');
     var downloadSuccess = document.querySelector('.pc-calc__download-success');
 
-    if (!downloadBtn || !downloadForm) return;
+    if (!downloadBtn) return;
 
-    downloadBtn.addEventListener('click', function () {
-      downloadBtn.style.display = 'none';
-      downloadForm.classList.add('is-visible');
-    });
-
-    if (!downloadSubmit) return;
-
-    downloadSubmit.addEventListener('click', function () {
-      var emailInput = downloadForm.querySelector('input[type="email"], input[name="email"]');
-      if (!emailInput) return;
-
-      var email = emailInput.value.trim();
-      if (email.indexOf('@') === -1) {
-        emailInput.style.borderColor = '#FF5D5C';
-        return;
-      }
-
-      // Valid email
-      emailInput.style.borderColor = '';
-
-      downloadForm.classList.remove('is-visible');
-      if (downloadSuccess) {
-        downloadSuccess.textContent = 'Sent to ' + email;
-        downloadSuccess.classList.add('is-visible');
-      }
-    });
+    // No backend exists yet to generate or email a PDF breakdown
+    // (security-audit-report.md Finding 5, Medium). Disable the control
+    // and say so up front, rather than collecting an email address we
+    // can't act on and faking a "Sent to [email]" success (CLAUDE.md
+    // hard rule 22).
+    downloadBtn.disabled = true;
+    downloadBtn.title = 'Coming soon — email us at support@tradefunding.com.au for a copy';
+    if (downloadSuccess) {
+      downloadSuccess.textContent = 'PDF download coming soon — email us at support@tradefunding.com.au for a copy';
+      downloadSuccess.classList.add('is-visible');
+    }
   }
 
   // ─── 4. FAQ Accordion ─────────────────────────────────────────────────────

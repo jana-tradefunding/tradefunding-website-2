@@ -2237,6 +2237,12 @@
   color: var(--white);
 }
 
+.pc-calc__download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .pc-calc__download-form {
   display: none;
   margin-top: 16px;
@@ -2297,6 +2303,10 @@
   color: #4ade80;
   font-weight: 600;
   margin-top: 12px;
+}
+
+.pc-calc__download-success.is-visible {
+  display: block;
 }
 
 @media (max-width: 768px) {

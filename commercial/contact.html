@@ -68,6 +68,10 @@
   width: 100%;
 }
 .form-submit:hover { filter: brightness(0.95); }
+.form-submit:disabled { background: #C3CBD6; cursor: not-allowed; filter: none; }
+.form-note { font-size: 0.82rem; color: #4A5568; margin: -6px 0 16px; }
+.form-note a { color: var(--skyblue); text-decoration: none; }
+.form-note a:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
   .legal-hero { padding: 100px 0 40px; }
@@ -254,9 +258,15 @@
 
     <div class="contact-form">
       <h2>Send message</h2>
-      <!-- Static HTML phase (Phase 5) - no backend yet. The real submission
-           endpoint (Payload/Next.js API route) is a Phase 6 concern, not
-           built here. action/method below are placeholders only. -->
+      <!-- No backend exists for this form yet (security-audit-report.md
+           Finding 5, Medium: commercial/ has no serverless capability -
+           only connect/ does - and standing up a separate one here would
+           violate CLAUDE.md's one-Vercel-project rule; see plan.md §10.3
+           item 3). The real submission endpoint lands with Phase 8's
+           consolidated Next.js app. Submit is disabled with a "coming
+           soon" message below rather than shipping a form that silently
+           discards input (CLAUDE.md hard rule 22). action/method are
+           placeholders only. -->
       <form action="#" method="post">
         <div class="form-field">
           <label for="contact-name">Name</label>
@@ -284,7 +294,8 @@
           <label for="contact-message">Message</label>
           <textarea id="contact-message" name="message" required></textarea>
         </div>
-        <button type="submit" class="form-submit">Send message</button>
+        <p class="form-note">Online submission is coming soon. In the meantime, email us directly at <a href="mailto:support@tradefunding.com.au">support@tradefunding.com.au</a>.</p>
+        <button type="submit" class="form-submit" disabled title="Online submission coming soon — email us at support@tradefunding.com.au">Coming soon</button>
       </form>
     </div>
 
