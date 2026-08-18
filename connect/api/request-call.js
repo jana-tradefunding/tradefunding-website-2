@@ -7,68 +7,12 @@
 //   LEAD_EMAIL_TO         — Defaults to support@tradefunding.com.au
 //   LEAD_EMAIL_FROM       — Defaults to "Trade Funding Connect Enquiries <noreply@tradefunding.au>"
 
-import crypto from 'node:crypto';
+import { fromAllowedOrigin } from './_lib/origin-check.js';
+import { verifyToken } from './_lib/form-token.js';
+import { checkRateLimit } from './_lib/rate-limit.js';
+import { escapeHtml } from './_lib/html-escape.js';
 
-const ALLOWED_ORIGINS = new Set([
-  'https://connect.tradefunding.com.au',
-  'https://vendor-landing-ruby.vercel.app'
-]);
 const MAX_BODY_BYTES = 4096;
-const HOURLY_LIMIT = 3;
-const DAILY_LIMIT = 10;
-const TOKEN_MIN_AGE_MS = 3000;             // submissions under 3s = bot
-const TOKEN_MAX_AGE_MS = 30 * 60 * 1000;   // tokens expire after 30 min
-const ipBuckets = new Map();
-
-function verifyToken(token, secret) {
-  if (typeof token !== 'string' || !token) return { valid: false, reason: 'missing' };
-  const parts = token.split('.');
-  if (parts.length !== 3) return { valid: false, reason: 'malformed' };
-  const [timestampStr, nonce, providedHmac] = parts;
-  const timestamp = Number(timestampStr);
-  if (!Number.isFinite(timestamp)) return { valid: false, reason: 'malformed' };
-
-  const expected = crypto.createHmac('sha256', secret)
-    .update(`${timestampStr}.${nonce}`)
-    .digest('base64url');
-
-  // Constant-time compare to avoid timing attacks
-  const a = Buffer.from(providedHmac);
-  const b = Buffer.from(expected);
-  if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) {
-    return { valid: false, reason: 'bad_signature' };
-  }
-
-  const age = Date.now() - timestamp;
-  if (age < TOKEN_MIN_AGE_MS) return { valid: false, reason: 'too_fast' };
-  if (age > TOKEN_MAX_AGE_MS) return { valid: false, reason: 'expired' };
-  return { valid: true };
-}
-
-function checkRateLimit(ip) {
-  const now = Date.now();
-  const HOUR = 60 * 60 * 1000;
-  const DAY = 24 * HOUR;
-  let bucket = ipBuckets.get(ip);
-  if (!bucket) {
-    bucket = { hour: { count: 0, resetAt: now + HOUR }, day: { count: 0, resetAt: now + DAY } };
-  }
-  if (now > bucket.hour.resetAt) { bucket.hour.count = 0; bucket.hour.resetAt = now + HOUR; }
-  if (now > bucket.day.resetAt) { bucket.day.count = 0; bucket.day.resetAt = now + DAY; }
-  bucket.hour.count += 1;
-  bucket.day.count += 1;
-  ipBuckets.set(ip, bucket);
-  return bucket.hour.count <= HOURLY_LIMIT && bucket.day.count <= DAILY_LIMIT;
-}
-
-function escapeHtml(s) {
-  return String(s || '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
 
 const TRIM_MAX = 500;
 function trim(v) {
@@ -171,11 +115,7 @@ export default async function handler(req, res) {
   }
 
   // Same-origin enforcement — drop submissions from other domains
-  const origin = req.headers['origin'] || '';
-  const referer = req.headers['referer'] || '';
-  const fromAllowed = ALLOWED_ORIGINS.has(origin) ||
-    [...ALLOWED_ORIGINS].some(o => referer.startsWith(o + '/') || referer === o);
-  if (!fromAllowed) {
+  if (!fromAllowedOrigin(req)) {
     return res.status(403).json({ error: 'forbidden' });
   }
 

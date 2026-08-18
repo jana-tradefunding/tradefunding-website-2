@@ -3,12 +3,8 @@
 // Token must be presented back in /api/request-call to prove the submission
 // came from a real page load (not a direct API hit).
 
-import crypto from 'node:crypto';
-
-const ALLOWED_ORIGINS = new Set([
-  'https://connect.tradefunding.com.au',
-  'https://vendor-landing-ruby.vercel.app'
-]);
+import { fromAllowedOrigin } from './_lib/origin-check.js';
+import { issueToken } from './_lib/form-token.js';
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
@@ -23,19 +19,11 @@ export default function handler(req, res) {
   }
 
   // Origin check — token endpoint only callable from our site
-  const origin = req.headers['origin'] || '';
-  const referer = req.headers['referer'] || '';
-  const fromAllowed = ALLOWED_ORIGINS.has(origin) ||
-    [...ALLOWED_ORIGINS].some(o => referer.startsWith(o + '/') || referer === o);
-  if (!fromAllowed) {
+  if (!fromAllowedOrigin(req)) {
     return res.status(403).json({ error: 'forbidden' });
   }
 
-  const timestamp = Date.now();
-  const nonce = crypto.randomBytes(12).toString('base64url');
-  const payload = `${timestamp}.${nonce}`;
-  const hmac = crypto.createHmac('sha256', secret).update(payload).digest('base64url');
-  const token = `${payload}.${hmac}`;
+  const token = issueToken(secret);
 
   res.setHeader('Cache-Control', 'no-store');
   return res.status(200).json({ token });
