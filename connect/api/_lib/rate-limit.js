@@ -2,30 +2,40 @@
 // Extracted unchanged from connect/api/request-call.js (Phase 7 §10.4
 // item 3) so it has one home instead of being re-duplicated per handler.
 //
-// STUB - this in-memory Map doesn't actually enforce limits across
-// Vercel's stateless, per-instance serverless runtime (security-audit
-// report, Critical #1): each warm lambda instance gets its own Map, so
-// an attacker spread across instances isn't limited. The real fix is a
-// Upstash Redis-backed sliding-window limiter, landing in Prompt 7.6
-// (plan.md §10.3 item 1). Left as-is here since this extraction is a
-// pure move, not a behavior change.
+// Upstash Redis-backed sliding-window limiter (Phase 7 §10.3 item 1,
+// security-audit Finding 2, Critical). Replaces the old in-memory Map,
+// which didn't enforce limits across Vercel's stateless, per-instance
+// serverless runtime — each warm lambda instance got its own Map, so
+// an attacker spread across instances (or triggering cold starts)
+// wasn't limited. Every instance now shares the same counts via Redis.
+//
+// Requires UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN — see
+// connect/.env.example.
 
-const HOURLY_LIMIT = 3;
-const DAILY_LIMIT = 10;
-const ipBuckets = new Map();
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
-export function checkRateLimit(ip) {
-  const now = Date.now();
-  const HOUR = 60 * 60 * 1000;
-  const DAY = 24 * HOUR;
-  let bucket = ipBuckets.get(ip);
-  if (!bucket) {
-    bucket = { hour: { count: 0, resetAt: now + HOUR }, day: { count: 0, resetAt: now + DAY } };
-  }
-  if (now > bucket.hour.resetAt) { bucket.hour.count = 0; bucket.hour.resetAt = now + HOUR; }
-  if (now > bucket.day.resetAt) { bucket.day.count = 0; bucket.day.resetAt = now + DAY; }
-  bucket.hour.count += 1;
-  bucket.day.count += 1;
-  ipBuckets.set(ip, bucket);
-  return bucket.hour.count <= HOURLY_LIMIT && bucket.day.count <= DAILY_LIMIT;
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
+
+const hourlyLimiter = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(3, '1 h'),
+  prefix: 'connect:rate-limit:hour',
+});
+
+const dailyLimiter = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(10, '1 d'),
+  prefix: 'connect:rate-limit:day',
+});
+
+export async function checkRateLimit(ip) {
+  const [hourly, daily] = await Promise.all([
+    hourlyLimiter.limit(ip),
+    dailyLimiter.limit(ip),
+  ]);
+  return hourly.success && daily.success;
 }

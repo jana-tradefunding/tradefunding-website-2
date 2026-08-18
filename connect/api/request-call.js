@@ -6,6 +6,7 @@
 //   SLACK_WEBHOOK_URL     — Incoming webhook for the Trade Funding Connect enquiries channel
 //   LEAD_EMAIL_TO         — Defaults to support@tradefunding.com.au
 //   LEAD_EMAIL_FROM       — Defaults to "Trade Funding Connect Enquiries <noreply@tradefunding.au>"
+//   UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN — rate limiter (see _lib/rate-limit.js)
 
 import { fromAllowedOrigin } from './_lib/origin-check.js';
 import { verifyToken } from './_lib/form-token.js';
@@ -126,7 +127,7 @@ export default async function handler(req, res) {
   }
 
   const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-  if (!checkRateLimit(ip)) {
+  if (!(await checkRateLimit(ip))) {
     return res.status(429).json({ error: 'rate_limited' });
   }
 
