@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding: HTML → Next.js + Payload CMS → Vercel
 
-**Status: v5 — notes that Phase 5 (page production) ran before the header fix, so the two-tier bug propagated into 62 of 66 HTML files, not just the original set; §11 updated accordingly.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
+**Status: v6 — adds §12, the technical companion to plan.md's new Phase 6 (Build Quality & Architecture Fix Pass). The Payload/Vercel conversion is renumbered Phase 7 throughout (was "Phase 6" in earlier versions).** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
 
 ---
 
@@ -160,7 +160,7 @@ Same requirements as before — responsive, `next/script` `strategy="lazyOnload"
 
 ## 10. Static-HTML build hygiene (NEW — for the Phase 5 raw-HTML build, before Next.js exists)
 
-These rules apply specifically to the 30+ static HTML pages produced in Phase 5, before the Payload/Next.js conversion in Phase 6 — they exist because a raw multi-folder HTML build breaks in ways a Next.js app wouldn't.
+These rules apply specifically to the 60+ static HTML pages produced in Phase 5, before the Payload/Next.js conversion in Phase 7 — they exist because a raw multi-folder HTML build breaks in ways a Next.js app wouldn't.
 
 - **Header/footer parity:** `commercial/components/navbar.html` and `commercial/components/footer.html` are the single canonical markup source. Every page on every channel includes this exact markup — same wrapper `div`s, same classes, same padding — never a hand-copied variant. A single missing wrapper causes a visible layout jump between pages.
 - **Root-relative paths only:** every `href` and `src` — nav links, footer links, CSS `<link>` tags, images — must be root-relative (`/connect/about.html`, `/commercial/assets/logo-navy.png`), never relative (`../assets/logo.png`, bare `about.html`). Relative paths resolve differently depending on folder depth and will silently break for any page more than one folder deep, even though they look fine from the homepage.
@@ -178,3 +178,17 @@ Concrete technical detail for the cleanup phase between HTML production and Payl
 - **Audit, don't blind-delete:** unreferenced CSS rules, orphaned images, unused JS — flag candidates in `cleanup-report.md` for confirmation before removing anything not explicitly named above.
 - **Re-run the header/footer parity check** (§10) across every page as a gate before Phase 6 starts.
 - Output: `docs/cleanup-report.md`, listing what was deleted and why, what's flagged but unconfirmed, and any path/header issues found and fixed.
+
+---
+
+## 12. Phase 6 — Build Quality & Architecture Fix Pass (NEW, companion to plan.md §9)
+
+Technical detail for each fix area — full rationale lives in `plan.md` §9:
+
+- **`contact.html`:** relocate from repo root to `commercial/contact.html`; update every inbound link (Personal & Property pages currently link to it) to the new root-relative path; rebuild its header using the corrected single-strip component.
+- **Trust bar:** a persistent, sitewide element (rating/reviews/ACL/AFCA/lender-count) rendered above the header row on every page — same markup/CSS everywhere, pinned via normal document flow (not `position: fixed` unless the header itself is also fixed — don't mix fixed and static positioning between the trust bar and the nav row, that's how bars silently overlap or hide content).
+- **Deploy-root hygiene:** relocate `design baseline/` and `connect/tests/calculator-test.html` to a folder excluded from Vercel's build output (`.vercelignore` or equivalent) rather than just renaming in place.
+- **Inline styles → tokens:** a mechanical find-and-replace pass, file by file, converting inline `style="color: #54B4F6"`-type declarations into class references (`.icon--sky`) defined once in a shared stylesheet driven by `tokens.md` values — no visual change expected, just markup cleanup.
+- **Accessibility landmarks:** `<header>`/`<main>` wrap at the canonical component/template level (same principle as the header-parity rule in §10) so the fix propagates the same way any other header change does.
+- **`sitemap.xml`:** regenerate from an actual directory listing of live pages rather than hand-maintaining it further, to prevent this kind of drift recurring.
+- **Templating decision (9.3):** if the team chooses option (a) — adopt a templating layer — do this *before* any further Phase 5-style raw HTML production, since it changes how header/footer changes propagate from here on. If the team chooses option (b) — treat Phase 6 as the last raw-HTML pass — proceed directly to Phase 7 once `docs/fix-report.md` is complete.

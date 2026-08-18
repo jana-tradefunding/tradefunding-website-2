@@ -1,6 +1,21 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v4 — fixes an ambiguous ChannelSwitcher placement instruction that produced a two-tier header (utility strip + nav strip) instead of one single header row.**
+**Status: v6 — inserts a new Phase 6 (Build Quality & Architecture Fix Pass), based on a full-site review (`TF_Site_v_07.docx`) done after Phase 5.5 cleanup. The old "Phase 6 — Payload CMS conversion" is renumbered to Phase 7; nothing after it changes except the number.**
+
+## Current build status (check before running anything)
+
+| Phase | Status |
+|---|---|
+| 0 — Hit list | Optional, not produced as a standalone file — content already folded into §2 below |
+| 1 — Branding tokens | ✅ Done (`tokens.md`) |
+| 2 — Site architecture / nav | Nav is built into the live pages; the standalone `nav-spec.md` doc was never produced (optional) |
+| 3 — Copy (research → copy-final.md → applied) | ✅ Done — `research-notes.md` and `copy-final.md` exist; hero copy is applied on Commercial's home page at least |
+| 4 — Design component inventory | Optional, not produced (`design/components.md`) |
+| 5 — HTML/page production | ✅ Done — Personal & Property (11 pages), Guides Hub, both calculators all built |
+| 5.2 — ChannelSwitcher header fix | ✅ Done, with one miss — `contact.html` at the repo root still has the old two-tier header; every folder-scoped page is fixed |
+| 5.5 — Pre-conversion cleanup | ✅ Done (`docs/cleanup-report.md` exists; retired files and the spaced-name duplicate are gone) |
+| **6 — Build quality & architecture fix pass** | 🔴 **New phase — not started. Do this before Phase 7.** See §9 below. |
+| 7 — Payload/Vercel conversion (formerly "Phase 6") | Not started — waits on Phase 6 |
 
 **Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (canonical IA/architecture doc), `tokens.md` (finalized Phase 1 output), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, `docs/research-notes.md` and `docs/copy-final.md` (Phase 3 outputs), and the `commercial/`, `connect/`, `personal-and-property/`, and `design baseline/` folders in the project zip.
 
@@ -89,7 +104,7 @@ Connect's shift is bigger than a simple accent swap — it **inverts** the exist
 - **Products:** stays in the primary nav as a grouped hover-expand list (Term Loans, Credit Lines, Invoice, Trade, Equipment, Personal & Property, Other) — no emoji/icon grid. A dedicated `/business-loans/` full-menu page exists for users directed there. No product page is ever deleted for nav decluttering.
 - **Why Us:** purpose-driven navigation, reintroduced alongside Products as a second path into the same underlying pages.
 - **Partners:** covers Broker Portal and, contextually, Connect's "Become a Partner" acquisition path.
-- 🟡 **Still open — nav label wording:** Matt has flagged "Products"/"About" as too generic and wants more action/benefit-oriented framing. **Final call is Matt's.** Until then, use these as working placeholders (map 1:1 onto the structural labels above): "Products" → **"What Funding Do I Need?"**, "Why Us" → **"Why Trade Funding?"**, "Partners" → **"Offer Funding Solutions"**. Treat these as swappable copy on the existing structural pattern, not a re-architecture, when the final wording lands.
+- ✅ **Nav label wording — now locked (was previously placeholder pending Matt's call):** "Products" → **"What Funding Do I Need?"**, "Why Us" → **"Why Trade Funding?"**, "Partners" → **"Offer Funding Solutions"**. Confirmed final per the Phase 6 site review (`TF_Site_v_07.docx`) — no longer a placeholder, apply as-is.
 
 ---
 
@@ -247,7 +262,7 @@ The HTML structure, padding, and CSS classes for the header (and footer) must be
 
 Per the updated §4 above: build the switcher so **Commercial (Home icon + "Home" text), Connect, and Personal & Property are all visible on every page, all the time**, with a clear `.active` state (underline, bold, or brand-tinted background) marking whichever one matches the current page. Do not build the original "hide the current channel" version — that logic is explicitly overridden for this phase. **The switcher renders inside the single header strip, alongside the logo and primary nav — never as its own separate utility bar/tier.** If you're fixing an existing two-tier header (see 🔴 note below), collapse it into one row rather than rebuilding from scratch.
 
-🔴 **Known regression to fix, not just re-prompt for:** an earlier ambiguous instruction ("sits above or beside the main nav") led to a real two-tier header being built — a `.utility-bar` strip containing only the `ChannelSwitcher`, sitting above the `.navbar` strip with the logo and primary nav. This is now explicitly wrong per the correction in §4. Don't just re-run the original Phase 5 prompt expecting a different result — the ambiguity that caused it has been fixed here, so use the corrective prompt in `prompts.md` ("Prompt 5-fix") to collapse the existing two tiers into one strip, rather than regenerating the header from scratch and hoping it comes out differently.
+🔴 **Known regression to fix, not just re-prompt for:** an earlier ambiguous instruction ("sits above or beside the main nav") led to a real two-tier header being built — a `.utility-bar` strip containing only the `ChannelSwitcher`, sitting above the `.navbar` strip with the logo and primary nav. This is now explicitly wrong per the correction in §4. **Status update: Phase 5 (page production) was run before this fix landed, so the two-tier header has since been copied into every new page it produced too** — as of the last audit, 62 of 66 HTML files across Commercial, Connect, and Personal & Property carry the bug, not just the original ~30. Don't just re-run the original Phase 5 prompt expecting a different result — use the corrective prompt in `prompts.md` ("Prompt 5-fix"), which now fixes the canonical component first, then re-propagates the fix across every affected file in batches, rather than regenerating headers from scratch and hoping they come out differently.
 
 ### 7.3 Root-relative paths everywhere (not relative paths)
 
@@ -278,25 +293,74 @@ Do not treat product pages as the whole of Phase 5 — the Guides Hub and the tw
 
 ## 8. Phase 5.5 — Pre-Conversion Cleanup & File Organization (NEW)
 
-**Purpose:** before anything gets converted into Payload collections in Phase 6, do a dedicated housekeeping pass on the raw file structure. This phase exists because Phase 5 production naturally creates loose ends — duplicate folders, retired-but-not-deleted files, unused assets — that are cheap to fix now and expensive to carry into the CMS migration.
+**Purpose:** before Phase 6's fix pass and Phase 7's Payload conversion, do a dedicated housekeeping pass on the raw file structure. This phase exists because Phase 5 production naturally creates loose ends — duplicate folders, retired-but-not-deleted files, unused assets — that are cheap to fix now and expensive to carry into the CMS migration.
 
 **Concrete cleanup tasks:**
 
 1. **Delete the duplicate Personal & Property folder.** The project currently has both `personal-and-property/` (correct) and `personal and property/` (with spaces — currently empty, but a real risk if anything ever gets saved into it). **Delete `personal and property/` entirely.** Spaces in folder names break Vercel routing; there must be exactly one Personal & Property folder, correctly named.
 2. **Securely delete retired files**, per the Duplicate Resolution Log in `Master Information Architecture & Sitemap.md` §9 — don't just stop linking to them, actually remove them so they don't linger as ghost/crawlable pages:
-   - `commercial/debtor-finance.html` — confirm its unique content was merged into `commercial/invoice-finance.html` first (per §9 item 4), then delete the file and confirm the `/debtor-finance/` → `/invoice-finance/` redirect is documented for Phase 6.
-   - `commercial/trade-funding-website-application.html` — confirm `apply.html` is the live, complete version, then delete the legacy file and confirm the redirect to `/apply/` is documented for Phase 6.
-   - `commercial/resources.html` — once the Guides Hub (7.5) is live at `/guides/`, confirm whether this file's content has been fully absorbed into the hub; if so, delete it and confirm the `/resources/` → `/guides/` redirect is documented for Phase 6. If any unique content still only exists in `resources.html`, migrate it into the Guides Hub first.
+   - `commercial/debtor-finance.html` — confirm its unique content was merged into `commercial/invoice-finance.html` first (per §9 item 4), then delete the file and confirm the `/debtor-finance/` → `/invoice-finance/` redirect is documented for Phase 7.
+   - `commercial/trade-funding-website-application.html` — confirm `apply.html` is the live, complete version, then delete the legacy file and confirm the redirect to `/apply/` is documented for Phase 7.
+   - `commercial/resources.html` — once the Guides Hub (7.5) is live at `/guides/`, confirm whether this file's content has been fully absorbed into the hub; if so, delete it and confirm the `/resources/` → `/guides/` redirect is documented for Phase 7. If any unique content still only exists in `resources.html`, migrate it into the Guides Hub first.
 3. **Audit for unused assets** — orphaned images, unreferenced CSS classes/rules, unused JS files (across `commercial/`, `connect/`, and `personal-and-property/`) that nothing in the final page set actually links to or uses. Flag before deleting anything not explicitly named above — don't silently remove assets you're not sure are unused.
 4. **Verify folder structure matches the IA doc exactly**: `commercial/` (root-level pages + `guides/` + `components/` + `assets/`), `connect/` (with its own `branding/`/`styles/`/`api/`), `personal-and-property/` (single, correctly named, no duplicates) — flag anything that doesn't match this shape.
 5. **Run the header/footer parity check from 7.1 across every remaining page** as a final gate — confirm no page's header/footer markup has silently drifted from the canonical component during Phase 5 production.
 6. **Produce `cleanup-report.md`** documenting: files deleted (with reasoning), files flagged as possibly-unused but not deleted (pending confirmation), and any header/path inconsistencies found and fixed. Keep this report in `docs/` alongside the other planning docs.
 
-Do not begin Phase 6 (Payload conversion) until `cleanup-report.md` exists and the folder structure is clean — migrating a messy file tree into Payload collections just moves the mess into the CMS.
+Do not begin Phase 7 (Payload conversion) until `cleanup-report.md` exists and the folder structure is clean — migrating a messy file tree into Payload collections just moves the mess into the CMS. (Phase 6, the build-quality fix pass, still sits between this cleanup and Phase 7 — see below.)
 
 ---
 
-## 9. Phase 6 — Conversion to Payload CMS + Vercel Publish (architecture rewritten)
+## 9. Phase 6 — Build Quality & Architecture Fix Pass (NEW)
+
+**Why this phase exists:** Phase 5.5's cleanup handled file-tree hygiene (duplicates, retired files). It didn't catch the class of issue a full-site review surfaces — one page the propagation script missed, files that shouldn't ship, accessibility gaps, and content parity issues between channels. `TF_Site_v_07.docx` (your team's own site review) found all of the below across the live build. Fix these before converting anything into Payload — a broken pattern that gets migrated into a CMS component just becomes a broken pattern that's harder to find and fix.
+
+### 9.1 Finish the header propagation the last fix missed
+
+- **`contact.html` at the repo root still has the old two-tier `.utility-bar` header** — it's outside any channel folder, so the earlier fix's per-folder batching (Commercial → Connect → Personal & Property) never reached it. It's also live-linked from every Personal & Property page, so this is visibly broken in normal navigation, not just in an edge case. Fix it directly, and **move it into a channel folder** (recommend `commercial/contact.html`, since Commercial is the hub and Contact is a shared asset per plan.md §5.1) with root-relative links from every channel — so future propagation scripts catch it automatically instead of relying on someone remembering a root-level exception.
+- **The trust bar** (★★★★★ 5.0 Google · 31 reviews · ACL 387856 · AFCA Member · 70+ Lenders) needs to be **pinned at the very top of every page**, above the header row, identical across all channels — it's currently not visible/not pinned correctly. This is a distinct element from the `ChannelSwitcher` row fixed earlier — a persistent top trust-strip, not a second nav tier. Don't rebuild it as another tiered bar; it should read as one continuous masthead block (trust strip + header row) that never shifts between pages.
+- **Nav label wording is now locked** — no longer "pending Matt's call" per §4's earlier placeholder status: **"What Funding Do I Need?" | "Offer Funding Solutions" | "Why Trade Funding?"** is confirmed final. Update §4 mentally to drop the 🟡 placeholder flag on this specific item.
+- **Reaffirm header parity as the mechanism for seamless channel-switching** — the header (trust strip + nav row) must be pixel-identical across every page and channel; only the `ChannelSwitcher`'s active-state highlight color should differ between pages. If switching channels feels anything other than seamless, the header isn't actually identical somewhere — treat that as a parity bug, not a design question.
+
+### 9.2 Remove what shouldn't be in the deployable tree
+
+- **Move `design baseline/` and `connect/tests/calculator-test.html` outside the web root entirely** — both currently ship inside the deployable tree, and `calculator-test.html` in particular has a filename that could collide with a real production page. Don't just rename in place — relocate both to a location Vercel would never serve (e.g. a top-level `_internal/` or `.reference/` folder excluded via `.vercelignore`), and additionally rename `design baseline/` to something that can't collide even if the move is ever undone, e.g. `_DO-NOT-DEPLOY-design-baseline/`.
+- **Remove the stray `console.log` in `commercial/product-page.js:225`.**
+
+### 9.3 Path & templating debt
+
+- **Fix the 9 files in `commercial/guides/`** that still use relative paths (`src="../cookie-consent.js"`) — change to root-relative (`/commercial/cookie-consent.js`) in all 9. This is the same root-relative rule from §7.3, just missed in the guides folder specifically.
+- **Replace ~3,000+ inline `style=""` attributes** (e.g. `commercial/index.html` alone has 291) that duplicate values already defined in `tokens.md`, with token-driven utility classes (`.icon--sky`, `.icon--peach`, etc.) generated from `tokens.md`. This is cleanup, not a redesign — the visual output shouldn't change, only how the color is expressed in markup.
+- **Flag, for an explicit team decision, not a silent one:** there is no templating/build system for this 66-page site — header, footer, and dropdown markup are physically copy-pasted into 50–65 files (`id="navbar"` appears 62×), meaning every future shared-component fix (including this whole phase) requires a manual re-propagation pass, and things like the `contact.html` miss in 9.1 are a structural risk, not a one-off mistake. Two real options: **(a)** adopt a minimal templating layer (11ty, Astro, or server-side includes) before producing any more raw HTML, or **(b)** treat this as the last major raw-HTML fix pass and move straight into Phase 7's Next.js/Payload migration, where the component system replaces copy-pasted markup permanently. Surface this choice to the team explicitly before closing out Phase 6 — it changes how much further raw-HTML investment is worth making.
+
+### 9.4 Accessibility & semantic HTML
+
+- **`<header>` landmark used on 0 of 62 pages; `<main>` only on 21/62.** Wrap the masthead in `<header>` and primary page content in `<main>` at the template/component level, then re-propagate sitewide.
+- **Footer badges (AFCA, CAFBA, Fintech Australia, ACL) are plain `<span>`s, not links.** Wrap each in an `<a>` pointing to its real verification/membership page.
+- **Commercial's hamburger menu doesn't update `aria-expanded`** (it only toggles a CSS class) — Connect's script does this correctly. Copy Connect's `aria-expanded` toggle pattern into Commercial's hamburger handler.
+- **The "What's S.T.A.R.?" explainer on `apply.html` uses a native `title=""` tooltip** — not accessible via tap/touch. Replace with a small click/tap-accessible popover component.
+- **`apply.html` has 4 separate `<h1>` elements** (one per funnel step + thank-you page). Use one page-level `<h1>` ("Apply for Funding"), demote step titles to `<h2>`, or announce step changes via `aria-live` instead of new headings.
+
+### 9.5 SEO/meta hygiene
+
+- **34 pages still missing `<meta name="robots">`** — worse, proportionally, than the ~20 originally flagged in the SEO audit. Template a single `<meta>`/`<title>`/description block and apply sitewide, except `404.html`.
+- **`sitemap.xml` doesn't include `privacy.html`, `terms.html`, `credit-guide.html`, or `broker-portal.html`, and still uses `.html`-suffixed URLs**, contradicting the extensionless canonical tags used elsewhere. Diff the live file tree against `sitemap.xml`, add the missing pages, and align the URL format with the extensionless canonical pattern (this is the target format implied by the canonical tags already in use).
+
+### 9.6 Cross-channel nav/CTA routing gaps
+
+- **"Partners" nav item still links to the legacy `/commercial/broker-portal.html`, not Connect.** The routing decision from §4 (Partners covers both Broker Portal *and* Connect's Become a Partner path) was specified but never actually implemented in the markup. Route through Connect; update the nav link and cross-link Broker Portal from within Connect's own partner page.
+- **No "Become a Partner" CTA anywhere in `commercial/` pointing to Connect.** Add the CTA to Commercial's nav/footer or relevant pages, linking into Connect — this was a locked requirement from the original meeting notes (Nicole's "highly visible become-a-partner CTA" ask) that never made it into Commercial's markup.
+- **ACL number "387856" still appears 3× in the footer** (badge, legal strip, copyright line). Reduce to once or twice max — this is the same "ACL repeated three times" issue flagged in the original meeting notes; it either came back or was never actually fixed the first time.
+
+### 9.7 Cross-channel visual parity
+
+- **Personal & Property doesn't have the same reveal/scroll animations as Commercial and Connect.** Apply the same `IntersectionObserver`-based reveal treatment from `tokens.md` §1.5 (staggered delays, `prefers-reduced-motion` respected) to Personal & Property's pages for parity.
+
+**Output:** `docs/fix-report.md`, documenting what was fixed and in what order, with explicit before/after notes for anything accessibility- or SEO-related (these are hard to eyeball-verify from a screenshot). Don't start Phase 7 (Payload conversion) until this exists **and** the templating-vs-migrate-now decision from 9.3 has been made explicitly with the team — that decision materially changes how Phase 7 gets scoped.
+
+---
+
+## 10. Phase 7 — Conversion to Payload CMS + Vercel Publish (formerly "Phase 6"; architecture unchanged, just renumbered)
 
 **One Next.js app, one Vercel project, one Payload backend, three route groups.** This replaces this plan's original three-Vercel-projects assumption. Full technical detail lives in `buildspec.md` — in short:
 
@@ -314,5 +378,5 @@ See `prompts.md` for the updated, phase-by-phase Claude Code prompts.
 ## Suggested order of operations across tools (unchanged from v1)
 
 1. **Claude (web chat):** Phase 0 hit-list review, Phase 3 copy iteration, blocker chasing.
-2. **Claude Code (terminal):** Phases 2, 4, 5, 5.5, 6 — anything that edits/creates files.
-3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session. Don't start Phase 6 until Phase 5.5's `cleanup-report.md` exists.
+2. **Claude Code (terminal):** Phases 2, 4, 5, 5.5, 6, 7 — anything that edits/creates files.
+3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session. Don't start Phase 7 until Phase 6's `docs/fix-report.md` exists.

@@ -1,6 +1,6 @@
 # CLAUDE.md — Trade Funding Site Rebuild
 
-**Status: v5.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally).
+**Status: v6.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally). **The old "Phase 6 — Payload conversion" is now Phase 7; a new Phase 6 (Build Quality & Architecture Fix Pass) runs first — see plan.md §9.**
 
 ## Project in one paragraph
 
@@ -25,7 +25,8 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 15. **Every link and asset path is root-relative** (`/connect/about.html`, `/commercial/assets/logo-navy.png`) — never relative (`../`, bare filenames). Relative paths break silently for any page more than one folder deep.
 16. **Replace em-dashes (`—`) with a spaced hyphen (` - `)**, never a bare hyphen jammed between words.
 17. **No spaces in any folder or file name, anywhere in the repo.** Vercel routing breaks on them — see the `personal and property/` vs. `personal-and-property/` duplicate flagged in Phase 5.5.
-18. **Don't start Phase 6 (Payload conversion) until Phase 5.5's `docs/cleanup-report.md` exists** and any flagged-but-unconfirmed items have been resolved with me.
+18. **Don't start Phase 7 (Payload conversion) until Phase 6's `docs/fix-report.md` exists** and the templating-vs-migrate-now decision (plan.md §9.3) has been made explicitly with the team.
+19. **Any shared markup (header, footer, dropdown) lives at exactly one canonical source and gets re-propagated everywhere, including root-level pages that live outside a channel folder** — `contact.html` at the repo root was missed by an earlier propagation pass for exactly this reason. Don't assume "sitewide" excludes files that aren't inside `commercial/`, `connect/`, or `personal-and-property/`.
 
 ## Tech stack quick reference
 
@@ -64,23 +65,22 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - `docs/Executive Questionnaire for Personal and Property and Connect.docx` — **returned with real answers** (uses "Individuals" as the internal working name for what this project calls Personal & Property — same pillar). Primary strategic input for Personal & Property and Connect copy — see `plan.md` §5.2 for the extracted content and `research-notes.md` (Phase 3.1 output) for the page-ready version.
 - `connect/docs/design-spec.md` / `implementation-plan.md` — Connect's original build spec, still authoritative for token values (now partially superseded in *role* — not values — by tokens.md's dominant/accent flip)
 - `plan.md`, `buildspec.md`, `prompts.md` — this project's own planning docs
-- `docs/cleanup-report.md` — Phase 5.5 output; don't start Phase 6 until this exists
+- `docs/cleanup-report.md` — Phase 5.5 output (done)
+- `docs/fix-report.md` — Phase 6 output; don't start Phase 7 until this exists
 
 ## Commands
 
 (Fill in once the Payload/Next.js scaffold exists in Prompt 6 — do not guess these before the scaffold is created.)
 
-## Open items currently in effect (check plan.md §1–2, §5, §8 for full context)
+## Open items currently in effect (check plan.md §1–2, §5, §9 for full context)
 
-- Nav label wording pending Matt's final call: "Products" / "Why Us" / "Partners" (structural) vs. "What Funding Do I Need?" / "Why Trade Funding?" / "Offer Funding Solutions" (placeholder copy)
 - `self-employed-home-loan.html` channel placement (hit-list item 43) — undecided, Claude Code to call and document
 - `commercial-property-finance` vs. `/second-mortgage/` / `/self-employed-home-loan/` overlap — flagged, unresolved
 - Broker Portal referral process / commission structure — not covered by the Executive Questionnaire, still needs direct Matt/Ben input before Phase 3.2 copy can be drafted for that page
 - Home hero final copy — still pending sign-off despite locked directional agreement
 - Deferred blockers (address, lender logos, GoogleReviews count, hello@ routing) — scheduled for Phase 3 kickoff, not before
-- Phase 5.5 cleanup not yet run: the `personal and property/` (spaces) duplicate folder is confirmed gone already; `commercial/debtor-finance.html` and `commercial/trade-funding-website-application.html` still need secure deletion, each with its redirect documented for Phase 6
-- **Active regression to fix, run next:** `commercial/components/navbar.html` still builds a two-tier header (separate `.utility-bar` strip + `.navbar` strip). Because Phase 5 (page production) already ran, **this has propagated into 62 of 66 HTML files** across Commercial, Connect, and Personal & Property — see `prompts.md` Prompt 5-fix for the two-step fix (correct the canonical component, then re-propagate in batches by folder).
+- **Phase 6 (new, not started) — full fix list in plan.md §9:** `contact.html` header miss, missing trust bar, `design baseline/`/test-harness still in the deploy tree, 9 relative-path files in `commercial/guides/`, ~3,000+ inline styles, 0/62 pages with `<header>` landmark (21/62 have `<main>`), unlinked footer badges, Commercial's hamburger missing `aria-expanded`, non-accessible S.T.A.R. tooltip, `apply.html`'s 4 `<h1>`s, 34 pages missing `<meta name="robots">`, stale `sitemap.xml`, "Partners" nav still pointing at legacy Broker Portal instead of Connect, missing "Become a Partner" CTA in Commercial, tripled ACL number in the footer, and Personal & Property missing the reveal-animation treatment. Plus one real decision to make with the team: adopt a templating layer, or treat this as the last raw-HTML pass before Phase 7.
 
-**Resolved since v2:** Connect's audience framing (design-spec vs. newer notes) is no longer an open conflict — the returned Executive Questionnaire confirms "B2B providers, equipment of any kind sold B2B, and/or professional services" as the locked audience. See `buildspec.md` §5.
+**Resolved since v5:** Nav label wording is now locked ("What Funding Do I Need?" / "Offer Funding Solutions" / "Why Trade Funding?") — no longer pending Matt's call. Connect's audience framing (design-spec vs. newer notes) was resolved earlier via the Executive Questionnaire — see `buildspec.md` §5.
 
 Update this section as decisions come back from the team.

@@ -1,6 +1,6 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v5 — reordered into strict chronological (run-this-then-this) order, with a status snapshot based on the zip you most recently sent.** Statuses below reflect what's actually in your files right now, not what should theoretically be done — re-check after every session, since this snapshot goes stale the moment you run something new.
+**Status: v6 — adds Phase 6 (Build Quality & Architecture Fix Pass), a new set of prompts inserted between the (now complete) Phase 5.5 cleanup and Payload conversion, which is renumbered Phase 7. Everything is listed below in strict chronological run order.**
 
 **Reminder before every session:** `design baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
@@ -12,18 +12,19 @@
 |---|---|---|---|
 | 1 | Branding tokens | ✅ Done | `tokens.md` exists at root, locked |
 | 1b | Apply tokens to real HTML | ✅ Done | `connect/index.html` uses real `--gold` tokens; `personal-and-property/styles/main.css` defines `--peach` |
-| 0 | Hit list (`hitlist.md`) | ⬜ Not run | No `hitlist.md` found — low priority, its content is already folded into `plan.md` §2, but produce it if you want a standalone tracker |
-| 2 | Nav spec (`nav-spec.md`) | ⬜ Not run | No `nav-spec.md` found — the nav itself got built anyway inside Prompt 5, but the standalone spec doc doesn't exist |
+| 0 | Hit list (`hitlist.md`) | ⬜ Not run | Optional, low priority — content already folded into `plan.md` §2 |
+| 2 | Nav spec (`nav-spec.md`) | ⬜ Not run | Optional — the nav itself got built anyway inside Prompt 5 |
 | 3.1 | Research (`research-notes.md`) | ✅ Done | `docs/research-notes.md` exists |
 | 3.2 | Copy creation (`copy-final.md`) | ✅ Done | `docs/copy-final.md` exists |
-| 3b | Apply approved copy | ✅ Done (at least partially) | Commercial home hero copy is in place with correctly spaced hyphens — spot-check other pages before assuming it's everywhere |
-| 4 | Component inventory (`design/components.md`) | ⬜ Not run | No `design/components.md` found — low priority, doesn't block Phase 6 but makes it slower |
-| 5 | Page production | ✅ Done — **you ran this one** | `personal-and-property/*` (11 pages), `commercial/guides/index.html` hub, both calculators all present |
-| 5-fix | Collapse two-tier header | 🔴 **Not run — run this next** | `commercial/components/navbar.html` still has the `.utility-bar` + `.navbar` two-tier structure, and **because Prompt 5 ran first, it's now been copied into 62 of your 66 HTML files** — see the updated Prompt 5-fix below, scope has grown since you last saw this prompt |
-| 5.5 | Pre-conversion cleanup | ⬜ Not run | `personal and property/` (spaces) duplicate is already gone — good, no action needed there. But `commercial/debtor-finance.html` and `commercial/trade-funding-website-application.html` are both still present and need secure deletion once redirects are confirmed |
-| 6–9 | Payload/Next.js/Vercel | ⬜ Not started | No `/site` app scaffold present yet — correctly sequenced after 5-fix and 5.5 |
+| 3b | Apply approved copy | ✅ Done (at least partially) | Commercial home hero copy is in place with correctly spaced hyphens |
+| 4 | Component inventory (`design/components.md`) | ⬜ Not run | Optional, doesn't block Phase 7 |
+| 5 | Page production | ✅ Done | `personal-and-property/*` (11 pages), `commercial/guides/index.html` hub, both calculators all present |
+| 5-fix | Collapse two-tier header | ✅ Done, with one miss | Every folder-scoped page is fixed; `contact.html` at the repo root still has the old two-tier structure — pick up in Phase 6 below |
+| 5.5 | Pre-conversion cleanup | ✅ Done | `docs/cleanup-report.md` exists; retired files and the spaced-name duplicate are confirmed gone |
+| **6** | **Build quality & architecture fix pass (NEW)** | 🔴 **Not started — run these next, in order** | Full list surfaced by your team's site review (`TF_Site_v_07.docx`) — see Prompts 6.1–6.7 below |
+| 7–10 | Payload/Next.js/Vercel (formerly 6–9) | ⬜ Not started | No `/site` app scaffold present yet — correctly sequenced after Phase 6 |
 
-**What this means for you right now:** run **Prompt 5-fix next**, before anything else — it now needs to touch far more files than originally scoped, since Prompt 5 propagated the two-tier header into all the new Personal & Property and Guides pages too. Then run Prompt 5.5 (cleanup). Prompts 0, 2, and 4 are optional documentation steps you can go back for later — they don't block anything downstream.
+**What this means for you right now:** run the Phase 6 prompts below, in order (6.1 → 6.7), then the Phase 6 decision prompt (6.8, a discussion not a code change), before touching Phase 7. Prompts 0, 2, and 4 are still optional and don't block anything downstream.
 
 ---
 
@@ -172,7 +173,7 @@ alter layout, only copy. Show me a diff before writing changes.
 
 ---
 
-## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 6 but speeds it up)
+## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 7 but speeds it up)
 
 ```
 Read tokens.md, commercial/shared-styles.css, commercial/product-styles.css,
@@ -190,7 +191,7 @@ This becomes the checklist for the React component build in Phase 6.
 
 ---
 
-## Prompt 5 — Page production, all channels (Phase 5) — ✅ DONE (you ran this one — see 5-fix below for the fallout)
+## Prompt 5 — Page production, all channels (Phase 5) — ✅ DONE
 
 ```
 Read plan.md §7 (all of 7.1–7.6) and buildspec.md §10 in full before
@@ -247,7 +248,7 @@ can be created directly but flag each one you add.
 
 ---
 
-## Prompt 5-fix — Collapse the two-tier header back into one strip — 🔴 NOT RUN, RUN THIS NEXT
+## Prompt 5-fix — Collapse the two-tier header back into one strip — ✅ DONE (with one miss — see Prompt 6.1)
 
 *(Your `commercial/components/navbar.html` builds the header as two tiers — a `.utility-bar` strip containing only the ChannelSwitcher, sitting above the `.navbar` strip with the logo and primary nav. Because Prompt 5 ran first, this has now been copied into 62 of your 66 HTML files. This prompt fixes the canonical component first, then re-propagates the fix everywhere it's needed — it does not rebuild anything from scratch.)*
 
@@ -282,7 +283,7 @@ against the corrected canonical component) as a final gate.
 
 ---
 
-## Prompt 5.5 — Pre-conversion cleanup (Phase 5.5) — ⬜ NOT RUN — run after 5-fix
+## Prompt 5.5 — Pre-conversion cleanup (Phase 5.5) — ✅ DONE
 
 ```
 Read plan.md §8 and buildspec.md §11 in full.
@@ -319,7 +320,188 @@ report exists and I've confirmed the flagged items.
 
 ---
 
-## Prompt 6 — Payload CMS scaffold (Phase 6) — ⬜ NOT STARTED
+## Prompt 6.1 — Finish header propagation + trust bar + locked nav labels — 🔴 NOT RUN, RUN THIS FIRST
+
+```
+Read plan.md §9.1 and buildspec.md §12.
+
+1. Fix commercial/contact.html — wait, first: move contact.html from the
+   repo root into commercial/contact.html (it's the last root-level page
+   and it's why the earlier header-propagation batching missed it).
+   Rebuild its header using the corrected single-strip navbar.html
+   component. Update every inbound link to it — check
+   personal-and-property/*.html specifically, since those link to it
+   directly — to the new root-relative path (/commercial/contact.html).
+
+2. Build/fix the trust bar (star rating, review count, ACL number, AFCA
+   Member, "70+ Lenders") as a persistent element pinned at the very top
+   of every page, above the header row, identical across Commercial,
+   Connect, and Personal & Property. Add it to the canonical header
+   component so it propagates the same way the rest of the header does.
+   Do not implement it as a second navigation tier — it's a thin trust
+   strip, not a switcher or menu.
+
+3. Update the primary nav labels to their now-locked final wording:
+   "What Funding Do I Need?" / "Offer Funding Solutions" /
+   "Why Trade Funding?" (replacing "Products" / "Partners" / "Why Us"
+   as visible labels — keep the underlying structure/dropdowns the same,
+   only the visible label text changes).
+
+Show me a diff of commercial/components/navbar.html first, then
+propagate to every page in batches by folder (commercial/, connect/,
+personal-and-property/), same as the last header fix.
+```
+
+---
+
+## Prompt 6.2 — Remove what shouldn't be in the deployable tree — ⬜ NOT RUN
+
+```
+Read plan.md §9.2.
+
+1. Relocate design baseline/ and connect/tests/calculator-test.html to
+   a location excluded from the Vercel build (add a .vercelignore entry
+   or move them to a top-level _internal/ folder — your call, tell me
+   which you're doing). Rename design baseline/ to
+   _DO-NOT-DEPLOY-design-baseline/ regardless of where it ends up.
+
+2. Remove the console.log at commercial/product-page.js:225.
+
+Show me the diff/move plan before executing.
+```
+
+---
+
+## Prompt 6.3 — Path & templating debt — ⬜ NOT RUN
+
+```
+Read plan.md §9.3 and buildspec.md §12.
+
+1. Fix the 9 files in commercial/guides/ still using relative paths
+   (src="../cookie-consent.js") — change to /commercial/cookie-consent.js
+   in all 9. List the 9 files you changed.
+
+2. Replace inline style="" attributes that duplicate tokens.md values
+   (starting with commercial/index.html's 291 instances) with
+   token-driven utility classes (.icon--sky, .icon--peach, etc.) added
+   to shared-styles.css. Do this file by file — show me a diff of
+   commercial/index.html first before continuing to the rest.
+
+Do NOT make the templating-layer decision yourself (11ty/Astro/SSI vs.
+proceeding straight to Phase 7) — flag it to me as an open question per
+plan.md §9.3, I'll decide with the team.
+```
+
+---
+
+## Prompt 6.4 — Accessibility pass — ⬜ NOT RUN
+
+```
+Read plan.md §9.4.
+
+1. Wrap the masthead in <header> and primary page content in <main> at
+   the canonical component/template level, then re-propagate sitewide
+   (same batched-by-folder approach as prior header fixes).
+2. Wrap each footer badge (AFCA, CAFBA, Fintech Australia, ACL) in an
+   <a> pointing to its real verification/membership page — tell me if
+   any of these URLs aren't obvious so I can confirm them.
+3. Copy Connect's aria-expanded hamburger-toggle pattern into
+   Commercial's hamburger handler (commercial's currently only toggles
+   a CSS class).
+4. Replace the native title="" tooltip on apply.html's "What's S.T.A.R.?"
+   explainer with a click/tap-accessible popover component.
+5. Fix apply.html's 4 separate <h1> elements — use one page-level <h1>
+   ("Apply for Funding"), demote step titles to <h2>, or use aria-live
+   for step-change announcements. Your call which approach fits the
+   existing funnel markup best — show me before/after.
+
+Show me a diff before writing changes to any file.
+```
+
+---
+
+## Prompt 6.5 — SEO/meta hygiene — ⬜ NOT RUN
+
+```
+Read plan.md §9.5 and docs/SEO_Audit_Report.md.
+
+1. Add a <meta name="robots"> (and confirm <title>/description) block
+   to every page missing one — template it once, apply sitewide, skip
+   404.html.
+2. Diff the live file tree against commercial/sitemap.xml. Add the
+   missing pages (privacy.html, terms.html, credit-guide.html,
+   broker-portal.html) and align every URL to the extensionless
+   canonical format already used in <link rel="canonical"> tags
+   elsewhere on the site.
+
+Show me the sitemap.xml diff before writing it.
+```
+
+---
+
+## Prompt 6.6 — Nav/CTA routing fixes — ⬜ NOT RUN
+
+```
+Read plan.md §9.6.
+
+1. Route the "Partners" nav item through Connect instead of the legacy
+   /commercial/broker-portal.html — update the nav link, and cross-link
+   Broker Portal from within Connect's partner page so it isn't lost.
+2. Add a "Become a Partner" CTA somewhere visible in commercial/ (nav or
+   footer, your call) linking into Connect.
+3. Reduce the ACL number "387856" in the footer from 3 occurrences down
+   to 1–2 (badge + one legal reference max) — remove the redundant
+   copyright-line instance.
+
+Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 6.7 — Personal & Property animation parity — ⬜ NOT RUN
+
+```
+Read plan.md §9.7 and tokens.md §1.5.
+
+Apply the same IntersectionObserver-based reveal treatment (fade-in +
+16px rise, staggered 100ms delays, respecting prefers-reduced-motion)
+used on Commercial and Connect to every Personal & Property page. Reuse
+the existing reveal script/CSS classes rather than writing a new
+implementation.
+```
+
+---
+
+## Prompt 6.8 — Templating decision + fix report (do this in Claude web chat, not Claude Code)
+
+*(This is a discussion, not a code change — surface the real tradeoff from plan.md §9.3 and decide with the team before Claude Code produces the closing report.)*
+
+```
+Given everything fixed in Prompts 6.1–6.7, help me think through the
+templating-layer decision from plan.md §9.3: adopt a minimal templating
+system (11ty, Astro, or server-side includes) before any further raw
+HTML production, versus treating Phase 6 as the last raw-HTML fix pass
+and moving straight into Phase 7's Next.js/Payload migration. What are
+the real tradeoffs given we're already committed to Payload/Next.js
+in Phase 7?
+```
+
+Once decided, have Claude Code produce the closing report:
+
+```
+Read plan.md §9 in full.
+
+Produce docs/fix-report.md documenting everything fixed across Prompts
+6.1–6.7: what was fixed, in what order, with before/after notes for the
+accessibility and SEO items specifically (these are hard to verify from
+a screenshot alone). Include the templating-layer decision reached in
+6.8 and its rationale. Do not begin Phase 7 until I've reviewed this
+report.
+```
+
+---
+
+## Prompt 7 — Payload CMS scaffold (Phase 7) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §2 and §3 in full.
@@ -341,11 +523,11 @@ to content migration.
 
 ---
 
-## Prompt 7 — Migrate one page end-to-end (Phase 6) — ⬜ NOT STARTED
+## Prompt 8 — Migrate one page end-to-end (Phase 7) — ⬜ NOT STARTED
 
 ```
 Convert exactly one page — commercial/business-term-loans.html — into a
-Payload-backed page using the collections scaffolded in Prompt 6 and the
+Payload-backed page using the collections scaffolded in Prompt 7 and the
 component inventory in design/components.md (if Prompt 4 was run — if
 not, work directly from the existing HTML/CSS instead).
 
@@ -361,7 +543,7 @@ Do not touch any other HTML file until I approve this pattern.
 
 ---
 
-## Prompt 8 — Batch-convert remaining pages — ⬜ NOT STARTED
+## Prompt 9 — Batch-convert remaining pages — ⬜ NOT STARTED
 
 ```
 Read docs/cleanup-report.md first to confirm the file tree is clean and
@@ -379,7 +561,7 @@ and flag me if any page doesn't cleanly fit the established pattern.
 
 ---
 
-## Prompt 9 — Vercel deploy (Phase 6) — ⬜ NOT STARTED
+## Prompt 10 — Vercel deploy (Phase 7) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §8.
