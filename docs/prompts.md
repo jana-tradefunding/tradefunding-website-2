@@ -4,7 +4,7 @@
 
 **Reminder before every session:** `_internal/_DO-NOT-DEPLOY-design-baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
-**🔴 Before running Prompt 8.3: confirm the "Home" icon-only vs. icon+text decision with the team — see plan.md §11's intro. Everything else in Phase 8 can proceed regardless.**
+**Resolved: the "Home" icon-only vs. icon+text decision is icon-only** — see plan.md §11's intro and CLAUDE.md rule 13. The markup change itself is still Prompt 8.3's job (step 4), pending Prompt 8.1's include-sync fix.
 
 ---
 
@@ -782,8 +782,10 @@ I've reviewed it.
 Read plan.md §11 (intro + 8.1) and architecture-review-report.md Finding 1
 and ui-ux-a11y-report.md item 1 in full.
 
-1. Confirm the "Home" icon-only vs. icon+text decision has been made
-   (check with me if not) before touching the ChannelSwitcher markup.
+1. The "Home" icon-only vs. icon+text decision is resolved (icon-only,
+   see CLAUDE.md rule 13) - no confirmation needed, but don't touch the
+   ChannelSwitcher markup here either; that's Prompt 8.3 step 4, after
+   this prompt's include-sync fix lands.
 
 2. Convert the remaining 63 pages (everything except
    commercial/business-loans.html, connect/for-vendors.html, and
@@ -856,10 +858,9 @@ Read plan.md §11 (8.3), ui-ux-a11y-report.md items 5, 8, 9, and item 2.
 3. Fix channel-switcher touch targets at <=640px: add min-height: 44px
    to .channel-switch__option and adjust padding (not font-size alone)
    so the actual tap target reaches 44px.
-4. Apply whichever "Home" decision was confirmed in Prompt 8.1: if
-   icon-only, remove <span class="channel-switch__full">Home</span>
-   from navbar.html and update CLAUDE.md rule 13; if keeping the text,
-   no markup change needed here.
+4. Apply the "Home" icon-only decision (CLAUDE.md rule 13 already
+   updated to match): remove <span class="channel-switch__full">Home</span>
+   from navbar.html.
 5. Confirm prefers-reduced-motion still gates the new P&P reveal classes
    correctly (should be automatic via the shared .reveal system - verify,
    don't assume).
