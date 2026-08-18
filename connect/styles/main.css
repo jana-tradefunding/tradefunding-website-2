@@ -72,11 +72,11 @@ button{font:inherit;cursor:pointer;border:none;background:none}
 .text-muted{color:var(--ink-400)}
 
 /* ---------- Reveal animation ---------- */
+/* .delay-1/2/3 moved to shared/styles/chrome.css as a cross-channel
+   utility (Phase 8 §11.3) - kept here only for the unused delay-4/5
+   tiers, since no page in the repo references them. */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity 600ms var(--ease),transform 600ms var(--ease)}
 .reveal.is-visible{opacity:1;transform:none}
-.reveal.delay-1{transition-delay:100ms}
-.reveal.delay-2{transition-delay:200ms}
-.reveal.delay-3{transition-delay:300ms}
 .reveal.delay-4{transition-delay:400ms}
 .reveal.delay-5{transition-delay:500ms}
 

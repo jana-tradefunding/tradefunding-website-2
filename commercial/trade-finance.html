@@ -783,8 +783,8 @@ input:focus, select:focus, textarea:focus {
 
     <div class="navbar__links">
       <div class="navbar__link navbar__link--dropdown">
-        Funding Solutions
-        <div class="dropdown-menu">
+        <button type="button" class="navbar__link--dropdown-trigger" id="fundingSolutionsTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="fundingSolutionsMenu">Funding Solutions</button>
+        <div class="dropdown-menu" id="fundingSolutionsMenu" role="menu" aria-labelledby="fundingSolutionsTrigger">
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Term Loans</span>
             <a href="/commercial/business-term-loans.html">Term Loan</a>
@@ -843,7 +843,6 @@ input:focus, select:focus, textarea:focus {
       <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
         <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-          <span class="channel-switch__full">Home</span>
         </a>
         <a href="/connect/index.html" class="channel-switch__option" aria-label="Connect">
           <span class="channel-switch__full">Connect</span><span class="channel-switch__short">Connect</span>
@@ -889,6 +888,47 @@ input:focus, select:focus, textarea:focus {
     <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
 </div>
+
+<!-- Funding Solutions dropdown: click/focus-based open state, ARIA
+     state kept in sync. The :hover CSS in commercial/shared-styles.css
+     stays as-is - this only adds a keyboard/AT-reachable path on top
+     of it (ui-ux-a11y-report.md, "Native semantics" finding). -->
+<script>
+(function () {
+  var trigger = document.getElementById('fundingSolutionsTrigger');
+  var menu = document.getElementById('fundingSolutionsMenu');
+  if (!trigger || !menu) return;
+  var wrapper = trigger.closest('.navbar__link--dropdown');
+
+  function closeMenu() {
+    trigger.setAttribute('aria-expanded', 'false');
+    wrapper.classList.remove('is-open');
+  }
+  function openMenu() {
+    trigger.setAttribute('aria-expanded', 'true');
+    wrapper.classList.add('is-open');
+  }
+
+  trigger.addEventListener('click', function () {
+    var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      trigger.focus();
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (!wrapper.contains(e.target)) closeMenu();
+  });
+  wrapper.addEventListener('focusout', function () {
+    requestAnimationFrame(function () {
+      if (!wrapper.contains(document.activeElement)) closeMenu();
+    });
+  });
+})();
+</script>
 <!-- include:end -->
 <!-- ============================================
      SECTION 1 - HERO

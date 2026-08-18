@@ -107,6 +107,30 @@
   pointer-events: all;
 }
 
+/* Click/focus-based open state (ui-ux-a11y-report.md item 9) - kept
+   separate from the :hover rule above rather than combined into one
+   selector, so the hover behavior stays untouched as a progressive
+   enhancement. */
+.navbar__link--dropdown.is-open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* Resets the trigger back to looking like plain nav text - the
+   dropdown was a bare text node before it became a <button> for
+   keyboard/AT reachability. */
+.navbar__link--dropdown-trigger {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
 .dropdown-menu__category {
   padding: 8px 0;
 }

@@ -190,6 +190,16 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0);
 }
 
+/* Stagger utility, shared across all channels (Phase 8 §11.3) - moved
+   here from connect/styles/main.css so Commercial and Personal &
+   Property can use the same delay-N classes Connect's hero already
+   relied on. Only 1-3 are defined: no page in the repo uses delay-4/5
+   (those stay in connect/styles/main.css, unused, until something
+   needs a longer stagger). */
+.reveal.delay-1 { transition-delay: 100ms; }
+.reveal.delay-2 { transition-delay: 200ms; }
+.reveal.delay-3 { transition-delay: 300ms; }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
@@ -511,8 +521,8 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 640px) {
   .channel-switch { gap: 1px; padding: 3px; }
-  .channel-switch__option { padding: 7px 10px; font-size: 0.72rem; }
-  .channel-switch__option--home { padding: 7px 10px; }
+  .channel-switch__option { padding: 12px 10px; font-size: 0.72rem; min-height: 44px; }
+  .channel-switch__option--home { padding: 12px 10px; min-height: 44px; }
   .channel-switch__option--home svg { width: 14px; height: 14px; }
   .channel-switch__full { display: none; }
   .channel-switch__short { display: inline; }
