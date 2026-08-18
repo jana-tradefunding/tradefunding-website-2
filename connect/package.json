@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build:includes": "node scripts/build-includes.mjs",
-    "build:includes:check": "node scripts/build-includes.mjs --check"
+    "build:includes:check": "node scripts/build-includes.mjs --check",
+    "prepare": "cd .. && git config core.hooksPath .githooks"
   }
 }

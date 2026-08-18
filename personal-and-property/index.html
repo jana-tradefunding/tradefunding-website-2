@@ -38,17 +38,12 @@
 </head>
 <body>
 
-<!-- ============================================
-     HEADER - CANONICAL structure per commercial/components/navbar.html
-     and CLAUDE.md rule 14. Wrapper divs/classes/order identical; only
-     the channel-switch active state and this channel's own primary-nav
-     links differ, per navbar.html's own header comment.
-     ============================================ -->
-
-<!-- TRUST BAR - persistent strip, pinned above the navbar row. See
-     shared/styles/chrome.css .trust-bar comment for full rationale
-     (why the review count is omitted, why fixed positioning must match
-     .navbar's). -->
+<!-- include:start src="/personal-and-property/components/navbar.html" -->
+<!-- HEADER - CANONICAL (Personal & Property channel). Verified
+     byte-identical across all 11 P&P pages prior to extraction
+     (Phase 7 §10.4 item 1). Managed by connect/scripts/build-includes.mjs
+     - edit this file, then run `npm run build:includes` (from
+     connect/) to re-sync every page that includes it. -->
 <div class="trust-bar" id="trustBar">
   <div class="trust-bar__inner">
     <a class="trust-bar__item trust-bar__item--link" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener" aria-label="Read our Google reviews">
@@ -113,6 +108,7 @@
     <a href="/connect/index.html" onclick="closeMobile()">Connect (Point-of-Sale Finance) &rarr;</a>
   </div>
 </div>
+<!-- include:end -->
 
 <main>
 
@@ -323,13 +319,12 @@
 
 </main>
 
-<!-- ============================================
-     FOOTER - CANONICAL wrapper structure per commercial/components/
-     footer.html and CLAUDE.md rule 14; content customised to this
-     channel per the same pattern already used in connect/index.html.
-     FooterLegal disclaimer strip is the componentized-once instance
-     per CLAUDE.md rule 8 - not reworded per channel.
-     ============================================ -->
+<!-- include:start src="/personal-and-property/components/footer.html" -->
+<!-- FOOTER - CANONICAL (Personal & Property channel). Verified
+     byte-identical across all 11 P&P pages prior to extraction
+     (Phase 7 §10.4 item 1). Managed by connect/scripts/build-includes.mjs
+     - edit this file, then run `npm run build:includes` (from
+     connect/) to re-sync every page that includes it. -->
 <footer class="footer">
   <div class="container container--wide">
     <div class="footer__grid footer__grid--condensed">
@@ -404,6 +399,7 @@
     </div>
   </div>
 </footer>
+<!-- include:end -->
 
 <script>
 (function () {

@@ -160,7 +160,7 @@ button{font:inherit;cursor:pointer;border:none;background:none}
 /* ============================================================
    HERO — text + product mockup composition
    ============================================================ */
-.hero{min-height:auto;display:block;overflow:hidden;padding:clamp(64px,8vw,112px) 0 clamp(80px,9vw,140px)}
+.hero{min-height:auto;display:block;overflow:hidden;padding:calc(var(--utility-bar-height, 37px) + 80px + 32px) 0 clamp(80px,9vw,140px)}
 .hero__cashper{position:absolute;right:-160px;top:20%;width:540px;max-width:55vw;opacity:0.05;pointer-events:none;z-index:0}
 .hero__grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
 .hero__copy{max-width:580px}

@@ -1,0 +1,16 @@
+#!/bin/sh
+# Blocks a commit if any page has drifted from its canonical include source
+# (navbar/footer/how-it-works). See architecture-review-report.md Finding 1
+# and CLAUDE.md rule 23. Tracked in .githooks/ (not .git/hooks/) so it
+# ships with the repo - enabled via `git config core.hooksPath .githooks`,
+# which connect/package.json's "prepare" script sets automatically on
+# `npm install` inside connect/.
+
+node connect/scripts/build-includes.mjs --check
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "Commit blocked: one or more pages are out of sync with their canonical"
+  echo "navbar/footer component. Run 'npm run build:includes' (from connect/),"
+  echo "review the diff, and re-stage before committing."
+  exit 1
+fi

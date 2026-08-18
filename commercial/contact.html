@@ -83,16 +83,27 @@
 </head>
 <body>
 
+<!-- include:start src="/commercial/components/navbar.html" -->
 <!-- ============================================
-     HEADER - canonical, sourced from
-     /commercial/components/navbar.html (CLAUDE.md rule 14 / rule 19 -
-     shared markup gets re-propagated everywhere, including root-level
-     pages like this one). This is the sitewide /contact/ page (per
-     Master IA §2B), living inside commercial/ per plan.md §9.1 so
-     folder-scoped propagation passes catch it automatically - it
-     still sits outside all three channels conceptually, so none of
-     the channel-switch options carry active/aria-current here.
+     HEADER - CANONICAL (Commercial channel)
+     Source of truth for header markup/CSS classes per CLAUDE.md rule 14
+     and buildspec.md §10. Every page on every channel (Commercial,
+     Connect, Personal & Property) must reproduce this exact wrapper
+     structure - same divs, same classes, same order - swapping only:
+       - the .channel-switch__option that carries `active`/aria-current
+       - the primary-nav links (each channel keeps its own nav items)
+     Masthead is two stacked blocks that always move together: the
+     .trust-bar strip (persistent, identical across every channel, per
+     plan.md §9.1/buildspec.md §12) sits above the single .navbar row,
+     which holds the logo, primary navigation, and the ChannelSwitcher
+     together - no separate utility/nav tier beyond these two, per
+     plan.md §4/§7.2 and buildspec.md §2 (Prompt 5-fix correction). No
+     CTA button anywhere in the header (removed sitewide per Phase 5
+     Part 2 instruction). All hrefs/srcs below are root-relative per
+     buildspec.md §10 / CLAUDE.md rule 15 - never relative, never bare
+     filenames.
      ============================================ -->
+
 <!-- TRUST BAR - persistent strip, pinned above the navbar row. See
      shared/styles/chrome.css .trust-bar comment for full rationale
      (why the review count is omitted, why fixed positioning must match
@@ -179,7 +190,7 @@
 
     <div class="navbar__right">
       <div class="channel-switch" role="navigation" aria-label="Switch Trade Funding channel">
-        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home" aria-label="Home">
+        <a href="/commercial/index.html" class="channel-switch__option channel-switch__option--home active" aria-current="page" aria-label="Home">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
           <span class="channel-switch__full">Home</span>
         </a>
@@ -227,6 +238,7 @@
     <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
 </div>
+<!-- include:end -->
 <!-- ============================================
      HERO
      ============================================ -->
@@ -303,9 +315,14 @@
 
 </div>
 
+<!-- include:start src="/commercial/components/footer.html" -->
 <!-- ============================================
-     FOOTER - canonical, sourced from
-     /commercial/components/footer.html (CLAUDE.md rule 14).
+     FOOTER - CANONICAL, condensed 2-column (Phase 5 Part 1)
+     Source of truth for footer markup per CLAUDE.md rule 14. Every
+     page on every channel reproduces this exact wrapper structure.
+     The ACL/AFCA legal strip is the componentized-once FooterLegal
+     block per CLAUDE.md rule 8 - never duplicated or reworded per
+     channel/page. All hrefs/srcs are root-relative (rule 15).
      ============================================ -->
 <footer class="footer">
   <div class="container container--wide">
@@ -320,7 +337,7 @@
         <div class="footer__contact">
           <div class="footer__contact-item">&#128222; 1300 161 641</div>
           <div class="footer__contact-item">&#128231; support@tradefunding.com.au</div>
-          <div class="footer__contact-item">&#128205; <!-- BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
         </div>
         <div class="footer__badges">
           <span class="footer__badge">ACL 387856</span>
@@ -330,7 +347,9 @@
         </div>
       </div>
 
-      <!-- Column 2: condensed sitemap -->
+      <!-- Column 2: condensed sitemap - Channels / Company / Legal grouped
+           into one column so the footer reads as 2 columns overall
+           (brand col + this link col) on every page, every channel. -->
       <div class="footer__links-col">
         <div class="footer__links-group">
           <h4 class="footer__heading">Channels</h4>
@@ -378,6 +397,7 @@
     </div>
   </div>
 </footer>
+<!-- include:end -->
 
 <script>
 (function() {

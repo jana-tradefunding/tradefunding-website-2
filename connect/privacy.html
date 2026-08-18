@@ -32,13 +32,12 @@
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- NAVBAR - CANONICAL (see commercial/components/navbar.html; CLAUDE.md rule 14) -->
-
-<!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
-<!-- TRUST BAR - persistent strip, pinned above the navbar row. See
-     shared/styles/chrome.css .trust-bar comment for full rationale
-     (why the review count is omitted, why fixed positioning must match
-     .navbar's). -->
+<!-- include:start src="/connect/components/navbar.html" -->
+<!-- HEADER - CANONICAL (Connect channel). Verified byte-identical
+     across all 8 Connect pages prior to extraction (Phase 7 §10.4
+     item 1). Managed by connect/scripts/build-includes.mjs - edit
+     this file, then run `npm run build:includes` to re-sync every
+     page that includes it. -->
 <div class="trust-bar" id="trustBar">
   <div class="trust-bar__inner">
     <a class="trust-bar__item trust-bar__item--link" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener" aria-label="Read our Google reviews">
@@ -100,6 +99,7 @@
     <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
 </div>
+<!-- include:end -->
 <script>
 (function() {
   var hamburger = document.getElementById('hamburger');
@@ -256,7 +256,12 @@
   </div>
 </main>
 
-<!-- FOOTER - CANONICAL, condensed 2-column (see commercial/components/footer.html; CLAUDE.md rules 8/14) -->
+<!-- include:start src="/connect/components/footer.html" -->
+<!-- FOOTER - CANONICAL (Connect channel). Verified byte-identical
+     across all 8 Connect pages prior to extraction (Phase 7 §10.4
+     item 1). Managed by connect/scripts/build-includes.mjs - edit
+     this file, then run `npm run build:includes` to re-sync every
+     page that includes it. -->
 <footer class="footer">
   <div class="container container--wide">
     <div class="footer__grid footer__grid--condensed">
@@ -270,7 +275,7 @@
         <div class="footer__contact">
           <div class="footer__contact-item">&#128222; <a href="tel:1300161641" style="color:inherit;">1300 161 641</a></div>
           <div class="footer__contact-item">&#128231; <a href="mailto:support@tradefunding.com.au" style="color:inherit;">support@tradefunding.com.au</a></div>
-          <div class="footer__contact-item">&#128205; <!-- BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
+          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
         </div>
         <div class="footer__badges">
           <span class="footer__badge">ACL 387856</span>
@@ -328,6 +333,7 @@
     </div>
   </div>
 </footer>
+<!-- include:end -->
 
 <script src="/connect/scripts/main.js" defer></script>
 <script src="/shared/scripts/consent.js" defer></script>

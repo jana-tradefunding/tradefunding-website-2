@@ -746,12 +746,27 @@ input:focus, select:focus, textarea:focus {
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- include:start src="/commercial/components/navbar.html" -->
 <!-- ============================================
-     NAVBAR
+     HEADER - CANONICAL (Commercial channel)
+     Source of truth for header markup/CSS classes per CLAUDE.md rule 14
+     and buildspec.md §10. Every page on every channel (Commercial,
+     Connect, Personal & Property) must reproduce this exact wrapper
+     structure - same divs, same classes, same order - swapping only:
+       - the .channel-switch__option that carries `active`/aria-current
+       - the primary-nav links (each channel keeps its own nav items)
+     Masthead is two stacked blocks that always move together: the
+     .trust-bar strip (persistent, identical across every channel, per
+     plan.md §9.1/buildspec.md §12) sits above the single .navbar row,
+     which holds the logo, primary navigation, and the ChannelSwitcher
+     together - no separate utility/nav tier beyond these two, per
+     plan.md §4/§7.2 and buildspec.md §2 (Prompt 5-fix correction). No
+     CTA button anywhere in the header (removed sitewide per Phase 5
+     Part 2 instruction). All hrefs/srcs below are root-relative per
+     buildspec.md §10 / CLAUDE.md rule 15 - never relative, never bare
+     filenames.
      ============================================ -->
 
-<!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
 <!-- TRUST BAR - persistent strip, pinned above the navbar row. See
      shared/styles/chrome.css .trust-bar comment for full rationale
      (why the review count is omitted, why fixed positioning must match
@@ -771,6 +786,7 @@ input:focus, select:focus, textarea:focus {
   </div>
 </div>
 
+<!-- MAIN NAV - logo + primary navigation + ChannelSwitcher, one row -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
     <a href="/commercial/index.html" class="navbar__logo">
@@ -885,6 +901,7 @@ input:focus, select:focus, textarea:focus {
     <a href="/personal-and-property/index.html" onclick="closeMobile()">Personal &amp; Property Finance &rarr;</a>
   </div>
 </div>
+<!-- include:end -->
 <!-- 1. HERO -->
 <section class="product-hero" id="hero">
   <div class="hero__glow hero__glow--1"></div>
@@ -1925,8 +1942,14 @@ input:focus, select:focus, textarea:focus {
   </div>
 </section>
 
+<!-- include:start src="/commercial/components/footer.html" -->
 <!-- ============================================
-     FOOTER
+     FOOTER - CANONICAL, condensed 2-column (Phase 5 Part 1)
+     Source of truth for footer markup per CLAUDE.md rule 14. Every
+     page on every channel reproduces this exact wrapper structure.
+     The ACL/AFCA legal strip is the componentized-once FooterLegal
+     block per CLAUDE.md rule 8 - never duplicated or reworded per
+     channel/page. All hrefs/srcs are root-relative (rule 15).
      ============================================ -->
 <footer class="footer">
   <div class="container container--wide">
@@ -1951,7 +1974,9 @@ input:focus, select:focus, textarea:focus {
         </div>
       </div>
 
-      <!-- Column 2: condensed sitemap -->
+      <!-- Column 2: condensed sitemap - Channels / Company / Legal grouped
+           into one column so the footer reads as 2 columns overall
+           (brand col + this link col) on every page, every channel. -->
       <div class="footer__links-col">
         <div class="footer__links-group">
           <h4 class="footer__heading">Channels</h4>
@@ -1999,6 +2024,7 @@ input:focus, select:focus, textarea:focus {
     </div>
   </div>
 </footer>
+<!-- include:end -->
 
 <!-- JAVASCRIPT -->
 <script src="/commercial/product-page.js"></script>
