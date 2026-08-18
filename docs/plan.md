@@ -1,6 +1,6 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v9 — Phase 8.1–8.3 are done; the two regressions that surfaced (8.1-fix, 8.3-fix) are now fixed and verified in-browser. A new 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
+**Status: v10 — Phase 8.1–8.3 are done; the two regressions that surfaced (8.1-fix, 8.3-fix) are now fixed and verified in-browser. A third issue (8.3-fix-2 — "Why Choose Us" nav link goes nowhere) has been found and is queued to run next. 8.11 (Vercel deploy for stakeholder review) has been resequenced: it now runs right after 8.6, before 8.7's performance/SEO work, rather than at the very end of Phase 8 — so any final tweaks surface before the performance/SEO/resilience passes build on top of them.**
 
 ## Current build status (check before running anything)
 
@@ -16,8 +16,10 @@
 | 6 — Build quality & architecture fix pass | ✅ Done |
 | 7 — Pre-Migration Remediation | ⚠️ Done through 7.12; 7.13 folded into Phase 8 §11.9 |
 | **8.1–8.3 — Final Pre-Deployment Fix Pass, design/animation first** | ✅ **Done, including both regression fixes** — 8.1-fix (stale Connect cache-busting version bumped) and 8.3-fix (Funding Solutions dropdown trigger given explicit literal styles) below in §11 |
-| **8.4–8.10 — remaining Phase 8 fix work** | Not started — run next |
-| **8.11 — Vercel deploy for stakeholder review (NEW)** | Not started |
+| **8.3-fix-2 — "Why Choose Us" nav link goes nowhere (NEW)** | Not started — run next, before 8.4 |
+| **8.4–8.6 — remaining Phase 8 fix work** | Not started — run after 8.3-fix-2 |
+| **8.11 — Vercel deploy for stakeholder review** | Not started — **resequenced: now runs right after 8.6**, before 8.7 |
+| **8.7–8.10 — performance/SEO through closing QA** | Not started — run after 8.11 |
 | 9 — Payload/Vercel conversion | Not started — waits on Phase 8 |
 
 **Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (canonical IA/architecture doc), `tokens.md` (finalized Phase 1 output), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, `docs/research-notes.md` and `docs/copy-final.md` (Phase 3 outputs), and the `commercial/`, `connect/`, `personal-and-property/`, and `design baseline/` folders in the project zip.
@@ -428,7 +430,9 @@ Apply consistently across every Commercial page's header, plus any footer/mobile
 
 **🔴 One item needs your decision before any code changes, not mine to resolve:** the UI/UX report flags a direct contradiction — you asked for the `ChannelSwitcher`'s "Home" entry to be icon-only, but `CLAUDE.md` rule 13 currently locks "Home icon + 'Home' text." Removing the text is also the more defensible fix for Finding 8.1 below (a shorter switcher never wraps and covers the hero), but per this project's own "flag contradictions, don't silently resolve" rule, **confirm which you want before Prompt 8.1 runs**: (a) keep "Home" text, accept the switcher may need more room, or (b) go icon-only sitewide, which also requires a `CLAUDE.md` rule 13 update.
 
-Fixes are grouped into 10 sub-phases (8.1–8.10), ordered so design/aesthetic/animation work leads (as requested), then propagation-dependent fixes, then independent security/performance/observability/process work, closing with a full pre-deployment QA pass. **You've completed 8.1–8.3 — two regressions surfaced from those and are addressed below as 8.1-fix and 8.3-fix, run before continuing to 8.4.** A new 8.11 (Vercel deploy for stakeholder review) has also been added at the end, before Phase 9.
+Fixes are grouped into 10 sub-phases (8.1–8.10), ordered so design/aesthetic/animation work leads (as requested), then propagation-dependent fixes, then independent security/performance/observability/process work, closing with a full pre-deployment QA pass. **You've completed 8.1–8.3 — two regressions surfaced from those and are addressed below as 8.1-fix and 8.3-fix.** A third issue, **8.3-fix-2** ("Why Choose Us" nav link doesn't go anywhere), was found during the same regression pass and runs next, before 8.4.
+
+**Sequencing note (updated):** 8.11 (Vercel deploy for stakeholder review) no longer sits at the very end of Phase 8. It now runs **right after 8.6, before 8.7** — the reasoning being that there may be final tweaks the team wants after seeing a live preview, and it's cheaper to make those before the performance/SEO (8.7), resilience/observability (8.8), dependency/test (8.9), and closing-QA (8.10) work builds on top of the current state. The actual run order through the rest of Phase 8 is: **8.1 → 8.1-fix → 8.2 → 8.3 → 8.3-fix → 8.3-fix-2 → 8.4 → 8.5 → 8.6 → 8.11 → 8.7 → 8.8 → 8.9 → 8.10.**
 
 ### 8.1 — Fix the include-sync coverage gap + hero/header overlap (foundational, do first)
 
@@ -469,6 +473,17 @@ This is the single highest-leverage fix across all six reports: **the include-sy
 
 **Root cause (kept for reference):** converting the Funding Solutions trigger from a plain `<a>` to a `<button class="navbar__link--dropdown-trigger">` for keyboard/AT accessibility (8.3) visually broke it, because the button carried no `.navbar__link` class — `font: inherit; color: inherit;` had nothing matching to inherit from, so it fell back to browser/parent defaults instead of the sibling nav items' actual styling.
 
+### 8.3-fix-2 — Bug: "Why Choose Us?" nav link doesn't go anywhere — it should route to About Us
+
+**Confirmed directly:** every one of Commercial's 52 pages links "Why Choose Us?" to `/commercial/index.html#why`, but `commercial/index.html` has no element with `id="why"` anywhere in the markup — the closest candidate, `<section class="why-first">` (the homepage's own "why choose us" content block), was never given that id. The link is a dead anchor: on the homepage it does nothing at all, and on every other page it lands on the homepage with no scroll, which looks like the link "doesn't direct to anything."
+
+**Fix:** rather than wiring up the missing `id="why"` anchor on the homepage, point "Why Choose Us?" at the existing, fuller **About Us page** (`/commercial/about.html`) instead — it already exists, is already linked from the footer, and is a more complete answer to "why choose us" than a mid-page homepage section would be.
+
+- In the canonical `commercial/components/navbar.html`, change the "Why Choose Us?" link's `href` from `/commercial/index.html#why` to `/commercial/about.html`.
+- Re-run `node connect/scripts/build-includes.mjs` (then `--check`) so the fix propagates to all 52 pages that currently carry the broken link, via the include-sync system fixed in 8.1 — do not hand-edit each page.
+- Confirm no other page has a hand-copied, out-of-sync copy of this link that the include-sync propagation would miss (per rule 19/23 in `CLAUDE.md` — root-level pages outside a channel folder have been missed by propagation before).
+- Verify by clicking the link on at least one page and confirming it lands on `/commercial/about.html`, not a dead anchor.
+
 ### 8.4 — Security headers: CSP + HSTS sitewide
 
 - **Add a Content-Security-Policy and Strict-Transport-Security header** — currently absent from the entire codebase. Use the report's suggested policy as a starting point (`default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'`, plus `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`). `style-src 'unsafe-inline'` is required for now because of the inline `<style>` blocks addressed in 8.9 — tightening that is a follow-on, not a blocker.
@@ -484,6 +499,15 @@ This is the single highest-leverage fix across all six reports: **the include-sy
 
 - **Extract the duplicated email/phone validation regexes** (currently copy-pasted verbatim between `connect/api/request-call.js` and `connect/scripts/form.js`) into a small shared module, following the same `_lib/` pattern already used for origin-check/token/rate-limit/escape.
 - **Extract `sendEmail`/`sendSlack`'s HTML/Slack-message templating** into `connect/api/_lib/notify.js`, parameterized by a template name — do this before a second form handler (Broker Portal's, from Phase 7) risks copy-pasting the same templates rather than reusing them.
+
+### 8.11 — Deploy the current static build to Vercel for stakeholder review — **resequenced: run here, not at the end of Phase 8**
+
+Before continuing into the performance/SEO/resilience/process work below, deploy the current, fully-fixed static multi-channel site to Vercel so the team can review it live and leave final comments. This is an **interim deployment of the existing static HTML/CSS/JS site as-is**, not the eventual Phase 9 Payload/Next.js production launch — it exists purely to get real eyes on the finished 8.1–8.6 work before sinking more effort into 8.7's performance/SEO pass and beyond, in case the team's feedback changes anything.
+
+- Deploy `commercial/`, `connect/`, and `personal-and-property/` together as they currently exist, preserving the sub-path structure already in use.
+- Bump every stale cache-busting query string first (per 8.1-fix) so the deployed version actually reflects every fix through 8.6, not cached pre-fix assets.
+- This deploy needs your explicit go-ahead in chat before it runs, and again before it's promoted to a production URL if that's separate from a preview URL in your Vercel setup.
+- Share the resulting preview/production URL back for stakeholder comments; don't treat this as the final launch — Phase 9 still fully rebuilds the site on Payload/Next.js afterward, and 8.7–8.10 still need to run after this before Phase 9 starts.
 
 ### 8.7 — Performance & SEO
 
@@ -519,15 +543,6 @@ This is the last checkpoint before Phase 9. Do not treat this as a formality —
 - Produce `docs/phase8-report.md` summarizing every fix from 8.1–8.9, referencing which finding from which of the six source reports each one closes out, plus the "Home" icon decision that was made and when.
 
 **Do not start Phase 9 (Payload conversion) until `docs/phase8-report.md` exists and you've confirmed the QA pass above.**
-
-### 8.11 — Deploy the current static build to Vercel for stakeholder review
-
-Before committing to the Payload/Next.js migration, deploy the current, fully-fixed static multi-channel site to Vercel so the team can review it live and leave final comments. This is an **interim deployment of the existing static HTML/CSS/JS site as-is**, not the eventual Phase 9 Payload/Next.js production launch — it exists purely to get real eyes on the finished Phase 8 work before Phase 9 starts.
-
-- Deploy `commercial/`, `connect/`, and `personal-and-property/` together as they currently exist, preserving the sub-path structure already in use.
-- Bump every stale cache-busting query string first (per 8.1-fix) so the deployed version actually reflects every Phase 8 fix, not cached pre-fix assets.
-- This deploy needs your explicit go-ahead in chat before it runs, and again before it's promoted to a production URL if that's separate from a preview URL in your Vercel setup.
-- Share the resulting preview/production URL back for stakeholder comments; don't treat this as the final launch — Phase 9 still fully rebuilds the site on Payload/Next.js afterward.
 
 ---
 

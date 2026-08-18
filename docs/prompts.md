@@ -1,10 +1,10 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v9 — Phase 8.1–8.3 are done, and both regressions (Prompts 8.1-fix, 8.3-fix) are now fixed and verified in-browser. A new Prompt 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
+**Status: v10 — Phase 8.1–8.3 are done, and both regressions (Prompts 8.1-fix, 8.3-fix) are now fixed and verified in-browser. A third issue was found in the same pass — Prompt 8.3-fix-2, "Why Choose Us" nav link goes nowhere — queued to run next. Prompt 8.11 (Vercel deploy for stakeholder review) has been resequenced: it now runs right after Prompt 8.6, before Prompt 8.7's performance/SEO work, instead of at the very end of Phase 8.**
 
 **Reminder before every session:** `_internal/_DO-NOT-DEPLOY-design-baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
-**Next up: Prompt 8.4 (CSP/HSTS sitewide).**
+**Next up: Prompt 8.3-fix-2 ("Why Choose Us" nav link), then Prompt 8.4 (CSP/HSTS sitewide).**
 
 ---
 
@@ -24,8 +24,10 @@
 | 7.13 | Dependency fixes + tests + closing report | 🔴 Never ran | Folded into Phase 8.9/8.10 |
 | 8.1–8.3 | Design/aesthetic/animation fixes | ✅ Done, **2 regressions found and fixed** | See Prompts 8.1-fix and 8.3-fix below |
 | **8.1-fix / 8.3-fix** | **Regression fixes** | ✅ **Done** | Connect `main.css` version bumped to `?v=20260819-1` across all 8 pages; `.navbar__link--dropdown-trigger` given explicit literal values; both verified in-browser via a static preview server |
-| 8.4–8.10 | Remaining Phase 8 fix work | ⬜ Not started | Run next |
-| **8.11** | **Vercel deploy for stakeholder review (NEW)** | ⬜ Not started | Deploys the current static site as-is, before Phase 9 |
+| **8.3-fix-2** | **"Why Choose Us" nav link goes nowhere (NEW)** | ⬜ Not started | Run next, before 8.4 |
+| 8.4–8.6 | Remaining design-adjacent/security/compliance/shared-logic fixes | ⬜ Not started | Run after 8.3-fix-2 |
+| **8.11** | **Vercel deploy for stakeholder review** | ⬜ Not started | **Resequenced: now runs right after 8.6**, before 8.7 |
+| 8.7–8.10 | Performance/SEO through closing QA | ⬜ Not started | Run after 8.11 |
 | 9–12 | Payload/Next.js/Vercel | ⬜ Not started | Correctly sequenced after Phase 8 |
 
 **What actually happened in 8.1 and 8.3, and how each was fixed:**
@@ -34,7 +36,7 @@
 
 Both verified in an actual rendered page via a temporary static server, not just by reading the stylesheet. Committed as `8d9df92`.
 
-**What this means for you right now:** proceed to **Prompt 8.4** (CSP/HSTS sitewide), then 8.5 → 8.10, followed by the new **Prompt 8.11** (Vercel deploy for stakeholder review) before Phase 9.
+**What this means for you right now:** run **Prompt 8.3-fix-2** ("Why Choose Us" nav link) first, then proceed to **Prompt 8.4** (CSP/HSTS sitewide), 8.5, and 8.6, then the resequenced **Prompt 8.11** (Vercel deploy for stakeholder review), then 8.7 → 8.10, before Phase 9.
 
 ---
 
@@ -934,6 +936,38 @@ what you see, or screenshot) before considering this done.
 
 ---
 
+## Prompt 8.3-fix-2 — Bug: "Why Choose Us?" nav link doesn't go anywhere — ⬜ NOT RUN
+
+*("Why Choose Us" currently links to `/commercial/index.html#why`, but the homepage has no element with `id="why"` — it's a dead anchor. Fix: route it to the existing About Us page instead.)*
+
+```
+Read plan.md §11 (8.3-fix-2).
+
+1. Confirm the bug: commercial/index.html has no id="why" anywhere in
+   the markup - the closest candidate, <section class="why-first">
+   (the homepage's own "why choose us" content), was never given that
+   id, so /commercial/index.html#why is a dead anchor on all 52 pages
+   that link to it.
+
+2. In the canonical commercial/components/navbar.html, change the
+   "Why Choose Us?" link's href from /commercial/index.html#why to
+   /commercial/about.html - route it to the existing About Us page
+   rather than wiring up the missing anchor.
+
+3. Re-run node connect/scripts/build-includes.mjs, then --check, so
+   the fix propagates via include-sync to all 52 affected pages rather
+   than being hand-edited.
+
+4. Grep the repo for any other hand-copied, out-of-sync instance of
+   this link that propagation might miss (per CLAUDE.md rules 19/23 -
+   root-level pages outside a channel folder have been missed before).
+
+Show me a diff before writing changes, and confirm by clicking the
+link on at least one page that it lands on /commercial/about.html.
+```
+
+---
+
 ## Prompt 8.4 — Security headers: CSP + HSTS sitewide — ⬜ NOT RUN
 
 ```
@@ -1009,6 +1043,34 @@ Finding 3, and security-audit-report.md Finding 4.
 
 No behavior change expected in either case. Show me a diff before
 writing changes.
+```
+
+---
+
+## Prompt 8.11 — Deploy the current static build to Vercel for stakeholder review — ⬜ NOT RUN — resequenced: runs here, right after 8.6
+
+*(This deploys the existing static site as-is, for the team to leave final comments — it is not the Phase 9 Payload/Next.js launch. Moved up from the end of Phase 8 to right after 8.6, so any final tweaks the team wants surface before 8.7's performance/SEO pass and the rest of Phase 8 build on top of the current state. Get explicit go-ahead before running the actual deploy, and again before promoting any preview URL to production.)*
+
+```
+Read plan.md §11 (8.11).
+
+1. Confirm every cache-busting query string flagged in Prompt 8.1-fix
+   has been bumped, so this deploy reflects every fix through Prompt
+   8.6 rather than cached pre-fix assets.
+
+2. Prepare (don't yet run) a Vercel deployment of the current repo as-is
+   - commercial/, connect/, and personal-and-property/ together,
+   preserving the existing sub-path structure. Tell me the exact Vercel
+   CLI commands you'd run (e.g. vercel, then vercel --prod) rather than
+   running them yet.
+
+3. Once I confirm, run the preview deploy and share the resulting URL.
+   Do not promote to a production URL without a separate, explicit
+   confirmation from me.
+
+This is an interim deploy for stakeholder review before continuing into
+Prompts 8.7-8.10 and, eventually, Phase 9's Payload/Next.js rebuild -
+not the final launch.
 ```
 
 ---
@@ -1115,33 +1177,6 @@ Read plan.md §11 (8.10) in full.
 
 Do not begin Phase 9 (Payload conversion) until this report exists and
 I've reviewed it.
-```
-
----
-
-## Prompt 8.11 — Deploy the current static build to Vercel for stakeholder review — ⬜ NOT RUN
-
-*(This deploys the existing static site as-is, for the team to leave final comments — it is not the Phase 9 Payload/Next.js launch. Get explicit go-ahead before running the actual deploy, and again before promoting any preview URL to production.)*
-
-```
-Read plan.md §11 (8.11).
-
-1. Confirm every cache-busting query string flagged in Prompt 8.1-fix
-   has been bumped, so this deploy reflects Phase 8's fixes rather than
-   cached pre-fix assets.
-
-2. Prepare (don't yet run) a Vercel deployment of the current repo as-is
-   - commercial/, connect/, and personal-and-property/ together,
-   preserving the existing sub-path structure. Tell me the exact Vercel
-   CLI commands you'd run (e.g. vercel, then vercel --prod) rather than
-   running them yet.
-
-3. Once I confirm, run the preview deploy and share the resulting URL.
-   Do not promote to a production URL without a separate, explicit
-   confirmation from me.
-
-This is an interim deploy for stakeholder review before Phase 9's
-Payload/Next.js rebuild - not the final launch.
 ```
 
 ---
