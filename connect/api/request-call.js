@@ -7,10 +7,12 @@
 //   LEAD_EMAIL_TO         — Defaults to support@tradefunding.com.au
 //   LEAD_EMAIL_FROM       — Defaults to "Trade Funding Connect Enquiries <noreply@tradefunding.au>"
 //   UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN — rate limiter (see _lib/rate-limit.js)
+//   TURNSTILE_SECRET_KEY  — Cloudflare Turnstile verification (see _lib/turnstile.js)
 
 import { fromAllowedOrigin } from './_lib/origin-check.js';
 import { verifyToken } from './_lib/form-token.js';
 import { checkRateLimit } from './_lib/rate-limit.js';
+import { verifyTurnstileToken } from './_lib/turnstile.js';
 import { escapeHtml } from './_lib/html-escape.js';
 
 const MAX_BODY_BYTES = 4096;
@@ -120,13 +122,24 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: 'forbidden' });
   }
 
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+
+  // Turnstile — real anti-abuse check the Origin/Referer check above
+  // can't provide on its own (security-audit Finding 1, High)
+  const captchaOk = await verifyTurnstileToken((req.body || {}).turnstile_token, {
+    secret: process.env.TURNSTILE_SECRET_KEY,
+    remoteIp: ip
+  });
+  if (!captchaOk) {
+    return res.status(403).json({ error: 'captcha_failed' });
+  }
+
   // Body size guard — Vercel parses JSON already, but check payload shape isn't oversized
   const rawSize = JSON.stringify(req.body || {}).length;
   if (rawSize > MAX_BODY_BYTES) {
     return res.status(413).json({ error: 'payload_too_large' });
   }
 
-  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
   if (!(await checkRateLimit(ip))) {
     return res.status(429).json({ error: 'rate_limited' });
   }

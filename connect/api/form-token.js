@@ -5,8 +5,9 @@
 
 import { fromAllowedOrigin } from './_lib/origin-check.js';
 import { issueToken } from './_lib/form-token.js';
+import { verifyTurnstileToken } from './_lib/turnstile.js';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return res.status(405).json({ error: 'method_not_allowed' });
@@ -21,6 +22,17 @@ export default function handler(req, res) {
   // Origin check — token endpoint only callable from our site
   if (!fromAllowedOrigin(req)) {
     return res.status(403).json({ error: 'forbidden' });
+  }
+
+  // Turnstile — real anti-abuse check the Origin/Referer check above
+  // can't provide on its own (security-audit Finding 1, High)
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+  const captchaOk = await verifyTurnstileToken(req.query.turnstile_token, {
+    secret: process.env.TURNSTILE_SECRET_KEY,
+    remoteIp: ip
+  });
+  if (!captchaOk) {
+    return res.status(403).json({ error: 'captcha_failed' });
   }
 
   const token = issueToken(secret);
