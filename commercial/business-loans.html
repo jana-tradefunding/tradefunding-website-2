@@ -136,6 +136,24 @@
   padding: 0 32px;
 }
 
+.blh-category {
+  margin-bottom: 48px;
+}
+
+.blh-category:last-child {
+  margin-bottom: 0;
+}
+
+.blh-category__heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #E8ECF1;
+}
+
 .blh-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -311,47 +329,47 @@
         <div class="dropdown-menu">
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Term Loans</span>
-            <a href="/commercial/business-term-loans.html"><span class="dd-icon icon--sky">&#128176;</span> Term Loan</a>
-            <a href="/commercial/merchant-cash-advance.html"><span class="dd-icon icon--peach">&#128179;</span> Merchant Cash Advance</a>
-            <a href="/commercial/r-and-d-funding.html"><span class="dd-icon icon--indigo">&#128300;</span> R&amp;D Funding</a>
+            <a href="/commercial/business-term-loans.html">Term Loan</a>
+            <a href="/commercial/merchant-cash-advance.html">Merchant Cash Advance</a>
+            <a href="/commercial/r-and-d-funding.html">R&amp;D Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Credit Lines</span>
-            <a href="/commercial/charge-card.html"><span class="dd-icon icon--gold">&#128179;</span> Charge Card</a>
-            <a href="/commercial/business-line-of-credit.html"><span class="dd-icon icon--sky">&#128179;</span> Line of Credit</a>
-            <a href="/commercial/overdraft.html"><span class="dd-icon icon--sky">&#127974;</span> Overdraft</a>
+            <a href="/commercial/charge-card.html">Charge Card</a>
+            <a href="/commercial/business-line-of-credit.html">Line of Credit</a>
+            <a href="/commercial/overdraft.html">Overdraft</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Invoice</span>
-            <a href="/commercial/invoice-finance.html"><span class="dd-icon icon--peach">&#128196;</span> Invoice Finance</a>
-            <a href="/commercial/fund-an-invoice.html"><span class="dd-icon icon--sky">&#128196;</span> Fund an Invoice</a>
+            <a href="/commercial/invoice-finance.html">Invoice Finance</a>
+            <a href="/commercial/fund-an-invoice.html">Fund an Invoice</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Trade</span>
-            <a href="/commercial/trade-finance.html"><span class="dd-icon icon--gold">&#127758;</span> Trade Finance</a>
-            <a href="/commercial/export-finance.html"><span class="dd-icon icon--indigo">&#127758;</span> Export Finance</a>
-            <a href="/commercial/supply-chain-funding.html"><span class="dd-icon icon--sky">&#127758;</span> Supply Chain Funding</a>
+            <a href="/commercial/trade-finance.html">Trade Finance</a>
+            <a href="/commercial/export-finance.html">Export Finance</a>
+            <a href="/commercial/supply-chain-funding.html">Supply Chain Funding</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Equipment</span>
-            <a href="/commercial/finance-lease.html"><span class="dd-icon icon--sky">&#9881;</span> Finance Lease</a>
-            <a href="/commercial/operating-lease.html"><span class="dd-icon icon--peach">&#9881;</span> Operating Lease</a>
-            <a href="/commercial/chattel-mortgage.html"><span class="dd-icon icon--sky">&#9881;</span> Chattel Mortgage</a>
+            <a href="/commercial/finance-lease.html">Finance Lease</a>
+            <a href="/commercial/operating-lease.html">Operating Lease</a>
+            <a href="/commercial/chattel-mortgage.html">Chattel Mortgage</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Personal &amp; Property</span>
-            <a href="/commercial/second-mortgage.html"><span class="dd-icon icon--peach">&#127970;</span> Second Mortgage</a>
-            <a href="/commercial/self-employed-home-loan.html"><span class="dd-icon icon--sky">&#127970;</span> Self-Employed Home Loan</a>
-            <a href="/personal-and-property/index.html"><span class="dd-icon icon--peach">&#127970;</span> All Personal &amp; Property loans</a>
+            <a href="/commercial/second-mortgage.html">Second Mortgage</a>
+            <a href="/commercial/self-employed-home-loan.html">Self-Employed Home Loan</a>
+            <a href="/personal-and-property/index.html">All Personal &amp; Property loans</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Other</span>
-            <a href="/commercial/business-loans.html"><span class="dd-icon icon--indigo">&#128218;</span> View all business loans</a>
+            <a href="/commercial/business-loans.html">View all business loans</a>
           </div>
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Company</span>
-            <a href="/commercial/guides/index.html"><span class="dd-icon icon--sky">&#128214;</span> Guides &amp; Resources</a>
-            <a href="/commercial/about.html"><span class="dd-icon icon--indigo">&#8505;</span> About Us</a>
+            <a href="/commercial/guides/index.html">Guides &amp; Resources</a>
+            <a href="/commercial/about.html">About Us</a>
           </div>
           <div class="dropdown-menu__bottom">
             <a href="/commercial/comparison-report.html" class="dropdown-menu__cta">Not sure which product? &rarr;</a>
@@ -433,124 +451,166 @@
   </div>
 </section>
 
-<!-- 3. CARD GRID -->
+<!-- 3. CARD GRID - grouped into the same categories as the Funding
+     Solutions dropdown (navbar.html), each as a full section rather
+     than a hover menu, per ui-ux-a11y-report.md item 3. -->
 <section class="blh-grid-section">
   <div class="blh-grid-section__inner">
-    <div class="blh-grid">
 
-      <div class="blh-card">
-        <div class="blh-card__icon">&#128176;</div>
-        <h3 class="blh-card__title">Business Term Loans</h3>
-        <p class="blh-card__benefit">A lump sum with fixed repayments - straightforward funding for growth, stock, or working capital.</p>
-        <a href="/commercial/business-term-loans.html" class="blh-card__cta">See Business Term Loans options &rarr;</a>
+    <div class="blh-category">
+      <h2 class="blh-category__heading">Term Loans</h2>
+      <div class="blh-grid">
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#128176;</div>
+          <h3 class="blh-card__title">Business Term Loans</h3>
+          <p class="blh-card__benefit">A lump sum with fixed repayments - straightforward funding for growth, stock, or working capital.</p>
+          <a href="/commercial/business-term-loans.html" class="blh-card__cta">See Business Term Loans options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#128179;</div>
+          <h3 class="blh-card__title">Merchant Cash Advance</h3>
+          <p class="blh-card__benefit">An advance repaid as a percentage of card sales - repayments flex with revenue.</p>
+          <a href="/commercial/merchant-cash-advance.html" class="blh-card__cta">See Merchant Cash Advance options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#128300;</div>
+          <h3 class="blh-card__title">R&amp;D Tax Incentive Funding</h3>
+          <p class="blh-card__benefit">Access the cash value of your R&amp;D Tax Incentive claim now, instead of waiting for the ATO.</p>
+          <a href="/commercial/r-and-d-funding.html" class="blh-card__cta">See R&amp;D Tax Incentive Funding options &rarr;</a>
+        </div>
+
       </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#128179;</div>
-        <h3 class="blh-card__title">Business Line of Credit</h3>
-        <p class="blh-card__benefit">Draw funds as you need them and only pay interest on what you use.</p>
-        <a href="/commercial/business-line-of-credit.html" class="blh-card__cta">See Business Line of Credit options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#127974;</div>
-        <h3 class="blh-card__title">Business Overdraft</h3>
-        <p class="blh-card__benefit">A flexible buffer against your everyday transaction account for smoothing cash flow gaps.</p>
-        <a href="/commercial/overdraft.html" class="blh-card__cta">See Business Overdraft options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#128179;</div>
-        <h3 class="blh-card__title">Business Charge Card</h3>
-        <p class="blh-card__benefit">Give your team spending power with a card that's built for business expenses, not personal ones.</p>
-        <a href="/commercial/charge-card.html" class="blh-card__cta">See Business Charge Card options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#9881;</div>
-        <h3 class="blh-card__title">Chattel Mortgage</h3>
-        <p class="blh-card__benefit">Own equipment from day one while spreading the cost - a common fit for vehicles and machinery.</p>
-        <a href="/commercial/chattel-mortgage.html" class="blh-card__cta">See Chattel Mortgage options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#9881;</div>
-        <h3 class="blh-card__title">Finance Lease</h3>
-        <p class="blh-card__benefit">Lease the equipment you need with the option to take ownership at the end of the term.</p>
-        <a href="/commercial/finance-lease.html" class="blh-card__cta">See Finance Lease options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#9881;</div>
-        <h3 class="blh-card__title">Operating Lease</h3>
-        <p class="blh-card__benefit">Use equipment without owning it - hand it back or upgrade at the end, off your balance sheet.</p>
-        <a href="/commercial/operating-lease.html" class="blh-card__cta">See Operating Lease options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#128196;</div>
-        <h3 class="blh-card__title">Invoice Finance</h3>
-        <p class="blh-card__benefit">Unlock cash tied up in unpaid invoices instead of waiting 30, 60, or 90 days to get paid.</p>
-        <a href="/commercial/invoice-finance.html" class="blh-card__cta">See Invoice Finance options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#128196;</div>
-        <h3 class="blh-card__title">Fund an Invoice</h3>
-        <p class="blh-card__benefit">Fund a single invoice when you need one gap covered, without a full ongoing facility.</p>
-        <a href="/commercial/fund-an-invoice.html" class="blh-card__cta">See Fund an Invoice options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#127758;</div>
-        <h3 class="blh-card__title">Trade Finance</h3>
-        <p class="blh-card__benefit">Fund the gap between paying suppliers and getting paid by your customers, locally or overseas.</p>
-        <a href="/commercial/trade-finance.html" class="blh-card__cta">See Trade Finance options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#127758;</div>
-        <h3 class="blh-card__title">Export Finance</h3>
-        <p class="blh-card__benefit">Fund production and shipping costs before your overseas buyer pays, without stalling the order.</p>
-        <a href="/commercial/export-finance.html" class="blh-card__cta">See Export Finance options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#127758;</div>
-        <h3 class="blh-card__title">Supply Chain Funding</h3>
-        <p class="blh-card__benefit">Extend supplier payment terms or get suppliers paid early, without straining either side's cash flow.</p>
-        <a href="/commercial/supply-chain-funding.html" class="blh-card__cta">See Supply Chain Funding options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#128179;</div>
-        <h3 class="blh-card__title">Merchant Cash Advance</h3>
-        <p class="blh-card__benefit">An advance repaid as a percentage of card sales - repayments flex with revenue.</p>
-        <a href="/commercial/merchant-cash-advance.html" class="blh-card__cta">See Merchant Cash Advance options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#128300;</div>
-        <h3 class="blh-card__title">R&amp;D Tax Incentive Funding</h3>
-        <p class="blh-card__benefit">Access the cash value of your R&amp;D Tax Incentive claim now, instead of waiting for the ATO.</p>
-        <a href="/commercial/r-and-d-funding.html" class="blh-card__cta">See R&amp;D Tax Incentive Funding options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#127970;</div>
-        <h3 class="blh-card__title">Second Mortgage</h3>
-        <p class="blh-card__benefit">Access equity in property you already own without refinancing or disturbing your first mortgage.</p>
-        <a href="/commercial/second-mortgage.html" class="blh-card__cta">See Second Mortgage options &rarr;</a>
-      </div>
-
-      <div class="blh-card">
-        <div class="blh-card__icon">&#127970;</div>
-        <h3 class="blh-card__title">Self-Employed Home Loan</h3>
-        <p class="blh-card__benefit">A home loan built around self-employed income, without the paperwork a standard bank loan demands.</p>
-        <a href="/commercial/self-employed-home-loan.html" class="blh-card__cta">See Self-Employed Home Loan options &rarr;</a>
-      </div>
-
     </div>
+
+    <div class="blh-category">
+      <h2 class="blh-category__heading">Credit Lines</h2>
+      <div class="blh-grid">
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#128179;</div>
+          <h3 class="blh-card__title">Business Charge Card</h3>
+          <p class="blh-card__benefit">Give your team spending power with a card that's built for business expenses, not personal ones.</p>
+          <a href="/commercial/charge-card.html" class="blh-card__cta">See Business Charge Card options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#128179;</div>
+          <h3 class="blh-card__title">Business Line of Credit</h3>
+          <p class="blh-card__benefit">Draw funds as you need them and only pay interest on what you use.</p>
+          <a href="/commercial/business-line-of-credit.html" class="blh-card__cta">See Business Line of Credit options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#127974;</div>
+          <h3 class="blh-card__title">Business Overdraft</h3>
+          <p class="blh-card__benefit">A flexible buffer against your everyday transaction account for smoothing cash flow gaps.</p>
+          <a href="/commercial/overdraft.html" class="blh-card__cta">See Business Overdraft options &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="blh-category">
+      <h2 class="blh-category__heading">Invoice</h2>
+      <div class="blh-grid">
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#128196;</div>
+          <h3 class="blh-card__title">Invoice Finance</h3>
+          <p class="blh-card__benefit">Unlock cash tied up in unpaid invoices instead of waiting 30, 60, or 90 days to get paid.</p>
+          <a href="/commercial/invoice-finance.html" class="blh-card__cta">See Invoice Finance options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#128196;</div>
+          <h3 class="blh-card__title">Fund an Invoice</h3>
+          <p class="blh-card__benefit">Fund a single invoice when you need one gap covered, without a full ongoing facility.</p>
+          <a href="/commercial/fund-an-invoice.html" class="blh-card__cta">See Fund an Invoice options &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="blh-category">
+      <h2 class="blh-category__heading">Trade</h2>
+      <div class="blh-grid">
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#127758;</div>
+          <h3 class="blh-card__title">Trade Finance</h3>
+          <p class="blh-card__benefit">Fund the gap between paying suppliers and getting paid by your customers, locally or overseas.</p>
+          <a href="/commercial/trade-finance.html" class="blh-card__cta">See Trade Finance options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#127758;</div>
+          <h3 class="blh-card__title">Export Finance</h3>
+          <p class="blh-card__benefit">Fund production and shipping costs before your overseas buyer pays, without stalling the order.</p>
+          <a href="/commercial/export-finance.html" class="blh-card__cta">See Export Finance options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#127758;</div>
+          <h3 class="blh-card__title">Supply Chain Funding</h3>
+          <p class="blh-card__benefit">Extend supplier payment terms or get suppliers paid early, without straining either side's cash flow.</p>
+          <a href="/commercial/supply-chain-funding.html" class="blh-card__cta">See Supply Chain Funding options &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="blh-category">
+      <h2 class="blh-category__heading">Equipment</h2>
+      <div class="blh-grid">
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#9881;</div>
+          <h3 class="blh-card__title">Finance Lease</h3>
+          <p class="blh-card__benefit">Lease the equipment you need with the option to take ownership at the end of the term.</p>
+          <a href="/commercial/finance-lease.html" class="blh-card__cta">See Finance Lease options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#9881;</div>
+          <h3 class="blh-card__title">Operating Lease</h3>
+          <p class="blh-card__benefit">Use equipment without owning it - hand it back or upgrade at the end, off your balance sheet.</p>
+          <a href="/commercial/operating-lease.html" class="blh-card__cta">See Operating Lease options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#9881;</div>
+          <h3 class="blh-card__title">Chattel Mortgage</h3>
+          <p class="blh-card__benefit">Own equipment from day one while spreading the cost - a common fit for vehicles and machinery.</p>
+          <a href="/commercial/chattel-mortgage.html" class="blh-card__cta">See Chattel Mortgage options &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="blh-category">
+      <h2 class="blh-category__heading">Personal &amp; Property</h2>
+      <div class="blh-grid">
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#127970;</div>
+          <h3 class="blh-card__title">Second Mortgage</h3>
+          <p class="blh-card__benefit">Access equity in property you already own without refinancing or disturbing your first mortgage.</p>
+          <a href="/commercial/second-mortgage.html" class="blh-card__cta">See Second Mortgage options &rarr;</a>
+        </div>
+
+        <div class="blh-card">
+          <div class="blh-card__icon">&#127970;</div>
+          <h3 class="blh-card__title">Self-Employed Home Loan</h3>
+          <p class="blh-card__benefit">A home loan built around self-employed income, without the paperwork a standard bank loan demands.</p>
+          <a href="/commercial/self-employed-home-loan.html" class="blh-card__cta">See Self-Employed Home Loan options &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -592,9 +652,9 @@
         </a>
         <p class="footer__brand-desc">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
         <div class="footer__contact">
-          <div class="footer__contact-item">&#128222; 1300 161 641</div>
-          <div class="footer__contact-item">&#128231; support@tradefunding.com.au</div>
-          <div class="footer__contact-item">&#128205; <!-- 🔴 BLOCKED - NEEDS: confirmed company address (plan.md §1) --> [BLOCKED - NEEDS: confirmed address]</div>
+          <div class="footer__contact-item">1300 161 641</div>
+          <div class="footer__contact-item">support@tradefunding.com.au</div>
+          <div class="footer__contact-item"><strong>Office Address:</strong> Level 8, 387 George Street, Sydney, NSW, 2000</div>
         </div>
         <div class="footer__badges">
           <span class="footer__badge">ACL 387856</span>
