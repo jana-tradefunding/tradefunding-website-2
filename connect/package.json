@@ -4,5 +4,9 @@
   "type": "module",
   "engines": {
     "node": ">=20"
+  },
+  "scripts": {
+    "build:includes": "node scripts/build-includes.mjs",
+    "build:includes:check": "node scripts/build-includes.mjs --check"
   }
 }
