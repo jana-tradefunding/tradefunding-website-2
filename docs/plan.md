@@ -1,6 +1,6 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v8 — inserts a new Phase 8 (Final Pre-Deployment Fix Pass) addressing six new review reports (architecture, dependency-risk, performance/SEO, security, state/resilience/observability, UI/UX/a11y) run against the Phase 7 build. The old "Phase 8 — Payload CMS conversion" is renumbered to Phase 9. This is the last fix pass before deployment — Phase 9 should not start until Phase 8's closing report confirms everything here is resolved.**
+**Status: v9 — Phase 8.1–8.3 are done, but two regressions surfaced from screenshots and are addressed as 8.1-fix and 8.3-fix. A new 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
 
 ## Current build status (check before running anything)
 
@@ -14,9 +14,11 @@
 | 5 — HTML/page production | ✅ Done |
 | 5.5 — Pre-conversion cleanup | ✅ Done (`docs/cleanup-report.md`) |
 | 6 — Build quality & architecture fix pass | ✅ Done |
-| 7 — Pre-Migration Remediation | ⚠️ **Done through 7.12, but 7.13 never ran** — confirmed via git log (last commit is 7 §10.4 items 5-6) and via the dependency-risk report (`connect/package.json` still has no `devDependencies`, no `test`/`lint` scripts, no lockfile; `docs/remediation-report.md` doesn't exist). Folded into the new Phase 8 below (§11.9) rather than reopening Phase 7. |
-| **8 — Final Pre-Deployment Fix Pass (NEW)** | 🔴 **Not started. Do this next.** See §11 below. |
-| 9 — Payload/Vercel conversion (formerly "Phase 8") | Not started — waits on Phase 8 |
+| 7 — Pre-Migration Remediation | ⚠️ Done through 7.12; 7.13 folded into Phase 8 §11.9 |
+| **8.1–8.3 — Final Pre-Deployment Fix Pass, design/animation first** | ⚠️ **Done, with 2 confirmed regressions** — see 8.1-fix (Connect header/hero overlap — cache-busting version not bumped after the CSS fix) and 8.3-fix (Funding Solutions dropdown trigger doesn't visually match sibling nav items) below in §11 |
+| **8.4–8.10 — remaining Phase 8 fix work** | Not started |
+| **8.11 — Vercel deploy for stakeholder review (NEW)** | Not started |
+| 9 — Payload/Vercel conversion | Not started — waits on Phase 8 |
 
 **Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (canonical IA/architecture doc), `tokens.md` (finalized Phase 1 output), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, `docs/research-notes.md` and `docs/copy-final.md` (Phase 3 outputs), and the `commercial/`, `connect/`, `personal-and-property/`, and `design baseline/` folders in the project zip.
 
@@ -424,9 +426,9 @@ Apply consistently across every Commercial page's header, plus any footer/mobile
 
 **Why this phase exists:** six independent review reports (architecture, dependency-risk, performance/SEO, security, state/resilience/observability, UI/UX/a11y) were run against the Phase 7 build and landed together. This is explicitly **the last fix pass before deployment** — Phase 9 (Payload conversion) should not start until every item below is resolved or consciously deferred with a documented reason, since anything shipped broken here gets migrated into the CMS broken.
 
-**Resolved:** the `ChannelSwitcher`'s "Home" entry is icon-only — `CLAUDE.md` rule 13 has been updated to match. This also happens to be the more defensible fix for Finding 8.1 below (a shorter switcher never wraps and covers the hero). The actual markup change (`commercial/components/navbar.html`) is Prompt 8.3's job, not done yet — see 8.3 below for why it waits on 8.1's include-sync fix landing first.
+**🔴 One item needs your decision before any code changes, not mine to resolve:** the UI/UX report flags a direct contradiction — you asked for the `ChannelSwitcher`'s "Home" entry to be icon-only, but `CLAUDE.md` rule 13 currently locks "Home icon + 'Home' text." Removing the text is also the more defensible fix for Finding 8.1 below (a shorter switcher never wraps and covers the hero), but per this project's own "flag contradictions, don't silently resolve" rule, **confirm which you want before Prompt 8.1 runs**: (a) keep "Home" text, accept the switcher may need more room, or (b) go icon-only sitewide, which also requires a `CLAUDE.md` rule 13 update.
 
-Fixes are grouped into 10 sub-phases (8.1–8.10), ordered so design/aesthetic/animation work leads (as requested), then propagation-dependent fixes, then independent security/performance/observability/process work, closing with a full pre-deployment QA pass.
+Fixes are grouped into 10 sub-phases (8.1–8.10), ordered so design/aesthetic/animation work leads (as requested), then propagation-dependent fixes, then independent security/performance/observability/process work, closing with a full pre-deployment QA pass. **You've completed 8.1–8.3 — two regressions surfaced from those and are addressed below as 8.1-fix and 8.3-fix, run before continuing to 8.4.** A new 8.11 (Vercel deploy for stakeholder review) has also been added at the end, before Phase 9.
 
 ### 8.1 — Fix the include-sync coverage gap + hero/header overlap (foundational, do first)
 
@@ -436,6 +438,14 @@ This is the single highest-leverage fix across all six reports: **the include-sy
 - Wire `npm run build:includes:check` into a pre-commit hook or CI step so a page that drifts from its canonical component fails the build instead of silently shipping.
 - **While the canonical header component is open for this work, fix the hero/header overlap** (confirmed root cause: `.trust-bar` + `.navbar` stack to ~105–107px of real fixed-header height, but `.hero` only reserves 90px `padding-top`). Change `.hero`'s top padding to `calc(var(--utility-bar-height, 37px) + 80px + 32px)` on Commercial, and verify the same math clears the stack on Connect's `.hero` (already more generous, but confirm on mobile) and Personal & Property's `.pp-hero`.
 - This is the ideal first task to prove the include-sync fix actually propagates correctly — if the header/hero fix shows up identically on all 66 pages afterward, the mechanism is trustworthy for 8.2's fixes.
+
+### 8.1-fix — Regression: Connect's header still appears to cover part of the hero
+
+**Confirmed via screenshot; root cause diagnosed, not just a re-run of the same fix.** The actual CSS fix from 8.1 **is present and correct** in `connect/styles/main.css` (`.hero { padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) 0 ...}`, same formula as Commercial). But `connect/index.html` still references the stylesheet with an **unbumped cache-busting query string** — `<link rel="stylesheet" href="/connect/styles/main.css?v=20260811-1"/>`, a date from well before the 8.1 fix landed. Any browser or CDN that already cached that exact URL from before Aug 18 will keep serving the **old, pre-fix CSS** indefinitely, reproducing the overlap even though the source file is already correct. This is the same manual-cache-busting anti-pattern flagged in earlier architecture review passes, now caught causing a real, visible bug.
+
+- **Fix:** bump `connect/index.html`'s (and every other Connect page's) `main.css?v=...` query string to a new value now, so the corrected CSS actually reaches browsers.
+- **Sweep for the same risk elsewhere:** check every `?v=` or similarly manually-versioned asset reference sitewide for staleness relative to its last real edit — don't assume this is the only one.
+- **Fix the anti-pattern itself, not just this instance:** replace manual date-stamp query strings with a script that auto-bumps the version (e.g., a content hash, or a build step) so this class of bug can't recur before Phase 9's real bundler exists. At minimum, add a reminder step to the deploy checklist (see 8.11 below) to bump every `?v=` string before each deploy until the automated version exists.
 
 ### 8.2 — Branding/visual cleanup that depends on 8.1's fixed propagation
 
@@ -450,8 +460,15 @@ This is the single highest-leverage fix across all six reports: **the include-sy
 - **Add entrance animation to Personal & Property's hero** — `.pp-hero__eyebrow`, `.pp-hero__title`, `.pp-hero__lead`, `.pp-hero__cta-group`, `.pp-hero__trust`, `.pp-hero__card` currently have no `reveal`/`reveal delay-N` classes, unlike Commercial and Connect's heroes. The shared `.reveal` CSS/JS is already loaded on this page (used below the fold) — this is a markup-only change, matching Connect's stagger pattern.
 - **Make the Funding Solutions dropdown keyboard/AT accessible** — it's currently a plain `<div class="dropdown-menu">` shown via CSS `:hover` only, no `aria-expanded` state, no keyboard path. Add `aria-expanded` toggling and a click/focus-based open state (not hover-only), mirroring the hamburger menu's already-correct pattern in `connect/scripts/main.js`.
 - **Fix channel-switcher touch targets on mobile** — at `≤640px`, `.channel-switch__option` drops to `padding: 7px 10px; font-size: 0.72rem`, producing a ~28–30px tap target, under the 44px minimum. Add `min-height: 44px` at this breakpoint via padding, not font-size alone.
-- **Apply the "Home" icon-only decision** — remove `<span class="channel-switch__full">Home</span>` from the canonical `navbar.html` (now safe to propagate sitewide via 8.1's fix). `CLAUDE.md` rule 13 is already updated to match.
+- **Apply whichever "Home" decision you made above** — if icon-only, remove `<span class="channel-switch__full">Home</span>` from the canonical `navbar.html` (now safe to propagate sitewide via 8.1's fix) and update `CLAUDE.md` rule 13; if keeping the text, no change needed here beyond confirming the 8.1 hero-padding fix already accounts for the wrap risk.
 - Confirm `prefers-reduced-motion` gating is applied to the new P&P reveal classes the same way it already is everywhere else (it should be automatic, since it's the same shared `.reveal` system — just verify).
+
+### 8.3-fix — Regression: "Funding Solutions" dropdown trigger doesn't visually match the other nav items
+
+**Confirmed via screenshot.** Converting the Funding Solutions trigger from a plain `<a>` to a `<button class="navbar__link--dropdown-trigger">` for keyboard/AT accessibility (8.3) visually broke it — it now renders in a different, lighter-looking font than "Compare Options," "Partners," and "Why Choose Us?" next to it, even though `commercial/shared-styles.css` already has a rule for `.navbar__link--dropdown-trigger` using `font: inherit; color: inherit;`. Inheritance alone isn't reliably matching the sibling `.navbar__link` styling across browsers/rendering contexts for a `<button>` element.
+
+- **Fix:** on `.navbar__link--dropdown-trigger`, declare the actual literal values instead of relying on `inherit` — `font-family: var(--font-heading); font-weight: 500; font-size: 0.95rem; color: var(--text-primary);` (copy these directly from `.navbar__link` in `shared/styles/chrome.css`, don't just reference the variable and hope it cascades), plus the same `:hover` color change. Verify in an actual rendered page (not just by reading the CSS) that the button now visually matches its siblings pixel-for-pixel.
+- **Also check:** whether any other interactive element converted from `<a>`/plain text to `<button>` during 8.3's accessibility work (e.g., the hamburger trigger, if touched) has the same "relies on inheritance, doesn't actually match" problem — fix any found the same way, don't assume this was a one-off.
 
 ### 8.4 — Security headers: CSP + HSTS sitewide
 
@@ -503,6 +520,15 @@ This is the last checkpoint before Phase 9. Do not treat this as a formality —
 - Produce `docs/phase8-report.md` summarizing every fix from 8.1–8.9, referencing which finding from which of the six source reports each one closes out, plus the "Home" icon decision that was made and when.
 
 **Do not start Phase 9 (Payload conversion) until `docs/phase8-report.md` exists and you've confirmed the QA pass above.**
+
+### 8.11 — Deploy the current static build to Vercel for stakeholder review
+
+Before committing to the Payload/Next.js migration, deploy the current, fully-fixed static multi-channel site to Vercel so the team can review it live and leave final comments. This is an **interim deployment of the existing static HTML/CSS/JS site as-is**, not the eventual Phase 9 Payload/Next.js production launch — it exists purely to get real eyes on the finished Phase 8 work before Phase 9 starts.
+
+- Deploy `commercial/`, `connect/`, and `personal-and-property/` together as they currently exist, preserving the sub-path structure already in use.
+- Bump every stale cache-busting query string first (per 8.1-fix) so the deployed version actually reflects every Phase 8 fix, not cached pre-fix assets.
+- This deploy needs your explicit go-ahead in chat before it runs, and again before it's promoted to a production URL if that's separate from a preview URL in your Vercel setup.
+- Share the resulting preview/production URL back for stakeholder comments; don't treat this as the final launch — Phase 9 still fully rebuilds the site on Payload/Next.js afterward.
 
 ---
 

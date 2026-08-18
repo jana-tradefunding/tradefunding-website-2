@@ -1,14 +1,14 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v8 — adds Phase 8 (Final Pre-Deployment Fix Pass), addressing six new review reports run against the Phase 7 build. This is explicitly the last fix pass before deployment. Payload conversion is renumbered Phase 9.**
+**Status: v9 — Phase 8.1–8.3 are done, but two regressions were caught from screenshots (Prompts 8.1-fix, 8.3-fix). A new Prompt 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
 
 **Reminder before every session:** `_internal/_DO-NOT-DEPLOY-design-baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
-**Resolved: the "Home" icon-only vs. icon+text decision is icon-only** — see plan.md §11's intro and CLAUDE.md rule 13. The markup change itself is still Prompt 8.3's job (step 4), pending Prompt 8.1's include-sync fix.
+**🔴 Run Prompt 8.1-fix and Prompt 8.3-fix next, before continuing to Prompt 8.4.**
 
 ---
 
-## Status snapshot (from your latest zip + all six new review reports)
+## Status snapshot (from your latest zip + screenshots)
 
 | # | Prompt | Status | Evidence |
 |---|---|---|---|
@@ -20,18 +20,19 @@
 | 4 | Component inventory | ⬜ Not run | Optional, doesn't block Phase 9 |
 | 5 / 5-fix / 5.5 | Page production, header fix, cleanup | ✅ Done | Confirmed via git log and file checks |
 | 6.1–6.8 | Build quality & architecture fix pass | ✅ Done | Six Phase 6 commits confirmed via `git log` |
-| 7.0–7.12 | Pre-Migration Remediation | ✅ Done, with 3 confirmed gaps | See notes on Prompts 7.3, 7.7, 7.9, 7.11 below — each landed but didn't fully close out |
-| 7.13 | Dependency fixes + tests + closing report | 🔴 **Never ran** | Confirmed via `git log` (no matching commit) and `connect/package.json` (no `devDependencies`, no `test`/`lint` scripts) |
-| **8** | **Final Pre-Deployment Fix Pass (NEW)** | 🔴 **Not started — run these next, in order** | Six new reports (architecture, dependency-risk, performance/SEO, security, state/resilience/observability, UI/UX/a11y) run against the Phase 7 build — see Prompts 8.1–8.10 below |
-| 9–12 | Payload/Next.js/Vercel (formerly 8–11) | ⬜ Not started | Correctly sequenced after Phase 8 |
+| 7.0–7.12 | Pre-Migration Remediation | ✅ Done, with 3 confirmed gaps | See notes on Prompts 7.3, 7.7, 7.9, 7.11 |
+| 7.13 | Dependency fixes + tests + closing report | 🔴 Never ran | Folded into Phase 8.9/8.10 |
+| 8.1–8.3 | Design/aesthetic/animation fixes | ✅ Done, **2 regressions found** | Confirmed via your screenshots — see Prompts 8.1-fix and 8.3-fix below |
+| **8.1-fix / 8.3-fix** | **Regression fixes (NEW)** | 🔴 **Not started — run these next** | Connect header/hero overlap (stale cache-busting version) and "Funding Solutions" nav trigger visual mismatch (button style inheritance) |
+| 8.4–8.10 | Remaining Phase 8 fix work | ⬜ Not started | Sequenced after the two regression fixes |
+| **8.11** | **Vercel deploy for stakeholder review (NEW)** | ⬜ Not started | Deploys the current static site as-is, before Phase 9 |
+| 9–12 | Payload/Next.js/Vercel | ⬜ Not started | Correctly sequenced after Phase 8 |
 
-**Three things Phase 7 marked done but weren't fully finished** (confirmed independently against the live repo, not just the reports):
-- **Prompt 7.3** (include-sync): only 3 of 66 pages actually adopted the marker pattern — the mechanism was built but never rolled out. Finished in Phase 8.1.
-- **Prompt 7.7** (Turnstile): the server-side check is live and correctly fails closed, but the front-end widget was never added — every real submission would currently be rejected. Finished in Phase 8.5.
-- **Prompt 7.9** (Broker Portal form): still has no `method`/`action`, confirmed directly (`commercial/broker-portal.html:596`) — leaks PII via GET exactly as originally flagged. Neither security report re-caught this. Finished in Phase 8.5.
-- **Prompt 7.11** (cookie consent): the shared module was built correctly, but never added to any of Personal & Property's 11 pages. Finished in Phase 8.5.
+**What actually happened in 8.1 and 8.3, confirmed by checking the repo directly against your screenshots (not just re-running the same prompts):**
+- **8.1's hero-padding fix is correct in source** (`connect/styles/main.css`'s `.hero` rule has the right `calc()` formula) — but `connect/index.html` still references `main.css?v=20260811-1`, a cache-busting version string from before this fix, so a cached browser/CDN copy can still show the old, pre-fix layout. This is a cache-invalidation bug, not a CSS bug — Prompt 8.1-fix bumps the version instead of re-touching the CSS.
+- **8.3's dropdown accessibility fix (converting the trigger to a `<button>`) broke visual parity** — `.navbar__link--dropdown-trigger` uses `font: inherit; color: inherit;`, which isn't reliably matching the sibling `.navbar__link` items in practice. Prompt 8.3-fix replaces the inherited values with explicit literal ones.
 
-**What this means for you right now:** run the Phase 8 prompts below, in order (8.1 → 8.10). Design/aesthetic/animation work leads (8.1–8.3), per your preference, with 8.1 also fixing the propagation mechanism that several later prompts depend on.
+**What this means for you right now:** run **Prompt 8.1-fix** and **Prompt 8.3-fix**, in either order, before continuing to Prompt 8.4. Then proceed 8.4 → 8.10 as before, followed by the new **Prompt 8.11** (Vercel deploy for stakeholder review) before Phase 9.
 
 ---
 
@@ -776,16 +777,14 @@ I've reviewed it.
 
 ---
 
-## Prompt 8.1 — Include-sync coverage fix + hero/header overlap — 🔴 NOT RUN, RUN THIS FIRST
+## Prompt 8.1 — Include-sync coverage fix + hero/header overlap — ✅ DONE (regression found — see Prompt 8.1-fix below)
 
 ```
 Read plan.md §11 (intro + 8.1) and architecture-review-report.md Finding 1
 and ui-ux-a11y-report.md item 1 in full.
 
-1. The "Home" icon-only vs. icon+text decision is resolved (icon-only,
-   see CLAUDE.md rule 13) - no confirmation needed, but don't touch the
-   ChannelSwitcher markup here either; that's Prompt 8.3 step 4, after
-   this prompt's include-sync fix lands.
+1. Confirm the "Home" icon-only vs. icon+text decision has been made
+   (check with me if not) before touching the ChannelSwitcher markup.
 
 2. Convert the remaining 63 pages (everything except
    commercial/business-loans.html, connect/for-vendors.html, and
@@ -811,7 +810,39 @@ diff before writing changes.
 
 ---
 
-## Prompt 8.2 — Branding/visual cleanup (depends on 8.1) — ⬜ NOT RUN
+## Prompt 8.1-fix — Regression: Connect header still appears to cover the hero — 🔴 NOT RUN, RUN THIS NEXT
+
+*(Confirmed via screenshot. The CSS fix from 8.1 is actually correct in `connect/styles/main.css` — the bug is a stale cache-busting query string preventing the fix from actually reaching browsers.)*
+
+```
+Read plan.md §11 (8.1-fix) and buildspec.md §14.
+
+1. Confirm connect/styles/main.css's .hero rule already has the correct
+   padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) formula
+   (it should, per the Phase 8.1 commit) - if it's somehow NOT there,
+   flag that as a different problem before proceeding.
+
+2. Grep every connect/*.html file for main.css?v=20260811-1 (or any
+   other stale version string referencing main.css) and bump it to a
+   new value, consistently, across every file that references it.
+
+3. Sweep the whole repo for any other ?v=YYYYMMDD-N style query string
+   on a CSS/JS asset. For each one found, check git log -1 --format=%ad
+   on the referenced file against the version date in the query string -
+   flag and bump any that are stale.
+
+4. Confirm in an actual rendered page (not just by reading the CSS
+   source) that Connect's hero no longer overlaps the header after this
+   fix - screenshot or describe what you see.
+
+Show me the list of files changed before writing changes. Don't treat
+this as "redo the 8.1 fix" - the fix is already correct, this is a
+cache-invalidation problem only.
+```
+
+---
+
+## Prompt 8.2 — Branding/visual cleanup (depends on 8.1) — ✅ DONE
 
 ```
 Read plan.md §11 (8.2), ui-ux-a11y-report.md items 3, 4, 6, and
@@ -841,7 +872,7 @@ Show me a diff before writing changes.
 
 ---
 
-## Prompt 8.3 — Animation & interaction accessibility polish — ⬜ NOT RUN
+## Prompt 8.3 — Animation & interaction accessibility polish — ✅ DONE (regression found — see Prompt 8.3-fix below)
 
 ```
 Read plan.md §11 (8.3), ui-ux-a11y-report.md items 5, 8, 9, and item 2.
@@ -858,14 +889,45 @@ Read plan.md §11 (8.3), ui-ux-a11y-report.md items 5, 8, 9, and item 2.
 3. Fix channel-switcher touch targets at <=640px: add min-height: 44px
    to .channel-switch__option and adjust padding (not font-size alone)
    so the actual tap target reaches 44px.
-4. Apply the "Home" icon-only decision (CLAUDE.md rule 13 already
-   updated to match): remove <span class="channel-switch__full">Home</span>
-   from navbar.html.
+4. Apply whichever "Home" decision was confirmed in Prompt 8.1: if
+   icon-only, remove <span class="channel-switch__full">Home</span>
+   from navbar.html and update CLAUDE.md rule 13; if keeping the text,
+   no markup change needed here.
 5. Confirm prefers-reduced-motion still gates the new P&P reveal classes
    correctly (should be automatic via the shared .reveal system - verify,
    don't assume).
 
 Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 8.3-fix — Regression: "Funding Solutions" trigger doesn't visually match sibling nav items — 🔴 NOT RUN, RUN NEXT
+
+*(Confirmed via screenshot. Item 2's aria-expanded conversion to a `<button>` broke visual parity with "Compare Options" / "Partners" / "Why Choose Us?".)*
+
+```
+Read plan.md §11 (8.3-fix) and buildspec.md §14.
+
+1. In commercial/shared-styles.css, replace .navbar__link--dropdown-
+   trigger's current "font: inherit; color: inherit;" with explicit
+   literal values copied directly from .navbar__link in
+   shared/styles/chrome.css: font-family: var(--font-heading);
+   font-weight: 500; font-size: 0.95rem; color: var(--text-primary);
+   plus a matching :hover { color: var(--skyblue); }.
+
+2. Verify in an actual rendered page (not just by reading the CSS) that
+   "Funding Solutions" now visually matches "Compare Options", "Partners",
+   and "Why Choose Us?" - same weight, same font, same color, same hover
+   behavior.
+
+3. Check whether any other element converted from a plain <a>/text node
+   to a <button> during Prompt 8.3's accessibility work has the same
+   "relies on inherit, doesn't actually match" problem, and fix any you
+   find the same way.
+
+Show me a diff before writing changes, and confirm visually (describe
+what you see, or screenshot) before considering this done.
 ```
 
 ---
@@ -1051,6 +1113,33 @@ Read plan.md §11 (8.10) in full.
 
 Do not begin Phase 9 (Payload conversion) until this report exists and
 I've reviewed it.
+```
+
+---
+
+## Prompt 8.11 — Deploy the current static build to Vercel for stakeholder review — ⬜ NOT RUN
+
+*(This deploys the existing static site as-is, for the team to leave final comments — it is not the Phase 9 Payload/Next.js launch. Get explicit go-ahead before running the actual deploy, and again before promoting any preview URL to production.)*
+
+```
+Read plan.md §11 (8.11).
+
+1. Confirm every cache-busting query string flagged in Prompt 8.1-fix
+   has been bumped, so this deploy reflects Phase 8's fixes rather than
+   cached pre-fix assets.
+
+2. Prepare (don't yet run) a Vercel deployment of the current repo as-is
+   - commercial/, connect/, and personal-and-property/ together,
+   preserving the existing sub-path structure. Tell me the exact Vercel
+   CLI commands you'd run (e.g. vercel, then vercel --prod) rather than
+   running them yet.
+
+3. Once I confirm, run the preview deploy and share the resulting URL.
+   Do not promote to a production URL without a separate, explicit
+   confirmation from me.
+
+This is an interim deploy for stakeholder review before Phase 9's
+Payload/Next.js rebuild - not the final launch.
 ```
 
 ---
