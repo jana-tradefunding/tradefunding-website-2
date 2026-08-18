@@ -1,6 +1,6 @@
 # CLAUDE.md — Trade Funding Site Rebuild
 
-**Status: v9.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally). **`ChannelSwitcher`'s "Home" is now locked as icon-only (see rule 13). Two Phase 8 regressions are being fixed — see plan.md §11's 8.1-fix and 8.3-fix.**
+**Status: v9.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally). **`ChannelSwitcher`'s "Home" is now locked as icon-only (see rule 13). The two Phase 8 regressions (8.1-fix, 8.3-fix) are fixed and verified — see plan.md §11. Phase 8.4–8.10 are next.**
 
 ## Project in one paragraph
 
@@ -96,8 +96,8 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - Lender logos, GoogleReviews real count — still genuinely unresolved
 - `hello@` → `support@` inbox routing/access — still unconfirmed (Ben Lyons)
 - **"Compare Options" nav mapping (plan.md §10.2)** — flagged, not resolved: most likely `comparison-report.html`, needs confirmation. Also unresolved: where the Guides Hub and `about.html` live in the new 4-item nav.
-- 🔴 **Two Phase 8 regressions need fixing next** (Prompts 8.1-fix, 8.3-fix in `prompts.md`): Connect's header/hero overlap is a stale cache-busting version, not a CSS bug; the "Funding Solutions" nav trigger doesn't visually match its siblings after its accessibility-driven `<button>` conversion.
-- **Phase 8, remaining sub-phases 8.4–8.10, plus new 8.11** — full list in plan.md §11: CSP/HSTS sitewide; P&P cookie-consent coverage + Turnstile front-end wiring + the still-broken Broker Portal form; shared validation/notify extraction; image dimensions + WebP + OG/sitemap fixes; retry/backoff + global error handler + RUM with PII scrubbing; the never-run Phase 7.13 dependency/test setup + inline-`<style>` consolidation; final QA + closing report; then a new Vercel deploy (8.11) for stakeholder review before Phase 9.
+- ✅ **Both Phase 8 regressions are fixed** (Prompts 8.1-fix, 8.3-fix, committed as `8d9df92`): Connect's stale `main.css` cache-busting version was bumped across all 8 pages (a repo-wide sweep found no other stale `?v=` references); the "Funding Solutions" nav trigger now uses explicit literal styles instead of `inherit` and matches its siblings pixel-for-pixel. Both verified in-browser.
+- 🔵 **Phase 8, remaining sub-phases 8.4–8.10, plus new 8.11 — run next** — full list in plan.md §11: CSP/HSTS sitewide; P&P cookie-consent coverage + Turnstile front-end wiring + the still-broken Broker Portal form; shared validation/notify extraction; image dimensions + WebP + OG/sitemap fixes; retry/backoff + global error handler + RUM with PII scrubbing; the never-run Phase 7.13 dependency/test setup + inline-`<style>` consolidation; final QA + closing report; then a new Vercel deploy (8.11) for stakeholder review before Phase 9.
 
 **Resolved since v8:** the "Home" icon-only vs. icon+text contradiction is resolved — icon-only, confirmed. Phase 8.1–8.3 are done, with two regressions now tracked above rather than silently left in place.
 

@@ -1,6 +1,6 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v9 — Phase 8.1–8.3 are done, but two regressions surfaced from screenshots and are addressed as 8.1-fix and 8.3-fix. A new 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
+**Status: v9 — Phase 8.1–8.3 are done; the two regressions that surfaced (8.1-fix, 8.3-fix) are now fixed and verified in-browser. A new 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
 
 ## Current build status (check before running anything)
 
@@ -15,8 +15,8 @@
 | 5.5 — Pre-conversion cleanup | ✅ Done (`docs/cleanup-report.md`) |
 | 6 — Build quality & architecture fix pass | ✅ Done |
 | 7 — Pre-Migration Remediation | ⚠️ Done through 7.12; 7.13 folded into Phase 8 §11.9 |
-| **8.1–8.3 — Final Pre-Deployment Fix Pass, design/animation first** | ⚠️ **Done, with 2 confirmed regressions** — see 8.1-fix (Connect header/hero overlap — cache-busting version not bumped after the CSS fix) and 8.3-fix (Funding Solutions dropdown trigger doesn't visually match sibling nav items) below in §11 |
-| **8.4–8.10 — remaining Phase 8 fix work** | Not started |
+| **8.1–8.3 — Final Pre-Deployment Fix Pass, design/animation first** | ✅ **Done, including both regression fixes** — 8.1-fix (stale Connect cache-busting version bumped) and 8.3-fix (Funding Solutions dropdown trigger given explicit literal styles) below in §11 |
+| **8.4–8.10 — remaining Phase 8 fix work** | Not started — run next |
 | **8.11 — Vercel deploy for stakeholder review (NEW)** | Not started |
 | 9 — Payload/Vercel conversion | Not started — waits on Phase 8 |
 
@@ -439,13 +439,13 @@ This is the single highest-leverage fix across all six reports: **the include-sy
 - **While the canonical header component is open for this work, fix the hero/header overlap** (confirmed root cause: `.trust-bar` + `.navbar` stack to ~105–107px of real fixed-header height, but `.hero` only reserves 90px `padding-top`). Change `.hero`'s top padding to `calc(var(--utility-bar-height, 37px) + 80px + 32px)` on Commercial, and verify the same math clears the stack on Connect's `.hero` (already more generous, but confirm on mobile) and Personal & Property's `.pp-hero`.
 - This is the ideal first task to prove the include-sync fix actually propagates correctly — if the header/hero fix shows up identically on all 66 pages afterward, the mechanism is trustworthy for 8.2's fixes.
 
-### 8.1-fix — Regression: Connect's header still appears to cover part of the hero
+### 8.1-fix — Regression: Connect's header still appears to cover part of the hero — ✅ FIXED
 
-**Confirmed via screenshot; root cause diagnosed, not just a re-run of the same fix.** The actual CSS fix from 8.1 **is present and correct** in `connect/styles/main.css` (`.hero { padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) 0 ...}`, same formula as Commercial). But `connect/index.html` still references the stylesheet with an **unbumped cache-busting query string** — `<link rel="stylesheet" href="/connect/styles/main.css?v=20260811-1"/>`, a date from well before the 8.1 fix landed. Any browser or CDN that already cached that exact URL from before Aug 18 will keep serving the **old, pre-fix CSS** indefinitely, reproducing the overlap even though the source file is already correct. This is the same manual-cache-busting anti-pattern flagged in earlier architecture review passes, now caught causing a real, visible bug.
+**Fixed:** all 8 Connect pages bumped from `main.css?v=20260811-1` to `?v=20260819-1`; a repo-wide sweep found no other stale `?v=` references. Verified in-browser via a temporary static server — the hero no longer overlaps the header on Connect's homepage. Committed as `8d9df92`.
 
-- **Fix:** bump `connect/index.html`'s (and every other Connect page's) `main.css?v=...` query string to a new value now, so the corrected CSS actually reaches browsers.
-- **Sweep for the same risk elsewhere:** check every `?v=` or similarly manually-versioned asset reference sitewide for staleness relative to its last real edit — don't assume this is the only one.
-- **Fix the anti-pattern itself, not just this instance:** replace manual date-stamp query strings with a script that auto-bumps the version (e.g., a content hash, or a build step) so this class of bug can't recur before Phase 9's real bundler exists. At minimum, add a reminder step to the deploy checklist (see 8.11 below) to bump every `?v=` string before each deploy until the automated version exists.
+**Root cause (kept for reference):** the actual CSS fix from 8.1 was already present and correct in `connect/styles/main.css` (`.hero { padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) 0 ...}`, same formula as Commercial). But `connect/index.html` and the other 7 Connect pages still referenced the stylesheet with an **unbumped cache-busting query string** — `main.css?v=20260811-1`, a date from before the 8.1 fix landed. Any browser or CDN that already cached that exact URL kept serving the old, pre-fix CSS indefinitely, reproducing the overlap even though the source file was already correct. This is the same manual-cache-busting anti-pattern flagged in earlier architecture review passes.
+
+**Still open, longer-term:** replace manual date-stamp query strings with an auto-bumped version (content hash or build step) so this class of bug can't recur before Phase 9's real bundler exists — not done as part of this fix, since it's a process change, not a regression fix.
 
 ### 8.2 — Branding/visual cleanup that depends on 8.1's fixed propagation
 
@@ -463,12 +463,11 @@ This is the single highest-leverage fix across all six reports: **the include-sy
 - **Apply whichever "Home" decision you made above** — if icon-only, remove `<span class="channel-switch__full">Home</span>` from the canonical `navbar.html` (now safe to propagate sitewide via 8.1's fix) and update `CLAUDE.md` rule 13; if keeping the text, no change needed here beyond confirming the 8.1 hero-padding fix already accounts for the wrap risk.
 - Confirm `prefers-reduced-motion` gating is applied to the new P&P reveal classes the same way it already is everywhere else (it should be automatic, since it's the same shared `.reveal` system — just verify).
 
-### 8.3-fix — Regression: "Funding Solutions" dropdown trigger doesn't visually match the other nav items
+### 8.3-fix — Regression: "Funding Solutions" dropdown trigger doesn't visually match the other nav items — ✅ FIXED
 
-**Confirmed via screenshot.** Converting the Funding Solutions trigger from a plain `<a>` to a `<button class="navbar__link--dropdown-trigger">` for keyboard/AT accessibility (8.3) visually broke it — it now renders in a different, lighter-looking font than "Compare Options," "Partners," and "Why Choose Us?" next to it, even though `commercial/shared-styles.css` already has a rule for `.navbar__link--dropdown-trigger` using `font: inherit; color: inherit;`. Inheritance alone isn't reliably matching the sibling `.navbar__link` styling across browsers/rendering contexts for a `<button>` element.
+**Fixed:** `.navbar__link--dropdown-trigger` in `commercial/shared-styles.css` now declares literal values (`font-family: var(--font-heading); font-weight: 500; font-size: 0.95rem; color: var(--text-primary);`) copied from `.navbar__link` in `shared/styles/chrome.css`, plus a matching `:hover { color: var(--skyblue); }`. Verified via computed styles in an actual rendered page — the trigger now matches "Compare Options" exactly (same font-family, weight, size, color). Checked every other interactive element converted from `<a>`/text to `<button>` during 8.3's accessibility work — only this one exists; the hamburger triggers are icon-only and unaffected. Committed as `8d9df92`.
 
-- **Fix:** on `.navbar__link--dropdown-trigger`, declare the actual literal values instead of relying on `inherit` — `font-family: var(--font-heading); font-weight: 500; font-size: 0.95rem; color: var(--text-primary);` (copy these directly from `.navbar__link` in `shared/styles/chrome.css`, don't just reference the variable and hope it cascades), plus the same `:hover` color change. Verify in an actual rendered page (not just by reading the CSS) that the button now visually matches its siblings pixel-for-pixel.
-- **Also check:** whether any other interactive element converted from `<a>`/plain text to `<button>` during 8.3's accessibility work (e.g., the hamburger trigger, if touched) has the same "relies on inheritance, doesn't actually match" problem — fix any found the same way, don't assume this was a one-off.
+**Root cause (kept for reference):** converting the Funding Solutions trigger from a plain `<a>` to a `<button class="navbar__link--dropdown-trigger">` for keyboard/AT accessibility (8.3) visually broke it, because the button carried no `.navbar__link` class — `font: inherit; color: inherit;` had nothing matching to inherit from, so it fell back to browser/parent defaults instead of the sibling nav items' actual styling.
 
 ### 8.4 — Security headers: CSP + HSTS sitewide
 

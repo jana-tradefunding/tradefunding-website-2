@@ -1,10 +1,10 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v9 — Phase 8.1–8.3 are done, but two regressions were caught from screenshots (Prompts 8.1-fix, 8.3-fix). A new Prompt 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
+**Status: v9 — Phase 8.1–8.3 are done, and both regressions (Prompts 8.1-fix, 8.3-fix) are now fixed and verified in-browser. A new Prompt 8.11 (Vercel deploy for stakeholder review) is added before Phase 9.**
 
 **Reminder before every session:** `_internal/_DO-NOT-DEPLOY-design-baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
-**🔴 Run Prompt 8.1-fix and Prompt 8.3-fix next, before continuing to Prompt 8.4.**
+**Next up: Prompt 8.4 (CSP/HSTS sitewide).**
 
 ---
 
@@ -22,17 +22,19 @@
 | 6.1–6.8 | Build quality & architecture fix pass | ✅ Done | Six Phase 6 commits confirmed via `git log` |
 | 7.0–7.12 | Pre-Migration Remediation | ✅ Done, with 3 confirmed gaps | See notes on Prompts 7.3, 7.7, 7.9, 7.11 |
 | 7.13 | Dependency fixes + tests + closing report | 🔴 Never ran | Folded into Phase 8.9/8.10 |
-| 8.1–8.3 | Design/aesthetic/animation fixes | ✅ Done, **2 regressions found** | Confirmed via your screenshots — see Prompts 8.1-fix and 8.3-fix below |
-| **8.1-fix / 8.3-fix** | **Regression fixes (NEW)** | 🔴 **Not started — run these next** | Connect header/hero overlap (stale cache-busting version) and "Funding Solutions" nav trigger visual mismatch (button style inheritance) |
-| 8.4–8.10 | Remaining Phase 8 fix work | ⬜ Not started | Sequenced after the two regression fixes |
+| 8.1–8.3 | Design/aesthetic/animation fixes | ✅ Done, **2 regressions found and fixed** | See Prompts 8.1-fix and 8.3-fix below |
+| **8.1-fix / 8.3-fix** | **Regression fixes** | ✅ **Done** | Connect `main.css` version bumped to `?v=20260819-1` across all 8 pages; `.navbar__link--dropdown-trigger` given explicit literal values; both verified in-browser via a static preview server |
+| 8.4–8.10 | Remaining Phase 8 fix work | ⬜ Not started | Run next |
 | **8.11** | **Vercel deploy for stakeholder review (NEW)** | ⬜ Not started | Deploys the current static site as-is, before Phase 9 |
 | 9–12 | Payload/Next.js/Vercel | ⬜ Not started | Correctly sequenced after Phase 8 |
 
-**What actually happened in 8.1 and 8.3, confirmed by checking the repo directly against your screenshots (not just re-running the same prompts):**
-- **8.1's hero-padding fix is correct in source** (`connect/styles/main.css`'s `.hero` rule has the right `calc()` formula) — but `connect/index.html` still references `main.css?v=20260811-1`, a cache-busting version string from before this fix, so a cached browser/CDN copy can still show the old, pre-fix layout. This is a cache-invalidation bug, not a CSS bug — Prompt 8.1-fix bumps the version instead of re-touching the CSS.
-- **8.3's dropdown accessibility fix (converting the trigger to a `<button>`) broke visual parity** — `.navbar__link--dropdown-trigger` uses `font: inherit; color: inherit;`, which isn't reliably matching the sibling `.navbar__link` items in practice. Prompt 8.3-fix replaces the inherited values with explicit literal ones.
+**What actually happened in 8.1 and 8.3, and how each was fixed:**
+- **8.1's hero-padding fix was correct in source** (`connect/styles/main.css`'s `.hero` rule has the right `calc()` formula) — but `connect/index.html` and 7 other Connect pages still referenced `main.css?v=20260811-1`, a cache-busting version string predating the fix (file last edited 2026-08-18, one day after that stamp). Bumped to `?v=20260819-1` across all 8 pages. Swept the repo for other stale `?v=` references — none found; this was the only one.
+- **8.3's dropdown accessibility fix (converting the trigger to a `<button>`) broke visual parity** — `.navbar__link--dropdown-trigger` used `font: inherit; color: inherit;`, but the button carries no `.navbar__link` class, so it never actually inherited those values from a matching source. Replaced with the literal values from `.navbar__link` in `shared/styles/chrome.css` plus a matching `:hover`. Computed styles now match `.navbar__link` (`Compare Options`) exactly. Checked for other `<a>`→`<button>` conversions from Phase 8.3 — only this one exists; the hamburger triggers are icon-only and unaffected.
 
-**What this means for you right now:** run **Prompt 8.1-fix** and **Prompt 8.3-fix**, in either order, before continuing to Prompt 8.4. Then proceed 8.4 → 8.10 as before, followed by the new **Prompt 8.11** (Vercel deploy for stakeholder review) before Phase 9.
+Both verified in an actual rendered page via a temporary static server, not just by reading the stylesheet. Committed as `8d9df92`.
+
+**What this means for you right now:** proceed to **Prompt 8.4** (CSP/HSTS sitewide), then 8.5 → 8.10, followed by the new **Prompt 8.11** (Vercel deploy for stakeholder review) before Phase 9.
 
 ---
 
@@ -810,7 +812,7 @@ diff before writing changes.
 
 ---
 
-## Prompt 8.1-fix — Regression: Connect header still appears to cover the hero — 🔴 NOT RUN, RUN THIS NEXT
+## Prompt 8.1-fix — Regression: Connect header still appears to cover the hero — ✅ DONE
 
 *(Confirmed via screenshot. The CSS fix from 8.1 is actually correct in `connect/styles/main.css` — the bug is a stale cache-busting query string preventing the fix from actually reaching browsers.)*
 
@@ -902,7 +904,7 @@ Show me a diff before writing changes.
 
 ---
 
-## Prompt 8.3-fix — Regression: "Funding Solutions" trigger doesn't visually match sibling nav items — 🔴 NOT RUN, RUN NEXT
+## Prompt 8.3-fix — Regression: "Funding Solutions" trigger doesn't visually match sibling nav items — ✅ DONE
 
 *(Confirmed via screenshot. Item 2's aria-expanded conversion to a `<button>` broke visual parity with "Compare Options" / "Partners" / "Why Choose Us?".)*
 
