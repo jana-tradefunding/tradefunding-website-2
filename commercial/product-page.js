@@ -222,7 +222,6 @@
 
       // Valid email
       emailInput.style.borderColor = '';
-      console.log('Download gate submission:', email);
 
       downloadForm.classList.remove('is-visible');
       if (downloadSuccess) {

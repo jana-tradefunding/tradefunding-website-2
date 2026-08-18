@@ -135,6 +135,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================
+   TOKEN COLOR UTILITIES (Phase 6 §9.3) - mechanical replacements for
+   inline style="color:#54B4F6"-type declarations that duplicated
+   tokens.md values. Same hex/rgba values as the inline styles they
+   replace - no visual change, just centralizing color so it isn't
+   scattered across every page as a literal. Add new variants here
+   first if another file's cleanup pass turns up a color-only inline
+   style not already covered.
+   ======================================== */
+.text--navy { color: var(--navy); }
+.text--sky { color: var(--skyblue); }
+.text--peach { color: var(--peach); }
+.text--gold { color: var(--gold); }
+.text--white { color: #fff; }
+
+.bg--sky { background: var(--skyblue); }
+.bg--peach { background: var(--peach); }
+.bg--gold { background: var(--gold); }
+.bg--navy-blue { background: var(--navy-blue); }
+
+.icon--sky { background: rgba(84,180,246,0.1); color: var(--skyblue); }
+.icon--sky-soft { background: rgba(84,180,246,0.08); color: var(--skyblue); }
+.icon--peach { background: rgba(255,93,92,0.1); color: var(--peach); }
+.icon--peach-soft { background: rgba(255,93,92,0.08); color: var(--peach); }
+.icon--gold { background: rgba(251,183,102,0.1); color: var(--gold); }
+.icon--navy-blue-soft { background: rgba(28,25,152,0.08); color: var(--navy-blue); }
+/* #7B78FF is a lighter accent tint layered on the navy-blue-tinted
+   background, not itself a named tokens.md value - but it repeats
+   identically wherever this pairing is used (R&D/Export Finance/
+   "view all" dd-icons), so it's centralized here rather than left
+   inline as a magic hex. */
+.icon--indigo { background: rgba(28,25,152,0.1); color: #7B78FF; }
+
+.text--secondary { color: var(--text-secondary); }
+.bg--white { background: #fff; }
+.bg-tint--sky { background: rgba(84,180,246,0.1); }
+.bg-tint--sky-soft { background: rgba(84,180,246,0.08); }
+.bg-tint--peach { background: rgba(255,93,92,0.1); }
+.bg-tint--gold { background: rgba(251,183,102,0.1); }
+.bg-tint--navy-blue { background: rgba(28,25,152,0.1); }
+
+/* ========================================
    BUTTONS
    ======================================== */
 .btn {
