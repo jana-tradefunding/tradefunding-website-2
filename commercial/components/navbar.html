@@ -6,14 +6,36 @@
      structure - same divs, same classes, same order - swapping only:
        - the .channel-switch__option that carries `active`/aria-current
        - the primary-nav links (each channel keeps its own nav items)
-     Single-strip header: one .navbar row holds the logo, primary
-     navigation, and the ChannelSwitcher together - no separate utility
-     bar/tier above or below it, per plan.md §4/§7.2 and buildspec.md §2
-     (Prompt 5-fix correction). No CTA button anywhere in the header
-     (removed sitewide per Phase 5 Part 2 instruction). All hrefs/srcs
-     below are root-relative per buildspec.md §10 / CLAUDE.md rule 15 -
-     never relative, never bare filenames.
+     Masthead is two stacked blocks that always move together: the
+     .trust-bar strip (persistent, identical across every channel, per
+     plan.md §9.1/buildspec.md §12) sits above the single .navbar row,
+     which holds the logo, primary navigation, and the ChannelSwitcher
+     together - no separate utility/nav tier beyond these two, per
+     plan.md §4/§7.2 and buildspec.md §2 (Prompt 5-fix correction). No
+     CTA button anywhere in the header (removed sitewide per Phase 5
+     Part 2 instruction). All hrefs/srcs below are root-relative per
+     buildspec.md §10 / CLAUDE.md rule 15 - never relative, never bare
+     filenames.
      ============================================ -->
+
+<!-- TRUST BAR - persistent strip, pinned above the navbar row. See
+     commercial/shared-styles.css .trust-bar comment for full rationale
+     (why the review count is omitted, why fixed positioning must match
+     .navbar's). -->
+<div class="trust-bar" id="trustBar">
+  <div class="trust-bar__inner">
+    <a class="trust-bar__item trust-bar__item--link" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener" aria-label="Read our Google reviews">
+      <span class="trust-bar__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span><strong>5.0</strong> on Google</span>
+    </a>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">ACL 387856</span>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">AFCA Member</span>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">70+ Lenders</span>
+  </div>
+</div>
 
 <!-- MAIN NAV - logo + primary navigation + ChannelSwitcher, one row -->
 <nav class="navbar" id="navbar">
@@ -24,7 +46,7 @@
 
     <div class="navbar__links">
       <div class="navbar__link navbar__link--dropdown">
-        Products
+        What Funding Do I Need?
         <div class="dropdown-menu">
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Term Loans</span>
@@ -70,9 +92,9 @@
           </div>
         </div>
       </div>
-      <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/commercial/index.html#why" class="navbar__link">Why Trade Funding?</a>
       <a href="/commercial/guides/index.html" class="navbar__link">Resources</a>
-      <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
+      <a href="/commercial/broker-portal.html" class="navbar__link">Offer Funding Solutions</a>
     </div>
 
     <div class="navbar__right">

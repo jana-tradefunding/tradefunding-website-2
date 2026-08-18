@@ -26,6 +26,25 @@
 <!-- NAVBAR - CANONICAL (see commercial/components/navbar.html; CLAUDE.md rule 14) -->
 
 <!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
+<!-- TRUST BAR - persistent strip, pinned above the navbar row. See
+     commercial/shared-styles.css .trust-bar comment for full rationale
+     (why the review count is omitted, why fixed positioning must match
+     .navbar's). -->
+<div class="trust-bar" id="trustBar">
+  <div class="trust-bar__inner">
+    <a class="trust-bar__item trust-bar__item--link" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener" aria-label="Read our Google reviews">
+      <span class="trust-bar__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span><strong>5.0</strong> on Google</span>
+    </a>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">ACL 387856</span>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">AFCA Member</span>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">70+ Lenders</span>
+  </div>
+</div>
+
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
     <a href="/connect/index.html" class="navbar__logo">
@@ -159,7 +178,7 @@
           <div class="footer__links">
             <a href="/connect/about.html">About Connect</a>
             <a href="https://tradefunding.com.au">tradefunding.com.au</a>
-            <a href="/contact.html">Contact</a>
+            <a href="/commercial/contact.html">Contact</a>
           </div>
         </div>
         <div class="footer__links-group">

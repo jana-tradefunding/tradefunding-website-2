@@ -699,6 +699,25 @@ input:focus, select:focus, textarea:focus {
      ============================================ -->
 
 <!-- MAIN NAV - logo + primary navigation only (no CTA, no About) -->
+<!-- TRUST BAR - persistent strip, pinned above the navbar row. See
+     commercial/shared-styles.css .trust-bar comment for full rationale
+     (why the review count is omitted, why fixed positioning must match
+     .navbar's). -->
+<div class="trust-bar" id="trustBar">
+  <div class="trust-bar__inner">
+    <a class="trust-bar__item trust-bar__item--link" href="https://www.google.com/search?q=Trade+Funding+reviews" target="_blank" rel="noopener" aria-label="Read our Google reviews">
+      <span class="trust-bar__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span><strong>5.0</strong> on Google</span>
+    </a>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">ACL 387856</span>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">AFCA Member</span>
+    <span class="trust-bar__divider" aria-hidden="true"></span>
+    <span class="trust-bar__item">70+ Lenders</span>
+  </div>
+</div>
+
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
     <a href="/commercial/index.html" class="navbar__logo">
@@ -707,7 +726,7 @@ input:focus, select:focus, textarea:focus {
 
     <div class="navbar__links">
       <div class="navbar__link navbar__link--dropdown">
-        Products
+        What Funding Do I Need?
         <div class="dropdown-menu">
           <div class="dropdown-menu__category">
             <span class="dropdown-menu__heading">Term Loans</span>
@@ -753,9 +772,9 @@ input:focus, select:focus, textarea:focus {
           </div>
         </div>
       </div>
-      <a href="/commercial/index.html#why" class="navbar__link">Why Us</a>
+      <a href="/commercial/index.html#why" class="navbar__link">Why Trade Funding?</a>
       <a href="/commercial/guides/index.html" class="navbar__link">Resources</a>
-      <a href="/commercial/broker-portal.html" class="navbar__link">Partners</a>
+      <a href="/commercial/broker-portal.html" class="navbar__link">Offer Funding Solutions</a>
     </div>
 
     <div class="navbar__right">
@@ -1889,7 +1908,7 @@ input:focus, select:focus, textarea:focus {
           <div class="footer__links">
             <a href="/commercial/about.html">About Us</a>
             <a href="/commercial/broker-portal.html">Broker Portal</a>
-            <a href="/contact.html">Contact</a>
+            <a href="/commercial/contact.html">Contact</a>
             <a href="/commercial/apply.html">Get Started</a>
           </div>
         </div>

@@ -72,8 +72,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Two-tier fixed header (utility bar + navbar) - keep in-page anchor
-     links (#how-it-works, #products, etc.) from landing under it. */
+  /* Fixed masthead (trust bar + navbar) - keep in-page anchor links
+     (#how-it-works, #products, etc.) from landing under it. */
   scroll-padding-top: calc(var(--utility-bar-height, 37px) + 80px);
 }
 
@@ -202,28 +202,87 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================
-   UTILITY BAR - top tier, ChannelSwitcher only. Sits above the main
-   navbar and is independent of .navbar.transparent/.scrolled - always
-   the same light, neutral background regardless of hero state, so
-   there is no dark-hero contrast case to special-case here.
+   TRUST BAR - persistent masthead strip, pinned above the navbar row
+   on every page, every channel (plan.md §9.1 / buildspec.md §12).
+   Fixed positioning, same as .navbar below it - never mix fixed/static
+   between the two, they're meant to read as one continuous masthead
+   block. Height is driven by --utility-bar-height, the same var
+   .navbar's `top` offset uses, so the two always sit flush. Content is
+   identical across channels - no per-channel color variation here,
+   only the ChannelSwitcher's active state (inside .navbar) varies.
+   Star rating intentionally omits a review count: the old static
+   "31 reviews" figure is flagged stale with no confirmed replacement
+   (plan.md §1, CLAUDE.md rule 5) - stars + link-out only, matching the
+   same honest-fallback already used in commercial/index.html's hero
+   trust bar.
    ======================================== */
-.utility-bar {
+.trust-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--utility-bar-height, 37px);
   z-index: 1001;
-  background: rgba(0,28,68,0.03);
-  border-bottom: 1px solid rgba(0,28,68,0.06);
+  background: var(--navy);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
 }
 
-.utility-bar__inner {
+.trust-bar::-webkit-scrollbar { display: none; }
+
+.trust-bar__inner {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  gap: 14px;
+  height: 100%;
   max-width: var(--max-width-wide);
   margin: 0 auto;
-  padding: 6px 32px;
+  padding: 0 32px;
+  white-space: nowrap;
+}
+
+.trust-bar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+}
+
+.trust-bar__item--link {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+}
+
+.trust-bar__item--link:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.trust-bar__item--link strong {
+  color: var(--white);
+}
+
+.trust-bar__stars {
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+.trust-bar__divider {
+  width: 1px;
+  height: 12px;
+  background: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .trust-bar__inner { justify-content: flex-start; gap: 10px; padding: 0 16px; }
+  .trust-bar__item { font-size: 0.7rem; }
 }
 
 /* ========================================
