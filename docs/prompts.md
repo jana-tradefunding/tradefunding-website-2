@@ -1,31 +1,37 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v7 — adds Phase 7 (Pre-Migration Remediation), a new set of prompts inserted between the (now complete) Phase 6 build-quality pass and Payload conversion, which is renumbered Phase 8. Everything is listed below in strict chronological run order.**
+**Status: v8 — adds Phase 8 (Final Pre-Deployment Fix Pass), addressing six new review reports run against the Phase 7 build. This is explicitly the last fix pass before deployment. Payload conversion is renumbered Phase 9.**
 
-**Reminder before every session:** `design baseline/` (now `_internal/_DO-NOT-DEPLOY-design-baseline/`, per Phase 6) is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
+**Reminder before every session:** `_internal/_DO-NOT-DEPLOY-design-baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
+
+**🔴 Before running Prompt 8.3: confirm the "Home" icon-only vs. icon+text decision with the team — see plan.md §11's intro. Everything else in Phase 8 can proceed regardless.**
 
 ---
 
-## Status snapshot (from your latest zip + the three new review reports)
+## Status snapshot (from your latest zip + all six new review reports)
 
 | # | Prompt | Status | Evidence |
 |---|---|---|---|
 | 1 | Branding tokens | ✅ Done | `tokens.md` exists at root, locked |
 | 1b | Apply tokens to real HTML | ✅ Done | `connect/index.html` uses real `--gold` tokens; `personal-and-property/styles/main.css` defines `--peach` |
-| 0 | Hit list (`hitlist.md`) | ⬜ Not run | Optional, low priority — content already folded into `plan.md` §2 |
+| 0 | Hit list (`hitlist.md`) | ⬜ Not run | Optional, low priority |
 | 2 | Nav spec (`nav-spec.md`) | ⬜ Not run | Optional — the nav itself got built anyway inside Prompt 5 |
-| 3.1 | Research (`research-notes.md`) | ✅ Done | `docs/research-notes.md` exists |
-| 3.2 | Copy creation (`copy-final.md`) | ✅ Done | `docs/copy-final.md` exists |
-| 3b | Apply approved copy | ✅ Done (at least partially) | Commercial home hero copy is in place with correctly spaced hyphens |
-| 4 | Component inventory (`design/components.md`) | ⬜ Not run | Optional, doesn't block Phase 8 |
-| 5 | Page production | ✅ Done | `personal-and-property/*` (11 pages), `commercial/guides/index.html` hub, both calculators all present |
-| 5-fix | Collapse two-tier header | ✅ Done, with one miss | `contact.html` at the repo root still had the old structure — fixed in Phase 6.1 |
-| 5.5 | Pre-conversion cleanup | ✅ Done | `docs/cleanup-report.md` exists; retired files and the spaced-name duplicate are confirmed gone |
-| **6** | Build quality & architecture fix pass | ✅ **Done** | Confirmed via `git log` — six Phase 6 commits (6.1 through 6.6) |
-| **7** | **Pre-Migration Remediation (NEW)** | 🔴 **Not started — run these next, in order** | Address/email blockers, updated nav wording, and fixes from `security-audit-report.md`, `architecture-review-report.md`, `dependency-risk-report.md` — see Prompts 7.0–7.13 below |
-| 8–11 | Payload/Next.js/Vercel (formerly 7–10) | ⬜ Not started | No `/site` app scaffold present yet — correctly sequenced after Phase 7 |
+| 3.1 / 3.2 / 3b | Copy (research/creation/apply) | ✅ Done | `docs/research-notes.md`, `docs/copy-final.md` exist |
+| 4 | Component inventory | ⬜ Not run | Optional, doesn't block Phase 9 |
+| 5 / 5-fix / 5.5 | Page production, header fix, cleanup | ✅ Done | Confirmed via git log and file checks |
+| 6.1–6.8 | Build quality & architecture fix pass | ✅ Done | Six Phase 6 commits confirmed via `git log` |
+| 7.0–7.12 | Pre-Migration Remediation | ✅ Done, with 3 confirmed gaps | See notes on Prompts 7.3, 7.7, 7.9, 7.11 below — each landed but didn't fully close out |
+| 7.13 | Dependency fixes + tests + closing report | 🔴 **Never ran** | Confirmed via `git log` (no matching commit) and `connect/package.json` (no `devDependencies`, no `test`/`lint` scripts) |
+| **8** | **Final Pre-Deployment Fix Pass (NEW)** | 🔴 **Not started — run these next, in order** | Six new reports (architecture, dependency-risk, performance/SEO, security, state/resilience/observability, UI/UX/a11y) run against the Phase 7 build — see Prompts 8.1–8.10 below |
+| 9–12 | Payload/Next.js/Vercel (formerly 8–11) | ⬜ Not started | Correctly sequenced after Phase 8 |
 
-**What this means for you right now:** run the Phase 7 prompts below, in order (7.0 → 7.13), before touching Phase 8. Prompts 0, 2, and 4 are still optional and don't block anything downstream.
+**Three things Phase 7 marked done but weren't fully finished** (confirmed independently against the live repo, not just the reports):
+- **Prompt 7.3** (include-sync): only 3 of 66 pages actually adopted the marker pattern — the mechanism was built but never rolled out. Finished in Phase 8.1.
+- **Prompt 7.7** (Turnstile): the server-side check is live and correctly fails closed, but the front-end widget was never added — every real submission would currently be rejected. Finished in Phase 8.5.
+- **Prompt 7.9** (Broker Portal form): still has no `method`/`action`, confirmed directly (`commercial/broker-portal.html:596`) — leaks PII via GET exactly as originally flagged. Neither security report re-caught this. Finished in Phase 8.5.
+- **Prompt 7.11** (cookie consent): the shared module was built correctly, but never added to any of Personal & Property's 11 pages. Finished in Phase 8.5.
+
+**What this means for you right now:** run the Phase 8 prompts below, in order (8.1 → 8.10). Design/aesthetic/animation work leads (8.1–8.3), per your preference, with 8.1 also fixing the propagation mechanism that several later prompts depend on.
 
 ---
 
@@ -174,7 +180,7 @@ alter layout, only copy. Show me a diff before writing changes.
 
 ---
 
-## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 8 but speeds it up)
+## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 9 but speeds it up)
 
 ```
 Read tokens.md, commercial/shared-styles.css, commercial/product-styles.css,
@@ -502,7 +508,7 @@ report.
 
 ---
 
-## Prompt 7.0 — Commit current work — 🔴 NOT RUN, RUN THIS FIRST
+## Prompt 7.0 — Commit current work — ✅ DONE
 
 ```
 Check git status. If there are uncommitted changes, commit them now with
@@ -512,7 +518,7 @@ clean, confirm that and move on — don't force an empty commit.
 
 ---
 
-## Prompt 7.1 — Address + email fixes (Commercial) — ⬜ NOT RUN
+## Prompt 7.1 — Address + email fixes (Commercial) — ✅ DONE
 
 ```
 Read plan.md §10.1.
@@ -542,7 +548,7 @@ email replacement in step 2.
 
 ---
 
-## Prompt 7.2 — Update Commercial's top-level nav wording — ⬜ NOT RUN
+## Prompt 7.2 — Update Commercial's top-level nav wording — ✅ DONE
 
 ```
 Read plan.md §10.2.
@@ -568,7 +574,7 @@ navbar.html first, then propagate.
 
 ---
 
-## Prompt 7.3 — HTML-include build step (architecture fix, highest leverage — do before further edits) — ⬜ NOT RUN
+## Prompt 7.3 — HTML-include build step (architecture fix, highest leverage — do before further edits) — ⚠️ DONE, BUT INCOMPLETE — only 3/66 pages actually adopted the marker pattern; finished in Phase 8.1
 
 ```
 Read plan.md §10.4 item 1 and architecture-review-report.md §4.2.
@@ -589,7 +595,7 @@ channel), then propagate once I approve the approach.
 
 ---
 
-## Prompt 7.4 — Extract shared chrome CSS — ⬜ NOT RUN
+## Prompt 7.4 — Extract shared chrome CSS — ✅ DONE
 
 ```
 Read plan.md §10.4 item 2 and architecture-review-report.md §1.1.
@@ -606,7 +612,7 @@ and confirm all three channels still render identically after the move.
 
 ---
 
-## Prompt 7.5 — Extract shared serverless library (`_lib/`) — ⬜ NOT RUN
+## Prompt 7.5 — Extract shared serverless library (`_lib/`) — ✅ DONE
 
 ```
 Read plan.md §10.4 item 3 and architecture-review-report.md §2.1.
@@ -623,7 +629,7 @@ diff before writing changes.
 
 ---
 
-## Prompt 7.6 — Security Critical: fix rate limiting — ⬜ NOT RUN
+## Prompt 7.6 — Security Critical: fix rate limiting — ✅ DONE
 
 ```
 Read plan.md §10.3 item 1 and security-audit-report.md Finding 2 in full.
@@ -640,7 +646,7 @@ Show me a diff before writing changes.
 
 ---
 
-## Prompt 7.7 — Security High: add a real anti-abuse check — ⬜ NOT RUN
+## Prompt 7.7 — Security High: add a real anti-abuse check — ⚠️ DONE SERVER-SIDE ONLY — the front-end Turnstile widget was never wired up; finished in Phase 8.5
 
 ```
 Read plan.md §10.3 item 2 and security-audit-report.md Finding 1 in full.
@@ -656,7 +662,7 @@ silently skip it.
 
 ---
 
-## Prompt 7.8 — Security Medium: wire the two silently-broken forms — ⬜ NOT RUN
+## Prompt 7.8 — Security Medium: wire the two silently-broken forms — ✅ DONE (disabled with "coming soon" messaging, per the git log)
 
 ```
 Read plan.md §10.3 item 3 and security-audit-report.md Finding 5 in full.
@@ -674,7 +680,7 @@ for each of the two forms before implementing.
 
 ---
 
-## Prompt 7.9 — Security Medium: fix the Broker Portal form — ⬜ NOT RUN
+## Prompt 7.9 — Security Medium: fix the Broker Portal form — 🔴 CONFIRMED NOT DONE — verified directly (`commercial/broker-portal.html:596` still has `<form class="bp-form">` with no `method`/`action`). Not caught by either round of security reports; finished in Phase 8.5.
 
 ```
 Read plan.md §10.3 item 4 and security-audit-report.md Finding 3 in full.
@@ -689,7 +695,7 @@ before writing changes.
 
 ---
 
-## Prompt 7.10 — Security Low: add secret rotation support — ⬜ NOT RUN
+## Prompt 7.10 — Security Low: add secret rotation support — ✅ DONE
 
 ```
 Read plan.md §10.3 item 5 and security-audit-report.md Finding 4 in full.
@@ -704,7 +710,7 @@ openssl rand -hex 32 in Vercel's dashboard, per the existing
 
 ---
 
-## Prompt 7.11 — Architecture: consolidate cookie-consent — ⬜ NOT RUN
+## Prompt 7.11 — Architecture: consolidate cookie-consent — ⚠️ DONE, BUT INCOMPLETE — the shared module was built correctly, but never added to Personal & Property's 11 pages; finished in Phase 8.5
 
 ```
 Read plan.md §10.4 item 4 and architecture-review-report.md §2.2.
@@ -720,7 +726,7 @@ Show me a diff before writing changes.
 
 ---
 
-## Prompt 7.12 — Architecture: testability refactors — ⬜ NOT RUN
+## Prompt 7.12 — Architecture: testability refactors — ✅ DONE
 
 ```
 Read plan.md §10.4 items 5-6 and architecture-review-report.md §1.2 and §3.2.
@@ -742,7 +748,7 @@ independently unit-testable. Show me a diff before writing changes.
 
 ---
 
-## Prompt 7.13 — Dependency fixes + tests + closing report — ⬜ NOT RUN
+## Prompt 7.13 — Dependency fixes + tests + closing report — 🔴 NEVER RUN — confirmed via git log and the dependency-risk report. Finished in Phase 8.9, folded together with the closing report as Phase 8.10 instead.
 
 ```
 Read plan.md §10.5, buildspec.md §13, and dependency-risk-report.md in full.
@@ -770,7 +776,285 @@ I've reviewed it.
 
 ---
 
-## Prompt 8 — Payload CMS scaffold (Phase 8) — ⬜ NOT STARTED
+## Prompt 8.1 — Include-sync coverage fix + hero/header overlap — 🔴 NOT RUN, RUN THIS FIRST
+
+```
+Read plan.md §11 (intro + 8.1) and architecture-review-report.md Finding 1
+and ui-ux-a11y-report.md item 1 in full.
+
+1. Confirm the "Home" icon-only vs. icon+text decision has been made
+   (check with me if not) before touching the ChannelSwitcher markup.
+
+2. Convert the remaining 63 pages (everything except
+   commercial/business-loans.html, connect/for-vendors.html, and
+   personal-and-property/personal-loans.html, which already use it) to
+   the <!-- include:start src="..." --> / <!-- include:end --> marker
+   pattern for navbar/footer, matching those 3 pages' existing usage.
+   Run node connect/scripts/build-includes.mjs, then --check, and
+   confirm all 66 pages pass.
+
+3. Wire build:includes:check into a pre-commit hook (or note if a CI
+   config exists to add it to instead).
+
+4. While the canonical navbar component is open: fix the hero/header
+   overlap. Change Commercial's .hero top padding to
+   calc(var(--utility-bar-height, 37px) + 80px + 32px), and verify
+   Connect's and Personal & Property's hero padding clears the same
+   trust-bar+navbar stack height, especially at mobile widths.
+
+Do this in stages: markers first (show me 5 sample pages before doing
+all 63), then the hero-padding fix, then a final --check run. Show me a
+diff before writing changes.
+```
+
+---
+
+## Prompt 8.2 — Branding/visual cleanup (depends on 8.1) — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.2), ui-ux-a11y-report.md items 3, 4, 6, and
+security-audit-report.md Finding 6.
+
+1. Remove the 20 emoji <span class="dd-icon ...">&#...;</span> icon
+   spans from the Funding Solutions dropdown in
+   commercial/components/navbar.html — leave the plain text labels.
+2. Remove the 3 emoji entity references (&#128222;, &#128231;,
+   &#128205;) from all three canonical footer components.
+3. Fix the distorted Casper logo: add class="footer__cashper" to the
+   <img> at connect/components/footer.html:28, remove the inline
+   style="height:56px;width:auto;" — the matching CSS rule already
+   exists at connect/styles/main.css:760.
+4. Build a dedicated Products page (commercial/products.html, or
+   repurpose business-loans.html) as the standalone menu-style view,
+   reusing the existing category-grouping markup.
+5. Propagate the confirmed office address to all 59 remaining
+   [BLOCKED - NEEDS: confirmed address] placeholder occurrences
+   (including commercial/privacy.html) — footer instances ride the
+   now-fixed include-sync; find-and-replace any body-content instances
+   directly.
+
+Re-run build:includes:check after steps 1-3 to confirm propagation.
+Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 8.3 — Animation & interaction accessibility polish — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.3), ui-ux-a11y-report.md items 5, 8, 9, and item 2.
+
+1. Add reveal/reveal delay-N classes to Personal & Property's hero
+   elements (.pp-hero__eyebrow, .pp-hero__title, .pp-hero__lead,
+   .pp-hero__cta-group, .pp-hero__trust, .pp-hero__card), matching
+   Connect's stagger pattern. Markup-only change - the shared .reveal
+   CSS/JS is already loaded on this page.
+2. Add aria-expanded toggling and a click/focus-based open state to the
+   Funding Solutions dropdown mega-menu (currently hover-only, no ARIA
+   state) - keep the existing :hover CSS as a progressive enhancement,
+   don't remove it.
+3. Fix channel-switcher touch targets at <=640px: add min-height: 44px
+   to .channel-switch__option and adjust padding (not font-size alone)
+   so the actual tap target reaches 44px.
+4. Apply whichever "Home" decision was confirmed in Prompt 8.1: if
+   icon-only, remove <span class="channel-switch__full">Home</span>
+   from navbar.html and update CLAUDE.md rule 13; if keeping the text,
+   no markup change needed here.
+5. Confirm prefers-reduced-motion still gates the new P&P reveal classes
+   correctly (should be automatic via the shared .reveal system - verify,
+   don't assume).
+
+Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 8.4 — Security headers: CSP + HSTS sitewide — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.4) and security-audit-report.md Finding 1 and Finding 5.
+
+Add a Content-Security-Policy and Strict-Transport-Security header to
+connect/vercel.json's existing headers array (two more objects for the
+"/(.*)" source), using this starting policy:
+
+default-src 'self'; script-src 'self' https://challenges.cloudflare.com;
+style-src 'self' 'unsafe-inline'; img-src 'self' data:;
+connect-src 'self' https://challenges.cloudflare.com;
+frame-src https://challenges.cloudflare.com; base-uri 'self';
+form-action 'self'; frame-ancestors 'self'
+
+plus Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+Then create equivalent vercel.json files for commercial/ and
+personal-and-property/ with the same full header set (the existing four
+Connect headers plus these two new ones) - right now only Connect has
+any security headers at all. Show me a diff before writing changes.
+```
+
+---
+
+## Prompt 8.5 — Compliance-critical fixes: P&P consent, Turnstile widget, Broker Portal form — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.5), security-audit-report.md Finding 2 and Finding 3,
+and connect/api/_lib/turnstile.js's own header comment.
+
+1. Add <script src="/shared/scripts/consent.js" defer></script> to all
+   11 personal-and-property/*.html pages - none of them currently load
+   it, unlike 48 of the other 55 real pages.
+
+2. Add the Turnstile widget to connect/index.html's request-call form
+   (script tag from https://challenges.cloudflare.com/turnstile/v0/api.js
+   plus a <div class="cf-turnstile" data-sitekey="..."> in the form) and
+   update connect/scripts/form.js to read the widget's response token
+   into turnstile_token on both the /api/form-token GET query string
+   and the /api/request-call POST body. Do NOT relax the
+   "if (!token) return false" check in _lib/turnstile.js as a shortcut.
+
+3. Fix commercial/broker-portal.html's form (line ~596,
+   <form class="bp-form">, no method/action - confirmed still broken,
+   independently verified) - force POST to a new /api/broker-lead
+   endpoint, following request-call.js's pattern and using the shared
+   _lib/ modules.
+
+Show me a diff before writing changes; flag your Turnstile site-key
+source (test key vs. real key) before wiring it in.
+```
+
+---
+
+## Prompt 8.6 — Shared-logic extraction: validation regex + notify templating — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.6), buildspec.md §14, and architecture-review-report.md
+Finding 3, and security-audit-report.md Finding 4.
+
+1. Extract the duplicated email/phone validation regexes (currently
+   copy-pasted between connect/api/request-call.js and
+   connect/scripts/form.js) into connect/api/_lib/validation.js. Flag
+   for me which approach you're taking for sharing it with the
+   client-side script (duplicate-with-comment vs. converting form.js to
+   a module) before implementing either.
+
+2. Extract sendEmail/sendSlack's HTML/Slack templating from
+   request-call.js into connect/api/_lib/notify.js
+   (renderLeadEmail(fields) / renderSlackMessage(fields)), parameterized
+   so the new broker-lead endpoint from Prompt 8.5 can reuse them.
+
+No behavior change expected in either case. Show me a diff before
+writing changes.
+```
+
+---
+
+## Prompt 8.7 — Performance & SEO — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.7) and performance-seo-report.md Findings 1-4, 9, 10
+in full.
+
+1. Add explicit width/height to every <img> tag sitewide - write a
+   one-off script (scripts/add-image-dims.mjs) that reads each
+   referenced image's real dimensions and injects the attributes,
+   starting with commercial/index.html (0 of 73 currently have them).
+   Don't touch the existing loading="lazy" attributes.
+2. Convert commercial/assets/founders.jpg (2.0MB) and other large
+   JPG/PNG photos to WebP, re-encoded at a sane max width.
+3. Create a real commercial/assets/og-image.png and point Commercial's
+   og:image tag at it (currently points to a file that doesn't exist).
+4. Bring Personal & Property's <head> up to Connect's standard: add
+   og:image, twitter:card tags, sitemap.xml, and robots.txt. Add
+   sitemap.xml to Connect too (it's missing there specifically).
+5. Audit Commercial's 6 JSON-LD schema blocks for duplicate/conflicting
+   Organization entries, and check whether any reference the broken
+   image path from step 3.
+
+Show me a diff/file list before writing changes.
+```
+
+---
+
+## Prompt 8.8 — Resilience & observability — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.8) and state-resilience-observability-report.md
+Findings 1, 6, 7, 8 in full.
+
+1. Add a small withRetry(fn, {attempts: 3, baseDelayMs: 300}) helper in
+   shared/scripts/, and wrap both fetch() calls in
+   connect/scripts/form.js (fetchFormToken and the request-call submit)
+   with it. Be careful not to trigger _lib/form-token.js's 3-second
+   minimum-age check with too-fast retries.
+2. Add shared/scripts/error-handler.js with window.addEventListener
+   ('error', ...) and ('unhandledrejection', ...) handlers that log
+   structured error info. Load it sitewide alongside consent.js.
+3. Set up a lightweight Sentry (free tier) integration capturing
+   unhandled JS errors, unhandled promise rejections, and Core Web
+   Vitals. Explicitly configure beforeSend/beforeBreadcrumb (or the
+   equivalent config) to scrub name/email/phone/business fields from
+   error context and disable session-replay DOM capture on form
+   elements, before enabling it.
+
+Show me a diff before writing changes; flag the Sentry DSN/project setup
+as something I need to create an account for, not something to fake.
+```
+
+---
+
+## Prompt 8.9 — Finish Phase 7.13: dependency hygiene, tests, CSS consolidation — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.9), buildspec.md §13 and §14, dependency-risk-report.md,
+and architecture-review-report.md Finding 2.
+
+1. Add the vitest/eslint devDependencies and test/lint scripts to
+   connect/package.json exactly as specified in buildspec.md §13 (this
+   was written into a prior prompt but never actually run - confirm
+   that first via git log if you want to double check).
+2. Run npm install inside connect/ and commit the resulting
+   package-lock.json.
+3. Write the vitest unit tests originally specified for Phase 7.13:
+   calcMonthly()/compute() amortization math, the rate limiter's pure
+   logic, and HMAC token verification. Run npm test and confirm they pass.
+4. Consolidate commercial/index.html's 4 separate <style> blocks into
+   one, renaming the "LIGHT HERO OVERRIDES (preview variant)" block's
+   .hero-selector overrides to a .hero--light-preview modifier class,
+   and updating the markup that relies on it to include that class
+   explicitly rather than relying on document-order cascade.
+
+Show me a diff before writing changes; run the test suite and show me
+the output before considering this done.
+```
+
+---
+
+## Prompt 8.10 — Final pre-deployment QA + closing report — ⬜ NOT RUN
+
+```
+Read plan.md §11 (8.10) in full.
+
+1. Re-run npm run build:includes:check and confirm all 66 pages pass.
+2. Spot-check the header/hero fix (8.1), emoji removal (8.2), and P&P
+   reveal animation (8.3) visually on at least one page per channel.
+3. Confirm the CSP (8.4) doesn't break any legitimate inline <style>
+   usage.
+4. Confirm all 11 Personal & Property pages load consent.js, the
+   Turnstile widget issues a real token on Connect's live form, and the
+   Broker Portal form now POSTs correctly (8.5).
+5. Run npm test (8.9) and confirm it passes.
+6. Produce docs/phase8-report.md, referencing each of the six source
+   report filenames directly and listing, for each, which findings were
+   fixed in Phase 8 versus explicitly deferred to Phase 9 (with the
+   reason) per plan.md §11.10's final bullet.
+
+Do not begin Phase 9 (Payload conversion) until this report exists and
+I've reviewed it.
+```
+
+---
+
+## Prompt 9 — Payload CMS scaffold (Phase 9) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §2 and §3 in full.
@@ -792,11 +1076,11 @@ to content migration.
 
 ---
 
-## Prompt 9 — Migrate one page end-to-end (Phase 8) — ⬜ NOT STARTED
+## Prompt 10 — Migrate one page end-to-end (Phase 9) — ⬜ NOT STARTED
 
 ```
 Convert exactly one page — commercial/business-term-loans.html — into a
-Payload-backed page using the collections scaffolded in Prompt 8 and the
+Payload-backed page using the collections scaffolded in Prompt 9 and the
 component inventory in design/components.md (if Prompt 4 was run — if
 not, work directly from the existing HTML/CSS instead).
 
@@ -812,7 +1096,7 @@ Do not touch any other HTML file until I approve this pattern.
 
 ---
 
-## Prompt 10 — Batch-convert remaining pages — ⬜ NOT STARTED
+## Prompt 11 — Batch-convert remaining pages — ⬜ NOT STARTED
 
 ```
 Read docs/cleanup-report.md first to confirm the file tree is clean and
@@ -830,7 +1114,7 @@ and flag me if any page doesn't cleanly fit the established pattern.
 
 ---
 
-## Prompt 11 — Vercel deploy (Phase 8) — ⬜ NOT STARTED
+## Prompt 12 — Vercel deploy (Phase 9) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §8.
@@ -844,11 +1128,12 @@ commands to run myself.
 
 ---
 
-## General rules (unchanged)
+## General rules (updated)
 
 - Tell Claude Code which files to read *before* it edits anything.
 - Ask for a diff before large edits, especially anything touching more than one file.
 - Never delete existing pages/routes to "declutter" — only delete files explicitly named as retired in `plan.md`/`buildspec.md` (and only after Phase 5.5 confirms it).
 - One phase per prompt.
-- Never treat `design baseline/` as anything other than a color/button reference — it is not part of the build.
-- Header/footer markup must be identical across every page; every link/asset path must be root-relative; em-dashes become spaced hyphens (` - `); no spaces in any folder or file name.
+- Never treat `_internal/_DO-NOT-DEPLOY-design-baseline/` as anything other than a color/button reference — it is not part of the build.
+- Header/footer markup must be identical across every page (enforced via include-sync as of Phase 8, not just manual diffing); every link/asset path must be root-relative; em-dashes become spaced hyphens (` - `); no spaces in any folder or file name.
+- **Verify claimed completion against the repo, not just a prior session's summary** — Phase 8 exists partly because several Phase 7 items were marked done but weren't fully rolled out (see the "Three things" note above). A quick `git log`/`grep`/file-existence check costs little and catches this early.

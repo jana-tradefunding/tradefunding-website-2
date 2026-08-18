@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding: HTML → Next.js + Payload CMS → Vercel
 
-**Status: v7 — adds §13, the technical companion to plan.md's new Phase 7 (Pre-Migration Remediation). The Payload/Vercel conversion is renumbered Phase 8 throughout.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
+**Status: v8 — adds §14, the technical companion to plan.md's new Phase 8 (Final Pre-Deployment Fix Pass). The Payload/Vercel conversion is renumbered Phase 9 throughout.** `plan.md` explains *what* and *why*; this explains *how to build it*. `Master Information Architecture & Sitemap.md` is the canonical source of truth for URLs, collection modeling, and routing — this file translates it into concrete build tasks and should never contradict it. If the two ever disagree, the IA doc wins and this file needs updating.
 
 ---
 
@@ -160,7 +160,7 @@ Same requirements as before — responsive, `next/script` `strategy="lazyOnload"
 
 ## 10. Static-HTML build hygiene (NEW — for the Phase 5 raw-HTML build, before Next.js exists)
 
-These rules apply specifically to the 60+ static HTML pages produced in Phase 5, before the Payload/Next.js conversion in Phase 8 — they exist because a raw multi-folder HTML build breaks in ways a Next.js app wouldn't.
+These rules apply specifically to the 60+ static HTML pages produced in Phase 5, before the Payload/Next.js conversion in Phase 9 — they exist because a raw multi-folder HTML build breaks in ways a Next.js app wouldn't.
 
 - **Header/footer parity:** `commercial/components/navbar.html` and `commercial/components/footer.html` are the single canonical markup source. Every page on every channel includes this exact markup — same wrapper `div`s, same classes, same padding — never a hand-copied variant. A single missing wrapper causes a visible layout jump between pages.
 - **Root-relative paths only:** every `href` and `src` — nav links, footer links, CSS `<link>` tags, images — must be root-relative (`/connect/about.html`, `/commercial/assets/logo-navy.png`), never relative (`../assets/logo.png`, bare `about.html`). Relative paths resolve differently depending on folder depth and will silently break for any page more than one folder deep, even though they look fine from the homepage.
@@ -191,7 +191,7 @@ Technical detail for each fix area — full rationale lives in `plan.md` §9:
 - **Inline styles → tokens:** a mechanical find-and-replace pass, file by file, converting inline `style="color: #54B4F6"`-type declarations into class references (`.icon--sky`) defined once in a shared stylesheet driven by `tokens.md` values — no visual change expected, just markup cleanup.
 - **Accessibility landmarks:** `<header>`/`<main>` wrap at the canonical component/template level (same principle as the header-parity rule in §10) so the fix propagates the same way any other header change does.
 - **`sitemap.xml`:** regenerate from an actual directory listing of live pages rather than hand-maintaining it further, to prevent this kind of drift recurring.
-- **Templating decision (9.3):** if the team chooses option (a) — adopt a templating layer — do this *before* any further Phase 5-style raw HTML production, since it changes how header/footer changes propagate from here on. If the team chooses option (b) — treat Phase 6 as the last raw-HTML pass — proceed to Phase 7 (pre-migration remediation, §13) once `docs/fix-report.md` is complete, then Phase 8.
+- **Templating decision (9.3):** if the team chooses option (a) — adopt a templating layer — do this *before* any further Phase 5-style raw HTML production, since it changes how header/footer changes propagate from here on. If the team chooses option (b) — treat Phase 6 as the last raw-HTML pass — proceed to Phase 7 (pre-migration remediation, §13) once `docs/fix-report.md` is complete, then Phase 8 (final fix pass, §14), then Phase 9.
 
 ---
 
@@ -233,4 +233,33 @@ Technical detail for each fix area — full rationale and priority order live in
   }
 }
 ```
-No production dependencies added. Re-audit this file (and the new one that appears once Phase 8's Payload/Next.js scaffold exists) with the same five-category dependency analysis before Phase 8's first production deploy.
+No production dependencies added. Re-audit this file (and the new one that appears once Phase 9's Payload/Next.js scaffold exists) with the same five-category dependency analysis before Phase 9's first production deploy. ⚠️ **This §13 block was never actually executed** — see §14 (Phase 8 §11.9) for the follow-through.
+
+---
+
+## 14. Phase 8 — Final Pre-Deployment Fix Pass (companion to plan.md §11)
+
+Technical detail for each fix area — full rationale and priority order live in `plan.md` §11.
+
+**8.1 — Include-sync + hero/header overlap:**
+- Convert 63 pages to the `<!-- include:start src="/commercial/components/navbar.html" --> ... <!-- include:end -->` marker pattern already proven in `commercial/business-loans.html`, `connect/for-vendors.html`, `personal-and-property/personal-loans.html`. Run `node connect/scripts/build-includes.mjs` to re-inline after adding markers to each file, then `--check` to confirm.
+- Wire `npm run build:includes:check` into `.git/hooks/pre-commit` (or a CI step, if one exists/gets added — none does currently) so drift fails the build.
+- Hero padding fix: `.hero { padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) 0 0; }` on Commercial; verify Connect's `padding:clamp(64px,8vw,112px) 0 ...` and Personal & Property's `.pp-hero` equivalent both clear the same stack height, especially at mobile widths where the switcher may wrap.
+
+**8.2 — Branding/visual cleanup:** all propagation-dependent, so sequence after 8.1. Emoji removal is a pure deletion (no replacement markup needed) in both `navbar.html` (20 `dd-icon` spans) and the three footer components (3 emoji entities each). Casper fix is a one-line class swap. Products page: reuse `business-loans.html`'s existing include-sync wiring and category-grouping markup as the starting template. Address propagation: the footer instances ride the include-sync fix; the two non-footer body-content instances (per Security Finding 6's file list) need a direct find-and-replace.
+
+**8.3 — Animation/a11y polish:** P&P hero reveal classes — copy Connect's exact stagger pattern (`reveal delay-1` through `delay-5`) onto the six `.pp-hero__*` elements listed in plan.md §11.3. Dropdown a11y — add `aria-expanded="false"` to the trigger, toggle to `"true"` on click/focus, add a click-outside/`Escape`-key close handler; keep the existing `:hover` CSS as a progressive enhancement for mouse users rather than removing it. Touch targets — `@media (max-width: 640px) { .channel-switch__option { min-height: 44px; padding: 12px 10px; } }`, adjusting existing padding values rather than only adding `min-height` (a `min-height` alone won't help if internal padding still visually crowds the tap target).
+
+**8.4 — CSP/HSTS:** add to `connect/vercel.json`'s existing `headers` array as two more objects in the same `headers` list for the `/(.*)"` source; create equivalent `vercel.json` files at `commercial/` and `personal-and-property/` roots if those are ever deployed as separate projects before Phase 9, otherwise this is moot once Phase 9's single `vercel.json` exists — do the per-channel version now regardless, since Phase 8 is explicitly the last pass before *some* deployment, even if Phase 9 later consolidates it.
+
+**8.5 — Consent + Turnstile:** consent script tag is identical across all 11 P&P pages — a single find-and-replace once include-sync (8.1) covers them, or a direct edit now if simpler given there are only 11. Turnstile: add the widget script (`https://challenges.cloudflare.com/turnstile/v0/api.js`) and a `<div class="cf-turnstile" data-sitekey="...">` to Connect's request-call form; in `scripts/form.js`, read `document.querySelector('.cf-turnstile')`'s response (via the Turnstile JS callback or reading the hidden input it injects) into the `turnstile_token` field of both the token-fetch query string and the submit POST body.
+
+**8.6 — Shared regex + notify.js:** `connect/api/_lib/validation.js` exporting `EMAIL_RE`/`PHONE_RE` (or validator functions), imported by `request-call.js` server-side; client-side, either duplicate the literal regex with a comment pointing at the shared source (simplest, given no bundler exists to actually share an ESM module with a plain `<script>` tag) or convert `form.js` to `<script type="module">` if that's an acceptable change — flag which approach before implementing, since it's a real choice, not just extraction. `_lib/notify.js` exports `renderLeadEmail(fields)` / `renderSlackMessage(fields)`, parameterized so a future `broker-lead` handler can reuse them with different field sets.
+
+**8.7 — Performance/SEO:** image dimension pass is a good candidate for a one-off Node script (`scripts/add-image-dims.mjs`, read each referenced image with a lightweight dimension-reader, inject `width`/`height` into the matching `<img>` tag) rather than 73+ manual edits — consider keeping this script in the repo since new images will keep needing it. WebP conversion likewise scripted (`sharp` or `squoosh-cli` as a one-time devDependency, not a runtime one). OG/sitemap/robots fixes are straightforward per-file additions using Connect's existing files as the template.
+
+**8.8 — Resilience/observability:** retry helper as a small `withRetry(fn, {attempts: 3, baseDelayMs: 300})` utility in `connect/scripts/` (or `shared/scripts/`, since P&P/Commercial may eventually need it too), wrapping the two `fetch()` calls in `form.js`. Global error handler and Sentry init both belong in `shared/scripts/`, loaded on every page — Sentry's `beforeSend`/`beforeBreadcrumb` hooks are the mechanism for the PII-scrubbing requirement, not a manual filter written from scratch.
+
+**8.9 — Dependency/process hygiene + CSS consolidation:** the exact devDependency block is already specified in §13 above — just actually run it this time, plus `npm install && git add connect/package-lock.json`. For the CSS consolidation, `commercial/index.html`'s 4 `<style>` blocks should merge into 1, with the "LIGHT HERO OVERRIDES (preview variant)" block's rules renamed to a `.hero--light-preview` modifier class and the markup that currently relies on the cascade order updated to include that class explicitly, rather than relying on document-order override.
+
+**8.10 — Closing QA:** `docs/phase8-report.md` should reference the six source report filenames directly (`architecture-review-report.md`, `dependency-risk-report.md`, `performance-seo-report.md`, `security-audit-report.md`, `state-resilience-observability-report.md`, `ui-ux-a11y-report.md`) and, for each, list which findings were fixed in this phase versus explicitly deferred to Phase 9 with the reason from plan.md §11.10's final bullet.

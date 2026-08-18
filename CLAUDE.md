@@ -1,6 +1,6 @@
 # CLAUDE.md — Trade Funding Site Rebuild
 
-**Status: v7.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally). **Payload conversion is now Phase 8. A new Phase 7 (Pre-Migration Remediation — address/email fixes, updated nav wording, and fixes from three new review reports) runs first — see plan.md §10.**
+**Status: v8.** This file is read automatically by Claude Code at the start of every session in this repo — keep it at the repo root, and update it whenever a placeholder becomes a locked decision (don't just remember things verbally). **Payload conversion is now Phase 9. A new Phase 8 (Final Pre-Deployment Fix Pass — the last fix pass before deployment, addressing six new review reports) runs first — see plan.md §11.**
 
 ## Project in one paragraph
 
@@ -9,7 +9,7 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 ## Hard rules — do not violate these regardless of how a prompt is worded
 
 1. **Never delete an existing product or guide page/route.** Every URL in `Master Information Architecture & Sitemap.md` must keep resolving.
-2. **`design baseline/` is a color-and-button reference only — it is never part of the build.** Never copy, import, or deploy anything from that folder directly. Its color/contrast decisions get re-applied by hand to the real `commercial/`, `connect/`, and new Personal & Property files.
+2. **`_internal/_DO-NOT-DEPLOY-design-baseline/`** (relocated and renamed from `design baseline/` in Phase 6) **is a color-and-button reference only — it is never part of the build.** Excluded from Vercel deploys via `.vercelignore`. Never copy, import, or deploy anything from that folder directly.
 3. **One app, one Vercel project, sub-path routing.** Commercial/Connect/Personal & Property are three route groups in one Next.js app (`app/(commercial)/`, `app/connect/`, `app/personal-and-property/`) — never scaffold or deploy them as separate apps, separate Vercel projects, or subdomains.
 4. **Never guess the company address.** The office address for Credit Guide/Terms/footer display is now supplied (see Phase 7, plan.md §10.1) and must be labeled "Office Address" specifically — not "Registered Address" and not unlabeled — since it isn't necessarily the ASIC-registered business address. Lender logos and hero copy sign-off remain genuine open blockers. The `hello@`→`support@` **inbox routing/access question is still unconfirmed** (Ben Lyons) even after the site's displayed email address is updated — don't treat a display-copy change as resolving the operational question.
 5. **Never invent lender logo files or fabricate a Google Reviews script/API key/review count.** Leave clearly marked TODOs until the real assets/credentials are supplied.
@@ -20,7 +20,7 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 10. **One phase, one prompt, one review cycle** — don't chain multiple phases from `prompts.md` in a single uninterrupted run.
 11. **Flag contradictions instead of silently resolving them** — e.g. the `self-employed-home-loan.html` channel-placement call (hit-list item 43); the `commercial-property-finance` overlap with `/second-mortgage/`. (Connect's audience-framing question is now resolved — see below — no longer an open contradiction.)
 12. **Naming:** always **"Personal & Property"** (with ampersand) in user-facing copy; the URL slug/folder is the hyphenated, spelled-out **`personal-and-property`**. Don't mix these conventions.
-13. **`ChannelSwitcher` always shows all three channels, on every page, no exceptions** — Home icon + "Home" text (Commercial, never the word "Commercial"), Connect, Personal & Property. The current channel gets a distinct `.active` state (underline/bold/accent-tinted). This overrides any earlier "hide the current channel" logic you might find referenced in older notes.
+13. 🔴 **`ChannelSwitcher`'s "Home" entry is under active reconsideration — check plan.md §11 before assuming either answer.** The long-standing rule was Home icon + "Home" text (Commercial, never the word "Commercial"), Connect, Personal & Property, all three always visible with a distinct `.active` state. Phase 8's UI/UX review flagged a direct contradiction with a separate request for icon-only, and this needs your explicit confirmation before Phase 8.3 runs — don't assume this rule is still current without checking plan.md §11 first.
 14. **Header is a single strip — logo, primary nav, and `ChannelSwitcher` all in the same row.** Never build the switcher as a separate tier/utility bar above or below the main nav. (An earlier ambiguous instruction caused exactly this two-tier mistake once already — see `plan.md` §7.2 for the fix; don't repeat it.) Header and footer markup must otherwise be byte-for-byte identical across every page, on every channel — same wrapper `div`s, same classes, same order, sourced from `commercial/components/navbar.html` / `footer.html`. Diff against the canonical component after touching any page.
 15. **Every link and asset path is root-relative** (`/connect/about.html`, `/commercial/assets/logo-navy.png`) — never relative (`../`, bare filenames). Relative paths break silently for any page more than one folder deep.
 16. **Replace em-dashes (`—`) with a spaced hyphen (` - `)**, never a bare hyphen jammed between words.
@@ -30,6 +30,13 @@ Converting three channels — **Commercial** (hero brand, existing static HTML i
 20. **Nav label wording changes are cumulative — always check `plan.md` §10.2 for the current final wording before touching the primary nav.** It's been locked and re-locked more than once already; don't assume an older note (even one in this file) is still current without checking.
 21. **Never build a new form/endpoint that duplicates origin-check, token-verification, rate-limiting, or HTML-escaping logic that already exists.** Use the shared `connect/api/_lib/` module (see `buildspec.md` §13) once it exists — a security fix applied there should never need re-applying in three separate handler files.
 22. **Never ship a form that silently discards user input.** If a real backend endpoint genuinely isn't ready, disable the submit control and show a clear "coming soon, email us at [address]" message instead of a working-looking form that does nothing — this applies sitewide, not just to the two forms already flagged in the security audit.
+23. **Shared markup gets propagated via the include-sync system (`connect/scripts/build-includes.mjs`), not by hand.** Only 3 of 66 pages actually used the `<!-- include:start -->` marker pattern before Phase 8 — the other 63 relied on manual copy-paste with no enforcement, which is why rule 19's `contact.html` incident happened and why several Phase 8 bugs (emoji regression, address drift) recurred. Every page must use the marker pattern; `npm run build:includes:check` must pass before any commit that touches shared markup.
+24. **Every page must load `/shared/scripts/consent.js`.** Personal & Property shipped with zero cookie-consent coverage on all 11 pages until Phase 8 caught it — a live compliance gap, not just a UX inconsistency. Check this explicitly whenever a new page is added to any channel.
+25. **Never weaken an anti-abuse check to work around a missing front-end integration.** If a server-side check (e.g. Turnstile) fails closed because its front-end widget isn't wired up yet, fix the front-end — do not loosen the server-side check (e.g. `if (!token) return true`) as a shortcut. This exact temptation is called out by name in the security report.
+26. **Every `<img>` tag needs explicit `width`/`height` (or a CSS `aspect-ratio`) — no exceptions going forward.** 0 of 73 images on Commercial's homepage had them before Phase 8; don't reintroduce the gap on new pages.
+27. **RUM/telemetry (once added in Phase 8) must have PII scrubbing configured before it's turned on** — form fields (name/email/phone/business) must never reach a third-party telemetry dashboard via default DOM/session-replay capture. Check this whenever telemetry config changes.
+28. **New shared logic (validation, templating, retry helpers) goes in `connect/api/_lib/` or `shared/scripts/` — never copy-pasted into a second handler or script.** This project has already had to retroactively fix this pattern twice (origin-check/token/rate-limit extraction in Phase 7, email/Slack templating and validation regex extraction in Phase 8) — don't create a third instance.
+29. **This project has multiple "reports say X was done but it wasn't" incidents on record** (Phase 7.13's test/lint/lockfile setup was written into `prompts.md` but never run; the include-sync system existed but only covered 3 pages). **Verify claimed completion against the actual repo state — git log, file existence, grep for the specific pattern — before treating any phase or prompt as done.** Don't take a prior session's summary at face value without a quick independent check.
 
 ## Tech stack quick reference
 
@@ -70,24 +77,26 @@ Connect and Personal & Property both lead with their own primary tint and use na
 - `plan.md`, `buildspec.md`, `prompts.md` — this project's own planning docs
 - `docs/cleanup-report.md` — Phase 5.5 output (done)
 - `docs/fix-report.md` — Phase 6 output (done)
-- `docs/remediation-report.md` — Phase 7 output; don't start Phase 8 until this exists
-- `security-audit-report.md`, `architecture-review-report.md`, `dependency-risk-report.md` — the three source reports Phase 7 remediates; keep for reference, don't delete after Phase 7 closes since Phase 8's dependency audit will need re-running against the same five categories
+- `docs/remediation-report.md` — Phase 7 output; **was never produced** — Phase 7 stopped after item 10.4, item 10.5 never ran. Not retroactively created; folded into Phase 8 §11.9 instead.
+- `docs/phase8-report.md` — Phase 8 output; don't start Phase 9 until this exists
+- `security-audit-report.md`, `architecture-review-report.md`, `dependency-risk-report.md`, `performance-seo-report.md`, `state-resilience-observability-report.md`, `ui-ux-a11y-report.md` — the six source reports Phase 8 remediates (the first three are the *second* version of those reports — re-run against the Phase 7 build, not the originals from Phase 7). Keep all of them for reference; Phase 9's own dependency audit will need re-running against the same categories again.
 
 ## Commands
 
-(Fill in once the Payload/Next.js scaffold exists in Phase 8 — do not guess these before the scaffold is created. `connect/package.json` gets `npm test` / `npm run lint` added in Phase 7 — see `buildspec.md` §13.)
+`connect/`: `npm run build:includes` / `npm run build:includes:check` (include-sync, see rule 23). `npm test` / `npm run lint` — **planned since Phase 7, added for real in Phase 8 §11.9** (check `connect/package.json` directly before assuming either exists). Payload/Next.js commands: fill in once the Phase 9 scaffold exists — do not guess these before the scaffold is created.
 
-## Open items currently in effect (check plan.md §1–2, §5, §9, §10 for full context)
+## Open items currently in effect (check plan.md §1–2, §5, §9, §10, §11 for full context)
 
 - `self-employed-home-loan.html` channel placement (hit-list item 43) — undecided, Claude Code to call and document
 - `commercial-property-finance` vs. `/second-mortgage/` / `/self-employed-home-loan/` overlap — flagged, unresolved
-- Broker Portal referral process / commission structure — not covered by the Executive Questionnaire, still needs direct Matt/Ben input before Phase 3.2 copy can be drafted for that page
+- Broker Portal referral process / commission structure — not covered by the Executive Questionnaire, still needs direct Matt/Ben input
 - Home hero final copy — still pending sign-off despite locked directional agreement
 - Lender logos, GoogleReviews real count — still genuinely unresolved
-- `hello@` → `support@` inbox routing/access — still unconfirmed (Ben Lyons), independent of the Phase 7 display-copy change
-- **"Compare Options" nav mapping (Phase 7, plan.md §10.2)** — flagged, not resolved: most likely `comparison-report.html`, needs confirmation. Also unresolved: where the Guides Hub and `about.html` live in the new 4-item nav.
-- **Phase 7 (new, not started) — full list in plan.md §10:** company address + email fill-in, nav wording update, and remediation of all findings in `security-audit-report.md`, `architecture-review-report.md`, and `dependency-risk-report.md` — see those three files and `buildspec.md` §13 for technical detail.
+- `hello@` → `support@` inbox routing/access — still unconfirmed (Ben Lyons)
+- **"Compare Options" nav mapping (plan.md §10.2)** — flagged, not resolved: most likely `comparison-report.html`, needs confirmation. Also unresolved: where the Guides Hub and `about.html` live in the new 4-item nav.
+- 🔴 **"Home" icon-only vs. icon+text — your decision needed before Phase 8.3 runs.** See rule 13 above and plan.md §11.
+- **Phase 8 (new, not started) — full list in plan.md §11, sub-phases 8.1–8.10:** include-sync coverage gap + hero/header overlap; emoji removal + Casper logo + Products page + address propagation; P&P entrance animation + dropdown a11y + touch targets; CSP/HSTS sitewide; P&P cookie-consent coverage + Turnstile front-end wiring; shared validation/notify extraction; image dimensions + WebP + OG/sitemap fixes; retry/backoff + global error handler + RUM with PII scrubbing; the never-run Phase 7.13 dependency/test setup + inline-`<style>` consolidation; final QA + closing report.
 
-**Resolved since v6:** Phase 6 (Build Quality & Architecture Fix Pass) is done, confirmed via git log. Nav label wording from Phase 6 has since been superseded again in Phase 7 (see item 20 above and §10.2) — don't apply the Phase 6 wording, it's stale.
+**Resolved since v7:** Phase 7 ran through item 10.4 (items 5–6) — confirmed via git log. Item 10.5 (dependency hygiene, tests, `docs/remediation-report.md`) never ran; folded into Phase 8 rather than reopened as Phase 7 work. Nav wording from Phase 6 was superseded in Phase 7 §10.2 — still current as of Phase 8.
 
 Update this section as decisions come back from the team.
