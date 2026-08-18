@@ -123,12 +123,18 @@
 .navbar__link--dropdown-trigger {
   background: none;
   border: none;
-  font: inherit;
-  color: inherit;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-primary);
   cursor: pointer;
   padding: 0;
   display: inline-flex;
   align-items: center;
+}
+
+.navbar__link--dropdown-trigger:hover {
+  color: var(--skyblue);
 }
 
 .dropdown-menu__category {
