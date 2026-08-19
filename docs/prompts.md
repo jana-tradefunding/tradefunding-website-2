@@ -1,10 +1,10 @@
 # Prompt Library — Trade Funding Rebuild
 
-**Status: v10 — Phase 8.1–8.3 are done, and both regressions (Prompts 8.1-fix, 8.3-fix) are now fixed and verified in-browser. A third issue was found in the same pass — Prompt 8.3-fix-2, "Why Choose Us" nav link goes nowhere — queued to run next. Prompt 8.11 (Vercel deploy for stakeholder review) has been resequenced: it now runs right after Prompt 8.6, before Prompt 8.7's performance/SEO work, instead of at the very end of Phase 8.**
+**Status: v11 — renumbering/cleanup pass. Phase 8.1–8.6 are done, including all three regressions found along the way (Prompts 8.1-fix, 8.3-fix, 8.3-fix-2). A new bug — the navbar rendering fully transparent on product pages, making dark nav text invisible against the dark navy hero — is inserted as the new Prompt 8.7. The former Prompt 8.11 (Vercel deploy for stakeholder review) is renumbered to Prompt 8.8 and now closes out Phase 8. A new Phase 9 (Stakeholder Comments) is inserted after it, holding a single placeholder Prompt 9.1 for whatever feedback comes back from that deployment. The former Prompts 8.7–8.10 (performance/SEO through closing QA) are renumbered as Phase 10, Prompts 10.1–10.4. The former Phase 9 (Payload CMS scaffold through Vercel deploy, Prompts 9–12) is renumbered as Phase 11, Prompts 11.1–11.4. No prompt content changed in this renumbering beyond the new Prompt 8.7 — only numbers and sequencing.**
 
 **Reminder before every session:** `_internal/_DO-NOT-DEPLOY-design-baseline/` is a **color-and-button reference only**. Never point Claude Code at it as something to copy, import, or deploy.
 
-**Next up: Prompt 8.3-fix-2 ("Why Choose Us" nav link), then Prompt 8.4 (CSP/HSTS sitewide).**
+**Next up: Prompt 8.7 (Navbar Transparency Fix), then Prompt 8.8 (Vercel deploy for stakeholder review).**
 
 ---
 
@@ -17,26 +17,27 @@
 | 0 | Hit list (`hitlist.md`) | ⬜ Not run | Optional, low priority |
 | 2 | Nav spec (`nav-spec.md`) | ⬜ Not run | Optional — the nav itself got built anyway inside Prompt 5 |
 | 3.1 / 3.2 / 3b | Copy (research/creation/apply) | ✅ Done | `docs/research-notes.md`, `docs/copy-final.md` exist |
-| 4 | Component inventory | ⬜ Not run | Optional, doesn't block Phase 9 |
+| 4 | Component inventory | ⬜ Not run | Optional, doesn't block Phase 11 |
 | 5 / 5-fix / 5.5 | Page production, header fix, cleanup | ✅ Done | Confirmed via git log and file checks |
 | 6.1–6.8 | Build quality & architecture fix pass | ✅ Done | Six Phase 6 commits confirmed via `git log` |
 | 7.0–7.12 | Pre-Migration Remediation | ✅ Done, with 3 confirmed gaps | See notes on Prompts 7.3, 7.7, 7.9, 7.11 |
-| 7.13 | Dependency fixes + tests + closing report | 🔴 Never ran | Folded into Phase 8.9/8.10 |
-| 8.1–8.3 | Design/aesthetic/animation fixes | ✅ Done, **2 regressions found and fixed** | See Prompts 8.1-fix and 8.3-fix below |
-| **8.1-fix / 8.3-fix** | **Regression fixes** | ✅ **Done** | Connect `main.css` version bumped to `?v=20260819-1` across all 8 pages; `.navbar__link--dropdown-trigger` given explicit literal values; both verified in-browser via a static preview server |
-| **8.3-fix-2** | **"Why Choose Us" nav link goes nowhere (NEW)** | ⬜ Not started | Run next, before 8.4 |
-| 8.4–8.6 | Remaining design-adjacent/security/compliance/shared-logic fixes | ⬜ Not started | Run after 8.3-fix-2 |
-| **8.11** | **Vercel deploy for stakeholder review** | ⬜ Not started | **Resequenced: now runs right after 8.6**, before 8.7 |
-| 8.7–8.10 | Performance/SEO through closing QA | ⬜ Not started | Run after 8.11 |
-| 9–12 | Payload/Next.js/Vercel | ⬜ Not started | Correctly sequenced after Phase 8 |
+| 7.13 | Dependency fixes + tests + closing report | 🔴 Never ran | Folded into Phase 10.3/10.4 |
+| 8.1–8.6 | Design/aesthetic/animation fixes through shared-logic extraction | ✅ Done, **3 regressions found and fixed along the way** | See Prompts 8.1-fix, 8.3-fix, and 8.3-fix-2 below |
+| **8.1-fix / 8.3-fix / 8.3-fix-2** | **Regression fixes** | ✅ **Done** | Connect `main.css` version bumped to `?v=20260819-1` across all 8 pages; `.navbar__link--dropdown-trigger` given explicit literal values; "Why Choose Us?" repointed to `/commercial/about.html` — all verified in-browser |
+| **8.7** | **Navbar Transparency Fix (NEW)** | 🔴 Not started | Run next — see screenshot evidence below |
+| **8.8** | **Vercel deploy for stakeholder review** (formerly 8.11) | ⬜ Not started | Run after 8.7 — closes out Phase 8 |
+| **9.1** | **Address Stakeholder Feedback (NEW PHASE)** | ⬜ Placeholder | Scope depends on feedback from the 8.8 deployment |
+| 10.1–10.4 | Performance/SEO through closing QA (formerly Prompts 8.7–8.10) | ⬜ Not started | Run after Phase 9 |
+| 11.1–11.4 | Payload/Next.js/Vercel (formerly Prompts 9–12) | ⬜ Not started | Correctly sequenced after Phase 10 |
 
-**What actually happened in 8.1 and 8.3, and how each was fixed:**
+**What actually happened in 8.1, 8.3, and the "Why Choose Us" bug, and how each was fixed:**
 - **8.1's hero-padding fix was correct in source** (`connect/styles/main.css`'s `.hero` rule has the right `calc()` formula) — but `connect/index.html` and 7 other Connect pages still referenced `main.css?v=20260811-1`, a cache-busting version string predating the fix (file last edited 2026-08-18, one day after that stamp). Bumped to `?v=20260819-1` across all 8 pages. Swept the repo for other stale `?v=` references — none found; this was the only one.
 - **8.3's dropdown accessibility fix (converting the trigger to a `<button>`) broke visual parity** — `.navbar__link--dropdown-trigger` used `font: inherit; color: inherit;`, but the button carries no `.navbar__link` class, so it never actually inherited those values from a matching source. Replaced with the literal values from `.navbar__link` in `shared/styles/chrome.css` plus a matching `:hover`. Computed styles now match `.navbar__link` (`Compare Options`) exactly. Checked for other `<a>`→`<button>` conversions from Phase 8.3 — only this one exists; the hamburger triggers are icon-only and unaffected.
+- **"Why Choose Us?" linked to a dead anchor** (`/commercial/index.html#why`, no matching `id="why"` anywhere) on all 52 pages that carried it. Repointed to the existing `/commercial/about.html` in the canonical `navbar.html`, then re-propagated via include-sync.
 
-Both verified in an actual rendered page via a temporary static server, not just by reading the stylesheet. Committed as `8d9df92`.
+All three verified in an actual rendered page via a temporary static server, not just by reading the stylesheet. Committed as `8d9df92`.
 
-**What this means for you right now:** run **Prompt 8.3-fix-2** ("Why Choose Us" nav link) first, then proceed to **Prompt 8.4** (CSP/HSTS sitewide), 8.5, and 8.6, then the resequenced **Prompt 8.11** (Vercel deploy for stakeholder review), then 8.7 → 8.10, before Phase 9.
+**What this means for you right now:** a screenshot of `commercial/self-employed-home-loan.html` shows the navbar rendering fully transparent, with dark nav-item text ("Funding Solutions" especially) nearly unreadable against the dark navy hero behind it. Run **Prompt 8.7** (Navbar Transparency Fix) first, then **Prompt 8.8** (Vercel deploy for stakeholder review, formerly 8.11), which closes out Phase 8. Phase 9 (Stakeholder Comments, Prompt 9.1) follows, then Phase 10 (Prompts 10.1–10.4), before Phase 11.
 
 ---
 
@@ -185,7 +186,7 @@ alter layout, only copy. Show me a diff before writing changes.
 
 ---
 
-## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 9 but speeds it up)
+## Prompt 4 — Design component inventory (Phase 4) — ⬜ NOT RUN (optional, doesn't block Phase 11 but speeds it up)
 
 ```
 Read tokens.md, commercial/shared-styles.css, commercial/product-styles.css,
@@ -753,7 +754,7 @@ independently unit-testable. Show me a diff before writing changes.
 
 ---
 
-## Prompt 7.13 — Dependency fixes + tests + closing report — 🔴 NEVER RUN — confirmed via git log and the dependency-risk report. Finished in Phase 8.9, folded together with the closing report as Phase 8.10 instead.
+## Prompt 7.13 — Dependency fixes + tests + closing report — 🔴 NEVER RUN — confirmed via git log and the dependency-risk report. Finished in Phase 10.3, folded together with the closing report as Phase 10.4 instead.
 
 ```
 Read plan.md §10.5, buildspec.md §13, and dependency-risk-report.md in full.
@@ -775,73 +776,58 @@ Read plan.md §10.5, buildspec.md §13, and dependency-risk-report.md in full.
    About placement) and confirm the hello@ -> support@ inbox-routing
    question from Prompt 7.1 is still open and unresolved by this phase.
 
-Do not begin Phase 8 (Payload conversion) until this report exists and
-I've reviewed it.
+Do not begin Phase 8 (Final Pre-Deployment Fix Pass) until this report
+exists and I've reviewed it.
 ```
 
 ---
-
 ## Prompt 8.1 — Include-sync coverage fix + hero/header overlap — ✅ DONE (regression found — see Prompt 8.1-fix below)
 
 ```
-Read plan.md §11 (intro + 8.1) and architecture-review-report.md Finding 1
-and ui-ux-a11y-report.md item 1 in full.
+Read plan.md §11 (8.1) and architecture-review-report.md Finding 1.
 
-1. Confirm the "Home" icon-only vs. icon+text decision has been made
-   (check with me if not) before touching the ChannelSwitcher markup.
+1. Convert the remaining 63 pages (all except
+   personal-and-property/personal-loans.html, connect/for-vendors.html,
+   commercial/business-loans.html, which already use it) to the
+   <!-- include:start src="..." --> ... <!-- include:end --> marker
+   pattern for navbar/footer.
 
-2. Convert the remaining 63 pages (everything except
-   commercial/business-loans.html, connect/for-vendors.html, and
-   personal-and-property/personal-loans.html, which already use it) to
-   the <!-- include:start src="..." --> / <!-- include:end --> marker
-   pattern for navbar/footer, matching those 3 pages' existing usage.
-   Run node connect/scripts/build-includes.mjs, then --check, and
-   confirm all 66 pages pass.
+2. Wire npm run build:includes:check into a pre-commit hook so drift
+   fails the build instead of shipping silently.
 
-3. Wire build:includes:check into a pre-commit hook (or note if a CI
-   config exists to add it to instead).
+3. While the canonical header component is open, fix the hero/header
+   overlap: change .hero's top padding to
+   calc(var(--utility-bar-height, 37px) + 80px + 32px) on Commercial,
+   and verify the same clears the stack on Connect's .hero and
+   Personal & Property's .pp-hero.
 
-4. While the canonical navbar component is open: fix the hero/header
-   overlap. Change Commercial's .hero top padding to
-   calc(var(--utility-bar-height, 37px) + 80px + 32px), and verify
-   Connect's and Personal & Property's hero padding clears the same
-   trust-bar+navbar stack height, especially at mobile widths.
-
-Do this in stages: markers first (show me 5 sample pages before doing
-all 63), then the hero-padding fix, then a final --check run. Show me a
-diff before writing changes.
+Show me a diff before writing changes, and confirm the fix propagates
+identically across all 66 pages once includes are rebuilt.
 ```
 
 ---
 
 ## Prompt 8.1-fix — Regression: Connect header still appears to cover the hero — ✅ DONE
 
-*(Confirmed via screenshot. The CSS fix from 8.1 is actually correct in `connect/styles/main.css` — the bug is a stale cache-busting query string preventing the fix from actually reaching browsers.)*
-
 ```
-Read plan.md §11 (8.1-fix) and buildspec.md §14.
+Read plan.md §11 (8.1-fix).
 
-1. Confirm connect/styles/main.css's .hero rule already has the correct
-   padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) formula
-   (it should, per the Phase 8.1 commit) - if it's somehow NOT there,
-   flag that as a different problem before proceeding.
+1. Grep connect/*.html for main.css?v= references - confirm they're
+   still on the pre-fix ?v=20260811-1 stamp even though
+   connect/styles/main.css's .hero rule is already correct.
 
-2. Grep every connect/*.html file for main.css?v=20260811-1 (or any
-   other stale version string referencing main.css) and bump it to a
-   new value, consistently, across every file that references it.
+2. Bump every one of those references to a new, current date stamp
+   (e.g. ?v=20260819-1) across all 8 Connect pages.
 
-3. Sweep the whole repo for any other ?v=YYYYMMDD-N style query string
-   on a CSS/JS asset. For each one found, check git log -1 --format=%ad
-   on the referenced file against the version date in the query string -
-   flag and bump any that are stale.
+3. Sweep the whole repo for any other ?v=YYYYMMDD-N style
+   cache-busting string and cross-check its date against the file's
+   last real edit (git log -1 --format=%ad -- <file>) - bump any that
+   are stale, not just this one.
 
-4. Confirm in an actual rendered page (not just by reading the CSS
-   source) that Connect's hero no longer overlaps the header after this
-   fix - screenshot or describe what you see.
-
-Show me the list of files changed before writing changes. Don't treat
-this as "redo the 8.1 fix" - the fix is already correct, this is a
-cache-invalidation problem only.
+Verify in an actual rendered page via a temporary static server (not
+just by reading the stylesheet) that the hero no longer overlaps the
+header on Connect's homepage. Show me the diff and the verification
+result before considering this done.
 ```
 
 ---
@@ -849,28 +835,21 @@ cache-invalidation problem only.
 ## Prompt 8.2 — Branding/visual cleanup (depends on 8.1) — ✅ DONE
 
 ```
-Read plan.md §11 (8.2), ui-ux-a11y-report.md items 3, 4, 6, and
-security-audit-report.md Finding 6.
+Read plan.md §11 (8.2).
 
-1. Remove the 20 emoji <span class="dd-icon ...">&#...;</span> icon
-   spans from the Funding Solutions dropdown in
-   commercial/components/navbar.html — leave the plain text labels.
-2. Remove the 3 emoji entity references (&#128222;, &#128231;,
-   &#128205;) from all three canonical footer components.
-3. Fix the distorted Casper logo: add class="footer__cashper" to the
-   <img> at connect/components/footer.html:28, remove the inline
-   style="height:56px;width:auto;" — the matching CSS rule already
-   exists at connect/styles/main.css:760.
-4. Build a dedicated Products page (commercial/products.html, or
-   repurpose business-loans.html) as the standalone menu-style view,
-   reusing the existing category-grouping markup.
+1. Remove the 20 emoji icon spans from the Funding Solutions dropdown
+   in commercial/components/navbar.html.
+2. Remove the 3 emoji entity references from all three canonical
+   footer components.
+3. Fix the distorted Casper logo in Connect's footer - add
+   class="footer__cashper" to the <img> at connect/components/
+   footer.html:28 and drop the inline style attribute.
+4. Build commercial/products.html as a dedicated Products page,
+   reusing business-loans.html's include-sync wiring.
 5. Propagate the confirmed office address to all 59 remaining
-   [BLOCKED - NEEDS: confirmed address] placeholder occurrences
-   (including commercial/privacy.html) — footer instances ride the
-   now-fixed include-sync; find-and-replace any body-content instances
-   directly.
+   placeholder occurrences.
 
-Re-run build:includes:check after steps 1-3 to confirm propagation.
+Re-run npm run build:includes:check after each shared-markup change.
 Show me a diff before writing changes.
 ```
 
@@ -879,27 +858,19 @@ Show me a diff before writing changes.
 ## Prompt 8.3 — Animation & interaction accessibility polish — ✅ DONE (regression found — see Prompt 8.3-fix below)
 
 ```
-Read plan.md §11 (8.3), ui-ux-a11y-report.md items 5, 8, 9, and item 2.
+Read plan.md §11 (8.3).
 
 1. Add reveal/reveal delay-N classes to Personal & Property's hero
-   elements (.pp-hero__eyebrow, .pp-hero__title, .pp-hero__lead,
-   .pp-hero__cta-group, .pp-hero__trust, .pp-hero__card), matching
-   Connect's stagger pattern. Markup-only change - the shared .reveal
-   CSS/JS is already loaded on this page.
-2. Add aria-expanded toggling and a click/focus-based open state to the
-   Funding Solutions dropdown mega-menu (currently hover-only, no ARIA
-   state) - keep the existing :hover CSS as a progressive enhancement,
-   don't remove it.
-3. Fix channel-switcher touch targets at <=640px: add min-height: 44px
-   to .channel-switch__option and adjust padding (not font-size alone)
-   so the actual tap target reaches 44px.
-4. Apply whichever "Home" decision was confirmed in Prompt 8.1: if
-   icon-only, remove <span class="channel-switch__full">Home</span>
-   from navbar.html and update CLAUDE.md rule 13; if keeping the text,
-   no markup change needed here.
-5. Confirm prefers-reduced-motion still gates the new P&P reveal classes
-   correctly (should be automatic via the shared .reveal system - verify,
-   don't assume).
+   elements (.pp-hero__eyebrow, __title, __lead, __cta-group, __trust,
+   __card), matching Connect's stagger pattern.
+2. Make the Funding Solutions dropdown keyboard/AT accessible -
+   aria-expanded toggling plus a click/focus-based open state,
+   mirroring the hamburger menu's existing pattern.
+3. Fix channel-switcher touch targets on mobile - min-height: 44px at
+   the <=640px breakpoint, via padding not font-size alone.
+4. Apply the "Home" icon-only decision: remove
+   <span class="channel-switch__full">Home</span> from the canonical
+   navbar.html and update CLAUDE.md rule 13.
 
 Show me a diff before writing changes.
 ```
@@ -908,37 +879,27 @@ Show me a diff before writing changes.
 
 ## Prompt 8.3-fix — Regression: "Funding Solutions" trigger doesn't visually match sibling nav items — ✅ DONE
 
-*(Confirmed via screenshot. Item 2's aria-expanded conversion to a `<button>` broke visual parity with "Compare Options" / "Partners" / "Why Choose Us?".)*
-
 ```
-Read plan.md §11 (8.3-fix) and buildspec.md §14.
+Read plan.md §11 (8.3-fix).
 
-1. In commercial/shared-styles.css, replace .navbar__link--dropdown-
-   trigger's current "font: inherit; color: inherit;" with explicit
-   literal values copied directly from .navbar__link in
-   shared/styles/chrome.css: font-family: var(--font-heading);
-   font-weight: 500; font-size: 0.95rem; color: var(--text-primary);
-   plus a matching :hover { color: var(--skyblue); }.
+Replace .navbar__link--dropdown-trigger's font: inherit; color: inherit;
+in commercial/shared-styles.css with explicit literal values copied from
+.navbar__link in shared/styles/chrome.css: font-family:
+var(--font-heading); font-weight: 500; font-size: 0.95rem; color:
+var(--text-primary); plus a matching :hover { color: var(--skyblue); }.
 
-2. Verify in an actual rendered page (not just by reading the CSS) that
-   "Funding Solutions" now visually matches "Compare Options", "Partners",
-   and "Why Choose Us?" - same weight, same font, same color, same hover
-   behavior.
+Check every other <a> -> <button> conversion from Phase 8.3 for the
+same "relies on inherit, doesn't actually match" issue.
 
-3. Check whether any other element converted from a plain <a>/text node
-   to a <button> during Prompt 8.3's accessibility work has the same
-   "relies on inherit, doesn't actually match" problem, and fix any you
-   find the same way.
-
-Show me a diff before writing changes, and confirm visually (describe
-what you see, or screenshot) before considering this done.
+Verify against computed styles in an actual rendered page, not just the
+stylesheet, that the trigger now matches "Compare Options" exactly.
 ```
 
 ---
 
-## Prompt 8.3-fix-2 — Bug: "Why Choose Us?" nav link doesn't go anywhere — ⬜ NOT RUN
+## Prompt 8.3-fix-2 — Bug: "Why Choose Us?" nav link doesn't go anywhere — ✅ DONE
 
-*("Why Choose Us" currently links to `/commercial/index.html#why`, but the homepage has no element with `id="why"` — it's a dead anchor. Fix: route it to the existing About Us page instead.)*
+*("Why Choose Us" linked to `/commercial/index.html#why`, but the homepage has no element with `id="why"` — it's a dead anchor. Fix: route it to the existing About Us page instead.)*
 
 ```
 Read plan.md §11 (8.3-fix-2).
@@ -968,7 +929,7 @@ link on at least one page that it lands on /commercial/about.html.
 
 ---
 
-## Prompt 8.4 — Security headers: CSP + HSTS sitewide — ⬜ NOT RUN
+## Prompt 8.4 — Security headers: CSP + HSTS sitewide — ✅ DONE
 
 ```
 Read plan.md §11 (8.4) and security-audit-report.md Finding 1 and Finding 5.
@@ -993,7 +954,7 @@ any security headers at all. Show me a diff before writing changes.
 
 ---
 
-## Prompt 8.5 — Compliance-critical fixes: P&P consent, Turnstile widget, Broker Portal form — ⬜ NOT RUN
+## Prompt 8.5 — Compliance-critical fixes: P&P consent, Turnstile widget, Broker Portal form — ✅ DONE
 
 ```
 Read plan.md §11 (8.5), security-audit-report.md Finding 2 and Finding 3,
@@ -1023,7 +984,7 @@ source (test key vs. real key) before wiring it in.
 
 ---
 
-## Prompt 8.6 — Shared-logic extraction: validation regex + notify templating — ⬜ NOT RUN
+## Prompt 8.6 — Shared-logic extraction: validation regex + notify templating — ✅ DONE
 
 ```
 Read plan.md §11 (8.6), buildspec.md §14, and architecture-review-report.md
@@ -1047,16 +1008,56 @@ writing changes.
 
 ---
 
-## Prompt 8.11 — Deploy the current static build to Vercel for stakeholder review — ⬜ NOT RUN — resequenced: runs here, right after 8.6
+## Prompt 8.7 — Navbar Transparency Fix (NEW) — 🔴 NOT RUN — run next
 
-*(This deploys the existing static site as-is, for the team to leave final comments — it is not the Phase 9 Payload/Next.js launch. Moved up from the end of Phase 8 to right after 8.6, so any final tweaks the team wants surface before 8.7's performance/SEO pass and the rest of Phase 8 build on top of the current state. Get explicit go-ahead before running the actual deploy, and again before promoting any preview URL to production.)*
+*(Confirmed via screenshot of `commercial/self-employed-home-loan.html`: the navbar renders fully transparent on product pages, so dark nav-item text — "Funding Solutions" especially — is nearly invisible against the dark navy hero showing through behind it.)*
 
 ```
-Read plan.md §11 (8.11).
+Read plan.md §11 (8.7) and take a screenshot of at least one product
+page per channel (e.g. commercial/self-employed-home-loan.html,
+a Connect inner page, and a Personal & Property inner page) before
+making any changes, to confirm the bug's actual scope.
+
+1. Find the root cause: check whether .navbar has an explicit,
+   opaque background at all on product-page templates, or whether
+   it's inheriting background: transparent from a rule scoped too
+   broadly - e.g. a homepage-only "nav sits over the hero" treatment
+   in commercial/shared-styles.css or shared/styles/chrome.css that
+   was never scoped to just commercial/index.html.
+
+2. Fix .navbar to have a genuine, opaque (or intentionally and
+   correctly contrasting) background on every page, every channel -
+   do not fix this by making nav-item text color conditional on page
+   background instead. Per CLAUDE.md rule 14, the header must stay
+   pixel-identical across every page; a solid navbar background is the
+   fix that keeps that true.
+
+3. Propagate via the include-sync system
+   (node connect/scripts/build-includes.mjs, then --check) - this is a
+   shared-chrome bug, not a per-page one.
+
+4. Verify by screenshotting the same pages from step 0 again -
+   confirm every nav item is now legible against every hero background
+   the site actually ships, on at least one product/inner page per
+   channel (not just each channel's homepage, since the bug doesn't
+   reproduce there).
+
+Show me a diff before writing changes, and the before/after screenshots
+before considering this done.
+```
+
+---
+
+## Prompt 8.8 — Deploy the current static build to Vercel for stakeholder review (formerly Prompt 8.11) — ⬜ NOT RUN — closes out Phase 8
+
+*(This deploys the existing static site as-is, for the team to leave final comments — it is not the Phase 11 Payload/Next.js launch. Get explicit go-ahead before running the actual deploy, and again before promoting any preview URL to production.)*
+
+```
+Read plan.md §11 (8.8).
 
 1. Confirm every cache-busting query string flagged in Prompt 8.1-fix
    has been bumped, so this deploy reflects every fix through Prompt
-   8.6 rather than cached pre-fix assets.
+   8.7 rather than cached pre-fix assets.
 
 2. Prepare (don't yet run) a Vercel deployment of the current repo as-is
    - commercial/, connect/, and personal-and-property/ together,
@@ -1068,17 +1069,53 @@ Read plan.md §11 (8.11).
    Do not promote to a production URL without a separate, explicit
    confirmation from me.
 
-This is an interim deploy for stakeholder review before continuing into
-Prompts 8.7-8.10 and, eventually, Phase 9's Payload/Next.js rebuild -
-not the final launch.
+This is an interim deploy for stakeholder review before Phase 9
+(Stakeholder Comments) and, eventually, Phase 10's performance/SEO/
+resilience work and Phase 11's Payload/Next.js rebuild - not the final
+launch.
 ```
 
 ---
 
-## Prompt 8.7 — Performance & SEO — ⬜ NOT RUN
+## Prompt 9.1 — Address Stakeholder Feedback (Phase 9, NEW) — ⬜ PLACEHOLDER — scope pending
+
+*(This is a placeholder prompt. Its real scope depends entirely on what the team says after reviewing the Prompt 8.8 deployment — don't run this until that feedback exists.)*
 
 ```
-Read plan.md §11 (8.7) and performance-seo-report.md Findings 1-4, 9, 10
+Read plan.md §12 (Phase 9) and docs/stakeholder-feedback-report.md if
+it exists; if it doesn't yet, ask me for the raw feedback first rather
+than guessing at scope.
+
+1. Log every piece of stakeholder feedback as its own numbered item,
+   with source and whether it's a locked requirement, a preference, or
+   an open question - the same discipline plan.md's hit list (§2) and
+   blocker table (§1) already use.
+
+2. Triage each item: does it change something already shipped in
+   Phase 8 (treat as a regression-style fix, same pattern as
+   8.1-fix/8.3-fix/8.3-fix-2), or is it new scope that belongs in
+   Phase 10 or Phase 11 instead? Flag anything you think should be
+   deferred, with your reasoning, rather than silently expanding this
+   prompt's scope.
+
+3. Implement only the items we agree belong in Phase 9 itself. Show me
+   a diff before writing changes, one item at a time if there are
+   several unrelated ones.
+
+4. Produce/update docs/stakeholder-feedback-report.md documenting every
+   item raised and its disposition (fixed now / deferred to Phase 10 /
+   deferred to Phase 11 / rejected, with reasoning).
+
+Do not begin Phase 10 until this report exists and I've confirmed the
+team's feedback has actually been addressed.
+```
+
+---
+
+## Prompt 10.1 — Performance & SEO (Phase 10, formerly Prompt 8.7) — ⬜ NOT RUN
+
+```
+Read plan.md §13 (10.1) and performance-seo-report.md Findings 1-4, 9, 10
 in full.
 
 1. Add explicit width/height to every <img> tag sitewide - write a
@@ -1102,10 +1139,10 @@ Show me a diff/file list before writing changes.
 
 ---
 
-## Prompt 8.8 — Resilience & observability — ⬜ NOT RUN
+## Prompt 10.2 — Resilience & observability (Phase 10, formerly Prompt 8.8) — ⬜ NOT RUN
 
 ```
-Read plan.md §11 (8.8) and state-resilience-observability-report.md
+Read plan.md §13 (10.2) and state-resilience-observability-report.md
 Findings 1, 6, 7, 8 in full.
 
 1. Add a small withRetry(fn, {attempts: 3, baseDelayMs: 300}) helper in
@@ -1129,10 +1166,10 @@ as something I need to create an account for, not something to fake.
 
 ---
 
-## Prompt 8.9 — Finish Phase 7.13: dependency hygiene, tests, CSS consolidation — ⬜ NOT RUN
+## Prompt 10.3 — Dependency hygiene (Phase 10, formerly Prompt 8.9) — ⬜ NOT RUN
 
 ```
-Read plan.md §11 (8.9), buildspec.md §13 and §14, dependency-risk-report.md,
+Read plan.md §13 (10.3), buildspec.md §13 and §14, dependency-risk-report.md,
 and architecture-review-report.md Finding 2.
 
 1. Add the vitest/eslint devDependencies and test/lint scripts to
@@ -1156,32 +1193,33 @@ the output before considering this done.
 
 ---
 
-## Prompt 8.10 — Final pre-deployment QA + closing report — ⬜ NOT RUN
+## Prompt 10.4 — Final pre-deployment QA + closing report (Phase 10, formerly Prompt 8.10) — ⬜ NOT RUN
 
 ```
-Read plan.md §11 (8.10) in full.
+Read plan.md §13 (10.4) in full.
 
 1. Re-run npm run build:includes:check and confirm all 66 pages pass.
-2. Spot-check the header/hero fix (8.1), emoji removal (8.2), and P&P
-   reveal animation (8.3) visually on at least one page per channel.
+2. Spot-check the header/hero fix (8.1), emoji removal (8.2), P&P
+   reveal animation (8.3), and the navbar transparency fix (8.7)
+   visually on at least one page per channel.
 3. Confirm the CSP (8.4) doesn't break any legitimate inline <style>
    usage.
 4. Confirm all 11 Personal & Property pages load consent.js, the
    Turnstile widget issues a real token on Connect's live form, and the
    Broker Portal form now POSTs correctly (8.5).
-5. Run npm test (8.9) and confirm it passes.
-6. Produce docs/phase8-report.md, referencing each of the six source
+5. Run npm test (10.3) and confirm it passes.
+6. Produce docs/phase10-report.md, referencing each of the six source
    report filenames directly and listing, for each, which findings were
-   fixed in Phase 8 versus explicitly deferred to Phase 9 (with the
-   reason) per plan.md §11.10's final bullet.
+   fixed in Phase 8/10 versus explicitly deferred to Phase 11 (with the
+   reason) per plan.md §13's final bullet.
 
-Do not begin Phase 9 (Payload conversion) until this report exists and
+Do not begin Phase 11 (Payload conversion) until this report exists and
 I've reviewed it.
 ```
 
 ---
 
-## Prompt 9 — Payload CMS scaffold (Phase 9) — ⬜ NOT STARTED
+## Prompt 11.1 — Payload CMS scaffold (Phase 11, formerly Prompt 9) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §2 and §3 in full.
@@ -1203,13 +1241,13 @@ to content migration.
 
 ---
 
-## Prompt 10 — Migrate one page end-to-end (Phase 9) — ⬜ NOT STARTED
+## Prompt 11.2 — Migrate one page end-to-end (Phase 11, formerly Prompt 10) — ⬜ NOT STARTED
 
 ```
 Convert exactly one page — commercial/business-term-loans.html — into a
-Payload-backed page using the collections scaffolded in Prompt 9 and the
-component inventory in design/components.md (if Prompt 4 was run — if
-not, work directly from the existing HTML/CSS instead).
+Payload-backed page using the collections scaffolded in Prompt 11.1 and
+the component inventory in design/components.md (if Prompt 4 was run —
+if not, work directly from the existing HTML/CSS instead).
 
 Show me:
 1. The Payload collection entry (content) this page becomes, including
@@ -1223,7 +1261,7 @@ Do not touch any other HTML file until I approve this pattern.
 
 ---
 
-## Prompt 11 — Batch-convert remaining pages — ⬜ NOT STARTED
+## Prompt 11.3 — Batch-convert remaining pages (Phase 11, formerly Prompt 11) — ⬜ NOT STARTED
 
 ```
 Read docs/cleanup-report.md first to confirm the file tree is clean and
@@ -1241,7 +1279,7 @@ and flag me if any page doesn't cleanly fit the established pattern.
 
 ---
 
-## Prompt 12 — Vercel deploy (Phase 9) — ⬜ NOT STARTED
+## Prompt 11.4 — Vercel deploy (Phase 11, formerly Prompt 12) — ⬜ NOT STARTED
 
 ```
 Read buildspec.md §8.
@@ -1263,4 +1301,6 @@ commands to run myself.
 - One phase per prompt.
 - Never treat `_internal/_DO-NOT-DEPLOY-design-baseline/` as anything other than a color/button reference — it is not part of the build.
 - Header/footer markup must be identical across every page (enforced via include-sync as of Phase 8, not just manual diffing); every link/asset path must be root-relative; em-dashes become spaced hyphens (` - `); no spaces in any folder or file name.
-- **Verify claimed completion against the repo, not just a prior session's summary** — Phase 8 exists partly because several Phase 7 items were marked done but weren't fully rolled out (see the "Three things" note above). A quick `git log`/`grep`/file-existence check costs little and catches this early.
+- A navbar (or any shared chrome element) must never rely on what's rendered *behind* it for legibility — give it an explicit, opaque background rather than making text color conditional on page context. This is the exact class of bug Prompt 8.7 exists to fix.
+- **Verify claimed completion against the repo, not just a prior session's summary** — Phase 8 exists partly because several Phase 7 items were marked done but weren't fully rolled out. A quick `git log`/`grep`/file-existence check costs little and catches this early.
+- **Phase order is now: 8 (Final Pre-Deployment Fix Pass) → 9 (Stakeholder Comments) → 10 (Addressing Reports) → 11 (Payload CMS Conversion).** Don't skip Phase 9 just because its only prompt (9.1) is a placeholder — confirm with the team whether there's feedback to address before treating it as a no-op.

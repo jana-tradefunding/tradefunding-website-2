@@ -1,6 +1,6 @@
 # Trade Funding — Site Rebuild Plan (HTML → Payload CMS → Vercel)
 
-**Status: v10 — Phase 8.1–8.3 are done; the two regressions that surfaced (8.1-fix, 8.3-fix) are now fixed and verified in-browser. A third issue (8.3-fix-2 — "Why Choose Us" nav link goes nowhere) has been found and is queued to run next. 8.11 (Vercel deploy for stakeholder review) has been resequenced: it now runs right after 8.6, before 8.7's performance/SEO work, rather than at the very end of Phase 8 — so any final tweaks surface before the performance/SEO/resilience passes build on top of them.**
+**Status: v11 — renumbering cleanup pass. Phases 8.1–8.6 are confirmed done (including the 8.1-fix, 8.3-fix, and 8.3-fix-2 regression fixes). A newly-found bug — the navbar rendering fully transparent on product/channel pages, making dark nav-item text invisible against the dark navy hero — is inserted as the new Prompt 8.7. The former Prompt 8.11 (Vercel deploy for stakeholder review) becomes 8.8, now the true closing prompt of Phase 8. A brand-new Phase 9 (Stakeholder Comments) is inserted to hold feedback from that 8.8 deployment before any further build work happens. What was Prompts 8.7–8.10 (performance/SEO through closing QA) is now Phase 10 (Addressing Reports), renumbered 10.1–10.4. What was Phase 9 (Payload CMS conversion) is now Phase 11, with its four prompts renumbered 11.1–11.4. No technical scope changed in this pass — only sequencing and numbers, plus the one new navbar-transparency fix.**
 
 ## Current build status (check before running anything)
 
@@ -14,13 +14,13 @@
 | 5 — HTML/page production | ✅ Done |
 | 5.5 — Pre-conversion cleanup | ✅ Done (`docs/cleanup-report.md`) |
 | 6 — Build quality & architecture fix pass | ✅ Done |
-| 7 — Pre-Migration Remediation | ⚠️ Done through 7.12; 7.13 folded into Phase 8 §11.9 |
-| **8.1–8.3 — Final Pre-Deployment Fix Pass, design/animation first** | ✅ **Done, including both regression fixes** — 8.1-fix (stale Connect cache-busting version bumped) and 8.3-fix (Funding Solutions dropdown trigger given explicit literal styles) below in §11 |
-| **8.3-fix-2 — "Why Choose Us" nav link goes nowhere (NEW)** | Not started — run next, before 8.4 |
-| **8.4–8.6 — remaining Phase 8 fix work** | Not started — run after 8.3-fix-2 |
-| **8.11 — Vercel deploy for stakeholder review** | Not started — **resequenced: now runs right after 8.6**, before 8.7 |
-| **8.7–8.10 — performance/SEO through closing QA** | Not started — run after 8.11 |
-| 9 — Payload/Vercel conversion | Not started — waits on Phase 8 |
+| 7 — Pre-Migration Remediation | ⚠️ Done through 7.12; 7.13 folded into Phase 10 §13 (10.3) |
+| **8.1–8.6 — Final Pre-Deployment Fix Pass** | ✅ **Done**, including regression fixes 8.1-fix, 8.3-fix, and 8.3-fix-2 — see §11 |
+| **8.7 — Navbar Transparency Fix (NEW)** | 🔴 Not started — run next |
+| **8.8 — Vercel deploy for stakeholder review** (formerly 8.11) | Not started — runs after 8.7, closes out Phase 8 |
+| **9.1 — Address Stakeholder Feedback (NEW PHASE)** | ⬜ Placeholder — scope depends on what stakeholders say after reviewing the 8.8 deployment |
+| 10 — Addressing Reports: Performance/SEO, Resilience, Dependency hygiene, Closing QA (formerly Prompts 8.7–8.10) | Not started — waits on Phase 9 |
+| 11 — Payload/Vercel conversion (formerly Phase 9) | Not started — waits on Phase 10 |
 
 **Source materials this plan is built from:** original meeting notes (2026-08-17), `Master Information Architecture & Sitemap.md` (canonical IA/architecture doc), `tokens.md` (finalized Phase 1 output), the team's numbered hit list with comments, `Team Comments.md`, `SEO Roadmap.md`, `SEO_Audit_Report.md`, `connect/docs/design-spec.md` + `implementation-plan.md`, `docs/research-notes.md` and `docs/copy-final.md` (Phase 3 outputs), and the `commercial/`, `connect/`, `personal-and-property/`, and `design baseline/` folders in the project zip.
 
@@ -298,21 +298,21 @@ Do not treat product pages as the whole of Phase 5 — the Guides Hub and the tw
 
 ## 8. Phase 5.5 — Pre-Conversion Cleanup & File Organization (NEW)
 
-**Purpose:** before Phase 6's fix pass, Phase 7's remediation pass, Phase 8's final fix pass, and Phase 9's Payload conversion, do a dedicated housekeeping pass on the raw file structure. This phase exists because Phase 5 production naturally creates loose ends — duplicate folders, retired-but-not-deleted files, unused assets — that are cheap to fix now and expensive to carry into the CMS migration.
+**Purpose:** before Phase 6's fix pass, Phase 7's remediation pass, Phase 8's final fix pass, and Phase 11's Payload conversion, do a dedicated housekeeping pass on the raw file structure. This phase exists because Phase 5 production naturally creates loose ends — duplicate folders, retired-but-not-deleted files, unused assets — that are cheap to fix now and expensive to carry into the CMS migration.
 
 **Concrete cleanup tasks:**
 
 1. **Delete the duplicate Personal & Property folder.** The project currently has both `personal-and-property/` (correct) and `personal and property/` (with spaces — currently empty, but a real risk if anything ever gets saved into it). **Delete `personal and property/` entirely.** Spaces in folder names break Vercel routing; there must be exactly one Personal & Property folder, correctly named.
 2. **Securely delete retired files**, per the Duplicate Resolution Log in `Master Information Architecture & Sitemap.md` §9 — don't just stop linking to them, actually remove them so they don't linger as ghost/crawlable pages:
-   - `commercial/debtor-finance.html` — confirm its unique content was merged into `commercial/invoice-finance.html` first (per §9 item 4), then delete the file and confirm the `/debtor-finance/` → `/invoice-finance/` redirect is documented for Phase 9.
-   - `commercial/trade-funding-website-application.html` — confirm `apply.html` is the live, complete version, then delete the legacy file and confirm the redirect to `/apply/` is documented for Phase 9.
-   - `commercial/resources.html` — once the Guides Hub (7.5) is live at `/guides/`, confirm whether this file's content has been fully absorbed into the hub; if so, delete it and confirm the `/resources/` → `/guides/` redirect is documented for Phase 9. If any unique content still only exists in `resources.html`, migrate it into the Guides Hub first.
+   - `commercial/debtor-finance.html` — confirm its unique content was merged into `commercial/invoice-finance.html` first (per §9 item 4), then delete the file and confirm the `/debtor-finance/` → `/invoice-finance/` redirect is documented for Phase 11.
+   - `commercial/trade-funding-website-application.html` — confirm `apply.html` is the live, complete version, then delete the legacy file and confirm the redirect to `/apply/` is documented for Phase 11.
+   - `commercial/resources.html` — once the Guides Hub (7.5) is live at `/guides/`, confirm whether this file's content has been fully absorbed into the hub; if so, delete it and confirm the `/resources/` → `/guides/` redirect is documented for Phase 11. If any unique content still only exists in `resources.html`, migrate it into the Guides Hub first.
 3. **Audit for unused assets** — orphaned images, unreferenced CSS classes/rules, unused JS files (across `commercial/`, `connect/`, and `personal-and-property/`) that nothing in the final page set actually links to or uses. Flag before deleting anything not explicitly named above — don't silently remove assets you're not sure are unused.
 4. **Verify folder structure matches the IA doc exactly**: `commercial/` (root-level pages + `guides/` + `components/` + `assets/`), `connect/` (with its own `branding/`/`styles/`/`api/`), `personal-and-property/` (single, correctly named, no duplicates) — flag anything that doesn't match this shape.
 5. **Run the header/footer parity check from 7.1 across every remaining page** as a final gate — confirm no page's header/footer markup has silently drifted from the canonical component during Phase 5 production.
 6. **Produce `cleanup-report.md`** documenting: files deleted (with reasoning), files flagged as possibly-unused but not deleted (pending confirmation), and any header/path inconsistencies found and fixed. Keep this report in `docs/` alongside the other planning docs.
 
-Do not begin Phase 9 (Payload conversion) until `cleanup-report.md` exists and the folder structure is clean — migrating a messy file tree into Payload collections just moves the mess into the CMS. (Phase 6, Phase 7, and Phase 8 all still sit between this cleanup and Phase 9 — see below.)
+Do not begin Phase 11 (Payload conversion) until `cleanup-report.md` exists and the folder structure is clean — migrating a messy file tree into Payload collections just moves the mess into the CMS. (Phase 6, Phase 7, and Phase 8 all still sit between this cleanup and Phase 11 — see below.)
 
 ---
 
@@ -404,112 +404,143 @@ Apply consistently across every Commercial page's header, plus any footer/mobile
 
 ### 10.4 Architecture review remediation (priority per the report's own "highest leverage" call-out)
 
-1. **[Do first — highest leverage]** Add a minimal HTML-include build step (e.g. `posthtml-include`, or a five-line custom Node script) so `navbar.html` / `footer.html` / `how-it-works.html` get physically included at commit/CI time instead of manually re-copied into 62+ files. This single fix directly addresses the failure mode behind both the two-tier header regression (Phase 5) and the `contact.html` propagation miss (Phase 6) — and it doesn't require waiting for Phase 9. (Note: per Phase 8 §11.1, this fix turned out to still be incomplete after Phase 6 — only 3 of 66 pages actually adopted it. Phase 8 finishes the job.)
+1. **[Do first — highest leverage]** Add a minimal HTML-include build step (e.g. `posthtml-include`, or a five-line custom Node script) so `navbar.html` / `footer.html` / `how-it-works.html` get physically included at commit/CI time instead of manually re-copied into 62+ files. This single fix directly addresses the failure mode behind both the two-tier header regression (Phase 5) and the `contact.html` propagation miss (Phase 6) — and it doesn't require waiting for Phase 11. (Note: per Phase 8 §11 (8.1), this fix turned out to still be incomplete after Phase 6 — only 3 of 66 pages actually adopted it. Phase 8 finishes the job.)
 2. **Extract shared chrome CSS** out of `commercial/shared-styles.css` into a new, channel-agnostic `shared/styles/chrome.css` — Connect and Personal & Property already silently depend on Commercial's stylesheet for header/footer/switcher/button/container styling; the folder structure should reflect that dependency honestly rather than hiding it.
 3. **Extract a shared serverless library** (`connect/api/_lib/`: `origin-check.js`, `form-token.js`, `rate-limit.js`, `html-escape.js`) **before** building the new `broker-lead` and `contact` endpoints from 10.3 — otherwise the Turnstile/Upstash fixes above need to be re-applied identically across three or four near-duplicate handler files instead of landing once in a shared module.
-4. **Consolidate cookie-consent** to one implementation with one shared cookie key — Connect's `localStorage`-based check (`tf-connect-cookie-consent`) and Commercial's `document.cookie`-based check (`blc_cookie_consent`, a legacy internal codename worth dropping too) currently disagree, so switching channels via the `ChannelSwitcher` re-prompts the cookie banner. Cookie-based is the better choice of the two, since it's server-readable if Phase 9's Next.js middleware ever needs it.
+4. **Consolidate cookie-consent** to one implementation with one shared cookie key — Connect's `localStorage`-based check (`tf-connect-cookie-consent`) and Commercial's `document.cookie`-based check (`blc_cookie_consent`, a legacy internal codename worth dropping too) currently disagree, so switching channels via the `ChannelSwitcher` re-prompts the cookie banner. Cookie-based is the better choice of the two, since it's server-readable if Phase 11's Next.js middleware ever needs it.
 5. **Refactor `calcMonthly()`** in `commercial/product-page.js` into a pure function — mirroring `connect/scripts/calculator.js`'s already-correct `compute()` pattern — separating the amortization math from the DOM reads. This is what makes the loan-repayment calculation unit-testable at all.
 6. **Refactor `request-call.js`'s env-var reads** to happen once at the top of `handler()`, passed down as a plain config object, rather than deep inside `sendEmail()`/`sendSlack()` — makes the handler mockable/testable without mutating real environment variables.
-7. **Flag for Phase 9 acceptance criteria, not immediate action:** the two large CSS files (`product-styles.css` at 3,150 lines, `shared-styles.css` at 1,001, since split further in Phase 7 §10.4 item 2 into `shared/styles/chrome.css` + a slimmed `commercial/shared-styles.css`) should not get copy-pasted forward into the Next.js app as single files. Name "no single CSS file over ~500 lines, component-scoped only" as an explicit Phase 9 acceptance criterion now, while it's easy to agree on.
+7. **Flag for Phase 11 acceptance criteria, not immediate action:** the two large CSS files (`product-styles.css` at 3,150 lines, `shared-styles.css` at 1,001, since split further in Phase 7 §10.4 item 2 into `shared/styles/chrome.css` + a slimmed `commercial/shared-styles.css`) should not get copy-pasted forward into the Next.js app as single files. Name "no single CSS file over ~500 lines, component-scoped only" as an explicit Phase 11 acceptance criterion now, while it's easy to agree on.
 8. **Housekeeping, not urgent:** `_internal/_DO-NOT-DEPLOY-design-baseline/`'s CSS copy is already 135 lines out of sync with the real one and will keep drifting. Plan to move it out of the git repo entirely (Figma, a separate reference repo) once its reference value is exhausted.
-9. **Superseded by Phase 8 §11.4** — this item recommended copying Connect's security-headers block to the other two channels as a stopgap; Phase 8 now does this directly (plus adds CSP/HSTS, which weren't part of the original header set) rather than treating it as a pre-launch checklist item.
+9. **Superseded by Phase 8 §11 (8.4)** — this item recommended copying Connect's security-headers block to the other two channels as a stopgap; Phase 8 now does this directly (plus adds CSP/HSTS, which weren't part of the original header set) rather than treating it as a pre-launch checklist item.
 
 ### 10.5 Dependency risk remediation
 
 - Add the recommended `devDependencies` to `connect/package.json` (`vitest`, `eslint`) plus `test`/`lint` scripts — no production runtime dependencies are being added, this only enables testing/linting the two serverless functions in CI before deploy.
 - Once 10.4's refactors land (pure `calcMonthly()`, pure `request-call.js` config handling), write `vitest` unit tests covering: the amortization math, the rate limiter's pure logic (post-Upstash-migration), and HMAC token verification — the highest-value, lowest-effort tests given what 10.4 just made testable.
-- **Re-run this exact dependency analysis again once Phase 9's Payload/Next.js `package.json` exists, and before its first production deploy** — the dependency report is explicit that it needs to be redone at that point, once a real dependency tree (Next.js, Payload, a Postgres driver, a Blob adapter) exists to audit.
+- **Re-run this exact dependency analysis again once Phase 11's Payload/Next.js `package.json` exists, and before its first production deploy** — the dependency report is explicit that it needs to be redone at that point, once a real dependency tree (Next.js, Payload, a Postgres driver, a Blob adapter) exists to audit.
 
-**Output:** `docs/remediation-report.md`, documenting what was fixed from each of the three source reports, in the order above, plus the two open flags from 10.2 (the "Compare Options" mapping, and where Resources/About now live) and confirmation that the `hello@`→`support@` inbox-routing question from 10.1 is still open, unresolved by this phase. ⚠️ **This report was never actually produced** — Phase 7 stopped after item 10.4 items 5–6; item 10.5 (dependency hygiene/tests) never ran. Folded into Phase 8 §11.9 rather than reopening Phase 7 retroactively.
+**Output:** `docs/remediation-report.md`, documenting what was fixed from each of the three source reports, in the order above, plus the two open flags from 10.2 (the "Compare Options" mapping, and where Resources/About now live) and confirmation that the `hello@`→`support@` inbox-routing question from 10.1 is still open, unresolved by this phase. ⚠️ **This report was never actually produced** — Phase 7 stopped after item 10.4 items 5–6; item 10.5 (dependency hygiene/tests) never ran. Folded into Phase 10 §13 (10.3) rather than reopening Phase 7 retroactively.
 
 ---
-
 ## 11. Phase 8 — Final Pre-Deployment Fix Pass (NEW)
 
-**Why this phase exists:** six independent review reports (architecture, dependency-risk, performance/SEO, security, state/resilience/observability, UI/UX/a11y) were run against the Phase 7 build and landed together. This is explicitly **the last fix pass before deployment** — Phase 9 (Payload conversion) should not start until every item below is resolved or consciously deferred with a documented reason, since anything shipped broken here gets migrated into the CMS broken.
+**Why this phase exists:** six independent review reports (architecture, dependency-risk, performance/SEO, security, state/resilience/observability, UI/UX/a11y) were run against the Phase 7 build and landed together. This is explicitly **the last fix pass before deployment** — Phase 10 (Addressing Reports) and Phase 11 (Payload conversion) should not start until every item below is resolved or consciously deferred with a documented reason, since anything shipped broken here gets migrated into the CMS broken.
 
-**🔴 One item needs your decision before any code changes, not mine to resolve:** the UI/UX report flags a direct contradiction — you asked for the `ChannelSwitcher`'s "Home" entry to be icon-only, but `CLAUDE.md` rule 13 currently locks "Home icon + 'Home' text." Removing the text is also the more defensible fix for Finding 8.1 below (a shorter switcher never wraps and covers the hero), but per this project's own "flag contradictions, don't silently resolve" rule, **confirm which you want before Prompt 8.1 runs**: (a) keep "Home" text, accept the switcher may need more room, or (b) go icon-only sitewide, which also requires a `CLAUDE.md` rule 13 update.
+**🔴 One item needed a decision before 8.1 ran, now resolved:** the UI/UX report flagged a direct contradiction between the "Home" entry being requested as icon-only versus `CLAUDE.md` rule 13 locking "Home icon + 'Home' text." This was resolved during 8.3 — `ChannelSwitcher`'s "Home" is icon-only, sitewide, per `CLAUDE.md` rule 13.
 
-Fixes are grouped into 10 sub-phases (8.1–8.10), ordered so design/aesthetic/animation work leads (as requested), then propagation-dependent fixes, then independent security/performance/observability/process work, closing with a full pre-deployment QA pass. **You've completed 8.1–8.3 — two regressions surfaced from those and are addressed below as 8.1-fix and 8.3-fix.** A third issue, **8.3-fix-2** ("Why Choose Us" nav link doesn't go anywhere), was found during the same regression pass and runs next, before 8.4.
+Fixes are grouped into 8 sub-phases (8.1–8.8), ordered so design/aesthetic/animation work leads, then propagation-dependent fixes, then independent security/compliance/shared-logic work, then a newly-found visual bug, closing with the stakeholder-review deployment. **8.1 through 8.6 are done, including the three regressions found and fixed along the way — 8.1-fix, 8.3-fix, and 8.3-fix-2.** A fourth issue, **8.7 — Navbar Transparency Fix**, was found via direct screenshot review of a live product page after 8.6 closed, and runs next.
 
-**Sequencing note (updated):** 8.11 (Vercel deploy for stakeholder review) no longer sits at the very end of Phase 8. It now runs **right after 8.6, before 8.7** — the reasoning being that there may be final tweaks the team wants after seeing a live preview, and it's cheaper to make those before the performance/SEO (8.7), resilience/observability (8.8), dependency/test (8.9), and closing-QA (8.10) work builds on top of the current state. The actual run order through the rest of Phase 8 is: **8.1 → 8.1-fix → 8.2 → 8.3 → 8.3-fix → 8.3-fix-2 → 8.4 → 8.5 → 8.6 → 8.11 → 8.7 → 8.8 → 8.9 → 8.10.**
+**Run order for the whole of Phase 8:** **8.1 → 8.1-fix → 8.2 → 8.3 → 8.3-fix → 8.3-fix-2 → 8.4 → 8.5 → 8.6 → 8.7 → 8.8.** 8.8 (the Vercel deploy for stakeholder review, formerly numbered 8.11) is now the genuine closing prompt of Phase 8 — everything below it in this section, through 8.7, must land first. Phase 9 (Stakeholder Comments) picks up immediately after 8.8.
 
-### 8.1 — Fix the include-sync coverage gap + hero/header overlap (foundational, do first)
+### 8.1 — Fix the include-sync coverage gap + hero/header overlap (foundational, do first) — ✅ DONE
 
-This is the single highest-leverage fix across all six reports: **the include-sync mechanism (`connect/scripts/build-includes.mjs`) only actually covers 3 of 66 pages** (`personal-and-property/personal-loans.html`, `connect/for-vendors.html`, `commercial/business-loans.html`) — confirmed directly. The other 63 pages have navbar/footer markup hand-copied, with no automated enforcement, which is the root cause behind several other findings below (emoji regression, address-placeholder drift, footer emoji). Fix this before any of the fixes in 8.2 that rely on propagation being trustworthy.
+This was the single highest-leverage fix across all six reports: **the include-sync mechanism (`connect/scripts/build-includes.mjs`) only actually covered 3 of 66 pages** (`personal-and-property/personal-loans.html`, `connect/for-vendors.html`, `commercial/business-loans.html`) — confirmed directly. The other 63 pages had navbar/footer markup hand-copied, with no automated enforcement, which was the root cause behind several other findings below (emoji regression, address-placeholder drift, footer emoji).
 
-- Convert the remaining 63 pages to use the same `<!-- include:start src="..." --> ... <!-- include:end -->` marker pattern already proven on the 3 pages that use it.
-- Wire `npm run build:includes:check` into a pre-commit hook or CI step so a page that drifts from its canonical component fails the build instead of silently shipping.
-- **While the canonical header component is open for this work, fix the hero/header overlap** (confirmed root cause: `.trust-bar` + `.navbar` stack to ~105–107px of real fixed-header height, but `.hero` only reserves 90px `padding-top`). Change `.hero`'s top padding to `calc(var(--utility-bar-height, 37px) + 80px + 32px)` on Commercial, and verify the same math clears the stack on Connect's `.hero` (already more generous, but confirm on mobile) and Personal & Property's `.pp-hero`.
-- This is the ideal first task to prove the include-sync fix actually propagates correctly — if the header/hero fix shows up identically on all 66 pages afterward, the mechanism is trustworthy for 8.2's fixes.
+- Converted the remaining 63 pages to use the same `<!-- include:start src="..." --> ... <!-- include:end -->` marker pattern already proven on the 3 pages that used it.
+- Wired `npm run build:includes:check` into a pre-commit hook so a page that drifts from its canonical component fails the build instead of silently shipping.
+- Fixed the hero/header overlap (root cause: `.trust-bar` + `.navbar` stack to ~105–107px of real fixed-header height, but `.hero` only reserved 90px `padding-top`) — `.hero`'s top padding changed to `calc(var(--utility-bar-height, 37px) + 80px + 32px)` on Commercial, with the same math verified against Connect's `.hero` and Personal & Property's `.pp-hero`.
 
 ### 8.1-fix — Regression: Connect's header still appears to cover part of the hero — ✅ FIXED
 
 **Fixed:** all 8 Connect pages bumped from `main.css?v=20260811-1` to `?v=20260819-1`; a repo-wide sweep found no other stale `?v=` references. Verified in-browser via a temporary static server — the hero no longer overlaps the header on Connect's homepage. Committed as `8d9df92`.
 
-**Root cause (kept for reference):** the actual CSS fix from 8.1 was already present and correct in `connect/styles/main.css` (`.hero { padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) 0 ...}`, same formula as Commercial). But `connect/index.html` and the other 7 Connect pages still referenced the stylesheet with an **unbumped cache-busting query string** — `main.css?v=20260811-1`, a date from before the 8.1 fix landed. Any browser or CDN that already cached that exact URL kept serving the old, pre-fix CSS indefinitely, reproducing the overlap even though the source file was already correct. This is the same manual-cache-busting anti-pattern flagged in earlier architecture review passes.
+**Root cause (kept for reference):** the actual CSS fix from 8.1 was already present and correct in `connect/styles/main.css` (`.hero { padding: calc(var(--utility-bar-height, 37px) + 80px + 32px) 0 ...}`, same formula as Commercial). But `connect/index.html` and the other 7 Connect pages still referenced the stylesheet with an **unbumped cache-busting query string** — `main.css?v=20260811-1`, a date from before the 8.1 fix landed. Any browser or CDN that already cached that exact URL kept serving the old, pre-fix CSS indefinitely, reproducing the overlap even though the source file was already correct.
 
-**Still open, longer-term:** replace manual date-stamp query strings with an auto-bumped version (content hash or build step) so this class of bug can't recur before Phase 9's real bundler exists — not done as part of this fix, since it's a process change, not a regression fix.
+**Still open, longer-term:** replace manual date-stamp query strings with an auto-bumped version (content hash or build step) so this class of bug can't recur before Phase 11's real bundler exists — not done as part of this fix, since it's a process change, not a regression fix.
 
-### 8.2 — Branding/visual cleanup that depends on 8.1's fixed propagation
+### 8.2 — Branding/visual cleanup that depends on 8.1's fixed propagation — ✅ DONE
 
-- **Remove the 20 emoji icon spans** (`<span class="dd-icon ...">&#...;</span>`) from the Funding Solutions dropdown in `commercial/components/navbar.html` — the grouped-list redesign is already structurally correct, only the glyphs remain. Re-propagate via the now-fixed include-sync.
-- **Remove the 3 emoji entity references** (`&#128222;`, `&#128231;`, `&#128205;`) from all three canonical footer components (Commercial/Connect/Personal & Property). Re-propagate the same way.
-- **Fix the distorted Casper logo** in Connect's footer: add `class="footer__cashper"` to the `<img>` at `connect/components/footer.html:28` and drop the inline `style="height:56px;width:auto;"` — a correct, matching CSS rule (`object-fit:contain`, `flex-shrink:0`) already exists in `connect/styles/main.css:760` but was never wired to the markup.
-- **Build a dedicated Products page** (`commercial/products.html`, or repurpose `commercial/business-loans.html` since it already has include-sync wired) — the dropdown groups everything correctly, but no standalone menu-style page exists yet, which was part of the original nav-redesign ask.
-- **Propagate the confirmed office address to all 59 remaining placeholder occurrences** (including `commercial/privacy.html`) — the address is already correct in `credit-guide.html` and `terms.html` from Phase 7.1, it just never reached the other files. Use the now-fixed include-sync for the footer instances; do a direct find-and-replace for any body-content instances outside the shared footer.
+- Removed the 20 emoji icon spans (`<span class="dd-icon ...">&#...;</span>`) from the Funding Solutions dropdown in `commercial/components/navbar.html` — re-propagated via the now-fixed include-sync.
+- Removed the 3 emoji entity references (`&#128222;`, `&#128231;`, `&#128205;`) from all three canonical footer components.
+- Fixed the distorted Casper logo in Connect's footer (`class="footer__cashper"` added, inline `style="height:56px;width:auto;"` dropped, matching the already-existing CSS rule in `connect/styles/main.css:760`).
+- Built a dedicated Products page (`commercial/products.html`).
+- Propagated the confirmed office address to all 59 remaining placeholder occurrences.
 
-### 8.3 — Animation, motion & interaction accessibility polish
+### 8.3 — Animation, motion & interaction accessibility polish — ✅ DONE
 
-- **Add entrance animation to Personal & Property's hero** — `.pp-hero__eyebrow`, `.pp-hero__title`, `.pp-hero__lead`, `.pp-hero__cta-group`, `.pp-hero__trust`, `.pp-hero__card` currently have no `reveal`/`reveal delay-N` classes, unlike Commercial and Connect's heroes. The shared `.reveal` CSS/JS is already loaded on this page (used below the fold) — this is a markup-only change, matching Connect's stagger pattern.
-- **Make the Funding Solutions dropdown keyboard/AT accessible** — it's currently a plain `<div class="dropdown-menu">` shown via CSS `:hover` only, no `aria-expanded` state, no keyboard path. Add `aria-expanded` toggling and a click/focus-based open state (not hover-only), mirroring the hamburger menu's already-correct pattern in `connect/scripts/main.js`.
-- **Fix channel-switcher touch targets on mobile** — at `≤640px`, `.channel-switch__option` drops to `padding: 7px 10px; font-size: 0.72rem`, producing a ~28–30px tap target, under the 44px minimum. Add `min-height: 44px` at this breakpoint via padding, not font-size alone.
-- **Apply whichever "Home" decision you made above** — if icon-only, remove `<span class="channel-switch__full">Home</span>` from the canonical `navbar.html` (now safe to propagate sitewide via 8.1's fix) and update `CLAUDE.md` rule 13; if keeping the text, no change needed here beyond confirming the 8.1 hero-padding fix already accounts for the wrap risk.
-- Confirm `prefers-reduced-motion` gating is applied to the new P&P reveal classes the same way it already is everywhere else (it should be automatic, since it's the same shared `.reveal` system — just verify).
+- Added entrance animation to Personal & Property's hero (`.pp-hero__eyebrow`, `.pp-hero__title`, `.pp-hero__lead`, `.pp-hero__cta-group`, `.pp-hero__trust`, `.pp-hero__card` now carry `reveal`/`reveal delay-N` classes, matching Connect's stagger pattern).
+- Made the Funding Solutions dropdown keyboard/AT accessible (`aria-expanded` toggling plus a click/focus-based open state, mirroring the hamburger menu's pattern).
+- Fixed channel-switcher touch targets on mobile (`min-height: 44px` at the `≤640px` breakpoint, via padding).
+- Applied the "Home" decision: icon-only, sitewide — `<span class="channel-switch__full">Home</span>` removed from the canonical `navbar.html`, and `CLAUDE.md` rule 13 updated to match.
 
 ### 8.3-fix — Regression: "Funding Solutions" dropdown trigger doesn't visually match the other nav items — ✅ FIXED
 
-**Fixed:** `.navbar__link--dropdown-trigger` in `commercial/shared-styles.css` now declares literal values (`font-family: var(--font-heading); font-weight: 500; font-size: 0.95rem; color: var(--text-primary);`) copied from `.navbar__link` in `shared/styles/chrome.css`, plus a matching `:hover { color: var(--skyblue); }`. Verified via computed styles in an actual rendered page — the trigger now matches "Compare Options" exactly (same font-family, weight, size, color). Checked every other interactive element converted from `<a>`/text to `<button>` during 8.3's accessibility work — only this one exists; the hamburger triggers are icon-only and unaffected. Committed as `8d9df92`.
+**Fixed:** `.navbar__link--dropdown-trigger` in `commercial/shared-styles.css` now declares literal values (`font-family: var(--font-heading); font-weight: 500; font-size: 0.95rem; color: var(--text-primary);`) copied from `.navbar__link` in `shared/styles/chrome.css`, plus a matching `:hover { color: var(--skyblue); }`. Verified via computed styles in an actual rendered page — the trigger now matches "Compare Options" exactly. Committed as `8d9df92`.
 
 **Root cause (kept for reference):** converting the Funding Solutions trigger from a plain `<a>` to a `<button class="navbar__link--dropdown-trigger">` for keyboard/AT accessibility (8.3) visually broke it, because the button carried no `.navbar__link` class — `font: inherit; color: inherit;` had nothing matching to inherit from, so it fell back to browser/parent defaults instead of the sibling nav items' actual styling.
 
-### 8.3-fix-2 — Bug: "Why Choose Us?" nav link doesn't go anywhere — it should route to About Us
+### 8.3-fix-2 — Bug: "Why Choose Us?" nav link doesn't go anywhere — it should route to About Us — ✅ FIXED
 
-**Confirmed directly:** every one of Commercial's 52 pages links "Why Choose Us?" to `/commercial/index.html#why`, but `commercial/index.html` has no element with `id="why"` anywhere in the markup — the closest candidate, `<section class="why-first">` (the homepage's own "why choose us" content block), was never given that id. The link is a dead anchor: on the homepage it does nothing at all, and on every other page it lands on the homepage with no scroll, which looks like the link "doesn't direct to anything."
+**Confirmed:** every one of Commercial's 52 pages linked "Why Choose Us?" to `/commercial/index.html#why`, but `commercial/index.html` has no element with `id="why"` anywhere in the markup — the closest candidate, `<section class="why-first">`, was never given that id. The link was a dead anchor.
 
-**Fix:** rather than wiring up the missing `id="why"` anchor on the homepage, point "Why Choose Us?" at the existing, fuller **About Us page** (`/commercial/about.html`) instead — it already exists, is already linked from the footer, and is a more complete answer to "why choose us" than a mid-page homepage section would be.
+**Fix applied:** rather than wiring up the missing `id="why"` anchor, "Why Choose Us?" now points at the existing, fuller **About Us page** (`/commercial/about.html`) instead — already built, already linked from the footer, and a more complete answer to "why choose us" than a mid-page homepage section would be.
 
-- In the canonical `commercial/components/navbar.html`, change the "Why Choose Us?" link's `href` from `/commercial/index.html#why` to `/commercial/about.html`.
-- Re-run `node connect/scripts/build-includes.mjs` (then `--check`) so the fix propagates to all 52 pages that currently carry the broken link, via the include-sync system fixed in 8.1 — do not hand-edit each page.
-- Confirm no other page has a hand-copied, out-of-sync copy of this link that the include-sync propagation would miss (per rule 19/23 in `CLAUDE.md` — root-level pages outside a channel folder have been missed by propagation before).
-- Verify by clicking the link on at least one page and confirming it lands on `/commercial/about.html`, not a dead anchor.
+- The canonical `commercial/components/navbar.html`'s "Why Choose Us?" link now has `href="/commercial/about.html"`.
+- `node connect/scripts/build-includes.mjs` (then `--check`) re-run so the fix propagated to all 52 affected pages via include-sync — no hand-editing.
+- No other hand-copied, out-of-sync instance of this link was found.
 
-### 8.4 — Security headers: CSP + HSTS sitewide
+### 8.4 — Security headers: CSP + HSTS sitewide — ✅ DONE
 
-- **Add a Content-Security-Policy and Strict-Transport-Security header** — currently absent from the entire codebase. Use the report's suggested policy as a starting point (`default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'`, plus `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`). `style-src 'unsafe-inline'` is required for now because of the inline `<style>` blocks addressed in 8.9 — tightening that is a follow-on, not a blocker.
-- **Extend the same four existing headers** (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) plus the two new ones above to Commercial and Personal & Property — right now only `connect/vercel.json` has any of this, meaning the two channels hosting the actual loan-application forms are the ones with zero clickjacking/MIME-sniffing protection. Add equivalent config per channel now; consolidate into one root-level config during Phase 9's single-app conversion (this supersedes the equivalent, unfinished ask in §10.4 item 9).
+- Added a Content-Security-Policy and Strict-Transport-Security header (`default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'`, plus `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`). `style-src 'unsafe-inline'` remains required for now because of the inline `<style>` blocks addressed in 10.3 — tightening that is a follow-on.
+- Extended the same four existing headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) plus the two new ones to Commercial and Personal & Property, per-channel, pending Phase 11's single-config consolidation.
 
-### 8.5 — Compliance-critical gaps: P&P cookie consent + Turnstile front-end wiring + the still-unfixed Broker Portal form
+### 8.5 — Compliance-critical gaps: P&P cookie consent + Turnstile front-end wiring + the Broker Portal form — ✅ DONE
 
-- **Add cookie-consent coverage to all 11 Personal & Property pages** — none of them currently load `/shared/scripts/consent.js`, while 48 of the other 55 real pages do. This is a live compliance gap (GDPR/CCPA-style consent gate missing entirely on one channel), not just a UX inconsistency. Add `<script src="/shared/scripts/consent.js" defer></script>` to all 11 pages.
-- **Wire the Turnstile front-end widget before this ships** — the backend (`_lib/turnstile.js`) already fails closed with no token (`if (!token) return false`), and its own code comment warns this rejects every real submission until the widget exists. Add the Turnstile widget to `connect/index.html`'s request-call form and update `scripts/form.js` to read the response token into `turnstile_token` on both the POST body and the `/api/form-token` GET query string. **Do not weaken the `if (!token) return false` check as a workaround** — that would reopen the abuse vector Phase 7 closed.
-- 🔴 **Independently confirmed, not caught by either round of security reports: the Broker Portal form is still unfixed.** `commercial/broker-portal.html:596`'s `<form class="bp-form">` still has no `method`/`action` — the exact GET-leaking-PII issue flagged back in Phase 7 (Prompt 7.9) was apparently never actually applied, despite being marked as a Phase 7 task. Fix it now: force `POST` to a real endpoint, following `request-call.js`'s pattern.
+- Added cookie-consent coverage to all 11 Personal & Property pages (`<script src="/shared/scripts/consent.js" defer></script>`).
+- Wired the Turnstile front-end widget on `connect/index.html`'s request-call form; `scripts/form.js` now reads the response token into `turnstile_token` on both the POST body and the `/api/form-token` GET query string. The `if (!token) return false` check in `_lib/turnstile.js` was left intact.
+- Fixed the Broker Portal form (`commercial/broker-portal.html:596`) — now forces `POST` to a real endpoint, following `request-call.js`'s pattern.
 
-### 8.6 — Shared-logic extraction: validation regex + email/Slack templating
+### 8.6 — Shared-logic extraction: validation regex + email/Slack templating — ✅ DONE
 
-- **Extract the duplicated email/phone validation regexes** (currently copy-pasted verbatim between `connect/api/request-call.js` and `connect/scripts/form.js`) into a small shared module, following the same `_lib/` pattern already used for origin-check/token/rate-limit/escape.
-- **Extract `sendEmail`/`sendSlack`'s HTML/Slack-message templating** into `connect/api/_lib/notify.js`, parameterized by a template name — do this before a second form handler (Broker Portal's, from Phase 7) risks copy-pasting the same templates rather than reusing them.
+- Extracted the duplicated email/phone validation regexes (previously copy-pasted between `connect/api/request-call.js` and `connect/scripts/form.js`) into a shared module, following the same `_lib/` pattern already used for origin-check/token/rate-limit/escape.
+- Extracted `sendEmail`/`sendSlack`'s HTML/Slack-message templating into `connect/api/_lib/notify.js`, parameterized by a template name.
 
-### 8.11 — Deploy the current static build to Vercel for stakeholder review — **resequenced: run here, not at the end of Phase 8**
+### 8.7 — Navbar Transparency Fix (NEW) — 🔴 NOT STARTED — run next
 
-Before continuing into the performance/SEO/resilience/process work below, deploy the current, fully-fixed static multi-channel site to Vercel so the team can review it live and leave final comments. This is an **interim deployment of the existing static HTML/CSS/JS site as-is**, not the eventual Phase 9 Payload/Next.js production launch — it exists purely to get real eyes on the finished 8.1–8.6 work before sinking more effort into 8.7's performance/SEO pass and beyond, in case the team's feedback changes anything.
+**Confirmed directly (screenshot review, `commercial/self-employed-home-loan.html` and other product pages):** the navbar renders with a fully transparent background on product/channel pages, rather than the solid/opaque background it carries on the homepage. Because `.navbar__link`'s text color (`var(--text-primary)`, a dark navy — see 8.3-fix) was set assuming a light or solid navbar background, that same dark text now sits directly over the page's dark navy hero with nothing behind the nav row to separate the two. The result: nav items like "Funding Solutions" become nearly invisible against the hero, while items with lighter treatment remain legible — an inconsistent, hard-to-read header on every product page, not just a cosmetic nit.
+
+- **Confirm the root cause before patching symptoms:** check whether `.navbar` has an explicit `background` at all on product-page templates, or whether it's inheriting `background: transparent` from a rule scoped too broadly (e.g., a homepage-only "nav sits over the hero image" treatment that leaked into the shared `commercial/shared-styles.css` / `shared/styles/chrome.css` rather than staying scoped to `commercial/index.html`).
+- **Fix the navbar to always have a genuine, opaque (or intentionally and correctly contrasting) background on every page, every channel** — do not special-case text color per page instead; a header that's only readable depending on what's behind it is fragile and will break again the next time a hero design changes. The safest fix, consistent with rule 14 (header must be pixel-identical across every page), is to give `.navbar` a solid background color sitewide rather than making nav-item text color conditional on page background.
+- **Propagate via the include-sync system** (`connect/scripts/build-includes.mjs` + `--check`), the same mechanism used for every other shared-markup/shared-style fix since 8.1 — this is a shared-chrome bug, not a per-page one.
+- **Verify on at least one page per channel**, including at least one product/inner page per channel (not just each channel's homepage, since the bug specifically doesn't reproduce on Commercial's homepage) — confirm nav-item text is legible against every hero background the site actually ships.
+- **Output:** update `docs/phase8-report.md` (produced in 8.8's follow-on, or noted here if produced earlier) to record this as a fourth Phase 8 regression/finding, alongside 8.1-fix, 8.3-fix, and 8.3-fix-2.
+
+### 8.8 — Deploy the current static build to Vercel for stakeholder review (formerly Prompt 8.11) — ⬜ NOT STARTED — closes out Phase 8
+
+Before Phase 9 (Stakeholder Comments) and Phase 10 (Addressing Reports) begin, deploy the current, fully-fixed static multi-channel site to Vercel so the team can review it live and leave final comments. This is an **interim deployment of the existing static HTML/CSS/JS site as-is**, not the eventual Phase 11 Payload/Next.js production launch — it exists purely to get real eyes on the finished 8.1–8.7 work before any further effort goes into performance/SEO, resilience, or dependency work in Phase 10.
 
 - Deploy `commercial/`, `connect/`, and `personal-and-property/` together as they currently exist, preserving the sub-path structure already in use.
-- Bump every stale cache-busting query string first (per 8.1-fix) so the deployed version actually reflects every fix through 8.6, not cached pre-fix assets.
+- Bump every stale cache-busting query string first (per 8.1-fix) so the deployed version actually reflects every fix through 8.7, not cached pre-fix assets.
 - This deploy needs your explicit go-ahead in chat before it runs, and again before it's promoted to a production URL if that's separate from a preview URL in your Vercel setup.
-- Share the resulting preview/production URL back for stakeholder comments; don't treat this as the final launch — Phase 9 still fully rebuilds the site on Payload/Next.js afterward, and 8.7–8.10 still need to run after this before Phase 9 starts.
+- Share the resulting preview/production URL back for stakeholder comments — this feeds directly into Phase 9 below. Don't treat this as the final launch; Phase 11 still fully rebuilds the site on Payload/Next.js afterward, and Phase 10's performance/SEO/resilience/process work still needs to run after Phase 9 closes, before Phase 11 starts.
 
-### 8.7 — Performance & SEO
+**Output:** the live preview/production URL, shared with the team, plus `docs/phase8-report.md` summarizing every fix from 8.1–8.7 (referencing which finding from which of the six source reports each one closes out, plus the "Home" icon decision and when it was made). Do not start Phase 9 until this report exists and the URL has been shared.
+
+---
+
+## 12. Phase 9 — Stakeholder Comments (NEW)
+
+**Why this phase exists:** Phase 8 §8.8 deploys the current, fully-fixed static build to Vercel specifically so the team can review a live, working site and leave feedback before any more engineering effort (Phase 10's performance/SEO/resilience/process work, or Phase 11's full Payload/Next.js rebuild) gets sunk into the current shape of things. This phase exists to hold and scope that feedback as its own discrete, reviewable step — not to let it get silently folded into Phase 10 or 11 without a record of what stakeholders actually asked for.
+
+### 9.1 — Address Stakeholder Feedback (placeholder — scope pending)
+
+**This is a placeholder prompt.** Its real scope can't be written yet — it depends entirely on what the team actually says after reviewing the Phase 8 §8.8 deployment. Once that feedback comes back:
+
+- Log every piece of stakeholder feedback as its own numbered item (9.1a, 9.1b, ... or similar), with source (who said it) and whether it's a locked requirement, a preference, or an open question needing further discussion — the same discipline this plan has applied to every other round of input (see §2's hit list, §1's blocker table).
+- Triage each item: does it change something already shipped in Phase 8 (a regression-style fix, same as 8.1-fix/8.3-fix/8.3-fix-2 before it), or is it new scope that belongs in Phase 10 or Phase 11 instead? Not everything stakeholders raise needs to be fixed in Phase 9 itself — some items may be correctly deferred, the same way blockers were deferred to Phase 3 in §1.
+- Do not let Phase 9 quietly expand into a second full fix pass duplicating Phase 8's structure. If the feedback volume genuinely warrants that, flag it explicitly rather than scope-creeping this single prompt.
+- **Output:** `docs/stakeholder-feedback-report.md`, documenting every item raised, its disposition (fixed now / deferred to Phase 10 / deferred to Phase 11 / rejected, with reasoning), and confirmation from the team that Phase 9's changes (if any) satisfy their review before Phase 10 begins.
+
+**Do not start Phase 10 until this phase's scope is known and, if any fixes are required, they're complete and `docs/stakeholder-feedback-report.md` exists.** If stakeholders come back with no changes needed, this phase can close quickly — but it should still produce a short report confirming that, rather than being skipped silently.
+
+---
+
+## 13. Phase 10 — Addressing Reports (formerly Prompts 8.7–8.10)
+
+**Why this phase exists:** these four items were originally sequenced as the tail end of Phase 8 (as Prompts 8.7 through 8.10), but per the renumbering in this v11 pass, Phase 8 now closes cleanly at 8.8 (the stakeholder-review deploy), and Phase 9 sits between that deploy and this report-driven work — so any stakeholder-requested changes land before, not after, the performance/SEO/resilience/dependency passes below build on top of the current state. Scope and technical content are unchanged from the original 8.7–8.10; only the numbering and sequencing relative to Phase 9 changed.
+
+### 10.1 — Performance & SEO (formerly Prompt 8.7)
 
 - **Add explicit `width`/`height` to every `<img>` tag sitewide**, starting with Commercial's homepage (0 of 73 currently have them) — a scripted pass (read real dimensions from disk, inject attributes) is more reliable than manual editing at this volume. `loading="lazy"` is already correctly applied on 70 of 73 — don't touch that.
 - **Convert `commercial/assets/founders.jpg` (2.0MB) and other large JPG/PNG photos to WebP**, re-encoded at a sane max width for their rendered size.
@@ -517,36 +548,36 @@ Before continuing into the performance/SEO/resilience/process work below, deploy
 - **Bring Personal & Property's `<head>` metadata up to Connect's standard** — currently missing `og:image`, any `twitter:card` tags, a `sitemap.xml`, and a `robots.txt`. Add all four, using Connect's `<head>` as the template. While at it, add `sitemap.xml` to Connect too (it currently has `robots.txt` but no sitemap).
 - **Audit Commercial's 6 JSON-LD schema blocks for duplicate/conflicting `Organization` entries**, and check whether any of them reference the same broken image path fixed above — a broken reference duplicated into structured data compounds the same bug twice.
 
-### 8.8 — Resilience & observability
+### 10.2 — Resilience & observability (formerly Prompt 8.8)
 
 - **Add retry/backoff to the two network calls in `connect/scripts/form.js`** (`fetchFormToken()` and the actual `/api/request-call` submit) — currently one attempt, then straight to an "email us instead" fallback. Add 2–3 attempts with short exponential backoff (e.g. 300ms/900ms), being careful not to trigger `_lib/form-token.js`'s 3-second minimum-age check with an overly fast retry loop.
 - **Add a minimal global JS error handler** (`shared/scripts/error-handler.js`, loaded sitewide alongside `consent.js`) — `window.addEventListener('error', ...)` / `window.addEventListener('unhandledrejection', ...)`, at minimum logging structured error info. Every current script is a self-contained IIFE with no shared catch, so a DOM-shape mismatch currently fails silently with no record.
 - **Stand up a lightweight RUM/telemetry integration** (Sentry's free tier is a reasonable default) before production traffic arrives — capture unhandled JS errors, unhandled promise rejections, and the three Core Web Vitals (LCP/INP/CLS) at minimum. **Explicitly configure it to scrub form fields (name/email/phone/business) from error context and any session-replay feature before it's turned on** — most RUM tools capture DOM/form state by default, and this form collects exactly the PII that shouldn't reach a third-party telemetry dashboard.
 
-### 8.9 — Finish what Phase 7.13 didn't: dependency hygiene, tests, and HTML/CSS cleanup
+### 10.3 — Dependency hygiene (formerly Prompt 8.9)
 
 Phase 7.13 was written into `prompts.md` but never actually run — confirmed via `git log` (the last Phase 7 commit is 7 §10.4 items 5–6) and via the dependency-risk report (`connect/package.json` still has no `devDependencies`, no `test`/`lint` scripts). Close this out now rather than treating it as separately owed:
 
 - **Run `npm install` inside `connect/` and commit the resulting `package-lock.json`** — currently no lockfile exists anywhere, and with caret ranges on two actively-shipping packages (`@upstash/ratelimit` already has a `2.1.0-rc` upstream), a fresh install could silently drift.
 - **Actually add the `vitest`/`eslint` devDependencies and `test`/`lint` scripts** per the exact block in `buildspec.md` §13, and **write the tests Phase 7.13 specified** (amortization math, rate-limiter pure logic, HMAC token verification) — all three are now genuinely testable thanks to Phase 7's refactors, they just were never written.
-- **Consolidate each large HTML file's multiple inline `<style>` blocks into one**, with any override rules namespaced as modifier classes (e.g. `.hero--light-preview`) rather than a same-selector redefinition further down the file — `commercial/index.html` (6,399 lines, 4 separate `<style>` blocks, one of which silently re-overrides `.hero`) is the worst offender and the one to fix first. This is a low-cost intermediate step before Phase 9's real component-scoped CSS.
+- **Consolidate each large HTML file's multiple inline `<style>` blocks into one**, with any override rules namespaced as modifier classes (e.g. `.hero--light-preview`) rather than a same-selector redefinition further down the file — `commercial/index.html` (6,399 lines, 4 separate `<style>` blocks, one of which silently re-overrides `.hero`) is the worst offender and the one to fix first. This is a low-cost intermediate step before Phase 11's real component-scoped CSS.
 
-### 8.10 — Final pre-deployment QA pass + closing report
+### 10.4 — Final pre-deployment QA pass + closing report (formerly Prompt 8.10)
 
-This is the last checkpoint before Phase 9. Do not treat this as a formality — actually re-verify:
+This is the last checkpoint before Phase 11. Do not treat this as a formality — actually re-verify:
 - Re-run `npm run build:includes:check` and confirm all 66 pages pass, not just the original 3.
-- Spot-check the header/hero fix (8.1), emoji removal (8.2), and P&P reveal animation (8.3) on at least one page per channel, visually.
+- Spot-check the header/hero fix (8.1), emoji removal (8.2), P&P reveal animation (8.3), and the navbar transparency fix (8.7) on at least one page per channel, visually.
 - Confirm the CSP (8.4) doesn't break any legitimate inline `<style>` usage (it's allowed via `'unsafe-inline'` for now — verify nothing else silently broke).
 - Confirm all 11 Personal & Property pages load `consent.js` (8.5), the Turnstile widget actually issues a token on Connect's live form (8.5), and the Broker Portal form now submits via `POST` to a real endpoint (8.5).
-- Run the new `npm test` (8.9) and confirm it passes.
-- Explicitly log, rather than silently drop, the items correctly deferred to Phase 9 per the reports themselves: the flat `commercial/` folder vs. the 7-category nav model (model as Payload sub-collections during conversion, don't replicate the flat structure), DOM-ID-based JS fragility (cross-check every `getElementById` target during the Next.js markup conversion), route-splitting/hydration guardrails (become relevant once the Next.js app exists), and SQL/NoSQL injection / auth-bypass re-audits (not applicable until Phase 9's Postgres/Payload backend and any login surface exist).
-- Produce `docs/phase8-report.md` summarizing every fix from 8.1–8.9, referencing which finding from which of the six source reports each one closes out, plus the "Home" icon decision that was made and when.
+- Run the new `npm test` (10.3) and confirm it passes.
+- Explicitly log, rather than silently drop, the items correctly deferred to Phase 11 per the reports themselves: the flat `commercial/` folder vs. the 7-category nav model (model as Payload sub-collections during conversion, don't replicate the flat structure), DOM-ID-based JS fragility (cross-check every `getElementById` target during the Next.js markup conversion), route-splitting/hydration guardrails (become relevant once the Next.js app exists), and SQL/NoSQL injection / auth-bypass re-audits (not applicable until Phase 11's Postgres/Payload backend and any login surface exist).
+- Produce `docs/phase10-report.md` summarizing every fix from Phase 8, Phase 9, and 10.1–10.3, referencing which finding from which of the six source reports each one closes out, plus the "Home" icon decision that was made and when.
 
-**Do not start Phase 9 (Payload conversion) until `docs/phase8-report.md` exists and you've confirmed the QA pass above.**
+**Do not start Phase 11 (Payload conversion) until `docs/phase10-report.md` exists and you've confirmed the QA pass above.**
 
 ---
 
-## 12. Phase 9 — Conversion to Payload CMS + Vercel Publish (formerly "Phase 8"; architecture unchanged, just renumbered)
+## 14. Phase 11 — Conversion to Payload CMS + Vercel Publish (formerly Phase 9; architecture unchanged, just renumbered)
 
 **One Next.js app, one Vercel project, one Payload backend, three route groups.** This replaces this plan's original three-Vercel-projects assumption. Full technical detail lives in `buildspec.md` — in short:
 
@@ -557,12 +588,12 @@ This is the last checkpoint before Phase 9. Do not treat this as a formality —
 5. `GoogleReviews` component per `buildspec.md` §6 — unchanged in spec, but its real-count blocker is now explicitly scheduled for Phase 3 (see §1 above), not chased early.
 6. Deploy: one Vercel project, sub-path routing preserves one domain's SEO authority across all three channels, and makes `ChannelSwitcher` a same-origin route change rather than a cross-domain redirect.
 
-See `prompts.md` for the updated, phase-by-phase Claude Code prompts.
+See `prompts.md` for the updated, phase-by-phase Claude Code prompts (11.1–11.4).
 
 ---
 
 ## Suggested order of operations across tools (unchanged from v1)
 
 1. **Claude (web chat):** Phase 0 hit-list review, Phase 3 copy iteration, blocker chasing.
-2. **Claude Code (terminal):** Phases 2, 4, 5, 5.5, 6, 7, 8, 9 — anything that edits/creates files.
-3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session. Don't start Phase 9 until Phase 8's `docs/phase8-report.md` exists.
+2. **Claude Code (terminal):** Phases 2, 4, 5, 5.5, 6, 7, 8, 9, 10, 11 — anything that edits/creates files.
+3. Keep `plan.md`, `buildspec.md`, `CLAUDE.md`, `tokens.md`, and `Master Information Architecture & Sitemap.md` at the repo root throughout — `CLAUDE.md` is read automatically at the start of every Claude Code session. Don't start Phase 11 until Phase 10's `docs/phase10-report.md` exists.
