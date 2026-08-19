@@ -307,11 +307,10 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 1px 3px rgba(0,28,68,0.08);
 }
 
-.navbar.transparent {
-  background: transparent;
-  box-shadow: none;
-}
-
+/* Per CLAUDE.md rule 33: the navbar's background must never depend on what
+   renders behind it. Some product-page scroll handlers still toggle a
+   legacy `.transparent` class - it is intentionally given no visual effect
+   below, so the navbar stays opaque everywhere regardless. */
 .navbar.scrolled {
   background: var(--white);
   box-shadow: var(--shadow-md);
@@ -335,18 +334,8 @@ h1, h2, h3, h4, h5, h6 {
 .navbar__logo img {
   height: 36px;
   width: auto;
-  transition: filter var(--transition-base), opacity var(--transition-base);
-}
-
-/* White logo on transparent/navy navbar using CSS filter */
-.navbar.transparent .navbar__logo img {
-  filter: brightness(0) invert(1);
-}
-
-/* Original dark navy logo on white/scrolled navbar */
-.navbar.scrolled .navbar__logo img,
-.navbar:not(.transparent) .navbar__logo img {
   filter: none;
+  transition: filter var(--transition-base), opacity var(--transition-base);
 }
 
 .navbar__links {
@@ -362,14 +351,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   transition: color var(--transition-fast);
   position: relative;
-}
-
-.navbar.transparent .navbar__link {
-  color: rgba(255,255,255,0.9);
-}
-
-.navbar.scrolled .navbar__link {
-  color: var(--text-primary);
 }
 
 .navbar__link:hover {
@@ -425,9 +406,6 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--navy);
   transition: all var(--transition-base);
 }
-
-.navbar.transparent .navbar__hamburger span { background: var(--white); }
-.navbar.scrolled .navbar__hamburger span { background: var(--navy); }
 
 .navbar__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .navbar__hamburger.open span:nth-child(2) { opacity: 0; }
