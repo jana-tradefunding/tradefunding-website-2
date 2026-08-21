@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding Homepage-First Rebuild
 
-**Status: v1 — fresh build.** Replaces the old `buildspec.md` (v11). `plan.md` explains *what and why*; this explains *how to build it*. If this ever contradicts `plan.md`, `plan.md` wins and this file needs updating.
+**Status: v2 — matches `plan.md`'s resequencing pass.** Phase execution order is now 0 → 1 (Design Tokens) → 2 (Wireframe, done in Claude Design) → 3 (IA/Routing/Redirect, done in Claude Chat) → 4 onward. Replaces the old `buildspec.md` (v11). `plan.md` explains *what and why*; this explains *how to build it*. If this ever contradicts `plan.md`, `plan.md` wins and this file needs updating.
 
 ---
 
@@ -41,7 +41,7 @@
     StickyChannelDial.tsx        → renamed/rebuilt ChannelSwitcher equivalent
     Footer.tsx
   /payload.config.ts
-  /redirects.ts                  → the Phase 1 redirect map, see §3
+  /redirects.ts                  → the Phase 3 redirect map (built in Claude Chat), see §3
 ```
 
 Each subsite route group applies its own accent theme (§4) and its own nav state, sharing the same component library. Switching channels is always a same-origin route change — never a cross-domain redirect — preserving the domain's accumulated SEO authority.
@@ -50,9 +50,11 @@ Each subsite route group applies its own accent theme (§4) and its own nav stat
 
 ## 3. Redirect map (critical — see `plan.md` §3 for why)
 
+**Venue note:** the redirect *table* below is a Phase 3 (💬 Claude Chat) deliverable — it's a planning document built against the wireframe and old sitemap, not code. The redirect *implementation* (turning this table into real `next.config.js`/`vercel.json` entries) happens in Phase 5 (💻 Claude Code). Don't skip straight to code before the table itself has been reviewed.
+
 Every existing Commercial URL currently resolving at `/` moves to `/commercial/`. This must be implemented as permanent (301) redirects in `next.config.js` (`redirects()` function) or Vercel's `vercel.json`, **not** left as 404s or silently unhandled.
 
-Minimum required mappings (expand against the full old sitemap before Phase 1 sign-off — this list is a starting skeleton, not exhaustive):
+Minimum required mappings (expand against the full old sitemap before Phase 3 sign-off — this list is a starting skeleton, not exhaustive):
 
 ```
 /                              → /commercial/            (unless / is claimed by the new homepage — see note)
@@ -86,7 +88,7 @@ Minimum required mappings (expand against the full old sitemap before Phase 1 si
 
 **Important note on `/` itself:** `/` cannot both redirect to `/commercial/` and serve the new homepage. The new homepage *is* the content at `/` going forward — there is no redirect needed for the root URL itself, only for the pages that used to live directly under it. Double-check this distinction doesn't get lost when the redirect table is implemented.
 
-- Redirects must be one-to-one — no chains (A→B→C). Test every entry in this table against the live `oldsite/` file list before calling Phase 1 done; the list above was hand-derived from `oldsite/commercial/*.html` and should be reconciled against the actual file inventory, not assumed complete.
+- Redirects must be one-to-one — no chains (A→B→C). Test every entry in this table against the live `oldsite/` file list before calling Phase 3 done; the list above was hand-derived from `oldsite/commercial/*.html` and should be reconciled against the actual file inventory, not assumed complete.
 - Connect and Personal & Property URLs are unchanged — no redirects needed for those two channels.
 
 ---
@@ -164,7 +166,7 @@ Broadly unchanged in shape from the prior build, adjusted for the new homepage:
 
 **Globals**
 - `siteNav` (shared nav shell config used by homepage + all subsites)
-- `redirects` (if managing the Phase 1 redirect table via CMS rather than hardcoded `next.config.js` — decide this explicitly, don't let it default to whichever is easiest to ship first)
+- `redirects` (if managing the Phase 3 redirect table via CMS rather than hardcoded `next.config.js` — decide this explicitly, don't let it default to whichever is easiest to ship first)
 
 ---
 
@@ -172,7 +174,7 @@ Broadly unchanged in shape from the prior build, adjusted for the new homepage:
 
 - One Vercel project, this repo.
 - Environment variables: reuse existing `.env.local` structure where the underlying service (Payload DB, Blob storage, Turnstile keys) is unchanged; rotate/reconfirm any secret that was tied to the old deployment if the Vercel project itself is being recreated rather than reused.
-- Preview deployments for every phase gate (Phase 3 wireframe, Phase 4 homepage, Phase 5 subsites, Phase 7 stakeholder review) — don't wait until Phase 9 for the first real Vercel URL Matt sees.
+- Preview deployments for every phase gate (Phase 2 wireframe (Claude Design), Phase 4 homepage, Phase 5 subsites, Phase 7 stakeholder review) — don't wait until Phase 9 for the first real Vercel URL Matt sees.
 - Never run an actual production deploy without asking first in chat — carried forward from the old `CLAUDE.md` hard rule, still correct.
 
 ---

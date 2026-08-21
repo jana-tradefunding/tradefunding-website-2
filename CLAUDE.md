@@ -73,3 +73,13 @@
 | Bare stat blocks over descriptive paragraphs for trust signals | Recommended treatment for any trust/proof content on the homepage — flag to Matt as a copy-style guardrail for Phase 6 |
 | Plain, typography-led surfaces over photography/gradients in the hero | Locked in `tokens.md` (Work Sans + DM Sans, minimal color until accent), reinforced by both Carta and Prospa references |
 | A dedicated shortcut for high-intent/returning visitors | **Not yet in the plan** — flagged as a candidate open decision, not yet built or approved |
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
