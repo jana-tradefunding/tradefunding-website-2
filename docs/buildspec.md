@@ -1,6 +1,6 @@
 # Build Spec — Trade Funding Homepage-First Rebuild
 
-**Status: v2 — matches `plan.md`'s resequencing pass.** Phase execution order is now 0 → 1 (Design Tokens) → 2 (Wireframe, done in Claude Design) → 3 (IA/Routing/Redirect, done in Claude Chat) → 4 onward. Replaces the old `buildspec.md` (v11). `plan.md` explains *what and why*; this explains *how to build it*. If this ever contradicts `plan.md`, `plan.md` wins and this file needs updating.
+**Status: v3 — adds Phase 4 (Site Folder & Route Scaffold), renumbers everything after it.** Phase execution order is now 0 → 1 (Design Tokens) → 2 (Wireframe, done in Claude Design) → 3 (IA/Routing/Redirect, Claude Chat) → 4 (Site Folder & Route Scaffold, Claude Code) → 5 (Homepage Production) → 6 (Subsite Pass) → 7 (Copy) → 8 (Stakeholder Review) → 9 (Audits) → 10 (Launch) → 11 (Post-Launch). Replaces the old `buildspec.md` (v11). `plan.md` explains *what and why*; this explains *how to build it*. If this ever contradicts `plan.md`, `plan.md` wins and this file needs updating.
 
 ---
 
@@ -16,6 +16,8 @@
 ---
 
 ## 2. Routing architecture
+
+**Venue note:** the folder structure below is created empty/placeholder-only in Phase 4 (💻 Claude Code, Site Folder & Route Scaffold), separate from filling it with real content — the homepage gets its real content in Phase 5, subsites in Phase 6. This split exists so route-level correctness (does every URL resolve, no conflicts) is verified independently of content being finished.
 
 ```
 /                          → NEW homepage (neutral, brand-level entry point)
@@ -50,7 +52,7 @@ Each subsite route group applies its own accent theme (§4) and its own nav stat
 
 ## 3. Redirect map (critical — see `plan.md` §3 for why)
 
-**Venue note:** the redirect *table* below is a Phase 3 (💬 Claude Chat) deliverable — it's a planning document built against the wireframe and old sitemap, not code. The redirect *implementation* (turning this table into real `next.config.js`/`vercel.json` entries) happens in Phase 5 (💻 Claude Code). Don't skip straight to code before the table itself has been reviewed.
+**Venue note:** the redirect *table* below is a Phase 3 (💬 Claude Chat) deliverable — it's a planning document built against the wireframe and old sitemap, not code. The redirect *implementation* (turning this table into real `next.config.js`/`vercel.json` entries) happens in Phase 6 (💻 Claude Code). Don't skip straight to code before the table itself has been reviewed.
 
 Every existing Commercial URL currently resolving at `/` moves to `/commercial/`. This must be implemented as permanent (301) redirects in `next.config.js` (`redirects()` function) or Vercel's `vercel.json`, **not** left as 404s or silently unhandled.
 
@@ -173,8 +175,8 @@ Broadly unchanged in shape from the prior build, adjusted for the new homepage:
 ## 7. Deployment
 
 - One Vercel project, this repo.
-- Environment variables: reuse existing `.env.local` structure where the underlying service (Payload DB, Blob storage, Turnstile keys) is unchanged; rotate/reconfirm any secret that was tied to the old deployment if the Vercel project itself is being recreated rather than reused.
-- Preview deployments for every phase gate (Phase 2 wireframe (Claude Design), Phase 4 homepage, Phase 5 subsites, Phase 7 stakeholder review) — don't wait until Phase 9 for the first real Vercel URL Matt sees.
+- Environment variables: reuse existing `.env.local` structure where the underlying service (Payload DB, Blob storage, Turnstile keys) is unchanged; rotate/reconfirm any secret that was tied to the old deployment if the Vercel project itself is being recreated rather than reused. `PAYLOAD_SECRET` gets (re)generated fresh at Phase 10 per `Trade Funding Build Walkthrough for Jana.pdf` (`openssl rand -base64 32`) — Neon Postgres and Vercel Blob storage are added via Vercel's Storage tab at that same step, not configured by hand beforehand.
+- Preview deployments for every phase gate (Phase 2 wireframe (Claude Design), Phase 4 folder scaffold, Phase 5 homepage, Phase 6 subsites, Phase 8 stakeholder review) — don't wait until Phase 10 for the first real Vercel URL Matt sees.
 - Never run an actual production deploy without asking first in chat — carried forward from the old `CLAUDE.md` hard rule, still correct.
 
 ---
@@ -184,7 +186,7 @@ Broadly unchanged in shape from the prior build, adjusted for the new homepage:
 - WCAG contrast ≥4.5:1 for all text, checked per-channel-accent — Connect's gold-dominant surfaces need explicit re-checking since gold is a lighter primary than the old navy-dominant Connect design.
 - Every hover-only interaction (nav mega-menu, card hover states) needs a working tap/focus equivalent — no mouse-only affordances.
 - Every `<img>`/`next/image` needs explicit width/height or aspect-ratio — carried forward as a hard rule from the prior build's audit findings.
-- Core Web Vitals baseline captured for the new homepage specifically at Phase 8, since it's genuinely new and has no prior baseline to compare against.
+- Core Web Vitals baseline captured for the new homepage specifically at Phase 9, since it's genuinely new and has no prior baseline to compare against.
 
 ---
 
