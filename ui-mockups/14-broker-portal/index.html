@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; font-family: 'DM Sans', sans-serif; }
+a { color: #001C44; }
+a:hover { color: #54B4F6; }
+input:focus, button:focus { outline: 2px solid #54B4F6; outline-offset: 2px; }
+@keyframes tf-engine-pulse-sky { 0%, 100% { box-shadow: 0 0 0 0 rgba(84,180,246,0); } 50% { box-shadow: 0 0 24px 2px rgba(84,180,246,0.35); } }
+@keyframes tf-engine-pulse-gold { 0%, 100% { box-shadow: 0 0 0 0 rgba(251,183,102,0); } 50% { box-shadow: 0 0 24px 2px rgba(251,183,102,0.35); } }
+@keyframes tf-engine-pulse-navy { 0%, 100% { box-shadow: 0 0 0 0 rgba(0,28,68,0); } 50% { box-shadow: 0 0 24px 2px rgba(0,28,68,0.25); } }
+</style>
+</helmet>
+
+<div style="font-family: 'DM Sans', sans-serif; color: #001C44;">
+
+  <!-- NAV -->
+  <nav style="width: 100%; background: #FFFFFF; padding: 22px 0;">
+    <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1320px; margin: 0 auto; padding: 0 40px;">
+      <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1.3rem; color: #001C44; letter-spacing: -0.01em;">tradefunding</div>
+      <div style="display: flex; align-items: center; gap: 40px;">
+        <a href="#products" style="display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1.05rem; color: #001C44; text-decoration: none;">Products
+          <span aria-hidden="true" style="width: 0; height: 0; margin-top: 2px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor;"></span>
+        </a>
+        <a href="#compare" style="display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1.05rem; color: #001C44; text-decoration: none;">Compare
+          <span aria-hidden="true" style="width: 0; height: 0; margin-top: 2px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor;"></span>
+        </a>
+        <a href="#about" style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1.05rem; color: #001C44; text-decoration: none;">About</a>
+      </div>
+      <a href="#contact" style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1rem; color: #FFFFFF; background: #001C44; padding: 14px 30px; border-radius: 999px; text-decoration: none;">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="background: #FFFFFF; padding: 88px 32px 96px;">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: start;">
+
+      <div>
+        <div style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,28,68,0.6); margin-bottom: 20px;">Broker Portal</div>
+        <h1 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.12; color: #001C44; margin: 0 0 22px; max-width: 620px;">Refer with confidence: we do the matching, you keep the relationship.</h1>
+        <p style="font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: rgba(0,28,68,0.7); margin: 0 0 32px; max-width: 540px;">Send us a client, and we'll match them against our 70+ lender panel and manage the comparison work: you stay the direct point of contact.</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-family: 'DM Sans', sans-serif; font-size: 13.5px; color: rgba(0,28,68,0.75);">
+          <span>ACL 387856</span><span style="color: rgba(0,28,68,0.3);">·</span>
+          <span>AFCA Member</span><span style="color: rgba(0,28,68,0.3);">·</span>
+          <span>70+ Lenders</span><span style="color: rgba(0,28,68,0.3);">·</span>
+          <span>5.0 Google Rating</span>
+        </div>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid rgba(0,28,68,0.12); border-radius: 8px; box-shadow: 0 12px 32px rgba(0,28,68,0.08); padding: 36px;">
+        <h2 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 22px; color: #001C44; margin: 0 0 6px;">Partner with us</h2>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14.5px; color: rgba(0,28,68,0.6); margin: 0 0 24px;">Tell us a little about your brokerage and we'll be in touch.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <label style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.7);">Business / Brokerage Name</span>
+            <input type="text" style="height: 48px; border: 1px solid rgba(0,28,68,0.2); border-radius: 8px; padding: 0 14px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #001C44; background: #FFFFFF;" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.7);">Contact Name</span>
+            <input type="text" style="height: 48px; border: 1px solid rgba(0,28,68,0.2); border-radius: 8px; padding: 0 14px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #001C44; background: #FFFFFF;" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.7);">Email</span>
+            <input type="email" style="height: 48px; border: 1px solid rgba(0,28,68,0.2); border-radius: 8px; padding: 0 14px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #001C44; background: #FFFFFF;" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.7);">Phone</span>
+            <input type="tel" style="height: 48px; border: 1px solid rgba(0,28,68,0.2); border-radius: 8px; padding: 0 14px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #001C44; background: #FFFFFF;" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.7);">Aggregator Group</span>
+            <input type="text" style="height: 48px; border: 1px solid rgba(0,28,68,0.2); border-radius: 8px; padding: 0 14px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #001C44; background: #FFFFFF;" />
+          </label>
+        </div>
+
+        <button style="width: 100%; height: 48px; margin-top: 22px; background: #FF5D5C; color: #FFFFFF; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer;">Partner with us →</button>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 12.5px; color: rgba(0,28,68,0.55); text-align: center; margin: 16px 0 0;">No setup fees · Response within 1 business day · Zero client poaching guarantee</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY PARTNER (alternating: soft) -->
+  <section style="background: #F5F8FC; padding: 96px 32px; position: relative;">
+    <div style="max-width: 1240px; margin: 0 auto;">
+      <h2 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: clamp(26px, 2.6vw, 34px); color: #001C44; margin: 0 0 14px; max-width: 700px;">The same engine behind Commercial: now working for your clients too.</h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgba(0,28,68,0.65); margin: 0 0 40px; max-width: 620px;">Access our 70+ lender panel without building or maintaining separate lender accreditations.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+        <div style="background: #FFFFFF; border-top: 2px solid #54B4F6; padding: 24px; border-radius: 4px; animation: tf-engine-pulse-sky 3.6s ease-in-out infinite;">
+          <h3 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 18px; color: #001C44; margin: 0 0 10px;">70+ Lenders, One Panel</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; color: rgba(0,28,68,0.65); margin: 0;">Access the full lender panel we use for direct clients across every commercial product.</p>
+        </div>
+        <div style="background: #FFFFFF; border-top: 2px solid #FBB766; padding: 24px; border-radius: 4px; animation: tf-engine-pulse-gold 3.6s ease-in-out infinite; animation-delay: 1.2s;">
+          <h3 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 18px; color: #001C44; margin: 0 0 10px;">You Keep the Relationship</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; color: rgba(0,28,68,0.65); margin: 0;">We handle the scenario matching and credit comparison in the background; your client stays yours.</p>
+        </div>
+        <div style="background: #FFFFFF; border-top: 2px solid #001C44; padding: 24px; border-radius: 4px; animation: tf-engine-pulse-navy 3.6s ease-in-out infinite; animation-delay: 2.4s;">
+          <h3 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 18px; color: #001C44; margin: 0 0 10px;">One Service Engine</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; color: rgba(0,28,68,0.65); margin: 0;">Driven by the Cashper matching framework: proven, reliable, and transparent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (alternating: white) -->
+  <section style="background: #FFFFFF; padding: 96px 32px;">
+    <div style="max-width: 1240px; margin: 0 auto;">
+      <h2 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: clamp(24px, 2.4vw, 30px); color: #001C44; margin: 0 0 48px;">How it works</h2>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <div style="background: #F5F8FC; border-radius: 8px; padding: 28px 24px;">
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; color: rgba(0,28,68,0.4); margin-bottom: 10px;">01</div>
+          <h4 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 16px; color: #001C44; margin: 0 0 8px;">Submit Scenario</h4>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.55; color: rgba(0,28,68,0.6); margin: 0;">Send through basic business metrics and funding requirements.</p>
+        </div>
+        <div style="background: #F5F8FC; border-radius: 8px; padding: 28px 24px;">
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; color: rgba(0,28,68,0.4); margin-bottom: 10px;">02</div>
+          <h4 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 16px; color: #001C44; margin: 0 0 8px;">Panel Matching</h4>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.55; color: rgba(0,28,68,0.6); margin: 0;">We run the deal against 70+ bank and non-bank lenders.</p>
+        </div>
+        <div style="background: #F5F8FC; border-radius: 8px; padding: 28px 24px;">
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; color: rgba(0,28,68,0.4); margin-bottom: 10px;">03</div>
+          <h4 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 16px; color: #001C44; margin: 0 0 8px;">Compare Report</h4>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.55; color: rgba(0,28,68,0.6); margin: 0;">Receive indicative offers scored on S.T.A.R. (Security, Term, Amount, Rate).</p>
+        </div>
+        <div style="background: #F5F8FC; border-radius: 8px; padding: 28px 24px;">
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; color: rgba(0,28,68,0.4); margin-bottom: 10px;">04</div>
+          <h4 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 16px; color: #001C44; margin: 0 0 8px;">Settlement &amp; Split</h4>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.55; color: rgba(0,28,68,0.6); margin: 0;">We assist to settlement while you maintain the primary relationship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECT DESK (alternating: soft) -->
+  <section style="background: #F5F8FC; padding: 56px 32px;">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <h3 style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 20px; color: #001C44; margin: 0;">Need to discuss an urgent scenario?</h3>
+      <div style="display: flex; align-items: center; gap: 24px; font-family: 'DM Sans', sans-serif; font-size: 15px;">
+        <span style="color: rgba(0,28,68,0.5); font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Broker Desk</span>
+        <a href="tel:1300161641" style="color: #001C44; font-weight: 500; text-decoration: none;">1300 161 641</a>
+        <span style="color: rgba(0,28,68,0.3);">·</span>
+        <a href="mailto:support@tradefunding.com.au" style="color: #001C44; font-weight: 500; text-decoration: none;">support@tradefunding.com.au</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: #00122E; padding: 72px 40px 0; color: rgba(255,255,255,0.7);">
+    <div style="max-width: 1320px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 56px;">
+        <div>
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1.3rem; color: #FFFFFF; margin-bottom: 22px;">tradefunding</div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.6); max-width: 320px; margin: 0 0 22px;">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 22px;">
+            <a href="tel:1300161641" style="color: rgba(255,255,255,0.6); text-decoration: none;">1300 161 641</a>
+            <a href="mailto:support@tradefunding.com.au" style="color: rgba(255,255,255,0.6); text-decoration: none;">support@tradefunding.com.au</a>
+            <span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span style="padding: 7px 16px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65);">ACL 387856</span>
+            <span style="padding: 7px 16px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65);">AFCA Member</span>
+            <span style="padding: 7px 16px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65);">CAFBA</span>
+            <span style="padding: 7px 16px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65);">Fintech Australia</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1rem; color: #FFFFFF; margin-bottom: 20px;">Channels</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; font-family: 'DM Sans', sans-serif; font-size: 15px;">
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Business Loans</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Connect</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Personal &amp; Property</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Guides &amp; Tools</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1rem; color: #FFFFFF; margin-bottom: 20px;">Company</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; font-family: 'DM Sans', sans-serif; font-size: 15px;">
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">About Us</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Broker Portal</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Become a Partner</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Contact</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Get Started</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1rem; color: #FFFFFF; margin-bottom: 20px;">Legal</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; font-family: 'DM Sans', sans-serif; font-size: 15px;">
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Credit Guide</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Privacy Policy</a>
+            <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none;">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.15); padding: 24px 0;">
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.55); margin: 0;">Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="#" style="color: rgba(255,255,255,0.75); text-decoration: underline;">Credit Guide</a> | <a href="#" style="color: rgba(255,255,255,0.75); text-decoration: underline;">Terms &amp; Conditions</a> | ACL 387856</p>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.45); margin: 14px 0 24px;">© 2026 Trade Funding Pty Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+</body>
+</html>

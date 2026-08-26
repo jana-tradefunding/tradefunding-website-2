@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Funding — Second Mortgage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<style>
+.cat-hero{max-width:var(--max-width-prose);margin:0 auto;padding:0 32px;text-align:center}
+.cat-hero-title{margin:16px 0 0;font-weight:700;font-size:clamp(2rem,3.4vw,2.7rem);line-height:1.16;letter-spacing:var(--ls-heading);color:var(--navy)}
+.cat-hero-sub{margin:18px auto 0;font-size:1.02rem;color:var(--text-secondary);line-height:1.7;max-width:600px}
+.included-list{max-width:var(--max-width-prose);margin:0 auto}
+.included-item{padding:20px 0;border-top:1px solid var(--border)}
+.included-item:last-child{border-bottom:1px solid var(--border)}
+.crosslink-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 28px}
+.crosslink-grid a{font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)}
+.crosslink-grid a:hover{color:var(--peach)}
+.pathway-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-soft)}
+.field{width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:0.85rem;color:var(--navy);background:#fff;font-family:var(--font-body);margin-bottom:12px}
+.field:focus{border-color:var(--peach);box-shadow:0 0 0 3px rgba(255,93,92,0.08)}
+.day-pill{flex:1;text-align:center;padding:9px 0;border-radius:8px;background:#fff;border:1px solid var(--border);color:var(--navy);font-family:var(--font-heading);font-weight:600;font-size:0.78rem}
+.day-pill.is-active{background:var(--peach);color:#fff;border-color:var(--peach)}
+.time-slot{text-align:center;padding:9px 0;border-radius:8px;background:#fff;border:1px solid var(--border);color:var(--navy);font-family:var(--font-heading);font-weight:500;font-size:0.76rem}
+@media (max-width:900px){
+  .crosslink-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body class="channel-personalproperty">
+
+<!-- NAV -->
+<nav class="tf-nav" aria-label="Primary">
+<div class="tf-nav-inner">
+<a href="../../index.html" class="tf-nav-logo"><img src="../../assets/img/logo-navy.png" alt="Trade Funding"></a>
+<div class="tf-nav-links">
+<div class="tf-nav-item">
+<span class="tf-nav-link">Products<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="width:340px;max-height:80vh;overflow-y:auto">
+<span style="display:block;padding:2px 14px 12px;margin-bottom:6px;border-bottom:1px solid var(--border);font-family:var(--font-heading);font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-400)">Funding Owners Running Business</span>
+<a href="../home-loans/index.html"><span class="tf-mega-heading">Home Loans</span><div class="tf-mega-sub">First home, next home, or refinance.</div></a>
+<a href="../investment-property/index.html"><span class="tf-mega-heading">Investment Property</span><div class="tf-mega-sub">Buy, refinance, or restructure your portfolio.</div></a>
+<a href="../commercial-property/index.html"><span class="tf-mega-heading">Commercial Property</span><div class="tf-mega-sub">Fund the premises your business runs from.</div></a>
+<a href="../construction/index.html"><span class="tf-mega-heading">Construction</span><div class="tf-mega-sub">New builds, staged progress payments, handled.</div></a>
+<a href="../smsf-property/index.html"><span class="tf-mega-heading">SMSF Property</span><div class="tf-mega-sub">Property finance inside your SMSF, done right.</div></a>
+<a href="../personal-loans/index.html"><span class="tf-mega-heading">Personal Loans</span><div class="tf-mega-sub">Secured or unsecured, bank or specialist.</div></a>
+<a href="../debt-consolidation/index.html"><span class="tf-mega-heading">Debt Consolidation</span><div class="tf-mega-sub">One clear structure, instead of several.</div></a>
+<a href="../self-employed-home-loans/index.html"><span class="tf-mega-heading">Self-Employed Home Loans</span><div class="tf-mega-sub">A home loan built around self-employed income, without the paperwork a standard bank loan demands.</div></a>
+<a href="index.html" style="color:var(--peach)"><span class="tf-mega-heading">Second Mortgage</span><div class="tf-mega-sub">Access equity in property you already own without refinancing or disturbing your first mortgage.</div></a>
+</div>
+</div>
+<div class="tf-nav-item">
+<span class="tf-nav-link">Compare<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="min-width:240px">
+<a href="../../commercial/compare-report/index.html"><span class="tf-mega-heading">Which Option is Best</span><div class="tf-mega-sub">See how our matching engine ranks 70+ lenders.</div></a>
+</div>
+</div>
+<a href="../../home-shared/about/index.html" class="tf-nav-link">About</a>
+</div>
+<nav class="tf-toggle" aria-label="Switch Trade Funding channel">
+<a href="../../index.html" class="tf-toggle-home" aria-label="Home">
+<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"></path></svg>
+</a>
+<a href="../../commercial/index.html" class="tf-toggle-tab">Commercial</a>
+<a href="../../connect/index.html" class="tf-toggle-tab">Connect</a>
+<a href="../index.html" class="tf-toggle-tab is-active">Personal &amp; Property</a>
+</nav>
+</div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div style="background:var(--bg-soft);border-bottom:1px solid var(--border)">
+<div class="container" style="padding-top:16px;padding-bottom:16px;font-size:0.8rem;color:var(--text-secondary)">
+<a href="../index.html" style="color:var(--text-secondary)">Personal &amp; Property</a> / <span style="color:var(--navy);font-weight:600">Second Mortgage</span>
+</div>
+</div>
+
+<!-- CATEGORY HERO -->
+<section class="cat-hero" style="padding:var(--section-y) 0 var(--section-y-sm)">
+<span style="display:inline-flex;align-items:center;gap:10px;justify-content:center" class="eyebrow"><span style="width:7px;height:7px;border-radius:50%;background:var(--peach)"></span>Personal &amp; Property Finance</span>
+<h1 class="cat-hero-title">Access equity in your property without touching your first mortgage.</h1>
+<p class="cat-hero-sub">A second-ranking facility structured alongside your existing loan, not instead of it.</p>
+<div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:30px;flex-wrap:wrap">
+<a href="#intake" class="btn btn-primary">Get your options <span aria-hidden="true">&rarr;</span></a>
+<a href="#intake" class="btn btn-outline">Book a 15-min chat</a>
+</div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section style="background:#fff;padding:var(--section-y-sm) 0">
+<div class="container">
+<h2 class="section-title" style="text-align:center;margin-bottom:8px;max-width:var(--max-width-prose);margin-left:auto;margin-right:auto">What's included</h2>
+<div class="rule" style="margin:0 auto 20px"></div>
+<div class="included-list">
+<div class="included-item"><p style="font-size:0.92rem;color:var(--navy);line-height:1.6;margin:0">Access equity in a property you already own, without refinancing your existing first mortgage.</p></div>
+<div class="included-item"><p style="font-size:0.92rem;color:var(--navy);line-height:1.6;margin:0">A second-ranking facility structured alongside your current lender, not instead of them.</p></div>
+<div class="included-item"><p style="font-size:0.92rem;color:var(--navy);line-height:1.6;margin:0">Use funds for business capital, property improvements, or consolidating other debt.</p></div>
+<div class="included-item"><p style="font-size:0.92rem;color:var(--navy);line-height:1.6;margin:0">Considered case by case against your existing loan terms and total equity position.</p></div>
+</div>
+</div>
+</section>
+
+<!-- CROSS-LINKS -->
+<section style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:var(--section-y-sm) 0">
+<div class="container">
+<p class="eyebrow" style="margin-bottom:18px">Other ways we can help</p>
+<div class="crosslink-grid">
+<a href="../home-loans/index.html">Home Loans &rarr;</a>
+<a href="../investment-property/index.html">Investment Property &rarr;</a>
+<a href="../commercial-property/index.html">Commercial Property &rarr;</a>
+<a href="../construction/index.html">Construction &rarr;</a>
+<a href="../smsf-property/index.html">SMSF Property &rarr;</a>
+<a href="../personal-loans/index.html">Personal Loans &rarr;</a>
+<a href="../debt-consolidation/index.html">Debt Consolidation &rarr;</a>
+<a href="../self-employed-home-loans/index.html">Self-Employed Home Loans &rarr;</a>
+</div>
+</div>
+</section>
+
+<!-- TWO PATHWAYS -->
+<section id="intake" style="background:var(--light-bg);padding:var(--section-y) 0">
+<div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+
+<div class="pathway-card">
+<p style="font-family:var(--font-heading);font-weight:700;font-size:0.72rem;text-transform:uppercase;letter-spacing:var(--ls-label);color:var(--peach);margin-bottom:12px">Enquire Online</p>
+<h3 style="font-family:var(--font-heading);font-weight:700;font-size:1.3rem;color:var(--navy);margin-bottom:10px">Tell us what you need. We'll come back with real options.</h3>
+<p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:22px">A few details, sent straight to our Personal &amp; Property team.</p>
+
+<!--
+  Static markup only — no submission handler wired up yet.
+  Dev/integration note (per Matt's Website Brief): on submit, this form
+  should auto-create a referral/lead in Zoho CRM plus a follow-up task
+  assigned to James Lowe, so the enquiry enters the Personal & Property
+  pipeline immediately. Wire this endpoint before go-live.
+-->
+<form data-enquiry-form aria-label="Enquiry form (not yet connected to Zoho)">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<input class="field" placeholder="Name" name="name">
+<input class="field" placeholder="Mobile" name="mobile">
+</div>
+<input class="field" placeholder="Email" name="email" type="email">
+<select class="field" name="topic">
+<option value="">What can we help you with?</option>
+<option>Home Loans</option>
+<option>Investment Property</option>
+<option>Commercial Property</option>
+<option>Construction</option>
+<option>SMSF Property</option>
+<option>Personal Loans</option>
+<option>Debt Consolidation</option>
+<option>Self-Employed Home Loans</option>
+<option selected>Second Mortgage</option>
+</select>
+<textarea class="field" rows="3" placeholder="Details or comments (optional)" name="details"></textarea>
+<input class="field" placeholder="Preferred contact method / time" name="preferred_contact" style="margin-bottom:20px">
+<button type="submit" class="btn btn-primary" style="width:100%">Send enquiry <span aria-hidden="true">&rarr;</span></button>
+</form>
+</div>
+
+<div class="pathway-card" style="display:flex;flex-direction:column">
+<p style="font-family:var(--font-heading);font-weight:700;font-size:0.72rem;text-transform:uppercase;letter-spacing:var(--ls-label);color:var(--peach);margin-bottom:12px">Book a 15-Minute Chat</p>
+<h3 style="font-family:var(--font-heading);font-weight:700;font-size:1.3rem;color:var(--navy);margin-bottom:10px">Not ready to commit to a form? Grab 15 minutes instead.</h3>
+<p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:26px">A short call to confirm fit — then we'll arrange a fuller appointment if it makes sense.</p>
+
+<!-- Static booking preview — replace with live booking widget (e.g. Calendly) before go-live -->
+<div style="background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-md);padding:22px;margin-bottom:26px">
+<div style="font-family:var(--font-heading);font-weight:600;font-size:0.72rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">This week</div>
+<div style="display:flex;gap:8px;margin-bottom:16px">
+<span class="day-pill" data-day-pill>Mon</span>
+<span class="day-pill is-active" data-day-pill>Tue</span>
+<span class="day-pill" data-day-pill>Wed</span>
+<span class="day-pill" data-day-pill>Thu</span>
+<span class="day-pill" data-day-pill>Fri</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+<span class="time-slot">9:00am</span><span class="time-slot">11:30am</span><span class="time-slot">1:00pm</span>
+<span class="time-slot">2:30pm</span><span class="time-slot">4:00pm</span><span class="time-slot">4:30pm</span>
+</div>
+</div>
+
+<span class="btn btn-outline btn-disabled" aria-disabled="true" style="margin-top:auto">Book a time</span>
+</div>
+
+</div>
+</section>
+
+<!-- JAMES LOWE MINI CARD -->
+<section style="background:#fff;padding:var(--section-y-sm) 0">
+<div class="container">
+<div class="card" style="display:flex;align-items:center;gap:22px;padding:20px 26px">
+<div style="width:56px;height:56px;flex-shrink:0;border-radius:10px;background:var(--tint-peach-10);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:var(--peach)">JL</div>
+<div>
+<p style="font-family:var(--font-heading);font-weight:700;font-size:0.92rem;color:var(--navy);margin-bottom:4px">James Lowe <span style="font-weight:500;color:var(--text-secondary)">— Head of Personal &amp; Property</span></p>
+<span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--navy)">0480 855 739</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CLOSING CTA -->
+<section style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-blue) 100%);padding:var(--section-y) 0;text-align:center;color:#fff">
+<div class="container-prose">
+<h2 class="section-title" style="color:#fff;margin:0 0 14px">Ready to see your options?</h2>
+<p style="color:rgba(255,255,255,0.75);margin-bottom:28px;font-size:1.02rem">Compare a specialist panel of 70+ lenders before you commit to one.</p>
+<a href="#intake" class="btn" style="background:var(--peach);color:#fff;box-shadow:var(--shadow-peach);padding:16px 32px">Get your options &rarr;</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="tf-footer">
+<div class="container-wide">
+<div class="tf-footer-top">
+<div>
+<img src="../../assets/img/logo-white.png" alt="Trade Funding" style="height:20px;width:auto;display:block;margin-bottom:16px;">
+<p class="tf-footer-blurb">Personal and property funding, for the business owner behind the business.</p>
+<div class="tf-footer-contact">
+<a href="tel:1300161641">1300 161 641</a>
+<a href="mailto:support@tradefunding.com.au">support@tradefunding.com.au</a>
+<span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+</div>
+<div class="tf-footer-badges">
+<span class="tf-footer-badge">ACL 387856</span>
+<span class="tf-footer-badge">AFCA Member</span>
+<span class="tf-footer-badge">CAFBA</span>
+<span class="tf-footer-badge">Fintech Australia</span>
+</div>
+</div>
+<div class="tf-footer-cols">
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Channels</div>
+<a href="../../commercial/index.html">Business Loans</a>
+<a href="../../connect/index.html">Connect</a>
+<a href="../index.html">Personal &amp; Property</a>
+<a href="../../commercial/guides/index.html">Guides &amp; Tools</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Company</div>
+<a href="../../home-shared/about/index.html">About Us</a>
+<a href="../../home-shared/broker-portal/index.html">Broker Portal</a>
+<a href="../../connect/index.html">Become a Partner</a>
+<a href="../../home-shared/about/index.html#contact">Contact</a>
+<a href="../../home-shared/apply/index.html">Get Started</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Legal</div>
+<a href="../../home-shared/credit-guide/index.html">Credit Guide</a>
+<span class="tf-footer-inactive">Privacy Policy</span>
+<a href="../../home-shared/terms/index.html">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+<div class="tf-footer-legal">
+<p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="../../home-shared/credit-guide/index.html" style="color:rgba(255,255,255,0.85)">Credit Guide</a> | <a href="../../home-shared/terms/index.html" style="color:rgba(255,255,255,0.85)">Terms &amp; Conditions</a> | ACL 387856</p>
+</div>
+<div class="tf-footer-bottom">
+<span>&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script>
+document.querySelector('[data-enquiry-form]').addEventListener('submit', function (e) {
+  e.preventDefault();
+  alert('This form is a design preview. Connect it to Zoho CRM before go-live.');
+});
+</script>
+</body>
+</html>

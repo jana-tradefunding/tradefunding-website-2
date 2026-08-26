@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broker Portal — Trade Funding</title>
+<meta name="description" content="Refer with confidence: we do the matching, you keep the relationship. Access our 70+ lender panel for your clients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<style>
+.bp-hero { padding: 88px 24px 96px; }
+.bp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: start; }
+.bp-form-card { background: var(--white); border: 1px solid var(--border-neutral); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); padding: 36px; }
+.bp-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.bp-field label { font-weight: 500; font-size: 13px; color: var(--text-secondary); }
+.bp-field input, .bp-field select { height: 48px; border: 1px solid var(--border-neutral); border-radius: var(--radius-sm); padding: 0 14px; font-family: var(--font-body); font-size: 15px; color: var(--navy); background: var(--white); }
+.bp-section { padding: 96px 24px; }
+.bp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.bp-engine-card { background: var(--white); border-top: 2px solid; padding: 24px; border-radius: 4px; }
+.bp-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.bp-step-card { background: var(--bg-soft); border-radius: var(--radius-sm); padding: 28px 24px; }
+.bp-desk { padding: 56px 24px; }
+.bp-desk-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+@media (max-width: 900px) {
+  .bp-hero-grid, .bp-grid-3, .bp-grid-4 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="tf-nav" aria-label="Primary">
+<div class="tf-nav-inner">
+<a href="../../index.html" class="tf-nav-logo"><img src="../../assets/img/logo-navy.png" alt="Trade Funding"></a>
+<div class="tf-nav-links">
+<div class="tf-nav-item">
+<span class="tf-nav-link" aria-haspopup="true">Products<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" role="menu">
+<a href="../../commercial/index.html">
+<div class="tf-mega-heading">FUND MY BUSINESS</div>
+<div class="tf-mega-sub">Term loans, credit lines, invoice &amp; trade finance</div>
+</a>
+<a href="../../connect/index.html">
+<div class="tf-mega-heading">SUPPORT CLIENT PAYMENTS</div>
+<div class="tf-mega-sub">The funding market at point-of-sale</div>
+</a>
+<a href="../../personal-and-property/index.html">
+<div class="tf-mega-heading">FUNDING OWNERS RUNNING BUSINESS</div>
+<div class="tf-mega-sub">For their personal and property needs</div>
+</a>
+</div>
+</div>
+<div class="tf-nav-item">
+<a href="../../commercial/compare-report/index.html" class="tf-nav-link" aria-haspopup="true">Compare<span class="tf-caret" aria-hidden="true"></span></a>
+<div class="tf-mega-panel" role="menu" style="min-width:220px">
+<a href="../../commercial/compare-report/index.html"><div class="tf-mega-heading">Which Option is Best</div></a>
+</div>
+</div>
+<a href="../about/index.html" class="tf-nav-link">About</a>
+</div>
+<a href="../about/index.html#contact" class="btn btn-primary" style="justify-self:end;padding:11px 24px;font-size:0.9rem">Contact</a>
+</div>
+</nav>
+
+<main>
+
+<section class="container bp-hero">
+<div class="bp-hero-grid">
+<div>
+<span class="eyebrow">Broker Portal</span>
+<h1 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(32px,3.6vw,46px);line-height:1.12;color:var(--navy);margin:0 0 22px;max-width:620px">Refer with confidence: we do the matching, you keep the relationship.</h1>
+<p style="font-size:17px;line-height:1.6;color:var(--text-secondary);margin:0 0 32px;max-width:540px">Send us a client, and we'll match them against our 70+ lender panel and manage the comparison work: you stay the direct point of contact.</p>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13.5px;color:var(--text-primary)">
+<span>ACL 387856</span><span style="color:var(--border-neutral)">&middot;</span>
+<span>AFCA Member</span><span style="color:var(--border-neutral)">&middot;</span>
+<span>70+ Lenders</span><span style="color:var(--border-neutral)">&middot;</span>
+<span>5.0 Google Rating</span>
+</div>
+</div>
+
+<div class="bp-form-card">
+<h2 style="font-weight:600;font-size:22px;margin:0 0 6px">Partner with us</h2>
+<p style="font-size:14.5px;color:var(--text-secondary);margin:0 0 24px">Tell us a little about your brokerage and we'll be in touch.</p>
+<form>
+<div class="bp-field"><label for="bp-name">Business / Brokerage Name</label><input id="bp-name" type="text" name="brokerage_name" autocomplete="organization"></div>
+<div class="bp-field"><label for="bp-contact">Contact Name</label><input id="bp-contact" type="text" name="contact_name" autocomplete="name"></div>
+<div class="bp-field"><label for="bp-email">Email</label><input id="bp-email" type="email" name="email" autocomplete="email"></div>
+<div class="bp-field"><label for="bp-phone">Phone</label><input id="bp-phone" type="tel" name="phone" autocomplete="tel"></div>
+<div class="bp-field"><label for="bp-aggregator">Aggregator Group</label><input id="bp-aggregator" type="text" name="aggregator_group"></div>
+<button type="submit" class="btn" style="width:100%;background:var(--peach);color:var(--white);margin-top:6px">Partner with us &rarr;</button>
+</form>
+<p style="font-size:12.5px;color:var(--text-secondary);text-align:center;margin:16px 0 0">No setup fees &middot; Response within 1 business day &middot; Zero client poaching guarantee</p>
+</div>
+</div>
+</section>
+
+<section class="bp-section" style="background:var(--bg-soft)">
+<div class="container">
+<h2 class="section-title" style="max-width:700px;margin-bottom:14px">The same engine behind Commercial: now working for your clients too.</h2>
+<p style="color:var(--text-secondary);margin:0 0 40px;max-width:620px">Access our 70+ lender panel without building or maintaining separate lender accreditations.</p>
+<div class="bp-grid-3">
+<div class="bp-engine-card" style="border-color:var(--skyblue)">
+<h3 style="font-weight:600;font-size:18px;margin:0 0 10px">70+ Lenders, One Panel</h3>
+<p style="font-size:15px;line-height:1.6;color:var(--text-secondary);margin:0">Access the full lender panel we use for direct clients across every commercial product.</p>
+</div>
+<div class="bp-engine-card" style="border-color:var(--gold)">
+<h3 style="font-weight:600;font-size:18px;margin:0 0 10px">You Keep the Relationship</h3>
+<p style="font-size:15px;line-height:1.6;color:var(--text-secondary);margin:0">We handle the scenario matching and credit comparison in the background; your client stays yours.</p>
+</div>
+<div class="bp-engine-card" style="border-color:var(--navy)">
+<h3 style="font-weight:600;font-size:18px;margin:0 0 10px">One Service Engine</h3>
+<p style="font-size:15px;line-height:1.6;color:var(--text-secondary);margin:0">Driven by the Cashper matching framework: proven, reliable, and transparent.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="bp-section">
+<div class="container">
+<h2 class="section-title" style="margin-bottom:48px">How it works</h2>
+<div class="bp-grid-4">
+<div class="bp-step-card">
+<div style="font-weight:600;font-size:13px;color:var(--ink-400);margin-bottom:10px">01</div>
+<h4 style="font-weight:600;font-size:16px;margin:0 0 8px">Submit Scenario</h4>
+<p style="font-size:14px;line-height:1.55;color:var(--text-secondary);margin:0">Send through basic business metrics and funding requirements.</p>
+</div>
+<div class="bp-step-card">
+<div style="font-weight:600;font-size:13px;color:var(--ink-400);margin-bottom:10px">02</div>
+<h4 style="font-weight:600;font-size:16px;margin:0 0 8px">Panel Matching</h4>
+<p style="font-size:14px;line-height:1.55;color:var(--text-secondary);margin:0">We run the deal against 70+ bank and non-bank lenders.</p>
+</div>
+<div class="bp-step-card">
+<div style="font-weight:600;font-size:13px;color:var(--ink-400);margin-bottom:10px">03</div>
+<h4 style="font-weight:600;font-size:16px;margin:0 0 8px">Compare Report</h4>
+<p style="font-size:14px;line-height:1.55;color:var(--text-secondary);margin:0">Receive indicative offers scored on S.T.A.R. (Security, Term, Amount, Rate).</p>
+</div>
+<div class="bp-step-card">
+<div style="font-weight:600;font-size:13px;color:var(--ink-400);margin-bottom:10px">04</div>
+<h4 style="font-weight:600;font-size:16px;margin:0 0 8px">Settlement &amp; Split</h4>
+<p style="font-size:14px;line-height:1.55;color:var(--text-secondary);margin:0">We assist to settlement while you maintain the primary relationship.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="bp-desk" style="background:var(--bg-soft)">
+<div class="container bp-desk-inner">
+<h3 style="font-weight:600;font-size:20px;margin:0">Need to discuss an urgent scenario?</h3>
+<div style="display:flex;align-items:center;gap:24px;font-size:15px">
+<span style="color:var(--text-secondary);font-weight:500;font-size:12px;letter-spacing:0.1em;text-transform:uppercase">Broker Desk</span>
+<a href="tel:1300161641" style="color:var(--navy);font-weight:500">1300 161 641</a>
+<span style="color:var(--border-neutral)">&middot;</span>
+<a href="mailto:support@tradefunding.com.au" style="color:var(--navy);font-weight:500">support@tradefunding.com.au</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="tf-footer">
+<div class="container-wide">
+<div class="tf-footer-top">
+<div>
+<img src="../../assets/img/logo-white.png" alt="Trade Funding" style="height:20px;width:auto;display:block;margin-bottom:16px;">
+<p class="tf-footer-blurb">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+<div class="tf-footer-contact">
+<a href="tel:1300161641">1300 161 641</a>
+<a href="mailto:support@tradefunding.com.au">support@tradefunding.com.au</a>
+<span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+</div>
+<div class="tf-footer-badges">
+<span class="tf-footer-badge">ACL 387856</span>
+<span class="tf-footer-badge">AFCA Member</span>
+<span class="tf-footer-badge">CAFBA</span>
+<span class="tf-footer-badge">Fintech Australia</span>
+</div>
+</div>
+<div class="tf-footer-cols">
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Channels</div>
+<a href="../../commercial/index.html">Business Loans</a>
+<a href="../../connect/index.html">Connect</a>
+<a href="../../personal-and-property/index.html">Personal &amp; Property</a>
+<a href="../../commercial/guides/index.html">Guides &amp; Tools</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Company</div>
+<a href="../about/index.html">About Us</a>
+<a href="index.html">Broker Portal</a>
+<a href="../../connect/index.html">Become a Partner</a>
+<a href="../about/index.html#contact">Contact</a>
+<a href="../apply/index.html">Get Started</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Legal</div>
+<a href="../credit-guide/index.html">Credit Guide</a>
+<span class="tf-footer-inactive">Privacy Policy</span>
+<a href="../terms/index.html">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+<div class="tf-footer-legal">
+<p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="../credit-guide/index.html" style="color:rgba(255,255,255,0.85)">Credit Guide</a> | <a href="../terms/index.html" style="color:rgba(255,255,255,0.85)">Terms &amp; Conditions</a> | ACL 387856</p>
+</div>
+<div class="tf-footer-bottom">
+<span>&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+</body>
+</html>

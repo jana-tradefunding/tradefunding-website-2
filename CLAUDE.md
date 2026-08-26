@@ -1,6 +1,12 @@
 # Research Notes — Inspiration Sites (Shift, Carta, Prospa)
 
-**Status: v1.** This is the research handoff behind the design direction locked in `plan.md` §1 and the visual rules in `buildspec.md`. Two of the three sites below were checked live; one was not (see note).
+**Update:** `Matt-Website-Brief.md` independently names **Square and Prospa** as his reference points for the "less is more" direction — the same conclusion this research already reached from the transcript. Nothing in the analysis below changes; this is confirmation rather than new input. The one thing the brief adds that this research didn't originally cover: Matt's specific frustration with copy consuming layout space that a design element could occupy instead ("a page shouldn't burn real estate on a sentence when a strong design element could say the same thing faster") — this is the same principle behind Prospa's bare-stat-block pattern (§3 below), just stated more sharply as a standing rule rather than an observation.
+
+**Second update (Design Corrections addendum):** the brief now explicitly bans icons sitewide and caps heading weight at Bold (700) — see `buildspec.md` §1a for the full spec. This *sharpens* the restraint principle below rather than contradicting it: Carta's plain-white/typography-led credibility argument (§2) was always about type doing the work instead of ornamentation; banning icons entirely is Matt taking that same argument one step further than originally scoped. The one place this actually changes a prior conclusion: §4's cross-cutting takeaways table previously carried "icon/label" forward from Prospa's card-grid pattern as something to reuse — that's now corrected below, since icons don't transfer to this project regardless of how well they work on Prospa's own site.
+
+**Third update (this revision, v8):** two things confirmed against the actual built repo, not just the brief. **DM Sans is now the sole typeface, sitewide** — the earlier Work Sans (headings) + DM Sans (body) split is dropped entirely, confirmed correct in the live `tokens.css`. This is a harder version of the same Carta-inspired argument below: one restrained typeface doing all the work, not even a two-typeface pairing. **The zero-icon rule has exactly one exemption** — the Channel Toggle's home icon, confirmed intentional in the actual Phase 4 component mockup, not an oversight. Neither of these changes the Shift/Carta/Prospa analysis itself; both are downstream tightenings of the same restraint principle already identified.
+
+**Status: v1** for the underlying research (unchanged since it was written) — this is the research handoff behind the design direction locked in `plan.md` §1 and the visual rules in `buildspec.md`. Two of the three sites below were checked live; one was not (see note).
 
 ---
 
@@ -57,7 +63,7 @@
 - FAQ accordion near the bottom — dense, text-heavy, but deliberately placed *after* the visual/scannable content, for the minority of visitors who do want detail. This is a strong direct match for what Matt described wanting for the "why we exist" section: something for "the more detailed people," positioned after the fast/visual path, not competing with it.
 
 **What this validates for Trade Funding:**
-1. The repeated card-grid pattern (icon/label + one-liner + link) used for *both* products and payments on Prospa is the same shape Matt is asking for with the three Trade Funding cards — reinforces that this is a well-worn, low-risk pattern, not a novel design bet.
+1. Prospa's repeated card-grid pattern (icon/label + one-liner + link) used for *both* products and payments confirms the general shape Matt is asking for with the three Trade Funding cards — same card-grid structure, well-worn and low-risk. **One deliberate departure from Prospa's own execution:** Matt's later Design Corrections addendum bans icons sitewide, so Trade Funding's cards use this pattern's *structure* (label + one-liner + link) without the icon — differentiation comes from typography, layout, and accent colour only. Prospa's use of icons doesn't transfer here; noted so the pattern isn't miscopied wholesale.
 2. The "bare stat block, no paragraph" trust-signal pattern directly supports Matt's instruction to keep everything scannable and push explanatory depth into a clearly separate, later section (Trade Funding's "why we exist," Prospa's FAQ accordion) — both sites solve the same "some people want depth, most don't" problem the same way: sequence, not simultaneous density.
 3. A **shortcut for decided visitors** ("already know what you're after? Apply now") is a pattern Trade Funding doesn't currently have anywhere in the plan — worth raising with Matt as a candidate for the homepage or the Commercial subsite hero, since it directly serves the highest-intent segment of traffic without adding visual weight for everyone else.
 
@@ -68,18 +74,8 @@
 | Pattern seen in research | Where it shows up in this project |
 |---|---|
 | Short master headline + subhead, no long copy in the hero | Homepage hero spec, `homepage.md` §1 |
-| Card grid: icon/label + one-liner + "Explore"/"Learn more" link, repeated consistently | The three-card section, `homepage.md` §2 |
+| Card grid: **label + one-liner + "Explore"/"Learn more" link** (no icon — see Design Corrections, `buildspec.md` §1a), repeated consistently | The three-card section, `homepage.md` §2 |
 | Explanatory/trust depth sequenced *after* the scannable content, not mixed into it | The "why we exist" section placement, `homepage.md` §3 |
-| Bare stat blocks over descriptive paragraphs for trust signals | Recommended treatment for any trust/proof content on the homepage — flag to Matt as a copy-style guardrail for Phase 6 |
-| Plain, typography-led surfaces over photography/gradients in the hero | Locked in `tokens.md` (Work Sans + DM Sans, minimal color until accent), reinforced by both Carta and Prospa references |
+| Bare stat blocks over descriptive paragraphs for trust signals | Recommended treatment for any trust/proof content on the homepage — flag to Matt as a copy-style guardrail for Phase 7 |
+| Plain, typography-led surfaces over photography/gradients in the hero, with restraint carried further into a strict no-icon rule (one exemption: the Channel Toggle's home icon) | Locked in `tokens.md` (DM Sans only, sitewide, capped at 700; minimal color until accent; zero icons — `buildspec.md` §1a), reinforced by both Carta and Prospa references |
 | A dedicated shortcut for high-intent/returning visitors | **Not yet in the plan** — flagged as a candidate open decision, not yet built or approved |
-
-<!-- BEGIN:nextjs-agent-rules -->
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->

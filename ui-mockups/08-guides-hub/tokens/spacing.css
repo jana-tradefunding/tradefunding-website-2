@@ -1,0 +1,52 @@
+/* ============================================================
+   SPACING & LAYOUT — the production sheets work on a 4px base with a
+   preference for 8/12/16/24/32 steps, fluid section padding, and two
+   container widths (1200 default, 1400 wide; Connect uses 1280).
+   ============================================================ */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 56px;
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 120px;
+
+  /* Vertical section rhythm */
+  --section-y: clamp(60px, 7vw, 100px);
+  --section-y-lg: clamp(72px, 9vw, 120px);
+  --section-y-sm: clamp(48px, 6vw, 72px);
+
+  /* Containers */
+  --max-width: 1200px;
+  --max-width-wide: 1400px;
+  --max-width-connect: 1280px;
+  --max-width-prose: 760px;
+  --container-pad: 24px;
+  --container-pad-wide: 32px;
+  --container-pad-fluid: clamp(20px, 5vw, 48px);
+
+  /* Fixed chrome */
+  --utility-bar-height: 37px;
+  --navbar-height: 80px;
+
+  /* Grid gaps */
+  --gap-card: 22px;
+  --gap-grid: 28px;
+  --gap-column: 56px;
+
+  /* Breakpoints (reference values — media queries can't read vars) */
+  --bp-desktop: 1240px; /* @kind other */
+  --bp-tablet: 900px; /* @kind other */
+  --bp-mobile: 640px; /* @kind other */
+
+  /* Minimum touch target */
+  --tap-min: 44px;
+}

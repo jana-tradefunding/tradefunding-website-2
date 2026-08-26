@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+body { margin:0; font-family:'DM Sans',sans-serif; }
+a { text-decoration:none; }
+</style>
+</helmet>
+
+<div style="background:#fff;color:#001C44;">
+
+  <!-- NAV -->
+  <nav style="width:100%;background:#fff;border-bottom:1px solid rgba(0,28,68,0.08);padding:20px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:1.6rem;color:#001C44;letter-spacing:-0.02em;">tradefunding</span>
+      <div style="display:flex;align-items:center;gap:40px;">
+        <a href="#" style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;color:#001C44;">How It Works</a>
+        <a href="#" style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;color:#001C44;">For Vendors</a>
+        <a href="#" style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;color:#001C44;">For Customers</a>
+        <a href="#" style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;color:#001C44;">FAQs</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <a href="#" aria-label="Home" style="display:inline-flex;color:#001C44;">
+          <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8.5L10 2L18 8.5V17H12V12H8V17H2V8.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </a>
+        <span style="display:inline-flex;align-items:center;padding:11px 26px;border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.95rem;color:#001C44;background:#FBB766;">Connect</span>
+        <a href="#" style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;color:#001C44;white-space:nowrap;">Personal &amp; Property</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="background:#fff;padding:64px 0 56px;">
+    <div style="max-width:840px;margin:0 auto;padding:0 32px;text-align:center;">
+      <span style="display:block;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;color:#FBB766;margin-bottom:18px;">How Connect Works</span>
+      <h1 style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:clamp(2.1rem,4.2vw,3.2rem);line-height:1.12;color:#001C44;margin:0 0 18px;letter-spacing:-0.02em;">From quote to <span style="color:#FBB766;">funded</span>, without the back-and-forth.</h1>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:1.05rem;line-height:1.65;color:rgba(0,28,68,0.75);margin:0 auto;max-width:620px;">{{heroSubhead}}</p>
+    </div>
+  </section>
+
+  <!-- IN-PAGE TAB STRIP -->
+  <div style="background:#fff;border-bottom:1px solid rgba(0,28,68,0.08);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;gap:8px;">
+      <span style="padding:16px 4px;margin-right:28px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.92rem;color:#001C44;border-bottom:2px solid #001C44;">How It Works</span>
+      <span style="padding:16px 4px;margin-right:28px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.92rem;color:rgba(0,28,68,0.45);">For Vendors</span>
+      <span style="padding:16px 4px;margin-right:28px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.92rem;color:rgba(0,28,68,0.45);">For Customers</span>
+      <span style="padding:16px 4px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.92rem;color:rgba(0,28,68,0.45);">FAQs</span>
+    </div>
+  </div>
+
+  <!-- FRICTION COMPARISON -->
+  <sc-if value="{{showFrictionCompare}}" hint-placeholder-val="{{true}}">
+  <section style="background:#fff;padding:72px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 32px;">
+      <div style="text-align:center;margin-bottom:44px;">
+        <span style="display:block;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:#FBB766;margin-bottom:14px;">The Difference</span>
+        <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(1.7rem,3.2vw,2.3rem);color:#001C44;margin:0;letter-spacing:-0.01em;">One option, or seventy compared.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+        <!-- WITHOUT -->
+        <div style="border:1px solid rgba(0,28,68,0.1);border-radius:16px;padding:32px;background:#FAFBFC;">
+          <span style="display:block;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(0,28,68,0.5);margin-bottom:20px;">Without the QR flow</span>
+          <div style="background:#fff;border:1px solid rgba(0,28,68,0.08);border-radius:10px;padding:20px;margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#3C4B63;margin-bottom:14px;">
+              <span>Finance option offered</span><span style="font-weight:600;color:#001C44;">1 lender, take it or leave it</span>
+            </div>
+            <div style="display:inline-block;padding:6px 12px;border-radius:999px;background:#FFF0F0;border:1px solid #FF5D5C;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.75rem;color:#FF5D5C;">No comparison offered</div>
+          </div>
+          <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;color:#001C44;margin:0 0 4px;">One Option Only</p>
+          <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.88rem;color:#3C4B63;margin:0;font-style:italic;">Result: Slower decision</p>
+        </div>
+        <!-- WITH -->
+        <div style="border:1px solid #FBB766;border-radius:16px;padding:32px;background:#FFF7EC;">
+          <span style="display:block;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#001C44;margin-bottom:20px;">With the QR flow</span>
+          <div style="background:#fff;border:1px solid rgba(0,28,68,0.08);border-radius:10px;padding:20px;margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#3C4B63;margin-bottom:14px;">
+              <span>Finance options offered</span><span style="font-weight:600;color:#001C44;">70+ lenders compared</span>
+            </div>
+            <div style="display:inline-block;padding:6px 12px;border-radius:999px;background:#FFF7EC;border:1px solid #FBB766;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.75rem;color:#001C44;">Compared instantly</div>
+          </div>
+          <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;color:#001C44;margin:0 0 4px;">Transparent Comparison</p>
+          <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.88rem;color:#3C4B63;margin:0;font-style:italic;">Result: Faster yes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- 4-STAGE DETAIL CARDS -->
+  <section style="background:#F5F8FC;padding:72px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 32px;">
+      <div style="text-align:center;margin-bottom:44px;">
+        <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(1.7rem,3.2vw,2.3rem);color:#001C44;margin:0;letter-spacing:-0.01em;">Four steps, start to settlement</h2>
+      </div>
+      <sc-for list="{{stages}}" as="stage" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:56px 1fr;gap:24px;background:#fff;border:1px solid rgba(0,28,68,0.08);border-radius:14px;padding:28px 32px;margin-bottom:16px;">
+          <div style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,28,68,0.15);background:#FFF7EC;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.95rem;color:#001C44;">{{stage.n}}</div>
+          <div>
+            <h3 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:1.1rem;color:#001C44;margin:0 0 8px;">{{stage.title}}</h3>
+            <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.92rem;line-height:1.6;color:#3C4B63;margin:0;">{{stage.body}}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section style="background:linear-gradient(135deg,#001C44 0%,#000C22 100%);padding:72px 0;text-align:center;">
+    <div style="max-width:640px;margin:0 auto;padding:0 32px;">
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(1.7rem,3.2vw,2.2rem);color:#fff;margin:0 0 14px;letter-spacing:-0.01em;">Ready to help more customers say yes?</h2>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:1rem;color:rgba(255,255,255,0.7);margin:0 0 28px;">Set up takes days, not months. Your team keeps every sale.</p>
+      <a href="{{ctaHref}}" style="display:inline-block;background:#FBB766;color:#001C44;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;padding:14px 32px;border-radius:999px;">{{ctaLabel}}</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#001C44;padding:64px 0 0;color:rgba(255,255,255,0.7);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;">
+      <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;">
+        <div>
+          <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:1.3rem;color:#fff;">tradefunding</span>
+          <p style="font-size:0.9rem;line-height:1.65;margin:18px 0 20px;max-width:320px;color:rgba(255,255,255,0.55);">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+            <span style="font-size:0.9rem;color:rgba(255,255,255,0.85);">1300 161 641</span>
+            <span style="font-size:0.9rem;color:rgba(255,255,255,0.85);">support@tradefunding.com.au</span>
+            <span style="font-size:0.85rem;color:rgba(255,255,255,0.55);">Level 8, 387 George Street, Sydney, NSW, 2000</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <span style="padding:6px 12px;border:1px solid rgba(255,255,255,0.25);border-radius:999px;font-size:0.75rem;color:rgba(255,255,255,0.75);">ACL 387856</span>
+            <span style="padding:6px 12px;border:1px solid rgba(255,255,255,0.25);border-radius:999px;font-size:0.75rem;color:rgba(255,255,255,0.75);">AFCA Member</span>
+            <span style="padding:6px 12px;border:1px solid rgba(255,255,255,0.25);border-radius:999px;font-size:0.75rem;color:rgba(255,255,255,0.75);">CAFBA</span>
+            <span style="padding:6px 12px;border:1px solid rgba(255,255,255,0.25);border-radius:999px;font-size:0.75rem;color:rgba(255,255,255,0.75);">Fintech Australia</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;color:#fff;margin-bottom:16px;">Channels</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Business Loans</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Connect</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Personal &amp; Property</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Guides &amp; Tools</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;color:#fff;margin-bottom:16px;">Company</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">About Us</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Broker Portal</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Become a Partner</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Contact</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Get Started</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;color:#fff;margin-bottom:16px;">Legal</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Credit Guide</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Privacy Policy</a>
+            <a href="#" style="font-size:0.88rem;color:rgba(255,255,255,0.55);">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.12);padding:24px 0;">
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.6;margin:0 0 10px;">Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our Credit Guide | Terms &amp; Conditions | ACL 387856</p>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);margin:0;">© 2026 Trade Funding Pty Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;heroSubhead&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;A branded code on every quote and invoice puts transparent finance options in front of your customer at the exact moment they're deciding whether to buy.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showFrictionCompare&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Become a Partner →&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Closing CTA&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      heroSubhead: this.props.heroSubhead ?? "A branded code on every quote and invoice puts transparent finance options in front of your customer at the exact moment they're deciding whether to buy.",
+      showFrictionCompare: this.props.showFrictionCompare ?? true,
+      ctaLabel: this.props.ctaLabel ?? "Become a Partner →",
+      ctaHref: "#",
+      stages: [
+        { n: '01', title: 'You register and get your code', body: 'Registration takes around five minutes. We brand it with your business identity and place it on your quote and invoice templates.' },
+        { n: '02', title: 'Your customer scans it on their quote', body: 'Instead of one finance option or none, they see transparent options compared across 70+ lenders — non-intrusive, and entirely their choice.' },
+        { n: '03', title: 'The customer is approved', body: 'The finance sits with the lender, not your business. No recourse, no chargeback exposure, no receivables on your books.' },
+        { n: '04', title: 'You get paid out', body: "You're paid in full at settlement, the same as any standard invoice. The sale moves forward instead of stalling on a financing question." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

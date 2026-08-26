@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Funding — Business Loans, Compared</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<style>
+input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--bg-soft);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--skyblue);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--skyblue);border:3px solid #fff;cursor:pointer}
+
+.hero-grid{max-width:var(--max-width-wide);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 440px;gap:56px;align-items:center;align-content:center}
+.hero-title{font-size:clamp(2.4rem,4vw,3.4rem);font-weight:600;letter-spacing:-1px;line-height:1.1;color:var(--navy);margin:0 0 16px}
+.hero-sub{font-size:1.08rem;color:var(--text-secondary);line-height:1.6;margin:0 0 28px;max-width:440px}
+.hero-tags{display:flex;gap:20px;flex-wrap:wrap}
+.hero-tags span{font-family:var(--font-heading);font-size:0.78rem;font-weight:500;color:var(--text-secondary)}
+
+.compare-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);overflow:hidden;width:100%}
+.compare-card-head{padding:10px 20px;background:var(--bg-soft);border-bottom:1px solid #eaedf2;display:flex;align-items:center;gap:8px}
+.dot-success{width:7px;height:7px;border-radius:50%;background:var(--success)}
+.compare-card-body{padding:18px 20px;border-bottom:1px solid #eaedf2}
+.compare-row{display:grid;grid-template-columns:1.6fr 0.8fr 0.9fr auto;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed rgba(0,28,68,0.12)}
+.compare-head-row{display:grid;grid-template-columns:1.6fr 0.8fr 0.9fr auto;gap:12px;font-family:var(--font-heading);font-size:0.58rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);padding:8px 0;border-bottom:2px solid #e0e4ea}
+.lender-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.field-select{width:100%;padding:8px 32px 8px 12px;border:1px solid var(--border);border-radius:8px;font-size:0.78rem;font-family:var(--font-heading);font-weight:500;color:var(--navy);background:#fff}
+.field-select:focus{border-color:var(--navy)}
+
+.stage-circle{width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg-soft);color:var(--ink-400);margin:0 auto 14px}
+.stage-track{display:flex;align-items:flex-start;justify-content:center;gap:0;max-width:760px;margin:0 auto}
+.stage-col{display:flex;flex-direction:column;align-items:center;gap:14px;width:200px}
+.stage-connector{width:80px;height:2px;background:var(--border-dashed);margin-top:39px}
+.stage-dots{display:flex;justify-content:center;gap:8px;margin-top:36px}
+.stage-dot{width:8px;height:8px;border-radius:50%;background:var(--ink-200)}
+@keyframes tf-stage-pulse{0%,33%{background:var(--navy);color:#fff;box-shadow:0 8px 24px rgba(0,28,68,0.25);transform:scale(1.06)}34%,100%{background:var(--bg-soft);color:var(--ink-400);box-shadow:none;transform:scale(1)}}
+.stage-1{animation:tf-stage-pulse 7.8s infinite}
+.stage-2{animation:tf-stage-pulse 7.8s infinite;animation-delay:2.6s}
+.stage-3{animation:tf-stage-pulse 7.8s infinite;animation-delay:5.2s}
+
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative}
+.process-line{position:absolute;top:20px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:2px;background:var(--border-dashed);z-index:0}
+.process-num{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:700;font-size:0.95rem}
+.process-inner-card{background:#fff;border-radius:var(--radius-md);border:1px solid var(--border);padding:14px;box-shadow:var(--shadow-sm)}
+.deal-bar-track{height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.deal-bar-fill{height:100%;background:var(--navy);border-radius:3px;animation:tf-deal-fill 7.8s infinite}
+@keyframes tf-deal-fill{0%{width:33%}45%{width:66%}90%,100%{width:100%}}
+
+.star-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.star-badge{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;font-family:var(--font-heading);font-weight:700;font-size:1.05rem;margin-bottom:12px}
+
+.product-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--skyblue);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:26px}
+.lender-logo{max-width:120px;height:36px;object-fit:contain;width:100%;filter:grayscale(1);opacity:0.55}
+.lender-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:28px 40px;align-items:center}
+
+.calc-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:24px}
+.calc-result{text-align:center;margin-bottom:16px;font-family:var(--font-heading);font-weight:700;font-size:1.5rem;color:var(--navy)}
+.calc-result span{font-size:0.5em;color:var(--ink-400)}
+.calc-label-row{display:flex;justify-content:space-between;font-family:var(--font-heading);font-weight:600;font-size:0.76rem;color:var(--navy);margin-bottom:6px}
+.calc-label-row span:last-child{color:var(--skyblue)}
+
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testimonial-card{background:var(--bg-soft);border-radius:var(--radius-lg);padding:22px}
+.stars{color:var(--gold);letter-spacing:2px;font-size:0.85rem}
+
+@media (max-width: 900px){
+  .hero-grid{grid-template-columns:1fr}
+  .star-grid,.testimonial-grid,.lender-strip{grid-template-columns:repeat(2,1fr)}
+  .compare-head-row,.compare-row{grid-template-columns:1.4fr 0.7fr 0.8fr auto}
+}
+</style>
+</head>
+<body class="channel-commercial">
+
+<!-- NAVBAR -->
+<nav class="tf-nav" aria-label="Primary">
+<div class="tf-nav-inner">
+<a href="../index.html" class="tf-nav-logo"><img src="../assets/img/logo-navy.png" alt="Trade Funding"></a>
+<div class="tf-nav-links">
+<div class="tf-nav-item">
+<span class="tf-nav-link">Products<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="width:400px;max-height:80vh;overflow-y:auto">
+<span style="display:block;padding:2px 14px 12px;margin-bottom:6px;border-bottom:1px solid var(--border);font-family:var(--font-heading);font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-400)">Fund My Business</span>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Business Term Loans</span><div class="tf-mega-sub">A lump sum with fixed repayments for growth or working capital.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Merchant Cash Advance</span><div class="tf-mega-sub">An advance repaid as a percentage of card sales.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">R&amp;D Tax Incentive Funding</span><div class="tf-mega-sub">Access your R&amp;D Tax Incentive claim before the ATO pays out.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Business Charge Card</span><div class="tf-mega-sub">Team spending power on a card built for business expenses.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Business Line of Credit</span><div class="tf-mega-sub">Draw funds as needed, pay interest only on what you use.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Business Overdraft</span><div class="tf-mega-sub">A flexible buffer on your everyday transaction account.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Invoice Finance</span><div class="tf-mega-sub">Unlock cash tied up in unpaid invoices in days, not months.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Fund an Invoice</span><div class="tf-mega-sub">Fund a single invoice without a full ongoing facility.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Trade Finance</span><div class="tf-mega-sub">Fund the gap between paying suppliers and getting paid.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Export Finance</span><div class="tf-mega-sub">Fund production and shipping before your buyer pays.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Supply Chain Funding</span><div class="tf-mega-sub">Extend payment terms, or get suppliers paid early.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Finance Lease</span><div class="tf-mega-sub">Lease equipment with the option to own it at the end.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Operating Lease</span><div class="tf-mega-sub">Use equipment without owning it, off your balance sheet.</div></a>
+<a href="business-term-loans/index.html"><span class="tf-mega-heading">Chattel Mortgage</span><div class="tf-mega-sub">Own equipment from day one while spreading the cost.</div></a>
+<a href="../personal-and-property/index.html"><span class="tf-mega-heading">Second Mortgage</span><div class="tf-mega-sub">Access equity in property you own without refinancing.</div></a>
+<a href="../personal-and-property/index.html"><span class="tf-mega-heading">Self-Employed Home Loan</span><div class="tf-mega-sub">A home loan built around self-employed income.</div></a>
+<div style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px">
+<a href="products/index.html"><span class="tf-mega-heading" style="color:var(--skyblue)">View all products &rarr;</span></a>
+</div>
+</div>
+</div>
+<div class="tf-nav-item">
+<span class="tf-nav-link">Compare<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="min-width:240px">
+<a href="compare-report/index.html"><span class="tf-mega-heading">Which Option is Best</span><div class="tf-mega-sub">See how our matching engine ranks 70+ lenders.</div></a>
+</div>
+</div>
+<a href="../home-shared/about/index.html" class="tf-nav-link">About</a>
+</div>
+<nav class="tf-toggle" aria-label="Switch Trade Funding channel">
+<a href="../index.html" class="tf-toggle-home" aria-label="Home">
+<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"></path></svg>
+</a>
+<a href="index.html" class="tf-toggle-tab is-active">Commercial</a>
+<a href="../connect/index.html" class="tf-toggle-tab">Connect</a>
+<a href="../personal-and-property/index.html" class="tf-toggle-tab">Personal &amp; Property</a>
+</nav>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-grid" style="min-height:var(--hero-min-h);box-sizing:border-box;padding:var(--section-y) 0">
+<div>
+<h1 class="hero-title">Funding that actually fits your business.</h1>
+<p class="hero-sub">Compare 70+ lenders in minutes. No credit check.</p>
+<div class="hero-tags">
+<span>No credit check</span><span>No commitment</span><span>24hr turnaround</span>
+</div>
+</div>
+
+<div class="compare-card">
+<div class="compare-card-head"><span class="dot-success"></span><span style="font-family:var(--font-heading);font-size:0.68rem;font-weight:600;color:var(--text-secondary)">Matching lenders for <span id="hero-amount-label">$250,000</span> business growth</span></div>
+<div class="compare-card-body">
+<label class="calc-label-row" style="font-size:0.9rem"><span>How much do you need?</span><span id="hero-amount-display" style="color:var(--skyblue);font-size:1.05rem">$250,000</span></label>
+<input type="range" min="10000" max="2000000" step="10000" value="250000" data-slider data-slider-output="hero-amount-display" style="width:100%;margin:10px 0 4px" oninput="document.getElementById('hero-amount-label').textContent=document.getElementById('hero-amount-display').textContent">
+<div style="display:flex;justify-content:space-between;font-size:0.68rem;color:#a0aec0;margin-bottom:12px"><span>$10k</span><span>$2M</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+<select class="field-select"><option value="">Funding purpose...</option><option>Working Capital</option><option>Business Expansion</option><option>Equipment / Technology</option><option>Commercial Property</option></select>
+<select class="field-select"><option value="">Time trading...</option><option>Less than 1 year</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select>
+</div>
+<a href="../home-shared/apply/index.html" class="btn btn-primary" style="width:100%;padding:11px">Get My Free Compare Report &rarr;</a>
+</div>
+<div style="padding:16px 20px 0;display:flex;align-items:center;justify-content:space-between">
+<div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.82rem;color:var(--navy)">Compare Report</div><div style="font-size:0.68rem;color:var(--text-secondary)">Preview &bull; Sample</div></div>
+<span style="display:inline-flex;align-items:center;background:var(--tint-sky-10);color:var(--navy);font-family:var(--font-heading);font-weight:600;font-size:0.7rem;letter-spacing:0.04em;padding:2px 8px;border-radius:6px">S.T.A.R.</span>
+</div>
+<div style="padding:12px 20px 0">
+<div class="compare-head-row"><span>Lender</span><span style="text-align:right">Rate</span><span style="text-align:right">Amount</span><span style="text-align:right">Score</span></div>
+<div class="compare-row">
+<div style="display:flex;align-items:center;gap:10px"><span class="lender-dot" style="background:var(--skyblue)"></span><div><div style="font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">Judo Bank</div><div style="font-size:0.7rem;color:var(--text-secondary)">Term Loan</div></div></div>
+<div style="text-align:right;font-family:var(--font-heading);font-weight:700;font-size:0.9rem;color:var(--navy-blue)">9.45%</div>
+<div style="text-align:right;font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">$250,000</div>
+<div style="display:flex;justify-content:flex-end"><span style="font-family:var(--font-heading);font-weight:700;font-size:0.8rem;color:var(--navy)">8.6</span></div>
+</div>
+<div class="compare-row" style="border-bottom:none">
+<div style="display:flex;align-items:center;gap:10px"><span class="lender-dot" style="background:var(--skyblue)"></span><div><div style="font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">Grow Finance</div><div style="font-size:0.7rem;color:var(--text-secondary)">Line of Credit</div></div></div>
+<div style="text-align:right;font-family:var(--font-heading);font-weight:700;font-size:0.9rem;color:var(--navy-blue)">11.20%</div>
+<div style="text-align:right;font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">$180,000</div>
+<div style="display:flex;justify-content:flex-end"><span style="font-family:var(--font-heading);font-weight:700;font-size:0.8rem;color:var(--navy)">8.1</span></div>
+</div>
+</div>
+<div style="padding:10px 20px 0;color:var(--text-secondary);font-size:0.76rem">+2 more lenders, unlocked in your full report</div>
+<div style="padding:14px 20px;background:linear-gradient(180deg,#fff,rgba(84,180,246,0.05));border-top:1px solid #eaedf2;display:flex;justify-content:space-between;font-size:0.68rem;color:var(--text-secondary)">
+<span style="font-style:italic">Sample &bull; Your report is personalised</span><span>70+ lenders</span>
+</div>
+</div>
+</section>
+
+<!-- PROOF BAR -->
+<section style="background:#fff;padding:var(--section-y) 0;text-align:center">
+<div class="container">
+<span class="eyebrow" style="text-align:center">How it works</span>
+<h2 class="section-title" style="margin-bottom:56px">From ABN to ranked offers. Automatically.</h2>
+<div class="stage-track">
+<div class="stage-col"><div class="stage-circle stage-1"><span style="font-family:'DM Sans',monospace;font-weight:700;font-size:1.05rem">01</span></div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.95rem;color:var(--navy)">Input</div><div style="font-size:0.8rem;color:var(--text-secondary)">ABN + a few business details</div></div>
+<div class="stage-connector"></div>
+<div class="stage-col"><div class="stage-circle stage-2"><span style="font-family:'DM Sans',monospace;font-weight:700;font-size:1.05rem">02</span></div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.95rem;color:var(--navy)">Cashper Scoring</div><div style="font-size:0.8rem;color:var(--text-secondary)">Matched against real lender policy</div></div>
+<div class="stage-connector"></div>
+<div class="stage-col"><div class="stage-circle stage-3"><span style="font-family:'DM Sans',monospace;font-weight:700;font-size:1.05rem">03</span></div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.95rem;color:var(--navy)">Output</div><div style="font-size:0.8rem;color:var(--text-secondary)">Ranked, pre-qualified offers</div></div>
+</div>
+</div>
+</section>
+
+<!-- PROCESS STEPS -->
+<section style="background:var(--bg-soft);padding:var(--section-y) 0">
+<div class="container">
+<h2 class="section-title" style="text-align:center;margin-bottom:8px">We don't stop at the report</h2>
+<div class="rule"></div>
+<div class="process-grid" style="margin-top:56px">
+<div class="process-line"></div>
+<div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:16px">
+<div class="process-num">01</div>
+<h3 style="font-weight:700;font-size:1.08rem;color:var(--navy)">Your personalised Compare Report</h3>
+<p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.55">Every offer scored. Every fact laid out.</p>
+<div class="process-inner-card">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:var(--font-heading);font-weight:600;font-size:0.78rem;color:var(--text-secondary)">Overall Score</span><span style="font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:var(--navy)">8.6</span></div>
+<div style="height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden;margin-top:10px"><div style="width:86%;height:100%;background:var(--skyblue)"></div></div>
+</div>
+</div>
+<div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:16px">
+<div class="process-num">02</div>
+<h3 style="font-weight:700;font-size:1.08rem;color:var(--navy)">We walk you through it</h3>
+<p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.55">Your specialist explains the trade-offs — plain English.</p>
+<div class="process-inner-card">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><span style="font-family:var(--font-heading);font-weight:700;font-size:0.78rem;color:var(--navy)">Judo Bank &bull; Term Loan</span><span style="display:inline-flex;gap:3px"><span style="width:6px;height:6px;border-radius:50%;background:var(--star-s)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--star-t)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--star-a)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--star-r)"></span></span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--tint-sky-10);border-radius:8px;margin-bottom:8px"><span style="font-family:var(--font-heading);font-weight:600;font-size:0.76rem;color:var(--navy)">9.45% p.a.</span><span style="font-family:var(--font-heading);font-weight:700;font-size:0.76rem;color:var(--navy)">Score 8.6</span></div>
+<div style="background:var(--bg-soft);border-radius:var(--radius-sm);padding:10px 12px;font-size:0.8rem;color:var(--text-secondary);line-height:1.5">Specialist note: lowest rate, but needs a director's guarantee.</div>
+</div>
+</div>
+<div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:16px">
+<div class="process-num">03</div>
+<h3 style="font-weight:700;font-size:1.08rem;color:var(--navy)">We close the deal</h3>
+<p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.55">Applications, negotiation, settlement. You focus on the business.</p>
+<div class="process-inner-card">
+<div class="deal-bar-track"><div class="deal-bar-fill"></div></div>
+<div style="display:flex;justify-content:space-between;gap:6px;font-family:var(--font-heading);font-weight:600;font-size:0.76rem;color:var(--navy)">
+<span>Applications</span><span>Negotiation</span><span>Settlement</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- S.T.A.R. -->
+<section style="background:#fff;padding:var(--section-y) 0">
+<div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+<div>
+<span class="eyebrow">What you get</span>
+<h2 class="section-title" style="margin-bottom:28px">See the facts. Decide with confidence.</h2>
+<div class="star-grid">
+<div class="card" style="padding:22px"><span class="star-badge" style="background:var(--tint-navy-blue-10);color:var(--star-s)">S</span><h4 style="font-weight:700;font-size:0.95rem;color:var(--navy);margin-bottom:6px">Security</h4><p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5">No collateral, guarantee-only, or secured — know your exposure upfront.</p></div>
+<div class="card" style="padding:22px"><span class="star-badge" style="background:var(--tint-sky-10);color:var(--star-t)">T</span><h4 style="font-weight:700;font-size:0.95rem;color:var(--navy);margin-bottom:6px">Term</h4><p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5">3 months to 30 years, compared side by side.</p></div>
+<div class="card" style="padding:22px"><span class="star-badge" style="background:var(--tint-gold-10);color:var(--star-a)">A</span><h4 style="font-weight:700;font-size:0.95rem;color:var(--navy);margin-bottom:6px">Amount</h4><p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5">See exactly what each lender will offer, and why.</p></div>
+<div class="card" style="padding:22px"><span class="star-badge" style="background:var(--tint-peach-10);color:var(--star-r)">R</span><h4 style="font-weight:700;font-size:0.95rem;color:var(--navy);margin-bottom:6px">Rate</h4><p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5">Simple, transparent, apples-to-apples.</p></div>
+</div>
+</div>
+<div class="card" style="box-shadow:var(--shadow-lg);overflow:hidden">
+<div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eaedf2">
+<div style="font-family:var(--font-heading);font-weight:700;font-size:0.88rem;color:var(--navy)">Compare Report &bull; Sample</div>
+<span style="font-family:var(--font-heading);font-weight:700;font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--success);background:var(--tint-success-12);padding:4px 10px;border-radius:var(--radius-pill)">Best Match</span>
+</div>
+<div style="padding:4px 20px 0">
+<div class="compare-head-row"><span>Lender</span><span style="text-align:right">Rate</span><span style="text-align:right">Amount</span><span style="text-align:right">Score</span></div>
+<div class="compare-row"><div style="display:flex;align-items:center;gap:10px"><span class="lender-dot" style="background:var(--success)"></span><div><div style="font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">Judo Bank</div><div style="font-size:0.7rem;color:var(--text-secondary)">Term Loan</div></div></div><div style="text-align:right;font-family:var(--font-heading);font-weight:700;font-size:0.9rem;color:var(--navy-blue)">9.45%</div><div style="text-align:right;font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">$250,000</div><div style="display:flex;justify-content:flex-end;gap:6px;align-items:center"><span style="font-family:var(--font-heading);font-weight:700;font-size:0.8rem;color:var(--navy)">8.6</span></div></div>
+<div class="compare-row" style="border-bottom:none"><div style="display:flex;align-items:center;gap:10px"><span class="lender-dot" style="background:var(--skyblue)"></span><div><div style="font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">Grow Finance</div><div style="font-size:0.7rem;color:var(--text-secondary)">Line of Credit</div></div></div><div style="text-align:right;font-family:var(--font-heading);font-weight:700;font-size:0.9rem;color:var(--navy-blue)">11.20%</div><div style="text-align:right;font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--navy)">$180,000</div><div style="display:flex;justify-content:flex-end;gap:6px;align-items:center"><span style="font-family:var(--font-heading);font-weight:700;font-size:0.8rem;color:var(--navy)">8.1</span></div></div>
+</div>
+<div style="padding:14px 20px;background:var(--bg-soft);border-top:1px solid #eaedf2;font-size:0.68rem;color:var(--text-secondary);font-style:italic">Sample &bull; Your report is personalised against your ABN</div>
+</div>
+</div>
+</section>
+
+<!-- PRODUCT GRID -->
+<section id="business-loans" style="background:var(--light-bg);padding:var(--section-y) 0">
+<div class="container">
+<div style="text-align:center;margin-bottom:44px"><span class="eyebrow" style="text-align:center">Funding Solutions</span><h2 class="section-title">Every kind of business finance, in one place</h2><div class="rule"></div></div>
+<div class="process-grid grid-3" style="position:static">
+<div class="product-card"><h3 style="font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:8px">Business Loans</h3><p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">Fixed or flexible terms for growth, stock or cashflow.</p><p style="font-family:var(--font-heading);font-weight:700;font-size:0.86rem;color:var(--navy);margin-bottom:12px">$10k – $5M</p><a href="#business-loans" style="font-family:var(--font-heading);font-weight:600;font-size:0.82rem;color:var(--navy)">See loan options &rarr;</a></div>
+<div class="product-card" id="lines-of-credit"><h3 style="font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:8px">Lines of Credit</h3><p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">Draw what you need, pay interest only on what you use.</p><p style="font-family:var(--font-heading);font-weight:700;font-size:0.86rem;color:var(--navy);margin-bottom:12px">Redraw anytime</p><a href="#lines-of-credit" style="font-family:var(--font-heading);font-weight:600;font-size:0.82rem;color:var(--navy)">See credit options &rarr;</a></div>
+<div class="product-card" id="invoice-finance" style="border-top-color:var(--peach)"><h3 style="font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:8px">Invoice Finance</h3><p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">Turn unpaid invoices into working capital in days.</p><p style="font-family:var(--font-heading);font-weight:700;font-size:0.86rem;color:var(--navy);margin-bottom:12px">Up to 90% advance</p><a href="#invoice-finance" style="font-family:var(--font-heading);font-weight:600;font-size:0.82rem;color:var(--navy)">See invoice options &rarr;</a></div>
+<div class="product-card" id="trade-finance" style="border-top-color:var(--gold)"><h3 style="font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:8px">Trade Finance</h3><p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">Fund stock and supplier payments across the supply chain.</p><p style="font-family:var(--font-heading);font-weight:700;font-size:0.86rem;color:var(--navy);margin-bottom:12px">70+ lenders</p><a href="#trade-finance" style="font-family:var(--font-heading);font-weight:600;font-size:0.82rem;color:var(--navy)">See trade options &rarr;</a></div>
+<div class="product-card" id="equipment-leasing" style="border-top-color:var(--navy-blue)"><h3 style="font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:8px">Equipment &amp; Leasing</h3><p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">Chattel mortgage, finance lease or operating lease.</p><p style="font-family:var(--font-heading);font-weight:700;font-size:0.86rem;color:var(--navy);margin-bottom:12px">New or used assets</p><a href="#equipment-leasing" style="font-family:var(--font-heading);font-weight:600;font-size:0.82rem;color:var(--navy)">See equipment options &rarr;</a></div>
+<div class="product-card" id="commercial-mortgages"><h3 style="font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:8px">Commercial Mortgages</h3><p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">Purchase or refinance the property your business runs from.</p><p style="font-family:var(--font-heading);font-weight:700;font-size:0.86rem;color:var(--navy);margin-bottom:12px">Terms to 30 years</p><a href="#commercial-mortgages" style="font-family:var(--font-heading);font-weight:600;font-size:0.82rem;color:var(--navy)">See mortgage options &rarr;</a></div>
+</div>
+</div>
+</section>
+
+<!-- LENDER PANEL -->
+<section style="background:#fff;padding:var(--section-y) 0;text-align:center">
+<div class="container">
+<span class="eyebrow" style="text-align:center">Our lender panel</span>
+<h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:40px">70+ of Australia's leading lenders. One place to compare them.</h2>
+<div class="lender-strip">
+<img class="lender-logo" src="../assets/img/lenders/anz.svg" alt="ANZ">
+<img class="lender-logo" src="../assets/img/lenders/cba.svg" alt="CBA">
+<img class="lender-logo" src="../assets/img/lenders/nab.svg" alt="NAB">
+<img class="lender-logo" src="../assets/img/lenders/westpac.svg" alt="Westpac">
+<img class="lender-logo" src="../assets/img/lenders/judo-bank.svg" alt="Judo Bank">
+<img class="lender-logo" src="../assets/img/lenders/prospa.svg" alt="Prospa">
+<img class="lender-logo" src="../assets/img/lenders/shift.svg" alt="Shift">
+<img class="lender-logo" src="../assets/img/lenders/banjo-loans.svg" alt="Banjo Loans">
+<img class="lender-logo" src="../assets/img/lenders/bizcap.svg" alt="Bizcap">
+<img class="lender-logo" src="../assets/img/lenders/lumi.svg" alt="Lumi">
+<img class="lender-logo" src="../assets/img/lenders/butn.svg" alt="Butn">
+<img class="lender-logo" src="../assets/img/lenders/earlypay.svg" alt="Earlypay">
+</div>
+</div>
+</section>
+
+<!-- CALCULATORS -->
+<section style="background:var(--bg-soft);padding:var(--section-y) 0">
+<div class="container">
+<div style="text-align:center;margin-bottom:44px"><span class="eyebrow" style="text-align:center">Tools</span><h2 class="section-title">Run the numbers first.</h2></div>
+<div class="process-grid grid-3" style="position:static">
+<div class="calc-card">
+<div class="calc-result" id="calc-repayment-display">$2,895<span>/mo</span></div>
+<label class="calc-label-row"><span>Loan amount</span><span id="calc-amount-display">$150,000</span></label>
+<input type="range" min="10000" max="500000" step="5000" value="150000" data-slider data-slider-output="calc-amount-display" data-derive-output="calc-repayment-display" data-derive-formula="repayment" style="width:100%;margin-bottom:16px">
+<h3 style="font-weight:700;font-size:0.98rem;color:var(--navy);margin-bottom:6px">Loan Repayment Calculator</h3>
+<p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5;margin-bottom:14px">Drag the slider — see the estimate update live.</p>
+<span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--ink-400);cursor:default">View calculator &rarr;</span>
+</div>
+<div class="calc-card">
+<div class="calc-result" id="calc-power-display">$120,000</div>
+<label class="calc-label-row"><span>Monthly revenue</span><span id="calc-revenue-display">$40,000</span></label>
+<input type="range" min="5000" max="150000" step="5000" value="40000" data-slider data-slider-output="calc-revenue-display" data-derive-output="calc-power-display" data-derive-formula="power" style="width:100%;margin-bottom:16px">
+<h3 style="font-weight:700;font-size:0.98rem;color:var(--navy);margin-bottom:6px">Borrowing Power Calculator</h3>
+<p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5;margin-bottom:14px">Check how much your business could access.</p>
+<span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--ink-400);cursor:default">View calculator &rarr;</span>
+</div>
+<div class="calc-card">
+<div style="margin-bottom:16px">
+<div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text-secondary);margin-bottom:4px"><span>Judo Bank</span><span style="font-weight:700;color:var(--navy)">9.45%</span></div>
+<div style="height:8px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="width:42%;height:100%;background:var(--navy)"></div></div>
+<div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text-secondary);margin:10px 0 4px"><span>Banjo Loans</span><span style="font-weight:700;color:var(--navy)">12.95%</span></div>
+<div style="height:8px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="width:58%;height:100%;background:var(--skyblue)"></div></div>
+</div>
+<h3 style="font-weight:700;font-size:0.98rem;color:var(--navy);margin-bottom:6px">Compare Rate Calculator</h3>
+<p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5;margin-bottom:14px">Line up offers side by side, apples to apples.</p>
+<span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--ink-400);cursor:default">View calculator &rarr;</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- GUIDES -->
+<section style="background:#fff;padding:var(--section-y) 0">
+<div class="container">
+<div style="text-align:center;margin-bottom:44px"><span class="eyebrow" style="text-align:center">Resources</span><h2 class="section-title">Learn before you apply.</h2></div>
+<div style="display:grid;grid-template-columns:1.3fr 1fr;gap:22px">
+<div style="background:var(--light-bg);border-radius:var(--radius-lg);padding:32px;display:flex;flex-direction:column;justify-content:center">
+<span style="font-family:var(--font-heading);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:var(--ls-label);color:var(--skyblue);margin-bottom:10px;display:block">Featured guide</span>
+<h3 style="font-weight:700;font-size:1.3rem;color:var(--navy);margin-bottom:10px">How to compare a business loan offer</h3>
+<p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;margin-bottom:14px">Rates, fees, terms — what lenders actually look for.</p>
+<span style="font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--ink-400);cursor:default">Read the guide &rarr;</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<span class="card" style="display:block;padding:16px 18px;font-family:var(--font-heading);font-weight:600;font-size:0.9rem;color:var(--ink-400);cursor:default">Invoice finance, explained</span>
+<span class="card" style="display:block;padding:16px 18px;font-family:var(--font-heading);font-weight:600;font-size:0.9rem;color:var(--ink-400);cursor:default">When refinancing makes sense</span>
+<span class="card" style="display:block;padding:16px 18px;font-family:var(--font-heading);font-weight:600;font-size:0.9rem;color:var(--ink-400);cursor:default">R&amp;D tax incentive funding</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CASE STUDIES -->
+<section style="background:var(--light-bg);padding:var(--section-y) 0">
+<div class="container">
+<h2 class="section-title" style="text-align:center;margin-bottom:44px">Real businesses. Real results.</h2>
+<div class="process-grid grid-3" style="position:static">
+<div class="card" style="padding:26px"><span style="font-family:var(--font-heading);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:var(--ls-label);color:var(--text-secondary)">E-commerce &bull; Sydney</span><div style="font-family:var(--font-heading);font-weight:700;font-size:1.8rem;color:var(--navy);margin:8px 0">$250k</div><p style="font-size:0.86rem;color:var(--text-secondary);margin-bottom:10px">Term Loan</p><span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--success)">Funded in 5 days</span></div>
+<div class="card" style="padding:26px"><span style="font-family:var(--font-heading);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:var(--ls-label);color:var(--text-secondary)">Construction &bull; Melbourne</span><div style="font-family:var(--font-heading);font-weight:700;font-size:1.8rem;color:var(--navy);margin:8px 0">$480k</div><p style="font-size:0.86rem;color:var(--text-secondary);margin-bottom:10px">Equipment Finance</p><span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--success)">Funded in 3 days</span></div>
+<div class="card" style="padding:26px"><span style="font-family:var(--font-heading);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:var(--ls-label);color:var(--text-secondary)">Healthcare &bull; Brisbane</span><div style="font-family:var(--font-heading);font-weight:700;font-size:1.8rem;color:var(--navy);margin:8px 0">$120k</div><p style="font-size:0.86rem;color:var(--text-secondary);margin-bottom:10px">Line of Credit</p><span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--success)">Funded in 24hrs</span></div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:#fff;padding:var(--section-y) 0">
+<div class="container">
+<h2 class="section-title" style="text-align:center;margin-bottom:44px">What business owners say</h2>
+<div class="testimonial-grid">
+<div class="testimonial-card"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p style="font-size:0.92rem;color:var(--navy);line-height:1.6;margin:10px 0">"[Placeholder review — swap in a real customer quote about turnaround time.]"</p><span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--text-secondary)">Business Owner, Retail</span></div>
+<div class="testimonial-card"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p style="font-size:0.92rem;color:var(--navy);line-height:1.6;margin:10px 0">"[Placeholder review — swap in a real customer quote about the S.T.A.R. report experience.]"</p><span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--text-secondary)">Business Owner, Construction</span></div>
+<div class="testimonial-card"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p style="font-size:0.92rem;color:var(--navy);line-height:1.6;margin:10px 0">"[Placeholder review — short quote.]"</p><span style="font-family:var(--font-heading);font-weight:600;font-size:0.8rem;color:var(--text-secondary)">Business Owner, Hospitality</span></div>
+</div>
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-blue) 100%);padding:var(--section-y) 0;text-align:center;color:#fff">
+<div class="container-prose">
+<span style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:var(--radius-pill);font-family:var(--font-heading);font-weight:600;font-size:0.72rem;letter-spacing:var(--ls-label);text-transform:uppercase;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.15)">No credit check</span>
+<h2 class="section-title" style="color:#fff;margin:18px 0 14px">Ready to see the full picture?</h2>
+<p style="color:rgba(255,255,255,0.75);margin-bottom:28px;font-size:1.02rem">Your personalised Compare Report — ready in 24 hours.</p>
+<a href="../home-shared/apply/index.html" class="btn" style="background:var(--peach);color:#fff;box-shadow:var(--shadow-peach);padding:16px 32px">Get My Free Compare Report &rarr;</a>
+<div style="display:flex;gap:20px;justify-content:center;margin-top:24px;flex-wrap:wrap">
+<span style="font-family:var(--font-heading);font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.8)">No credit check</span>
+<span style="font-family:var(--font-heading);font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.8)">No commitment</span>
+<span style="font-family:var(--font-heading);font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.8)">Ready in 24hrs</span>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="tf-footer">
+<div class="container-wide">
+<div class="tf-footer-top">
+<div>
+<img src="../assets/img/logo-white.png" alt="Trade Funding" style="height:20px;width:auto;display:block;margin-bottom:16px;">
+<p class="tf-footer-blurb">Australia's lending intelligence platform. We pre-qualify your business against 70+ lenders so you know your options before you apply.</p>
+<div class="tf-footer-contact">
+<a href="tel:1300161641">1300 161 641</a>
+<a href="mailto:support@tradefunding.com.au">support@tradefunding.com.au</a>
+<span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+</div>
+<div class="tf-footer-badges">
+<span class="tf-footer-badge">ACL 387856</span>
+<span class="tf-footer-badge">AFCA Member</span>
+<span class="tf-footer-badge">CAFBA</span>
+<span class="tf-footer-badge">Fintech Australia</span>
+</div>
+</div>
+<div class="tf-footer-cols">
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Channels</div>
+<a href="index.html">Business Loans</a>
+<a href="../connect/index.html">Connect</a>
+<a href="../personal-and-property/index.html">Personal &amp; Property</a>
+<a href="guides/index.html">Guides &amp; Tools</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Company</div>
+<a href="../home-shared/about/index.html">About Us</a>
+<a href="../home-shared/broker-portal/index.html">Broker Portal</a>
+<a href="../connect/index.html">Become a Partner</a>
+<a href="../home-shared/about/index.html#contact">Contact</a>
+<a href="../home-shared/apply/index.html">Get Started</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Legal</div>
+<a href="../home-shared/credit-guide/index.html">Credit Guide</a>
+<span class="tf-footer-inactive">Privacy Policy</span>
+<a href="../home-shared/terms/index.html">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+<div class="tf-footer-legal">
+<p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="../home-shared/credit-guide/index.html" style="color:rgba(255,255,255,0.85)">Credit Guide</a> | <a href="../home-shared/terms/index.html" style="color:rgba(255,255,255,0.85)">Terms &amp; Conditions</a> | ACL 387856</p>
+</div>
+<div class="tf-footer-bottom">
+<span>&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

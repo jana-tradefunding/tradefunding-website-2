@@ -1,0 +1,82 @@
+/* ============================================================
+   COLOUR — master brand palette (Brand Guidelines §02) plus the
+   ink/surface scales the production stylesheets actually resolve to.
+   Base token names are carried over verbatim from
+   shared/styles/chrome.css and connect/styles/main.css so a value
+   copied out of this system matches the live site exactly.
+   ============================================================ */
+:root {
+  /* --- Master brand colours (Brand Guidelines: Navy, Skyblue, Peach,
+     Yellow, Navy Blue, White). The guidelines call #FBB766 "Yellow";
+     the codebase names the same value --gold. Both names are kept. --- */
+  --navy: #001C44;
+  --navy-blue: #1C1998;
+  --navy-deep: #000C22;
+  --skyblue: #54B4F6;
+  --skyblue-soft: #EAF4FE;
+  --peach: #FF5D5C;
+  --peach-soft: #FFF0F0;
+  --peach-hover: #e84847;
+  --gold: #FBB766;
+  --gold-soft: #FFF7EC;
+  --yellow: var(--gold);
+  --white: #FFFFFF;
+
+  /* --- Semantic status --- */
+  --success: #10B981;
+
+  /* --- Ink scale (Connect stylesheet; cooler and lighter than the
+     navy text ramp, used for long-form body copy and captions) --- */
+  --ink-900: #0B1220;
+  --ink-600: #3C4B63;
+  --ink-400: #7A8AA3;
+  --ink-200: #B7C2D3;
+
+  /* --- Surfaces --- */
+  --light-bg: #F5F7FA;
+  --bg-soft: #F5F8FC;
+  --report-bg: #F0F4F8;
+  --surface-card: var(--white);
+  --surface-page: var(--white);
+  --surface-muted: var(--light-bg);
+  --surface-dark: var(--navy);
+  --surface-deep: var(--navy-deep);
+  --footer-bg: #00122E;
+
+  /* --- Text aliases --- */
+  --text-primary: #001C44;
+  --text-secondary: #4A5568;
+  --text-light: rgba(255,255,255,0.85);
+  --text-body: var(--text-secondary);
+  --text-heading: var(--navy);
+  --text-on-dark: rgba(255,255,255,0.75);
+  --text-caption: var(--ink-400);
+
+  /* --- Borders --- */
+  --border-neutral: rgba(0,28,68,0.12);
+  --border: rgba(0,28,68,0.08);
+  --border-dark: rgba(255,255,255,0.08);
+  --border-dashed: rgba(0,28,68,0.12);
+
+  /* --- Tint washes (icon chips, soft fills). These exact rgba values
+     repeat across the production pages; kept as tokens rather than
+     re-derived from the hexes. --- */
+  --tint-sky-10: rgba(84,180,246,0.10);
+  --tint-sky-08: rgba(84,180,246,0.08);
+  --tint-peach-10: rgba(255,93,92,0.10);
+  --tint-peach-08: rgba(255,93,92,0.08);
+  --tint-gold-10: rgba(251,183,102,0.10);
+  --tint-navy-blue-10: rgba(28,25,152,0.10);
+  --tint-navy-blue-08: rgba(28,25,152,0.08);
+  --tint-success-12: rgba(16,185,129,0.12);
+  /* Lighter indigo used as ink on --tint-navy-blue-10 chips. Not a
+     guidelines colour, but it repeats identically everywhere the
+     pairing is used, so it is centralised rather than left inline. */
+  --indigo-light: #7B78FF;
+
+  /* --- S.T.A.R. score dots (Commercial Compare Report) --- */
+  --star-s: #1C1998;
+  --star-t: #54B4F6;
+  --star-a: #FBB766;
+  --star-r: #FF5D5C;
+}

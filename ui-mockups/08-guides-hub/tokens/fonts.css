@@ -1,0 +1,7 @@
+/* Brand webfonts. Both are the genuine brand typefaces named in the
+   Brand Guidelines (Work Sans, Roboto) and both are Google Fonts, so no
+   substitution was needed. No local binaries were supplied with the
+   sources; the production site loads the same two families from the
+   Google Fonts CDN, which is reproduced here verbatim.
+   Work Sans 400/500/600/700/800/900 · Roboto 300/400/500/700 */
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap");

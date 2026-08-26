@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Loan Repayment Calculator — Trade Funding</title>
+<meta name="description" content="Adjust the amount, rate, and term to see your business loan repayments update instantly. Free calculator, no sign-up required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<style>
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:var(--bg-soft);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--skyblue);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--skyblue);border:3px solid #fff;cursor:pointer}
+.ct-field-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.ct-field-label span:first-child{font-weight:500;font-size:0.95rem;color:var(--navy)}
+.ct-field-label span:last-child{font-weight:700;font-size:1.3rem;color:var(--skyblue)}
+.ct-range-scale{display:flex;justify-content:space-between;margin-top:6px;font-size:0.72rem;color:var(--ink-400)}
+.ct-text-input{margin-top:10px;width:100%;box-sizing:border-box;border:1px solid var(--border-neutral);border-radius:6px;padding:10px 12px;font-family:var(--font-heading);font-weight:500;font-size:0.9rem;color:var(--navy)}
+.ct-output-card{background:var(--navy);border-radius:var(--radius-sm);padding:32px;color:#fff}
+.ct-output-line{margin-bottom:16px}
+.ct-output-eyebrow{font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:4px}
+.ct-output-value{font-weight:700;color:var(--skyblue)}
+.ct-hr{height:1px;background:rgba(255,255,255,0.15);margin:16px 0}
+.ct-freq-card{background:#fff;border:1px solid var(--border-neutral);border-radius:var(--radius-sm);padding:28px}
+.ct-star-card{border-top:2px solid var(--skyblue);padding:24px 20px 0}
+.ct-star-badge{width:32px;height:32px;border:1.5px solid var(--navy);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;margin-bottom:16px;color:var(--navy)}
+.ct-tool-card{background:#fff;border:1px solid var(--border-neutral);border-radius:var(--radius-sm);padding:28px}
+details.faq{border-bottom:1px solid var(--border-neutral);padding:20px 0;cursor:pointer}
+details.faq summary{list-style:none;font-weight:500;font-size:1rem;color:var(--navy)}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq[open] summary{font-weight:600}
+details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;margin-top:12px}
+@media (max-width:900px){.ct-grid-2{grid-template-columns:1fr!important}.ct-grid-3{grid-template-columns:1fr!important}.ct-grid-4{grid-template-columns:repeat(2,1fr)!important}}
+</style>
+</head>
+<body class="channel-commercial">
+
+<!-- NAVBAR -->
+<nav class="tf-nav" aria-label="Primary">
+<div class="tf-nav-inner">
+<a href="../../index.html" class="tf-nav-logo"><img src="../../assets/img/logo-navy.png" alt="Trade Funding"></a>
+<div class="tf-nav-links">
+<div class="tf-nav-item">
+<span class="tf-nav-link">Products<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="width:400px;max-height:80vh;overflow-y:auto">
+<span style="display:block;padding:2px 14px 12px;margin-bottom:6px;border-bottom:1px solid var(--border);font-family:var(--font-heading);font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-400)">Fund My Business</span>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Business Term Loans</span><div class="tf-mega-sub">A lump sum with fixed repayments for growth or working capital.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Merchant Cash Advance</span><div class="tf-mega-sub">An advance repaid as a percentage of card sales.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">R&amp;D Tax Incentive Funding</span><div class="tf-mega-sub">Access your R&amp;D Tax Incentive claim before the ATO pays out.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Business Charge Card</span><div class="tf-mega-sub">Team spending power on a card built for business expenses.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Business Line of Credit</span><div class="tf-mega-sub">Draw funds as needed, pay interest only on what you use.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Business Overdraft</span><div class="tf-mega-sub">A flexible buffer on your everyday transaction account.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Invoice Finance</span><div class="tf-mega-sub">Unlock cash tied up in unpaid invoices in days, not months.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Fund an Invoice</span><div class="tf-mega-sub">Fund a single invoice without a full ongoing facility.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Trade Finance</span><div class="tf-mega-sub">Fund the gap between paying suppliers and getting paid.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Export Finance</span><div class="tf-mega-sub">Fund production and shipping before your buyer pays.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Supply Chain Funding</span><div class="tf-mega-sub">Extend payment terms, or get suppliers paid early.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Finance Lease</span><div class="tf-mega-sub">Lease equipment with the option to own it at the end.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Operating Lease</span><div class="tf-mega-sub">Use equipment without owning it, off your balance sheet.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Chattel Mortgage</span><div class="tf-mega-sub">Own equipment from day one while spreading the cost.</div></a>
+<a href="../../personal-and-property/index.html"><span class="tf-mega-heading">Second Mortgage</span><div class="tf-mega-sub">Access equity in property you own without refinancing.</div></a>
+<a href="../../personal-and-property/index.html"><span class="tf-mega-heading">Self-Employed Home Loan</span><div class="tf-mega-sub">A home loan built around self-employed income.</div></a>
+<div style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px">
+<a href="../products/index.html"><span class="tf-mega-heading" style="color:var(--skyblue)">View all products &rarr;</span></a>
+</div>
+</div>
+</div>
+<div class="tf-nav-item">
+<span class="tf-nav-link">Compare<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="min-width:240px">
+<a href="../compare-report/index.html"><span class="tf-mega-heading">Which Option is Best</span><div class="tf-mega-sub">See how our matching engine ranks 70+ lenders.</div></a>
+</div>
+</div>
+<a href="../../home-shared/about/index.html" class="tf-nav-link">About</a>
+</div>
+<nav class="tf-toggle" aria-label="Switch Trade Funding channel">
+<a href="../../index.html" class="tf-toggle-home" aria-label="Home">
+<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"></path></svg>
+</a>
+<a href="../index.html" class="tf-toggle-tab is-active">Commercial</a>
+<a href="../../connect/index.html" class="tf-toggle-tab">Connect</a>
+<a href="../../personal-and-property/index.html" class="tf-toggle-tab">Personal &amp; Property</a>
+</nav>
+</div>
+</nav>
+
+<!-- HERO + CALCULATOR -->
+<section style="background:var(--bg-soft);padding:56px 0 72px">
+<div class="container">
+<span class="eyebrow">Free Calculator</span>
+<h1 class="section-title" style="margin:14px 0">Business Loan Repayment Calculator</h1>
+<p style="font-size:1rem;color:var(--text-secondary);margin-bottom:40px;max-width:640px">Adjust the amount, rate, and term to see your repayments update instantly.</p>
+
+<div class="ct-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+
+<div class="card" style="padding:32px">
+<h2 style="font-size:1.25rem;font-weight:600;margin-bottom:28px;color:var(--navy)">Loan Details</h2>
+
+<div style="margin-bottom:28px">
+<div class="ct-field-label"><span>Loan amount</span><span id="ct-amount-display">$150,000</span></div>
+<input type="range" id="ct-amount-slider" min="10000" max="5000000" step="5000" value="150000">
+<div class="ct-range-scale"><span>$10k</span><span>$5M</span></div>
+<input type="text" id="ct-amount-text" class="ct-text-input" value="$150,000">
+</div>
+
+<div style="margin-bottom:28px">
+<div class="ct-field-label"><span>Annual interest rate</span><span id="ct-rate-display">12.0%</span></div>
+<input type="range" id="ct-rate-slider" min="5" max="35" step="0.1" value="12">
+<div class="ct-range-scale"><span>5.0%</span><span>35.0%</span></div>
+<input type="text" id="ct-rate-text" class="ct-text-input" value="12.0%">
+</div>
+
+<div>
+<span style="font-weight:500;font-size:0.95rem;color:var(--navy);display:block;margin-bottom:10px">Loan term</span>
+<select id="ct-term-select" class="ct-text-input" style="margin-top:0">
+<option value="3">3 months</option>
+<option value="6">6 months</option>
+<option value="9">9 months</option>
+<option value="12" selected>12 months (1 year)</option>
+<option value="18">18 months</option>
+<option value="24">24 months (2 years)</option>
+<option value="36">36 months (3 years)</option>
+<option value="48">48 months (4 years)</option>
+<option value="60">60 months (5 years)</option>
+<option value="72">72 months (6 years)</option>
+<option value="84">84 months (7 years)</option>
+</select>
+</div>
+</div>
+
+<div class="ct-output-card">
+<h2 style="font-size:1.25rem;font-weight:600;margin-bottom:24px;color:#fff">Your Estimated Repayments</h2>
+<div class="ct-output-line"><div class="ct-output-eyebrow">WEEKLY REPAYMENT</div><div class="ct-output-value" style="font-size:2rem" id="ct-weekly">$277</div></div>
+<div class="ct-hr"></div>
+<div class="ct-output-line"><div class="ct-output-eyebrow">FORTNIGHTLY REPAYMENT</div><div class="ct-output-value" style="font-size:1.5rem" id="ct-fortnightly">$554</div></div>
+<div class="ct-hr"></div>
+<div class="ct-output-line"><div class="ct-output-eyebrow">MONTHLY REPAYMENT</div><div class="ct-output-value" style="font-size:1.5rem" id="ct-monthly">$1,200</div></div>
+<div class="ct-hr" style="margin:20px 0"></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-size:1rem;font-weight:500;color:rgba(255,255,255,0.85)">TOTAL INTEREST PAID</span><span style="font-size:1rem;font-weight:500" id="ct-total-interest">$9,000</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:28px"><span style="font-size:1rem;font-weight:500;color:rgba(255,255,255,0.85)">TOTAL COST OF LOAN</span><span style="font-size:1rem;font-weight:500" id="ct-total-cost">$159,000</span></div>
+<a href="../../home-shared/apply/index.html" class="btn" style="background:var(--peach);color:#fff;width:100%;padding:14px;justify-content:center">Get My Free Compare Report &rarr;</a>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FREQUENCY BREAKDOWN -->
+<section style="background:#fff;padding:72px 0">
+<div class="container">
+<h2 class="section-title" style="margin-bottom:32px">Payment frequency and your cash flow</h2>
+<div class="ct-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<div class="ct-freq-card"><div style="font-size:1.35rem;font-weight:700;color:var(--navy);margin-bottom:6px"><span id="ct-weekly-2">$277</span> / week</div><p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.6">Smaller, more frequent payments. Easier to align with weekly retail or trade revenue cycles.</p></div>
+<div class="ct-freq-card"><div style="font-size:1.35rem;font-weight:700;color:var(--navy);margin-bottom:6px"><span id="ct-fortnightly-2">$554</span> / fortnight</div><p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.6">Matches standard Australian payroll cycles. 26 repayments per calendar year.</p></div>
+<div class="ct-freq-card"><div style="font-size:1.35rem;font-weight:700;color:var(--navy);margin-bottom:6px"><span id="ct-monthly-2">$1,200</span> / month</div><p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.6">Simplest for monthly accounting and cash reconciliation. Fewer bank transactions.</p></div>
+</div>
+</div>
+</section>
+
+<!-- REALITY GAP -->
+<section style="background:#fff;padding:0 0 72px">
+<div class="container">
+<div class="card" style="border-left:3px solid var(--peach);padding:32px">
+<h3 style="font-size:1.25rem;font-weight:600;margin-bottom:14px;color:var(--navy)">What this calculator can't see.</h3>
+<p style="font-size:0.95rem;line-height:1.7;color:var(--text-secondary);margin-bottom:18px;max-width:820px">This tool assumes a flat interest rate and standard amortization. Your actual borrowing terms depend on risk variables a calculator cannot capture &mdash; including security position, trading track record, and credit profile. The exact same $100,000 loan can cost $12,976 in interest with one lender and over $31,000 with another.</p>
+<p style="font-size:0.85rem;font-weight:600;color:var(--navy)">Tier-1 Banks: 7.5%&ndash;11% p.a. &middot; Fintech / Online: 12%&ndash;35% p.a. &middot; Security and turnaround velocity drive the pricing spread.</p>
+</div>
+</div>
+</section>
+
+<!-- S.T.A.R. -->
+<section style="background:#fff;padding:0 0 72px">
+<div class="container">
+<h2 class="section-title" style="margin-bottom:32px">How your calculation ties to S.T.A.R. facts</h2>
+<div class="ct-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+<div class="ct-star-card" style="border-top-color:var(--star-s)"><div class="ct-star-badge">S</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Security</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6">This calculation models an unsecured facility. Pledging business equipment or commercial property can lower rates by 3&ndash;8%.</p></div>
+<div class="ct-star-card" style="border-top-color:var(--star-t)"><div class="ct-star-badge">T</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Term</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6">Modeled on <span id="ct-term-label">12 months (1 year)</span>. Longer terms lower weekly installments but increase total interest over time.</p></div>
+<div class="ct-star-card" style="border-top-color:var(--star-a)"><div class="ct-star-badge">A</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Amount</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6"><span id="ct-amount-label">$150,000</span> is widely supported across 70+ panel lenders. Actual quantum is determined by average monthly revenue.</p></div>
+<div class="ct-star-card" style="border-top-color:var(--star-r)"><div class="ct-star-badge">R</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Rate</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6"><span id="ct-rate-label">12.0%</span> is an indicative benchmark. Your real rate is locked following automated Cashper policy matching.</p></div>
+</div>
+</div>
+</section>
+
+<!-- TOOL FAMILY -->
+<section style="background:var(--bg-soft);padding:72px 0">
+<div class="container">
+<span class="eyebrow">Lending Tools</span>
+<h2 class="section-title" style="margin:14px 0 32px">Run the numbers across our calculator suite</h2>
+<div class="ct-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<div class="ct-tool-card"><div style="font-weight:600;font-size:1.05rem;margin-bottom:8px;color:var(--navy)">Loan Repayment Calculator</div><p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:16px">Currently active tool.</p><span style="font-weight:600;font-size:0.85rem;color:var(--ink-400)">Active Tool</span></div>
+<div class="ct-tool-card"><div style="font-weight:600;font-size:1.05rem;margin-bottom:8px;color:var(--navy)">Borrowing Power Calculator</div><p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:16px">Check how much funding your revenue metrics qualify for.</p><span style="font-weight:600;font-size:0.85rem;color:var(--navy)">Coming soon</span></div>
+<div class="ct-tool-card"><div style="font-weight:600;font-size:1.05rem;margin-bottom:8px;color:var(--navy)">Compare Rate Calculator</div><p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:16px">Line up lender offers side by side, apples to apples.</p><span style="font-weight:600;font-size:0.85rem;color:var(--navy)">Coming soon</span></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section style="background:#fff;padding:72px 0">
+<div class="container-prose">
+<h2 class="section-title" style="margin-bottom:8px">Calculator FAQs</h2>
+<div style="margin-top:24px">
+<details class="faq" open><summary>How are business loan repayments calculated?</summary><p>Repayments are calculated using a standard amortisation formula based on your loan amount, annual interest rate, and term. Each repayment includes both interest and a portion of the principal, structured so the loan is fully repaid by the end of the term.</p></details>
+<details class="faq"><summary>What factors affect my business loan repayment amount?</summary><p>The loan amount, interest rate, and term length are the main drivers. Your actual rate is also shaped by factors this calculator can't see, including security offered, trading history, and credit profile.</p></details>
+<details class="faq"><summary>Should I choose weekly, fortnightly, or monthly repayments?</summary><p>It depends on your cash flow. Weekly suits businesses with frequent revenue cycles, fortnightly aligns with standard payroll, and monthly is simplest for accounting and reconciliation.</p></details>
+<details class="faq"><summary>Can I pay off my business loan early without a penalty?</summary><p>This varies by lender and product. Some facilities allow early repayment with no penalty, others apply a break fee or require the remaining interest to be paid out. Confirm the terms with your specific lender before signing.</p></details>
+</div>
+</div>
+</section>
+
+<!-- EXIT CTA -->
+<section style="background:var(--bg-soft);padding:72px 0;text-align:center">
+<div class="container-prose">
+<span class="eyebrow" style="text-align:center">No Credit Check</span>
+<h2 class="section-title" style="margin:14px 0">Ready to see real rates?</h2>
+<p style="font-size:1rem;color:var(--text-secondary);line-height:1.6;margin-bottom:32px">This calculator gives you an estimate. Your free Compare Report shows exact rates and pre-qualified terms from 70+ lenders, matched to your actual business.</p>
+<a href="../../home-shared/apply/index.html" class="btn btn-primary" style="height:52px;padding:0 32px;margin-bottom:16px">Get My Free Compare Report &rarr;</a>
+<p style="font-size:0.85rem;color:var(--text-secondary)">No credit check &middot; No commitment &middot; Ready in 24hrs</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="tf-footer">
+<div class="container-wide">
+<div class="tf-footer-top">
+<div>
+<img src="../../assets/img/logo-white.png" alt="Trade Funding" style="height:20px;width:auto;display:block;margin-bottom:16px;">
+<p class="tf-footer-blurb">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+<div class="tf-footer-contact">
+<a href="tel:1300161641">1300 161 641</a>
+<a href="mailto:support@tradefunding.com.au">support@tradefunding.com.au</a>
+<span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+</div>
+<div class="tf-footer-badges">
+<span class="tf-footer-badge">ACL 387856</span>
+<span class="tf-footer-badge">AFCA Member</span>
+<span class="tf-footer-badge">CAFBA</span>
+<span class="tf-footer-badge">Fintech Australia</span>
+</div>
+</div>
+<div class="tf-footer-cols">
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Channels</div>
+<a href="../index.html">Business Loans</a>
+<a href="../../connect/index.html">Connect</a>
+<a href="../../personal-and-property/index.html">Personal &amp; Property</a>
+<a href="../guides/index.html">Guides &amp; Tools</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Company</div>
+<a href="../../home-shared/about/index.html">About Us</a>
+<a href="../../home-shared/broker-portal/index.html">Broker Portal</a>
+<a href="../../connect/index.html">Become a Partner</a>
+<a href="../../home-shared/about/index.html#contact">Contact</a>
+<a href="../../home-shared/apply/index.html">Get Started</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Legal</div>
+<a href="../../home-shared/credit-guide/index.html">Credit Guide</a>
+<span class="tf-footer-inactive">Privacy Policy</span>
+<a href="../../home-shared/terms/index.html">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+<div class="tf-footer-legal">
+<p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="../../home-shared/credit-guide/index.html" style="color:rgba(255,255,255,0.85)">Credit Guide</a> | <a href="../../home-shared/terms/index.html" style="color:rgba(255,255,255,0.85)">Terms &amp; Conditions</a> | ACL 387856</p>
+</div>
+<div class="tf-footer-bottom">
+<span>&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script>
+(function(){
+  function fmtMoney(n){ return '$' + Math.round(n).toLocaleString('en-AU'); }
+
+  var amountSlider = document.getElementById('ct-amount-slider');
+  var amountText = document.getElementById('ct-amount-text');
+  var rateSlider = document.getElementById('ct-rate-slider');
+  var rateText = document.getElementById('ct-rate-text');
+  var termSelect = document.getElementById('ct-term-select');
+
+  function compute(){
+    var amount = Number(amountSlider.value);
+    var rate = Number(rateSlider.value);
+    var n = Number(termSelect.value);
+    var r = (rate / 100) / 12;
+    var monthly = r === 0 ? amount / n : (amount * r) / (1 - Math.pow(1 + r, -n));
+    var weekly = monthly * 12 / 52;
+    var fortnightly = monthly * 12 / 26;
+    var totalCost = monthly * n;
+    var totalInterest = totalCost - amount;
+    return { monthly: monthly, weekly: weekly, fortnightly: fortnightly, totalCost: totalCost, totalInterest: totalInterest };
+  }
+
+  function render(){
+    var amount = Number(amountSlider.value);
+    var rate = Number(rateSlider.value);
+    var termLabel = termSelect.options[termSelect.selectedIndex].text;
+    var out = compute();
+
+    document.getElementById('ct-amount-display').textContent = fmtMoney(amount);
+    amountText.value = fmtMoney(amount);
+    document.getElementById('ct-rate-display').textContent = rate.toFixed(1) + '%';
+    rateText.value = rate.toFixed(1) + '%';
+
+    document.getElementById('ct-weekly').textContent = fmtMoney(out.weekly);
+    document.getElementById('ct-fortnightly').textContent = fmtMoney(out.fortnightly);
+    document.getElementById('ct-monthly').textContent = fmtMoney(out.monthly);
+    document.getElementById('ct-weekly-2').textContent = fmtMoney(out.weekly);
+    document.getElementById('ct-fortnightly-2').textContent = fmtMoney(out.fortnightly);
+    document.getElementById('ct-monthly-2').textContent = fmtMoney(out.monthly);
+    document.getElementById('ct-total-interest').textContent = fmtMoney(out.totalInterest);
+    document.getElementById('ct-total-cost').textContent = fmtMoney(out.totalCost);
+
+    document.getElementById('ct-term-label').textContent = termLabel;
+    document.getElementById('ct-amount-label').textContent = fmtMoney(amount);
+    document.getElementById('ct-rate-label').textContent = rate.toFixed(1) + '%';
+  }
+
+  amountSlider.addEventListener('input', render);
+  rateSlider.addEventListener('input', render);
+  termSelect.addEventListener('change', render);
+
+  amountText.addEventListener('change', function(){
+    var v = Number(String(amountText.value).replace(/[^0-9.]/g, ''));
+    if (!isNaN(v)) { amountSlider.value = Math.min(5000000, Math.max(10000, v)); render(); }
+  });
+  rateText.addEventListener('change', function(){
+    var v = Number(String(rateText.value).replace(/[^0-9.]/g, ''));
+    if (!isNaN(v)) { rateSlider.value = Math.min(35, Math.max(5, v)); render(); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

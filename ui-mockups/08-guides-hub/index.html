@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    body { font-family: 'DM Sans', var(--font-body); }
+    h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', var(--font-heading); }
+    a { color: var(--navy); }
+    a:hover { color: var(--skyblue); }
+  </style>
+</helmet>
+
+<div style="background: var(--white); min-height: 100vh;">
+
+  <!-- NAV -->
+  <nav style="width: 100%; background: var(--white); border-bottom: 1px solid rgba(0,28,68,0.08); padding: 18px 0;">
+    <div style="display: flex; align-items: center; justify-content: space-between; max-width: var(--max-width-wide); margin: 0 auto; padding: 0 40px; gap: 24px;">
+      <a href="#" style="display: flex; align-items: center; flex-shrink: 0;">
+        <img src="./assets/logo-navy.png" alt="tradefunding" style="height: 30px; width: auto; flex-shrink: 0;">
+      </a>
+      <div style="display: flex; align-items: center; gap: 40px;">
+        <a href="#" style="font-family: 'DM Sans'; font-weight: 500; font-size: 1.05rem; color: var(--navy); display: inline-flex; align-items: center; gap: 5px;">
+          Products
+          <span aria-hidden="true" style="width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor;"></span>
+        </a>
+        <a href="#" style="font-family: 'DM Sans'; font-weight: 500; font-size: 1.05rem; color: var(--navy); display: inline-flex; align-items: center; gap: 5px;">
+          Compare
+          <span aria-hidden="true" style="width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor;"></span>
+        </a>
+        <a href="#" style="font-family: 'DM Sans'; font-weight: 500; font-size: 1.05rem; color: var(--navy);">About</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 2px; padding: 6px; border: 1px solid rgba(0,28,68,0.12); border-radius: var(--radius-pill); box-shadow: var(--shadow-sm); background: var(--white);">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; color: var(--text-secondary); cursor: pointer;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5.5 9.5V20h13V9.5"></path></svg>
+        </span>
+        <span style="padding: 8px 18px; border-radius: var(--radius-pill); background: var(--skyblue); color: var(--white); font-family: 'DM Sans'; font-weight: 600; font-size: 0.92rem; cursor: default;">Commercial</span>
+        <span style="padding: 8px 16px; font-family: 'DM Sans'; font-weight: 500; font-size: 0.92rem; color: var(--text-secondary); cursor: pointer;">Connect</span>
+        <span style="padding: 8px 16px; font-family: 'DM Sans'; font-weight: 500; font-size: 0.92rem; color: var(--text-secondary); cursor: pointer; white-space: nowrap;">Personal &amp; Property</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="background: var(--bg-soft); padding: 72px 0 56px;">
+    <div style="max-width: var(--max-width-wide); margin: 0 auto; padding: 0 40px;">
+      <span style="display: block; font-family: 'DM Sans'; font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(0,28,68,0.6); margin-bottom: 18px;">Resources &amp; Education</span>
+      <h1 style="font-size: 44px; font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 20px; max-width: 560px;">Commercial funding, decoded.</h1>
+      <p style="font-size: 16px; font-weight: 400; color: rgba(0,28,68,0.7); line-height: 1.6; max-width: 480px; margin-bottom: 28px;">Practical, licensed credit intelligence from specialists who compare 70+ Australian lenders daily. No jargon. No bias.</p>
+      <div style="font-family: 'DM Sans'; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.55); letter-spacing: 0.01em;">ACL 387856 &middot; AFCA Member &middot; 70+ Lenders Compared &middot; Updated Quarterly</div>
+    </div>
+  </section>
+
+  <!-- FILTER TABS -->
+  <div style="display: flex; align-items: center; max-width: var(--max-width-wide); margin: 0 auto; padding: 0 40px; border-bottom: 1px solid rgba(0,28,68,0.12); background: var(--white);">
+    <sc-for list="{{ filterTabs }}" as="tab" hint-placeholder-count="5">
+      <span onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }}</span>
+    </sc-for>
+  </div>
+
+  <!-- FEATURED PILLAR GUIDE -->
+  <section style="background: var(--white); padding: 64px 0;">
+    <div style="max-width: var(--max-width-wide); margin: 0 auto; padding: 0 40px;">
+      <div style="background: var(--white); border: 1px solid rgba(0,28,68,0.15); border-top: 2px solid var(--skyblue); border-radius: 8px; padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;">
+        <div>
+          <span style="display: block; font-family: 'DM Sans'; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--skyblue); margin-bottom: 16px;">Featured Guide &middot; 2026 Edition</span>
+          <h2 style="font-size: 28px; font-weight: 600; color: var(--navy); line-height: 1.25; margin-bottom: 16px; max-width: 640px;">How to compare a business loan offer in Australia</h2>
+          <p style="font-size: 15px; font-weight: 400; color: rgba(0,28,68,0.7); line-height: 1.65; max-width: 620px; margin-bottom: 20px;">Learn the key factors that separate a good commercial facility from an expensive trap. We break down true annualized interest rates, origination fees, PPSR exposure, director guarantees, and what credit committees actually look for.</p>
+          <div style="font-family: 'DM Sans'; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.5);">12 min read &middot; S.T.A.R. Framework Analysis &middot; Licensed Credit Advisory</div>
+        </div>
+        <a href="#" style="font-family: 'DM Sans'; font-weight: 600; font-size: 15px; color: var(--navy); white-space: nowrap; padding-bottom: 4px;">Read the full guide &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GUIDES 3x3 -->
+  <section style="background: var(--bg-soft); padding: 72px 0;">
+    <div style="max-width: var(--max-width-wide); margin: 0 auto; padding: 0 40px;">
+      <span style="display: block; font-family: 'DM Sans'; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,28,68,0.6); margin-bottom: 12px;">Product Guides</span>
+      <h2 style="font-size: 30px; font-weight: 600; color: var(--navy); margin-bottom: 36px;">Deep-dives into every funding product</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+        <sc-for list="{{ productGuides }}" as="g" hint-placeholder-count="9">
+          <a href="#" style="display: flex; flex-direction: column; background: var(--white); border: 1px solid rgba(0,28,68,0.15); border-radius: 8px; padding: 28px; text-decoration: none; height: 100%;">
+            <h3 style="font-size: 17px; font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 10px;">{{ g.title }}</h3>
+            <p style="font-size: 14px; font-weight: 400; color: rgba(0,28,68,0.65); line-height: 1.55; margin-bottom: 20px; flex: 1;">{{ g.desc }}</p>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto;">
+              <span style="font-family: 'DM Sans'; font-weight: 500; font-size: 12.5px; color: rgba(0,28,68,0.45);">{{ g.time }}</span>
+              <span style="font-family: 'DM Sans'; font-weight: 600; font-size: 13.5px; color: var(--navy);">Read guide &rarr;</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- INLINE DECISION MODULE -->
+  <section style="background: var(--bg-soft); padding: 72px 0; border-top: 1px solid rgba(0,28,68,0.1);">
+    <div style="max-width: 720px; margin: 0 auto; padding: 0 40px; text-align: center;">
+      <h2 style="font-size: 30px; font-weight: 600; color: var(--navy); margin-bottom: 14px;">Skip the reading. Get your numbers compared.</h2>
+      <p style="font-size: 16px; font-weight: 400; color: rgba(0,28,68,0.7); line-height: 1.6; margin-bottom: 28px;">Your free S.T.A.R. Compare Report matches your business metrics directly against 70+ lenders so you see the facts, not the marketing.</p>
+      <a href="#" style="display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 32px; background: var(--peach); color: var(--white); border-radius: 8px; font-family: 'DM Sans'; font-weight: 600; font-size: 16px; text-decoration: none; box-shadow: var(--shadow-peach); margin-bottom: 16px;">Get My Free Compare Report &rarr;</a>
+      <div style="font-family: 'DM Sans'; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.5);">No credit check &middot; No commitment &middot; Ready in 24 hours</div>
+    </div>
+  </section>
+
+  <!-- STRATEGY ARTICLES -->
+  <section style="background: var(--white); padding: 72px 0;">
+    <div style="max-width: var(--max-width-wide); margin: 0 auto; padding: 0 40px;">
+      <span style="display: block; font-family: 'DM Sans'; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,28,68,0.6); margin-bottom: 12px;">Lending Strategy</span>
+      <h2 style="font-size: 30px; font-weight: 600; color: var(--navy); margin-bottom: 36px;">Strategic borrowing frameworks</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;">
+        <sc-for list="{{ strategyArticles }}" as="a" hint-placeholder-count="2">
+          <a href="#" style="display: block; background: var(--white); border: 1px solid rgba(0,28,68,0.15); border-radius: 8px; padding: 32px; text-decoration: none;">
+            <h3 style="font-size: 19px; font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 12px;">{{ a.title }}</h3>
+            <p style="font-size: 14.5px; font-weight: 400; color: rgba(0,28,68,0.65); line-height: 1.6; margin-bottom: 20px;">{{ a.desc }}</p>
+            <span style="font-family: 'DM Sans'; font-weight: 600; font-size: 13.5px; color: var(--navy);">Read article &rarr;</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIMARY EXIT CTA -->
+  <section style="background: var(--bg-soft); padding: 80px 0; border-top: 1px solid rgba(0,28,68,0.1);">
+    <div style="max-width: 720px; margin: 0 auto; padding: 0 40px; text-align: center;">
+      <span style="display: block; font-family: 'DM Sans'; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,28,68,0.6); margin-bottom: 16px;">No Credit Check</span>
+      <h2 style="font-size: 32px; font-weight: 600; color: var(--navy); margin-bottom: 14px;">Ready to see every option available to your business?</h2>
+      <p style="font-size: 16px; font-weight: 400; color: rgba(0,28,68,0.7); line-height: 1.6; margin-bottom: 28px;">Start your free comparison and receive your S.T.A.R. Compare Report within 24 hours.</p>
+      <a href="#" style="display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 32px; background: var(--peach); color: var(--white); border-radius: 8px; font-family: 'DM Sans'; font-weight: 600; font-size: 16px; text-decoration: none; box-shadow: var(--shadow-peach); margin-bottom: 16px;">Get My Free Compare Report &rarr;</a>
+      <div style="font-family: 'DM Sans'; font-weight: 500; font-size: 13px; color: rgba(0,28,68,0.5);">No credit check &middot; No commitment &middot; Ready in 24hr</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: var(--footer-bg); padding: 72px 0 0; color: rgba(255,255,255,0.7);">
+    <div style="max-width: var(--max-width-wide); margin: 0 auto; padding: 0 40px;">
+      <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 56px;">
+        <div>
+          <img src="./assets/logo-white.png" alt="tradefunding" style="height: 26px; width: auto; margin-bottom: 22px;">
+          <p style="font-size: 14.5px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 320px; margin-bottom: 20px;">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+          <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 22px;">
+            <span style="font-size: 14.5px; color: rgba(255,255,255,0.6);">1300 161 641</span>
+            <span style="font-size: 14.5px; color: rgba(255,255,255,0.6);">support@tradefunding.com.au</span>
+            <span style="font-size: 14.5px; color: rgba(255,255,255,0.6);">Level 8, 387 George Street, Sydney, NSW, 2000</span>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <sc-for list="{{ badges }}" as="b" hint-placeholder-count="4">
+              <span style="padding: 7px 14px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,0.7);">{{ b }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight: 600; font-size: 15px; color: var(--white); margin-bottom: 18px;">Channels</div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Business Loans</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Connect</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Personal &amp; Property</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Guides &amp; Tools</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight: 600; font-size: 15px; color: var(--white); margin-bottom: 18px;">Company</div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">About Us</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Broker Portal</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Become a Partner</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Contact</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Get Started</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight: 600; font-size: 15px; color: var(--white); margin-bottom: 18px;">Legal</div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Credit Guide</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Privacy Policy</a>
+            <a href="#" style="font-size: 14.5px; color: rgba(255,255,255,0.6); text-decoration: none;">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.12); padding: 28px 0;">
+        <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 10px;">Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: underline;">Credit Guide</a> | <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: underline;">Terms &amp; Conditions</a> | ACL 387856</p>
+        <p style="font-size: 13px; color: rgba(255,255,255,0.4);">&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeTab: 'All Guides' };
+
+  renderVals() {
+    const tabs = ['All Guides', 'Product Deep-Dives', 'Lender Comparisons', 'Calculators & Tools', 'Tax & R&D'];
+    const filterTabs = tabs.map(label => {
+      const active = this.state.activeTab === label;
+      return {
+        label,
+        onClick: () => this.setState({ activeTab: label }),
+        style: {
+          display: 'inline-flex', alignItems: 'center', height: '52px', padding: '0 40px 0 0',
+          marginRight: label === tabs[tabs.length - 1] ? 0 : '40px',
+          maxWidth: 'var(--max-width-wide)',
+          fontFamily: 'DM Sans', fontWeight: 500, fontSize: '14.5px', cursor: 'pointer',
+          color: active ? 'var(--navy)' : 'rgba(0,28,68,0.55)',
+          borderBottom: active ? '2px solid var(--skyblue)' : '2px solid transparent',
+          boxSizing: 'border-box'
+        }
+      };
+    });
+
+    const productGuides = [
+      { title: 'Business Term Loans in Australia', desc: 'Fixed vs flexible terms, interest rates, and loan structures for working capital and expansion.', time: '8 min read' },
+      { title: 'Business Line of Credit Guide', desc: 'Draw what you need, repay flexibly, and avoid paying interest on unused facility limits.', time: '6 min read' },
+      { title: 'Business Overdraft in Australia', desc: 'Managing seasonal cash flow buffers against everyday commercial transaction accounts.', time: '5 min read' },
+      { title: 'Invoice vs. Debtor Finance: The Complete Breakdown', desc: 'Unlocking 85–90% of unpaid invoices within 24 hours to fund weekly payroll.', time: '7 min read' },
+      { title: 'Lease vs. Buy: Commercial Asset Finance Guide', desc: 'Chattel mortgages, finance leases, and operating leases compared for tax and PPSR impact.', time: '9 min read' },
+      { title: 'Business Charge Cards Explained', desc: 'Team spending power and expense management built strictly for Australian corporate entities.', time: '5 min read' },
+      { title: 'Business Loans for Non-Standard Credit', desc: 'How alternative and private lenders evaluate trading history when Tier-1 banks decline.', time: '7 min read' },
+      { title: 'R&D Tax Incentive Bridging Finance', desc: 'Accessing the cash value of your pending tax incentive claim ahead of ATO lodgment.', time: '6 min read' },
+      { title: 'Trade Finance & Cross-Border Supply Chain Funding', desc: 'Bridging overseas supplier payment timing gaps before collecting local receivables.', time: '8 min read' }
+    ];
+
+    const strategyArticles = [
+      { title: 'When does commercial refinancing make sense?', desc: 'Auditing your current facility to reduce interest, release residential security caveats, or consolidate debt.' },
+      { title: 'Secured vs. Unsecured: How lenders calculate risk', desc: 'The real impact of director guarantees, general security agreements (GSAs), and PPSR charges.' }
+    ];
+
+    const badges = ['ACL 387856', 'AFCA Member', 'CAFBA', 'Fintech Australia'];
+
+    return { filterTabs, productGuides, strategyArticles, badges };
+  }
+}
+</script>
+</body>
+</html>

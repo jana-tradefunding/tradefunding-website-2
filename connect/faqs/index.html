@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Funding Connect FAQs — Vendors &amp; Customers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<style>
+.subnav{background:#fff;border-bottom:1px solid var(--border)}
+.subnav-inner{max-width:var(--max-width-wide);margin:0 auto;padding:0 32px;display:flex;gap:28px;flex-wrap:wrap}
+.subnav-link{display:inline-flex;align-items:center;height:52px;font-family:var(--font-heading);font-weight:500;font-size:0.92rem;color:var(--text-secondary);border-bottom:2px solid transparent}
+.subnav-link.is-active{color:var(--navy);font-weight:600;border-bottom-color:var(--gold)}
+.subnav-link.is-disabled{color:var(--ink-400);cursor:default;pointer-events:none}
+
+.faqs-hero{background:var(--gold-soft);padding:var(--section-y-sm) 0 40px}
+.faqs-hero-title{font-weight:700;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.15;color:var(--navy);margin:0 0 16px}
+.faqs-jump{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.faqs-jump a{font-family:var(--font-heading);font-weight:500;font-size:0.9rem;color:var(--navy)}
+.faqs-jump span{color:var(--border-neutral)}
+
+.faqs-filter-bar{background:#fff;border-bottom:1px solid var(--border-neutral)}
+.faqs-filter-inner{max-width:900px;margin:0 auto;padding:0 32px;display:flex;justify-content:center;gap:40px}
+.faqs-filter-btn{background:none;border:none;cursor:pointer;padding:16px 2px;font-family:var(--font-heading);font-weight:500;font-size:0.92rem;color:var(--ink-400);border-bottom:2px solid transparent}
+.faqs-filter-btn.is-active{color:var(--navy);border-bottom-color:var(--gold)}
+
+.faq-group{max-width:800px;margin:0 auto;padding:56px 32px 16px}
+.faq-group-heading{font-family:var(--font-heading);font-weight:600;font-size:1.5rem;color:var(--navy);margin:0 0 24px}
+.faq-item{border:1px solid var(--border-neutral);border-radius:var(--radius-md);overflow:hidden;margin-bottom:12px}
+.faq-btn{width:100%;background:none;border:none;cursor:pointer;text-align:left;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.faq-q{font-family:var(--font-heading);font-weight:600;font-size:1rem;color:var(--navy)}
+.faq-panel{padding:0 20px 20px;font-size:0.92rem;line-height:1.65;color:var(--text-secondary)}
+.faq-caret{width:0;height:0;flex-shrink:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--ink-400);transition:transform 0.2s ease}
+.faq-btn[aria-expanded="true"] .faq-caret{transform:rotate(180deg)}
+
+.creds-badge{display:inline-flex;padding:8px 16px;border:1px solid var(--border-neutral);border-radius:var(--radius-sm);font-family:var(--font-heading);font-weight:500;font-size:0.8rem;color:var(--navy)}
+
+.faqs-path-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-card)}
+.faqs-path-card{border:1px solid var(--border-neutral);border-radius:var(--radius-lg);padding:32px;background:#fff}
+.faqs-path-card.accent{border-color:var(--gold)}
+
+@media (max-width:900px){
+  .faqs-path-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="channel-connect">
+
+<!-- NAVBAR (identical structure to Commercial/Connect) -->
+<nav class="tf-nav" aria-label="Primary">
+<div class="tf-nav-inner">
+<a href="../../index.html" class="tf-nav-logo"><img src="../../assets/img/logo-navy.png" alt="Trade Funding"></a>
+<div class="tf-nav-links">
+<div class="tf-nav-item">
+<span class="tf-nav-link">Products<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="min-width:280px">
+<span style="display:block;padding:2px 14px 12px;margin-bottom:6px;border-bottom:1px solid var(--border);font-family:var(--font-heading);font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-400)">Support Client Payments</span>
+<span style="display:block;padding:10px 14px;cursor:default"><span class="tf-mega-heading">Point-of-Sale Finance</span><div class="tf-mega-sub">Instalment finance at checkout.</div></span>
+<span style="display:block;padding:10px 14px;cursor:default"><span class="tf-mega-heading">Invoice Financing</span><div class="tf-mega-sub">Turn outstanding invoices into cash.</div></span>
+<span style="display:block;padding:10px 14px;cursor:default"><span class="tf-mega-heading">Vendor Dashboard</span><div class="tf-mega-sub">Track applications and payouts.</div></span>
+<span style="display:block;padding:10px 14px;cursor:default"><span class="tf-mega-heading">Customer Portal</span><div class="tf-mega-sub">Where customers manage repayments.</div></span>
+</div>
+</div>
+<div class="tf-nav-item">
+<span class="tf-nav-link">Compare<span class="tf-caret" aria-hidden="true"></span></span>
+<div class="tf-mega-panel" style="min-width:240px">
+<a href="../../commercial/compare-report/index.html"><span class="tf-mega-heading">Which Option is Best</span><div class="tf-mega-sub">See how our matching engine ranks 70+ lenders.</div></a>
+</div>
+</div>
+<a href="../../home-shared/about/index.html" class="tf-nav-link">About</a>
+</div>
+<nav class="tf-toggle" aria-label="Switch Trade Funding channel">
+<a href="../../index.html" class="tf-toggle-home" aria-label="Home">
+<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"></path></svg>
+</a>
+<a href="../../commercial/index.html" class="tf-toggle-tab">Commercial</a>
+<a href="../index.html" class="tf-toggle-tab is-active">Connect</a>
+<a href="../../personal-and-property/index.html" class="tf-toggle-tab">Personal &amp; Property</a>
+</nav>
+</div>
+</nav>
+
+<!-- SECONDARY IN-PAGE TAB STRIP -->
+<div class="subnav">
+<div class="subnav-inner">
+<a href="../how-it-works/index.html" class="subnav-link">How It Works</a>
+<span class="subnav-link is-disabled">For Vendors</span>
+<span class="subnav-link is-disabled">For Customers</span>
+<a href="index.html" class="subnav-link is-active">FAQs</a>
+</div>
+</div>
+
+<!-- HERO -->
+<section class="faqs-hero">
+<div class="container-prose" style="text-align:center">
+<span class="eyebrow" style="text-align:center;color:var(--navy);opacity:0.6">FAQs</span>
+<h1 class="faqs-hero-title">Answers, sorted by who's asking.</h1>
+<p style="font-size:1rem;color:var(--ink-600);line-height:1.6;margin:0 auto;max-width:560px">Answers for vendors and customers alike — pick your side to skip straight to it.</p>
+<div class="faqs-jump">
+<a href="#vendor-questions">Vendor questions</a>
+<span>|</span>
+<a href="#customer-questions">Customer questions</a>
+<span>|</span>
+<a href="#regulatory-security">Regulatory &amp; security</a>
+</div>
+</div>
+</section>
+
+<!-- FILTER TABS -->
+<div class="faqs-filter-bar">
+<div class="faqs-filter-inner">
+<button type="button" class="faqs-filter-btn is-active" data-faq-filter="all">All Questions</button>
+<button type="button" class="faqs-filter-btn" data-faq-filter="vendors">For Vendors / Merchants</button>
+<button type="button" class="faqs-filter-btn" data-faq-filter="customers">For Customers / Buyers</button>
+</div>
+</div>
+
+<!-- VENDOR FAQ GROUP -->
+<section id="vendor-questions" class="faq-group" data-faq-group="vendors">
+<h2 class="faq-group-heading">For Vendors &amp; Merchants</h2>
+
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="vendor-faq" aria-expanded="true"><span class="faq-q">How long does it take to get set up?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel>Registration takes around five minutes. Full onboarding usually completes within the same week. We brand a QR code with your business identity, place it on your quote and invoice templates, and walk your team through the customer flow.</p>
+</div>
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="vendor-faq" aria-expanded="false"><span class="faq-q">Which lenders do you compare?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>Over 70 Australian lenders across major banks, non-bank lenders, asset financiers, fintech credit providers and private credit funds.</p>
+</div>
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="vendor-faq" aria-expanded="false"><span class="faq-q">What kinds of businesses can use Trade Funding Connect?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>Any Australian business that sells to other businesses on quote or invoice terms — vendors of equipment, machinery, vehicles, materials, stock, inventory, software subscriptions, and professional services.</p>
+</div>
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="vendor-faq" aria-expanded="false"><span class="faq-q">Is there any credit risk on my balance sheet?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>No. The customer's debt sits with the lender, not your business. You're paid in full at settlement, the same as any standard invoice — no recourse, no chargeback exposure, no receivables on your books.</p>
+</div>
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="vendor-faq" aria-expanded="false"><span class="faq-q">What happens if a customer defaults?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>The finance agreement is between the customer and the lender. Your business has already been paid out at settlement, so a later default does not create recourse back to you.</p>
+</div>
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="vendor-faq" aria-expanded="false"><span class="faq-q">Do my customers pay more if they use Trade Funding?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>No — customers pay the lender's normal commercial finance rate. There's no surcharge from Trade Funding, and no markup added by your business.</p>
+</div>
+</section>
+
+<!-- CUSTOMER FAQ GROUP -->
+<section id="customer-questions" class="faq-group" data-faq-group="customers" style="padding-top:16px">
+<h2 class="faq-group-heading">For Customers &amp; Buyers</h2>
+
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="customer-faq" aria-expanded="false"><span class="faq-q">Will I pay more if I use Trade Funding Connect at checkout?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>No. You pay the lender's normal commercial finance rate — no surcharge from Trade Funding. Because we compare 70+ lenders for every application, you typically get a better rate than a single-lender finance option would offer.</p>
+</div>
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="customer-faq" aria-expanded="false"><span class="faq-q">Will checking my eligibility affect my credit score?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>No — checking your eligibility is a soft check and won't affect your credit score. Only proceeding with a full application involves the lender's standard credit assessment.</p>
+</div>
+<div class="faq-item" data-accordion-item>
+<button class="faq-btn" data-accordion-toggle="customer-faq" aria-expanded="false"><span class="faq-q">How long does the application take?</span><span class="faq-caret" aria-hidden="true"></span></button>
+<p class="faq-panel" data-accordion-panel hidden>Under two minutes, start to finish.</p>
+</div>
+</section>
+
+<!-- REGULATORY & SECURITY -->
+<section id="regulatory-security" style="background:var(--bg-soft);padding:56px 0;margin-top:24px">
+<div class="container-prose" style="text-align:center">
+<span class="eyebrow" style="text-align:center;color:var(--navy)">Regulated &amp; Trusted</span>
+<p style="font-size:0.95rem;line-height:1.7;color:var(--text-secondary);max-width:640px;margin:0 auto 28px">Trade Funding Pty Ltd holds Australian Credit Licence 387856, is a member of the Australian Financial Complaints Authority (AFCA), is accredited with the Commercial Asset Finance Brokers Association (CAFBA), and is a member of Fintech Australia.</p>
+<div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+<span class="creds-badge">ACL 387856</span>
+<span class="creds-badge">AFCA Member</span>
+<span class="creds-badge">CAFBA</span>
+<span class="creds-badge">Fintech Australia</span>
+</div>
+</div>
+</section>
+
+<!-- DUAL PATHWAYS -->
+<section style="background:#fff;padding:var(--section-y-sm) 0">
+<div class="container-wide" style="max-width:1000px">
+<div class="faqs-path-grid">
+<div class="faqs-path-card">
+<h3 style="font-family:var(--font-heading);font-weight:600;font-size:1.25rem;color:var(--navy);margin:0 0 20px">Ready to help more customers say yes?</h3>
+<span class="btn btn-primary btn-disabled" aria-disabled="true">Become a Partner</span>
+</div>
+<div class="faqs-path-card accent">
+<h3 style="font-family:var(--font-heading);font-weight:600;font-size:1.25rem;color:var(--navy);margin:0 0 20px">Already offered Connect at checkout?</h3>
+<a href="../../home-shared/apply/index.html" class="btn btn-outline">Check My Eligibility <span aria-hidden="true">&rarr;</span></a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CLOSING CTA -->
+<section style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-blue) 100%);padding:var(--section-y) 0;text-align:center">
+<div style="max-width:640px;margin:0 auto;padding:0 32px">
+<span style="display:inline-flex;padding:6px 14px;border-radius:var(--radius-pill);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);font-family:var(--font-heading);font-weight:600;font-size:0.72rem;letter-spacing:var(--ls-eyebrow-tight);text-transform:uppercase;color:#fff;margin-bottom:20px">$0 cost to your business</span>
+<h2 class="section-title" style="color:#fff;margin-bottom:16px">Ready to help more customers say yes?</h2>
+<p style="color:rgba(255,255,255,0.75);font-size:1rem;line-height:1.6;margin-bottom:30px">Set up takes days, not months. Your team keeps every sale.</p>
+<span class="btn btn-primary btn-disabled" aria-disabled="true">Become a Partner</span>
+</div>
+</section>
+
+<!-- FOOTER (identical structure to Commercial/Connect) -->
+<footer class="tf-footer">
+<div class="container-wide">
+<div class="tf-footer-top">
+<div>
+<img src="../../assets/img/logo-white.png" alt="Trade Funding" style="height:20px;width:auto;display:block;margin-bottom:16px;">
+<p class="tf-footer-blurb">Trade Funding Connect: point-of-sale finance that helps your customers say yes, and gets you paid on the spot.</p>
+<div class="tf-footer-contact">
+<a href="tel:1300161641">1300 161 641</a>
+<a href="mailto:support@tradefunding.com.au">support@tradefunding.com.au</a>
+<span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+</div>
+<div class="tf-footer-badges">
+<span class="tf-footer-badge">ACL 387856</span>
+<span class="tf-footer-badge">AFCA Member</span>
+<span class="tf-footer-badge">CAFBA</span>
+<span class="tf-footer-badge">Fintech Australia</span>
+</div>
+</div>
+<div class="tf-footer-cols">
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Channels</div>
+<a href="../../commercial/index.html">Business Loans</a>
+<a href="../index.html">Connect</a>
+<a href="../../personal-and-property/index.html">Personal &amp; Property</a>
+<a href="../../commercial/guides/index.html">Guides &amp; Tools</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Company</div>
+<a href="../../home-shared/about/index.html">About Us</a>
+<a href="../../home-shared/broker-portal/index.html">Broker Portal</a>
+<a href="../index.html">Become a Partner</a>
+<a href="../../home-shared/about/index.html#contact">Contact</a>
+<a href="../../home-shared/apply/index.html">Get Started</a>
+</div>
+<div class="tf-footer-col">
+<div class="tf-footer-col-heading">Legal</div>
+<a href="../../home-shared/credit-guide/index.html">Credit Guide</a>
+<span class="tf-footer-inactive">Privacy Policy</span>
+<a href="../../home-shared/terms/index.html">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+<div class="tf-footer-legal">
+<p>Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="../../home-shared/credit-guide/index.html" style="color:rgba(255,255,255,0.85)">Credit Guide</a> | <a href="../../home-shared/terms/index.html" style="color:rgba(255,255,255,0.85)">Terms &amp; Conditions</a> | ACL 387856</p>
+</div>
+<div class="tf-footer-bottom">
+<span>&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script>
+(function () {
+  var filterButtons = document.querySelectorAll('[data-faq-filter]');
+  var groups = document.querySelectorAll('[data-faq-group]');
+  filterButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-faq-filter');
+      filterButtons.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+      groups.forEach(function (g) {
+        g.hidden = !(value === 'all' || g.getAttribute('data-faq-group') === value);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'DM Sans', sans-serif; background: var(--white); }
+  a { color: var(--skyblue); text-decoration: none; }
+  a:hover { color: var(--navy); }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+
+<div style="font-family:'DM Sans',sans-serif;color:var(--navy);">
+
+  <!-- NAV -->
+  <nav style="width:100%;background:var(--white);border-bottom:1px solid var(--border);padding:18px 0;position:sticky;top:0;z-index:20;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+      <img src="assets/logo-navy.png" alt="tradefunding" style="height:30px;width:auto;" />
+      <div style="display:flex;align-items:center;gap:40px;">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="3">
+          <a href="#" style="display:inline-flex;align-items:center;gap:5px;font-weight:600;font-size:1.02rem;color:var(--navy);">
+            {{ link.label }}
+            <sc-if value="{{ link.dropdown }}" hint-placeholder-val="{{ true }}">
+              <span aria-hidden="true" style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-top:2px;"></span>
+            </sc-if>
+          </a>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:2px;background:var(--white);border:1px solid var(--border-neutral);border-radius:var(--radius-pill);padding:6px;box-shadow:var(--shadow-sm);">
+        <sc-for list="{{ channels }}" as="ch" hint-placeholder-count="4">
+          <span style="display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;border-radius:var(--radius-pill);font-weight:600;font-size:0.92rem;white-space:nowrap;{{ ch.style }}">{{ ch.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 1. HERO -->
+  <section style="background:var(--bg-soft);padding:64px 0 72px;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+      <div>
+        <div style="font-weight:500;font-size:0.82rem;color:rgba(0,28,68,0.6);margin-bottom:20px;">Commercial &gt; Business Term Loans</div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:2.75rem;line-height:1.14;color:var(--navy);margin:0 0 18px;letter-spacing:-0.02em;">Business term loans, structured around your cash flow.</h1>
+        <p style="font-weight:400;font-size:1rem;line-height:1.65;color:rgba(0,28,68,0.7);margin:0 0 28px;max-width:480px;">Compare 70+ bank and non-bank lenders. Facilities from $10k to $5M with flexible terms and zero residential property security required.</p>
+
+        <div style="background:var(--white);border:1px solid var(--border-neutral);border-radius:var(--radius-sm);padding:24px;max-width:440px;">
+          <sc-for list="{{ intakeFields }}" as="field" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);">
+              <span style="font-weight:500;font-size:0.88rem;color:rgba(0,28,68,0.6);">{{ field.label }}</span>
+              <span style="font-weight:600;font-size:0.94rem;color:var(--navy);">{{ field.value }}</span>
+            </div>
+          </sc-for>
+          <button style="width:100%;margin-top:18px;height:52px;border:none;border-radius:var(--radius-sm);background:var(--peach);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.98rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">Get My Free Compare Report <span aria-hidden="true">&rarr;</span></button>
+          <p style="text-align:center;font-weight:500;font-size:0.78rem;color:rgba(0,28,68,0.55);margin:16px 0 0;">No credit check &middot; No commitment &middot; 24hr turnaround</p>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border-neutral);border-radius:var(--radius-sm);overflow:hidden;">
+        <div style="padding:16px 24px;border-bottom:1px solid var(--border);">
+          <div style="font-weight:600;font-size:0.9rem;color:var(--navy);">Compare Report Preview</div>
+          <div style="font-weight:400;font-size:0.8rem;color:rgba(0,28,68,0.55);margin-top:2px;">Matching lenders for $250,000 Business Term Loan</div>
+        </div>
+        <div style="padding:0 24px;">
+          <div style="display:grid;grid-template-columns:1.5fr 1.2fr 1fr 1fr 1fr;gap:8px;padding:12px 0;border-bottom:1px solid var(--border-neutral);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:rgba(0,28,68,0.5);">
+            <span>Lender</span><span>Product</span><span>Rate</span><span>Amount</span><span>S.T.A.R.</span>
+          </div>
+          <sc-for list="{{ lenderPreviewRows }}" as="row" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:1.5fr 1.2fr 1fr 1fr 1fr;gap:8px;padding:16px 0;border-bottom:1px solid var(--border);align-items:center;">
+              <span style="font-weight:600;font-size:0.9rem;color:var(--navy);">{{ row.lender }}</span>
+              <span style="font-weight:400;font-size:0.84rem;color:rgba(0,28,68,0.65);">{{ row.product }}</span>
+              <span style="font-weight:500;font-size:0.86rem;color:var(--navy);">{{ row.rate }}</span>
+              <span style="font-weight:500;font-size:0.86rem;color:var(--navy);">{{ row.amount }}</span>
+              <span style="font-weight:600;font-size:0.86rem;color:var(--navy);">{{ row.score }} <sc-if value="{{ row.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:500;color:var(--skyblue);font-size:0.72rem;">Best</span></sc-if></span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:16px 24px;background:var(--bg-soft);">
+          <span style="font-weight:500;font-size:0.82rem;color:rgba(0,28,68,0.6);">+ 6 more lenders pre-qualified in your full personalized report</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FACILITY PARAMETERS -->
+  <section style="background:var(--white);padding:72px 0;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-neutral);border:1px solid var(--border-neutral);">
+      <sc-for list="{{ facilityParams }}" as="p" hint-placeholder-count="4">
+        <div style="background:var(--white);padding:28px 24px;">
+          <div style="font-weight:600;font-size:0.82rem;color:rgba(0,28,68,0.55);margin-bottom:10px;">{{ p.label }}</div>
+          <div style="font-weight:600;font-size:1.15rem;color:var(--navy);line-height:1.35;">{{ p.value }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 3. STAR FRAMEWORK -->
+  <section style="background:var(--bg-soft);padding:80px 0;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;">
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:2.1rem;color:var(--navy);margin:0 0 40px;text-align:center;">See the facts. Decide with confidence.</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+        <sc-for list="{{ starCards }}" as="s" hint-placeholder-count="4">
+          <div style="background:var(--white);border-top:2px solid {{ s.color }};border-left:1px solid var(--border-neutral);border-right:1px solid var(--border-neutral);border-bottom:1px solid var(--border-neutral);padding:28px 22px;">
+            <div style="width:36px;height:36px;border:1.5px solid var(--navy);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:18px;">{{ s.letter }}</div>
+            <div style="font-weight:600;font-size:1.02rem;color:var(--navy);margin-bottom:10px;">{{ s.title }}</div>
+            <p style="font-weight:400;font-size:0.86rem;line-height:1.6;color:rgba(0,28,68,0.65);margin:0;">{{ s.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HOW IT WORKS -->
+  <section style="background:var(--white);padding:80px 0;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;">
+      <div style="font-weight:600;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--skyblue);margin-bottom:14px;">How It Works</div>
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:2.1rem;color:var(--navy);margin:0 0 48px;max-width:640px;">From ABN to ranked term loan offers. Automatically.</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;">
+        <div style="position:absolute;top:20px;left:0;right:0;height:1px;background:var(--border-neutral);"></div>
+        <sc-for list="{{ howItWorks }}" as="step" hint-placeholder-count="3">
+          <div style="padding-right:32px;position:relative;">
+            <div style="font-weight:700;font-size:0.85rem;color:var(--skyblue);margin-bottom:24px;background:var(--white);display:inline-block;padding-right:12px;position:relative;z-index:1;">{{ step.num }}</div>
+            <div style="font-weight:600;font-size:1.1rem;color:var(--navy);margin-bottom:10px;">{{ step.title }}</div>
+            <p style="font-weight:400;font-size:0.88rem;line-height:1.6;color:rgba(0,28,68,0.65);margin:0;">{{ step.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ADVISORY WORKFLOW -->
+  <section style="background:var(--bg-soft);padding:80px 0;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;">
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:2.1rem;color:var(--navy);margin:0 0 48px;">We don&rsquo;t stop at the report.</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <sc-for list="{{ advisorySteps }}" as="a" hint-placeholder-count="3">
+          <div style="background:var(--white);border:1px solid var(--border-neutral);padding:28px 24px;">
+            <div style="font-weight:700;font-size:0.85rem;color:rgba(0,28,68,0.45);margin-bottom:16px;">{{ a.num }}</div>
+            <div style="font-weight:600;font-size:1.05rem;color:var(--navy);margin-bottom:10px;">{{ a.title }}</div>
+            <p style="font-weight:400;font-size:0.88rem;line-height:1.6;color:rgba(0,28,68,0.65);margin:0;">{{ a.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. COMPARISON TABLE -->
+  <section style="background:var(--white);padding:80px 0;">
+    <div style="max-width:960px;margin:0 auto;padding:0 40px;">
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:2.1rem;color:var(--navy);margin:0 0 40px;text-align:center;">Trade Funding vs. traditional banks.</h2>
+      <div style="border:1px solid var(--border-neutral);">
+        <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;padding:16px 24px;background:var(--bg-soft);border-bottom:1px solid var(--border-neutral);font-weight:600;font-size:0.82rem;color:var(--navy);">
+          <span></span><span>Trade Funding</span><span>Traditional Bank</span>
+        </div>
+        <sc-for list="{{ comparisonRows }}" as="row" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;padding:20px 24px;border-bottom:1px solid var(--border);align-items:center;">
+            <span style="font-weight:600;font-size:0.9rem;color:var(--navy);">{{ row.label }}</span>
+            <span style="font-weight:400;font-size:0.88rem;color:rgba(0,28,68,0.7);">{{ row.tf }}</span>
+            <span style="font-weight:400;font-size:0.88rem;color:rgba(0,28,68,0.5);">{{ row.bank }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. LENDER PANEL -->
+  <section style="background:var(--bg-soft);padding:80px 0;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;text-align:center;">
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:2.1rem;color:var(--navy);margin:0 0 12px;">70+ of Australia&rsquo;s leading lenders. One place to compare them.</h2>
+      <p style="font-weight:400;font-size:0.95rem;color:rgba(0,28,68,0.6);margin:0 0 48px;">A selection of the panel.</p>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:32px;align-items:center;">
+        <sc-for list="{{ lenderNames }}" as="ln" hint-placeholder-count="8">
+          <span style="font-weight:600;font-size:1.02rem;color:rgba(0,28,68,0.55);">{{ ln }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section style="background:var(--white);padding:80px 0;">
+    <div style="max-width:800px;margin:0 auto;padding:0 40px;">
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:2.1rem;color:var(--navy);margin:0 0 40px;">Frequently asked questions.</h2>
+      <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid var(--border-neutral);">
+          <button onclick="{{ faq.toggle }}" style="width:100%;background:none;border:none;text-align:left;padding:22px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'DM Sans',sans-serif;">
+            <span style="font-weight:600;font-size:1rem;color:var(--navy);">{{ faq.q }}</span>
+            <span style="font-weight:600;font-size:1.2rem;color:rgba(0,28,68,0.45);">{{ faq.symbol }}</span>
+          </button>
+          <sc-if value="{{ faq.open }}" hint-placeholder-val="{{ false }}">
+            <p style="font-weight:400;font-size:0.9rem;line-height:1.65;color:rgba(0,28,68,0.65);margin:0 0 22px;max-width:680px;">{{ faq.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 9. EXIT CTA -->
+  <section style="background:var(--bg-soft);padding:88px 0;">
+    <div style="max-width:640px;margin:0 auto;padding:0 40px;text-align:center;">
+      <div style="font-weight:600;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--skyblue);margin-bottom:16px;">No Credit Check</div>
+      <h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:2.2rem;color:var(--navy);margin:0 0 16px;">Ready to see every term loan option available to your business?</h2>
+      <p style="font-weight:400;font-size:1rem;color:rgba(0,28,68,0.65);margin:0 0 32px;">Start your free comparison and receive your S.T.A.R. Compare Report within 24 hours.</p>
+      <button style="height:52px;padding:0 32px;border:none;border-radius:var(--radius-sm);background:var(--peach);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.98rem;cursor:pointer;display:inline-flex;align-items:center;gap:8px;">Get My Free Compare Report <span aria-hidden="true">&rarr;</span></button>
+      <p style="font-weight:500;font-size:0.8rem;color:rgba(0,28,68,0.55);margin:20px 0 0;">No credit check &middot; No commitment &middot; Ready in 24hr</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:var(--navy);padding:72px 0 0;color:rgba(255,255,255,0.65);">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;">
+        <div>
+          <img src="assets/logo-white.png" alt="tradefunding" style="height:26px;width:auto;margin-bottom:20px;" />
+          <p style="font-weight:400;font-size:0.88rem;line-height:1.65;color:rgba(255,255,255,0.55);margin:0 0 20px;max-width:320px;">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:0.86rem;color:rgba(255,255,255,0.55);margin-bottom:20px;">
+            <span>1300 161 641</span>
+            <span>support@tradefunding.com.au</span>
+            <span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <sc-for list="{{ trustBadges }}" as="b" hint-placeholder-count="4">
+              <span style="padding:7px 14px;border:1px solid rgba(255,255,255,0.25);border-radius:999px;font-weight:500;font-size:0.78rem;color:rgba(255,255,255,0.6);">{{ b }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <sc-for list="{{ footerColumns }}" as="col" hint-placeholder-count="3">
+          <div>
+            <div style="font-weight:600;font-size:0.9rem;color:var(--white);margin-bottom:18px;">{{ col.heading }}</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+                <a href="#" style="font-weight:400;font-size:0.86rem;color:rgba(255,255,255,0.55);">{{ l }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.12);padding:24px 0;">
+        <p style="font-weight:400;font-size:0.8rem;line-height:1.6;color:rgba(255,255,255,0.5);margin:0 0 8px;max-width:900px;">Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="#" style="color:rgba(255,255,255,0.7);">Credit Guide</a> | <a href="#" style="color:rgba(255,255,255,0.7);">Terms &amp; Conditions</a> | ACL 387856</p>
+        <p style="font-weight:400;font-size:0.8rem;color:rgba(255,255,255,0.4);margin:0;">&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { openFaq: null };
+
+  toggleFaq(i) {
+    this.setState(s => ({ openFaq: s.openFaq === i ? null : i }));
+  }
+
+  renderVals() {
+    const activeStyle = 'background:var(--skyblue);color:var(--white);';
+    const neutralStyle = 'background:transparent;color:var(--navy);';
+
+    const faqData = [
+      { q: 'What are the minimum criteria to qualify?', a: 'Most lenders require at least 6 months trading history and $10,000+ in average monthly revenue. Some non-bank lenders will consider newer businesses on a case-by-case basis.' },
+      { q: 'Do I need to put up my house as security?', a: 'No. Unsecured facilities are available up to $500,000. Larger facilities can be secured against business assets or a director guarantee, without requiring a residential property mortgage.' },
+      { q: 'How fast can funds be disbursed?', a: 'Pre-qualification takes 24 hours. Once you accept an offer and complete the lender\u2019s formal application, funds are typically disbursed within 3 to 5 business days.' },
+      { q: 'Are there discounts for early payout?', a: 'Some lenders offer reduced interest for early payout, while others charge a fixed-fee structure regardless of payout timing. Your Compare Report shows the payout terms for each matched lender.' }
+    ];
+
+    return {
+      navLinks: [
+        { label: 'Products', dropdown: true },
+        { label: 'Compare', dropdown: true },
+        { label: 'About', dropdown: false }
+      ],
+      channels: [
+        { label: 'Home', style: neutralStyle },
+        { label: 'Commercial', style: activeStyle },
+        { label: 'Connect', style: neutralStyle },
+        { label: 'Personal & Property', style: neutralStyle }
+      ],
+      intakeFields: [
+        { label: 'Loan amount', value: '$250,000' },
+        { label: 'Preferred term', value: '1 to 5 Years' },
+        { label: 'Monthly revenue', value: '$40,000+' }
+      ],
+      lenderPreviewRows: [
+        { lender: 'Judo Bank', product: 'Term Loan', rate: '9.45% p.a.', amount: '$250,000', score: '8.6', best: true },
+        { lender: 'Grow Finance', product: 'Growth Facility', rate: '11.20% p.a.', amount: '$180,000', score: '8.1', best: false },
+        { lender: 'Shift', product: 'Term Facility', rate: '10.80% p.a.', amount: '$250,000', score: '7.9', best: false }
+      ],
+      facilityParams: [
+        { label: 'Loan Quantum', value: '$10,000 to $5,000,000+ AUD' },
+        { label: 'Facility Terms', value: '1 to 7 Years (Fixed or Flexible Repayments)' },
+        { label: 'Indicative Pricing', value: 'From 8.50% p.a. (Risk-adjusted per profile)' },
+        { label: 'Decision Velocity', value: 'Pre-qualification in 24 hours \u00b7 Funds in 3\u20135 days' }
+      ],
+      starCards: [
+        { letter: 'S', title: 'Security', color: 'var(--star-s)', desc: 'Unsecured options available up to $500k. Asset-backed or director-guaranteed facilities for larger amounts, never requiring residential property mortgages.' },
+        { letter: 'T', title: 'Term', color: 'var(--star-t)', desc: 'Fixed 12 to 60-month loan amortisation aligned directly with your equipment lifecycle or expansion milestones.' },
+        { letter: 'A', title: 'Amount', color: 'var(--star-a)', desc: 'Borrowing power calculated against your trading performance and bank cash flow, ensuring full capital delivery.' },
+        { letter: 'R', title: 'Rate', color: 'var(--star-r)', desc: 'Transparent, annualised cost comparisons stripping out hidden early payout penalties or ongoing line fees.' }
+      ],
+      howItWorks: [
+        { num: '01 / Input', title: 'Tell us about your business', desc: 'Your ABN, loan amount, and a few details about trading history and revenue.' },
+        { num: '02 / Cashper Scoring', title: 'We score you against 70+ lenders', desc: 'Cashper, our matching engine, checks your profile against live lender criteria in real time.' },
+        { num: '03 / Output', title: 'Get your ranked offers', desc: 'A S.T.A.R.-scored Compare Report showing every offer you actually qualify for.' }
+      ],
+      advisorySteps: [
+        { num: '1', title: 'Your Personalised Report', desc: 'Every offer scored on Security, Term, Amount and Rate, so you can compare on the facts that matter.' },
+        { num: '2', title: 'Specialist Walkthrough', desc: 'A Trade Funding specialist explains the trade-offs between offers in plain English, no jargon.' },
+        { num: '3', title: 'Settlement Execution', desc: 'We manage formal application submissions, lender negotiations, and documentation through to final settlement.' }
+      ],
+      comparisonRows: [
+        { label: 'Speed to Approval', tf: '24 hours to pre-qualification', bank: '2 to 6 weeks' },
+        { label: 'Security Position', tf: 'Unsecured options to $500k', bank: 'Often requires property security' },
+        { label: 'Lender Access', tf: '70+ banks and non-banks compared', bank: 'Single lender only' },
+        { label: 'Financial Documentation', tf: 'Bank statement based assessment', bank: 'Full financials and tax returns required' }
+      ],
+      lenderNames: ['CommBank', 'Westpac', 'Judo Bank', 'Prospa', 'Shift', 'Banjo', 'Bizcap', 'Earlypay'],
+      faqs: faqData.map((f, i) => ({
+        q: f.q, a: f.a,
+        open: this.state.openFaq === i,
+        symbol: this.state.openFaq === i ? '\u2212' : '+',
+        toggle: () => this.toggleFaq(i)
+      })),
+      trustBadges: ['ACL 387856', 'AFCA Member', 'CAFBA', 'Fintech Australia'],
+      footerColumns: [
+        { heading: 'Channels', links: ['Business Loans', 'Connect', 'Personal & Property', 'Guides & Tools'] },
+        { heading: 'Company', links: ['About Us', 'Broker Portal', 'Become a Partner', 'Contact', 'Get Started'] },
+        { heading: 'Legal', links: ['Credit Guide', 'Privacy Policy', 'Terms & Conditions'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

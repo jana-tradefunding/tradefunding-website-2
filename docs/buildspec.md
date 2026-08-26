@@ -1,197 +1,245 @@
 # Build Spec — Trade Funding Homepage-First Rebuild
 
-**Status: v3 — adds Phase 4 (Site Folder & Route Scaffold), renumbers everything after it.** Phase execution order is now 0 → 1 (Design Tokens) → 2 (Wireframe, done in Claude Design) → 3 (IA/Routing/Redirect, Claude Chat) → 4 (Site Folder & Route Scaffold, Claude Code) → 5 (Homepage Production) → 6 (Subsite Pass) → 7 (Copy) → 8 (Stakeholder Review) → 9 (Audits) → 10 (Launch) → 11 (Post-Launch). Replaces the old `buildspec.md` (v11). `plan.md` explains *what and why*; this explains *how to build it*. If this ever contradicts `plan.md`, `plan.md` wins and this file needs updating.
+**Status: v8.** Two locked decisions this revision, both confirmed against the actual repo (`ui-mockups.zip`), not just the brief: **Option A** — Commercial products, guides, tools, and Compare are nested under `/commercial/`, reversing the earlier flat-at-root default. **No `/site/` wrapper folder** — the static build lives directly at the true repo root, alongside the Payload app's own folders (untouched since Phase 0) and `docs/`, `branding/`, `oldsite/`, `ui-mockups/`, `qa/`. Personal & Property's real folder is hyphenated `/personal-and-property/` — corrects every prior mention of `personalandproperty`. **No build script exists or is planned** — the site is hand-authored static HTML, decided in prior sessions; §2 explains what replaces the manifest-driven approach this doc used to describe. If this ever contradicts `plan.md`, `plan.md` wins.
 
 ---
 
 ## 1. Stack
 
-- **Framework:** Next.js (App Router), TypeScript.
-- **CMS:** Payload CMS 3.x, installed in the same Next.js app.
-- **Database:** Postgres (Vercel Postgres or Neon) via Payload's Postgres adapter.
-- **Media storage:** Payload's Vercel Blob storage adapter.
-- **Styling:** Fresh CSS/token system per §4 below — not ported from `oldsite/`'s stylesheets, not a Tailwind rewrite. Plain CSS custom properties + component-scoped styles, matching the existing project convention.
-- **Hosting:** One Vercel project, sub-path routing for all channels (unchanged principle from the old build — still correct here).
+- **Static site (current phase):** plain HTML5, CSS custom properties (`assets/css/tokens.css`, `base.css`, `components.css`), vanilla JS where needed (`assets/js/main.js`, page-local `support.js` files). Each page is self-contained — no shared HTML partial system. See §2 for why, and what replaces it.
+- **Payload conversion target (Phase 9, untouched since Phase 0):** Next.js (App Router), TypeScript, Payload CMS 3.88.0, Postgres (Neon via Vercel), Vercel Blob storage. One Vercel project.
 
 ---
 
-## 2. Routing architecture
+## 1a. Design Corrections — strict, sitewide, non-negotiable
 
-**Venue note:** the folder structure below is created empty/placeholder-only in Phase 4 (💻 Claude Code, Site Folder & Route Scaffold), separate from filling it with real content — the homepage gets its real content in Phase 5, subsites in Phase 6. This split exists so route-level correctness (does every URL resolve, no conflicts) is verified independently of content being finished.
+**No icons, anywhere — one exemption.** Categories, channels, and navigation are differentiated through typography, layout, and colour only. **The sole exemption: the home icon in the Channel Toggle** (the Home/Commercial/Connect/Personal & Property switcher shown on the three channel pages, and on Compare) — that icon stays, confirmed both in the updated brief and in the actual Phase 4 `component-channel-toggle` mockup, which was built with it intentionally. Every other icon anywhere on the site is out of scope for this exemption — including Connect's FAQ accordion chevrons, which are a confirmed, unexempted violation (see §11).
 
-```
-/                          → NEW homepage (neutral, brand-level entry point)
-/commercial/*              → Commercial subsite (MOVED from root)
-/connect/*                 → Connect subsite (unchanged path)
-/personal-and-property/*   → Personal & Property subsite (unchanged path)
-```
+**Heading weight capped at Bold (700).** Default to Semibold (600) for most headings — confirmed as the actual value in the live `base.css` — reserving Bold (700) for hero-level statements only. Never 800/900.
 
-```
-/site
-  /app
-    /page.tsx                    → new homepage
-    /commercial/                 → route group, was app/(commercial)/ at root previously
-    /connect/
-    /personal-and-property/
-  /collections
-  /globals
-  /components
-    HomeHero.tsx
-    ChannelCards.tsx             → the three-card section
-    WhyWeExist.tsx
-    SubsiteNav.tsx               → shared nav shell used by all three subsites
-    StickyChannelDial.tsx        → renamed/rebuilt ChannelSwitcher equivalent
-    Footer.tsx
-  /payload.config.ts
-  /redirects.ts                  → the Phase 3 redirect map (built in Claude Chat), see §3
-```
-
-Each subsite route group applies its own accent theme (§4) and its own nav state, sharing the same component library. Switching channels is always a same-origin route change — never a cross-domain redirect — preserving the domain's accumulated SEO authority.
+**Typeface: DM Sans only, sitewide.** The earlier Work Sans (headings) + DM Sans (body) split is dropped entirely — confirmed in the live `tokens.css`, both `--font-heading` and `--font-body` resolve to `'DM Sans'`. DM Sans has enough character at a lighter weight to command the page without a second typeface.
 
 ---
 
-## 3. Redirect map (critical — see `plan.md` §3 for why)
-
-**Venue note:** the redirect *table* below is a Phase 3 (💬 Claude Chat) deliverable — it's a planning document built against the wireframe and old sitemap, not code. The redirect *implementation* (turning this table into real `next.config.js`/`vercel.json` entries) happens in Phase 6 (💻 Claude Code). Don't skip straight to code before the table itself has been reviewed.
-
-Every existing Commercial URL currently resolving at `/` moves to `/commercial/`. This must be implemented as permanent (301) redirects in `next.config.js` (`redirects()` function) or Vercel's `vercel.json`, **not** left as 404s or silently unhandled.
-
-Minimum required mappings (expand against the full old sitemap before Phase 3 sign-off — this list is a starting skeleton, not exhaustive):
+## 2. Routing architecture — Option A (consolidated `/commercial/`)
 
 ```
-/                              → /commercial/            (unless / is claimed by the new homepage — see note)
-/about.html                    → /commercial/about/
-/apply.html                    → /commercial/apply/
-/business-loans.html           → /commercial/business-loans/
-/business-line-of-credit.html  → /commercial/business-line-of-credit/
-/business-term-loans.html      → /commercial/business-term-loans/
-/charge-card.html               → /commercial/charge-card/
-/chattel-mortgage.html         → /commercial/chattel-mortgage/
-/comparison-report.html        → /commercial/comparison-report/
-/contact.html                  → /commercial/contact/
-/credit-guide.html             → /commercial/credit-guide/
-/equipment-calculator.html     → /commercial/equipment-calculator/
-/export-finance.html           → /commercial/export-finance/
-/finance-lease.html            → /commercial/finance-lease/
-/fund-an-invoice.html          → /commercial/fund-an-invoice/
-/invoice-finance.html          → /commercial/invoice-finance/
-/merchant-cash-advance.html    → /commercial/merchant-cash-advance/
-/operating-lease.html          → /commercial/operating-lease/
-/overdraft.html                → /commercial/overdraft/
-/privacy.html                  → /commercial/privacy/
-/r-and-d-funding.html          → /commercial/r-and-d-funding/
-/repayment-calculator.html     → /commercial/repayment-calculator/
-/second-mortgage.html          → /commercial/second-mortgage/
-/self-employed-home-loan.html  → /commercial/self-employed-home-loan/  (or /personal-and-property/ — the old plan flagged this page's channel placement as an open call; re-decide it here, don't default silently)
-/supply-chain-funding.html     → /commercial/supply-chain-funding/
-/terms.html                    → /commercial/terms/
-/trade-finance.html            → /commercial/trade-finance/
+/                                         → Home (index.html, root)
+/404.html                                 → 404 (root)
+/home-shared/about/                       → About Us (full)
+/home-shared/apply/                       → canonical shared intake engine, ?purpose= parameterized (no per-channel entry pages — see note below)
+/home-shared/broker-portal/
+/home-shared/credit-guide/
+/home-shared/terms/
+/home-shared/privacy/                     → 🔴 does not exist yet — see §11
+/home-shared/contact/                     → 🔴 does not exist yet — see §11
+/commercial/                              → Commercial Hub
+/commercial/products/                     → Products Hub
+/commercial/business-term-loans/          → Individual Product Page (built)
+/commercial/business-line-of-credit/      → Individual Product Page (not yet built — see §12)
+/commercial/overdraft/
+/commercial/charge-card/
+/commercial/chattel-mortgage/
+/commercial/finance-lease/
+/commercial/operating-lease/
+/commercial/invoice-finance/
+/commercial/fund-an-invoice/
+/commercial/trade-finance/
+/commercial/export-finance/
+/commercial/supply-chain-funding/
+/commercial/merchant-cash-advance/
+/commercial/r-and-d-funding/
+/commercial/compare/                      → Compare Overview (built, but a pre-redesign stub — see §11)
+/commercial/compare-report/               → Compare Report (built)
+/commercial/guides/                       → Guides Hub (built)
+/commercial/guides/business-term-loans/   → Individual Guide Article (built — slug doesn't carry the "-guide" suffix the other 8 planned guides use, flagged in §12)
+/commercial/guides/compare-business-loans/          → not yet built
+/commercial/guides/best-line-of-credit/             → not yet built
+/commercial/guides/business-line-of-credit-guide/   → not yet built
+/commercial/guides/business-charge-card-guide/      → not yet built
+/commercial/guides/business-overdraft-guide/        → not yet built
+/commercial/guides/business-loan-bad-credit/        → not yet built
+/commercial/guides/invoice-vs-debtor-finance/       → not yet built
+/commercial/guides/lease-vs-buy/                    → not yet built
+/commercial/repayment-calculator/         → Calculator Tool Page (built)
+/commercial/equipment-calculator/         → Calculator Tool Page (not yet built)
+/commercial/lenders/                      → Lender Panel — was blocked pending logo assets; 12 lender SVGs now exist in assets/img/lenders/, worth reconfirming whether this is still blocked (§12)
+/connect/                                 → Connect Hub (built)
+/connect/how-it-works/                    → built
+/connect/for-vendors/                     → 🔴 not yet built — no mockup exists either, see §11
+/connect/for-customers/                   → 🔴 not yet built — no mockup exists either, see §11
+/connect/faqs/                            → built, but 5 chevron icons need removing (§11)
+/personal-and-property/                   → P&P Hub (built)
+/personal-and-property/home-loans/        → built
+/personal-and-property/investment-property/  → built
+/personal-and-property/commercial-property/  → built
+/personal-and-property/construction/      → built
+/personal-and-property/smsf-property/     → built
+/personal-and-property/personal-loans/    → built
+/personal-and-property/debt-consolidation/ → built
+/personal-and-property/second-mortgage/   → built — confirms this migrated here from Commercial, resolving the prior open question
+/personal-and-property/self-employed-home-loans/ → built — same, migrated from Commercial
 ```
 
-**Important note on `/` itself:** `/` cannot both redirect to `/commercial/` and serve the new homepage. The new homepage *is* the content at `/` going forward — there is no redirect needed for the root URL itself, only for the pages that used to live directly under it. Double-check this distinction doesn't get lost when the redirect table is implemented.
+**No `/connect/apply/` or `/personal-and-property/apply/` entry pages.** An earlier version of this plan had per-channel parameterized entry pages funnelling into the shared Apply engine. That's not what got built — there's one Apply page (`/home-shared/apply/`), parameterized via `?purpose=`, confirmed working end-to-end (S.T.A.R. eligibility engine recalculates, match cards render) in the 2026-08-24 QA audit. Simpler than originally planned — no change needed, just correcting the doc to match reality.
 
-- Redirects must be one-to-one — no chains (A→B→C). Test every entry in this table against the live `oldsite/` file list before calling Phase 3 done; the list above was hand-derived from `oldsite/commercial/*.html` and should be reconciled against the actual file inventory, not assumed complete.
-- Connect and Personal & Property URLs are unchanged — no redirects needed for those two channels.
+**No "About (thin)" template.** Every channel's nav links "About" straight to `/home-shared/about/` — confirmed in the live markup on all three channel hubs. No per-channel thin About page exists or is needed; this template is dropped from the plan entirely.
+
+### Repo-root folder structure
+
+```
+/
+  index.html                 ← Home, the only content HTML file allowed loose at root
+  404.html                   ← the only other one
+  /home-shared/
+  /commercial/
+  /connect/
+  /personal-and-property/
+  /assets/                   ← css/, js/, img/ — shared stylesheets and script, referenced (not included) per page
+  /ui-mockups/                ← Phase 4 design source, 17 numbered templates + 2 components
+  /oldsite/                   ← quarantined legacy build, never served
+  /qa/                         ← audit reports (e.g. 2026-08-24-site-audit.md)
+  /docs/                       ← this doc set: plan.md, buildspec.md, prompts.md, and any redirect/route-map docs (claude.md and tokens.md live at true repo root, not here)
+  /branding/                   ← brand guideline assets, logo source files
+  [Payload/Next.js app files] ← app/, collections/, payload.config.ts, package.json, etc. — scaffolded in Phase 0, untouched until Phase 9
+```
 
 ---
 
-## 4. Design tokens
+## 3. Shared components — real state: duplicated per page, not templated
 
-Carried forward unchanged from the previous build's `tokens.md` — these values are correct for this pivot and should not be reinvented:
+**Why there's no shared partial system.** An earlier version of this doc specced a manifest-driven build (`pages.json` + `build.mjs`) specifically to prevent shared-component drift across many pages. That approach was never adopted — decided against in prior sessions on this repo. The actual site is hand-authored: each page carries its own copy of the nav, footer, and (where applicable) Channel Toggle markup, referencing the shared CSS files but not any shared HTML. **This is a locked, already-made decision, not something this revision is reopening** — but it means the exact risk the build script was meant to prevent has already partially materialized (see §11): four different, mutually-inconsistent footer implementations exist across the pages built before the last two sessions' cleanup pass.
+
+**What replaces build-time enforcement:** periodic manual audits, like `qa/2026-08-24-site-audit.md`. There's no automatic guarantee that a nav/footer change propagates everywhere — every page-adding or shared-markup-changing prompt in `prompts.md` now explicitly asks Claude to check its work against the *other* pages sharing that same markup pattern, since there's no script to catch a miss.
+
+### Nav bar
+Universal across every page: **Products / Compare / About**, three items only. "Products" content swaps per active channel. Confirmed byte-for-byte identical across all pages that carry it in the 2026-08-24 audit — this part has held up despite the no-build-system approach.
+
+### Products mega-menu
+Context-aware, duplicated per page (not a shared partial):
+
+| Channel | Bold heading on hover | Content |
+|---|---|---|
+| Commercial | **FUND MY BUSINESS** | links to `/commercial/products/` and its category pages |
+| Connect | **SUPPORT CLIENT PAYMENTS** | vendor/customer finance options |
+| Personal & Property | **FUNDING OWNERS RUNNING BUSINESS** | the 9 service categories (7 original + second-mortgage + self-employed-home-loans) |
+
+### Compare nav item
+Hover reveals "Which Option is Best" → links to `/commercial/compare/`.
+
+### Channel Toggle
+- 4 destinations: Home (**icon exempted, see §1a**) → `/`, then Commercial, Connect, Personal & Property.
+- Present on `/commercial/`, `/connect/`, `/personal-and-property/`, and `/commercial/compare/`. Not shown on the homepage or any brand-neutral page.
+- Own visual identity: border + shadow, distinct from the nav bar — confirmed compliant in the QA audit.
+
+### Footer
+Global pattern, meant to be identical everywhere: 4 columns (Brand/contact, Channels, Company, Legal) + 4 badges (ACL 387856, AFCA Member, CAFBA, Fintech Australia, all plain-text `<span>`, zero icons) + full copyright line. **Currently only true on the 7 brand-neutral pages** (`index`, `404`, `about`, `apply`, `broker-portal`, `credit-guide`, `terms`) — the four channel-rooted pages each have a different, non-compliant footer. This is the single largest outstanding defect on the site — see §11.
+
+---
+
+## 4. Homepage-specific components
+
+- **Hero:** master statement + Commercial's primary CTA. No calculator, no photography.
+- **"Three ways we help business owners" section:** large framed channel boxes, Commercial leading, Connect and Personal & Property as extensions with locked taglines + hover-reveal supporting lines.
+- **"Compare 100+ products" moment:** design element, not a paragraph.
+- **"Why we exist" section:** status still unconfirmed from earlier revisions — see `plan.md` §2.
+
+---
+
+## 5. Compare page (`/commercial/compare/`)
+
+Nested under Commercial per Option A. **Built, but flagged as a pre-redesign stub in the 2026-08-24 audit** — missing the Products mega-menu, About link, and Contact CTA in its nav; footer is a single unstyled line with no columns or badges. This needs rebuilding to match the other 10 compliant pages before it's considered done — see §11 and `plan.md` Phase 5 for the concrete fix.
+
+- Explains the Cashper matching engine, 70+ lenders, 100+ products.
+- Showcases the S.T.A.R. Compare Report — links through to `/commercial/compare-report/` for a sample (built, compliant).
+- Self-selection routing: business / personal / customers → Commercial / Personal & Property / Connect.
+
+## 5a. Commercial Products Hub (`/commercial/products/`)
+
+Built and compliant. Landing/index page for Commercial's product categories, sitting between `/commercial/` and the Individual Product Pages.
+
+---
+
+## 6. Personal & Property specifics
+
+Route prefix is `/personal-and-property/` (hyphenated — corrects prior docs). All 9 category pages are built and confirmed as genuinely distinct content (verified by diffing two pages directly — different hero copy, different "what's included" bullets, different cross-links, not a copy-paste stub with swapped titles).
+
+- **9 categories, not 7** — Second Mortgage and Self-Employed Home Loans are confirmed migrated here from Commercial's taxonomy (resolves the prior open decision).
+- **Enquire online form + Book-a-15-minute-chat**, embedded in the Channel Hub page, not separate routes.
+- **Zoho lead/task creation wiring** is a Phase 9 job — needs the app layer.
+- **James Lowe profile section, Contact directly block, News & Insights placeholder** — per the brief, unchanged.
+
+---
+
+## 7. Design tokens — confirmed against the live `tokens.css`
 
 ```css
 --navy: #001C44;
 --navy-blue: #1C1998;
 --navy-deep: #000C22;
-
 --skyblue: #54B4F6;
 --skyblue-soft: #EAF4FE;
-
 --peach: #FF5D5C;
 --peach-soft: #FFF0F0;
-
+--peach-hover: #E84847;
 --gold: #FBB766;
 --gold-soft: #FFF7EC;
-
+--white: #FFFFFF;
 --success: #10B981;
---bg-soft: #F5F8FC;
+--ink-900: #0B1220; --ink-600: #3C4B63; --ink-400: #7A8AA3; --ink-200: #B7C2D3;
+--light-bg: #F5F7FA; --bg-soft: #F5F8FC; --report-bg: #F0F4F8; --footer-bg: #00122E;
+--font-heading: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-body: 'DM Sans', -apple-system, sans-serif;
 ```
 
-### Per-channel accent (unchanged)
+Body-text weight confirmed at 600 (Semibold) across headings in `base.css` — no 800/900 anywhere sitewide, confirmed by direct grep in the QA audit. No further token changes needed this revision — the live file already reflects the Design Corrections addendum correctly.
 
 | Channel | Primary | Accent |
 |---|---|---|
-| Commercial | `--navy` / `--navy-blue` | `--skyblue` |
+| Commercial | `--navy`/`--navy-blue` | `--skyblue` |
 | Connect | `--gold` | `--navy` |
 | Personal & Property | `--peach` | `--navy` |
 
-**Homepage itself uses the shared base only** (navy on white) — it does not carry any single channel's accent color, since it's neutral by design. Each of the three cards on the homepage may use its *own* channel's accent as a small detail (icon color, hover state) to preview which subsite it leads to, without tinting the whole homepage.
+---
 
-### Typography (changed from brand guidelines — flagged, not silent)
+## 8. Payload collections (Phase 9 target — unchanged, still untouched)
 
-- **Headings:** Work Sans, weights 700–900. Unchanged from brand guidelines.
-- **Body/UI text:** **DM Sans**, weights 400/500. **This replaces Roboto as specified in `Trade Funding — Brand Guidelines.pdf`.** Matt verbally approved this for the website specifically, on the basis that Roboto's brand-guideline status only really applies to the site today, and updating the guidelines document is a small follow-up rather than a blocker. **Action item, not yet done: get the actual brand guidelines PDF updated to reflect DM Sans, or get written confirmation this stays a site-only exception.** Don't let this stay a verbal-only decision.
-- Display headline size: `clamp(2.4rem, 4.4vw, 4.2rem)` — carried forward from prior spec, still appropriate for the shorter homepage hero.
-
-### Layout
-
-- Breakpoints: Desktop ≥1240px, Tablet 900–1239px, Mobile <900px.
-- Touch targets: 44×44px minimum, all interactive elements — this matters more now that the homepage's nav-hover interactions (if the Products mega-menu ships, see `plan.md` open decision #2) need a real tap equivalent on mobile, not just a hover fallback.
+**`pages`** — `title`, `slug`, `channel`, `template`, `hero` group.
+**`channelCards`** — `channel`, `label`, `hoverLine`, `ctaLabel`, `ctaHref`. No `icon` field.
+**Globals:** `siteNav`, `productsMenu`, `channelToggle`, `footerLegal`.
+**Decide before Phase 9:** Team Members, Lender logos/partners, News/blog collections — your call, per Abrar's guide.
 
 ---
 
-## 5. Homepage component spec
+## 9. Deployment
 
-See `homepage.md` for the full content/structure detail. Technical notes only here:
-
-- **`HomeHero`**: headline + subhead only, no calculator, no imagery per the Carta/Prospa direction in `claude.md`. Plain white/`--bg-soft` background.
-- **`ChannelCards`**: three equal-width cards (stack on mobile). Each card: icon (from that channel's existing icon set — reuse SVGs from `oldsite/` assets, they don't need to be redrawn), label, one-line description, "Explore →" link styled in that channel's accent color. Cards must have equal DOM weight — same markup structure, same heading level, no visual hierarchy implying one channel outranks another on this page specifically (subsite-level weighting per the 2+1 model happens elsewhere, not here).
-- **`WhyWeExist`**: text-forward section, below the cards. Longer-form copy is acceptable here specifically because it's positioned *after* the scannable content — mirrors the Prospa FAQ-placement pattern from `claude.md` §3.
-- **`StickyChannelDial`**: renders only on subsite pages (`/commercial/*`, `/connect/*`, `/personal-and-property/*`), not on the homepage. Appears once scrolled past that subsite's own hero. Shows current channel (active state, tinted to that channel's accent) plus the other two channels plus an explicit Home icon/link back to `/`. This is a rebuild of the concept behind the old `ChannelSwitcher` component — same behavioral spec (always-three-visible, active state, icon+label desktop / icon-only mobile), new implementation, not ported code.
+- Static build lives at the actual repo root — no separate `/site/` deploy target. Preview it directly (e.g. `python3 -m http.server` from the repo root, as the QA audit already did).
+- Production Vercel/Payload deploy is still Phase 9's job, targeting the untouched Phase 0 scaffold.
+- Never run a production deploy without asking first in chat.
 
 ---
 
-## 6. Payload collections & globals
+## 10. Accessibility & performance baseline
 
-Broadly unchanged in shape from the prior build, adjusted for the new homepage:
-
-**`pages`**
-- `title`, `slug`
-- `channel` (select: `home` / `commercial` / `connect` / `personal-and-property`) — `home` is a new value, since the homepage is no longer just Commercial's root.
-- `hero` (group: eyebrow, headline, subhead, CTA link/label) — homepage's hero uses this same shape, just without a calculator field.
-- `parent` (relationship, breadcrumbs/grouping only, no URL effect)
-
-**`channelCards`** (new collection or global — homepage-specific)
-- `channel` (select: commercial / connect / personal-and-property)
-- `icon` (media reference)
-- `label`, `description`, `ctaLabel`, `ctaHref`
-
-**Globals**
-- `siteNav` (shared nav shell config used by homepage + all subsites)
-- `redirects` (if managing the Phase 3 redirect table via CMS rather than hardcoded `next.config.js` — decide this explicitly, don't let it default to whichever is easiest to ship first)
+- WCAG contrast ≥4.5:1 — **confirmed failing** in 3 places, see §11.
+- 44×44px touch targets — **confirmed failing** in 4 shared classes, see §11.
+- Every hover-only interaction needs a working tap/focus equivalent.
+- Zero icons except the Channel Toggle home exemption — **confirmed 1 unexempted violation** (Connect FAQ chevrons), see §11.
 
 ---
 
-## 7. Deployment
+## 11. Known outstanding defects — from the 2026-08-24 QA audit, not yet patched
 
-- One Vercel project, this repo.
-- Environment variables: reuse existing `.env.local` structure where the underlying service (Payload DB, Blob storage, Turnstile keys) is unchanged; rotate/reconfirm any secret that was tied to the old deployment if the Vercel project itself is being recreated rather than reused. `PAYLOAD_SECRET` gets (re)generated fresh at Phase 10 per `Trade Funding Build Walkthrough for Jana.pdf` (`openssl rand -base64 32`) — Neon Postgres and Vercel Blob storage are added via Vercel's Storage tab at that same step, not configured by hand beforehand.
-- Preview deployments for every phase gate (Phase 2 wireframe (Claude Design), Phase 4 folder scaffold, Phase 5 homepage, Phase 6 subsites, Phase 8 stakeholder review) — don't wait until Phase 10 for the first real Vercel URL Matt sees.
-- Never run an actual production deploy without asking first in chat — carried forward from the old `CLAUDE.md` hard rule, still correct.
+Carried forward as concrete Phase 5 work, not a hypothetical risk list. Priority order:
 
----
+| # | Defect | Where | Fix |
+|---|---|---|---|
+| 1 | Compare page is a pre-redesign stub — missing nav items, no real footer | `/commercial/compare/` | Rebuild nav/footer to match the other 10 compliant pages, adjusting relative paths for its folder depth |
+| 2 | Four different, mutually-inconsistent footer implementations | `/commercial/`, `/connect/`, `/personal-and-property/`, `/commercial/compare/` | Replace each with the exact 4-column pattern already correct on the 7 brand-neutral pages |
+| 3 | 5 chevron SVG icons — genuine zero-icon violation, no exemption | `/connect/faqs/` | Replace with the CSS-only `+`/`–` text-state pattern already used for nav dropdown carets sitewide |
+| 4 | Dead `href="#"` / broken anchors, ~54 across the site | Sitewide, worst on `/commercial/`, `/connect/`, `/personal-and-property/`, and every footer's Privacy Policy link | Point real links to real destinations once `/home-shared/privacy/` and `/home-shared/contact/` exist; fix `commercial/index.html`'s internal anchors per-link, not by blind regex |
+| 5 | WCAG contrast failures: skyblue text/CTA on white (2.27:1), peach CTA text (3.01:1), gold text on white (1.74:1, currently decorative-only) | `.btn-primary` on Commercial-channel pages; standalone peach CTAs; any future skyblue-on-white text | Add the same navy-text override Connect's `.btn-primary` already has; darken peach CTAs to `--peach-hover` (verify ≥4.5:1) or switch to navy background |
+| 6 | Touch targets below 44px: nav links (~34px), toggle tabs (~29px), footer links (~24px, worst), Apply page pills (~35px) | Sitewide, inherited from `base.css`/`components.css` | Increase padding on the shared classes — since there's no build script, this is one CSS file edit that does propagate everywhere (CSS *is* shared, only HTML markup is duplicated) |
+| 7 | No active-nav-state indicator anywhere | Sitewide | Per-page `aria-current="page"` + styling on whichever nav item matches — mechanical but must be done per file |
 
-## 8. Accessibility & performance baseline
-
-- WCAG contrast ≥4.5:1 for all text, checked per-channel-accent — Connect's gold-dominant surfaces need explicit re-checking since gold is a lighter primary than the old navy-dominant Connect design.
-- Every hover-only interaction (nav mega-menu, card hover states) needs a working tap/focus equivalent — no mouse-only affordances.
-- Every `<img>`/`next/image` needs explicit width/height or aspect-ratio — carried forward as a hard rule from the prior build's audit findings.
-- Core Web Vitals baseline captured for the new homepage specifically at Phase 9, since it's genuinely new and has no prior baseline to compare against.
-
----
-
-## 9. What this build explicitly does not do
-
-- Does not port any CSS, component code, or markup from `oldsite/` verbatim — `oldsite/` is a content/product-data reference only, per the "full rebuild" decision in `plan.md`.
-- Does not resolve the homepage CTA label/destination or the Products-nav-hover matching-tool question (`plan.md` §2, open decisions) — those need Matt's input before implementation.
-- Does not change Connect's or Personal & Property's URLs — only Commercial's root-level URLs move.
+**Not a defect, resolved by the updated brief:** the Channel Toggle's home icon was flagged in the audit as violating the old text-only rule. The Design Corrections addendum now explicitly exempts it — no action needed, the QA finding is superseded.

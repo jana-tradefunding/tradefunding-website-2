@@ -1,0 +1,170 @@
+/* ============================================================
+   SHARED SUBPAGE COMPONENTS
+   Identical markup/CSS across Commercial, Connect, Personal & Property.
+   Only --channel-accent (set via body class in tokens.css) changes look.
+   ============================================================ */
+
+/* --- NAVBAR --- */
+.tf-nav {
+  width: 100%;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 0;
+  position: relative;
+  z-index: 40;
+}
+.tf-nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+  gap: 16px;
+}
+.tf-nav-logo { display: flex; align-items: center; flex-shrink: 0; justify-self: start; }
+.tf-nav-logo img { height: 32px; width: auto; }
+.tf-nav-links { display: flex; align-items: center; gap: 28px; justify-self: center; flex-wrap: wrap; }
+.tf-nav-item { position: relative; }
+.tf-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.94rem;
+  color: var(--text-primary);
+  cursor: default;
+  padding: 14px 2px;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+.tf-nav-link[href]:not([href="#"]) { cursor: pointer; }
+.tf-nav-link.is-active { color: var(--navy); font-weight: 700; }
+.tf-caret {
+  width: 0; height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  margin-top: 2px;
+  transition: transform var(--transition-fast);
+}
+.tf-nav-item:hover .tf-caret { transform: rotate(180deg); }
+
+.tf-mega-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  z-index: 50;
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  min-width: 300px;
+  border: 1px solid var(--border);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+}
+.tf-nav-item:hover .tf-mega-panel,
+.tf-nav-item:focus-within .tf-mega-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.tf-mega-panel a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+}
+.tf-mega-panel a:hover { background: var(--light-bg); }
+.tf-mega-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.tf-mega-sub { font-size: 0.78rem; color: var(--text-secondary); }
+
+/* --- CHANNEL TOGGLE --- */
+.tf-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(245,247,250,0.9);
+  border: 1px solid var(--border-neutral);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  box-shadow: var(--shadow-sm);
+  justify-self: end;
+}
+.tf-toggle-home {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  color: var(--ink-600);
+  transition: background-color 180ms var(--ease), color 180ms var(--ease);
+}
+.tf-toggle-home:hover { background: rgba(0,28,68,0.06); }
+.tf-toggle-tab {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 15px 14px;
+  min-height: 44px;
+  box-sizing: border-box;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  color: var(--ink-600);
+  transition: background-color 180ms var(--ease), color 180ms var(--ease);
+}
+.tf-toggle-tab:hover { background: var(--tint-sky-08); }
+.tf-toggle-tab.is-active {
+  background: var(--channel-accent);
+  color: var(--white);
+}
+.channel-connect .tf-toggle-tab.is-active { color: var(--navy); }
+
+/* --- FOOTER --- */
+.tf-footer { background: var(--footer-bg); padding: 64px 0 0; color: rgba(255,255,255,0.7); }
+.tf-footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 2fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.tf-footer-blurb { font-size: 0.85rem; line-height: 1.65; margin-top: 16px; max-width: 320px; color: rgba(255,255,255,0.55); }
+.tf-footer-contact { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 0.825rem; color: rgba(255,255,255,0.55); }
+.tf-footer-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+.tf-footer-badge {
+  padding: 5px 10px; border: 1px solid rgba(255,255,255,0.12); border-radius: 5px;
+  font-size: 0.7rem; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: 0.2px;
+}
+.tf-footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+.tf-footer-col-heading {
+  font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem;
+  color: #fff; margin-bottom: 16px; letter-spacing: 0.2px;
+}
+.tf-footer-col a { display: flex; align-items: center; min-height: 44px; padding: 4px 0; font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.tf-footer-col span.tf-footer-inactive { display: flex; align-items: center; min-height: 44px; padding: 4px 0; font-size: 0.82rem; color: rgba(255,255,255,0.3); cursor: default; }
+.tf-footer-col a:hover { color: #fff; }
+.tf-footer-legal { border-top: 1px solid rgba(255,255,255,0.1); padding: 16px 0; margin-top: 32px; }
+.tf-footer-legal p { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; text-align: center; margin: 0; }
+.tf-footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 24px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.tf-footer-bottom span { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+.tf-footer-bottom-links { display: flex; gap: 24px; }
+.tf-footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+.tf-footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+
+@media (max-width: 900px) {
+  .tf-nav-links { display: none; }
+  .tf-footer-top { grid-template-columns: 1fr; }
+  .tf-footer-cols { grid-template-columns: 1fr 1fr; }
+}

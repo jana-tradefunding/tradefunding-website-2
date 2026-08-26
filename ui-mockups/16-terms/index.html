@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'DM Sans', -apple-system, sans-serif; }
+  a { color: #001C44; text-decoration: none; }
+  a:hover { color: #54B4F6; }
+  ::selection { background: #54B4F6; color: #001C44; }
+</style>
+</helmet>
+
+<div style="background:#FFFFFF; color:#001C44; min-height:100vh;">
+
+  <!-- MAIN NAV -->
+  <nav style="position:sticky; top:0; z-index:30; background:#FFFFFF; border-bottom:1px solid rgba(0,28,68,0.10);">
+    <div style="max-width:1400px; margin:0 auto; padding:0 32px; height:84px; display:flex; align-items:center; gap:48px;">
+      <a href="/" style="display:flex; align-items:center; flex-shrink:0;">
+        <img src="assets/logo-navy.png" alt="tradefunding" style="height:22px; width:auto; display:block;">
+      </a>
+      <div style="flex:1;"></div>
+      <div style="display:flex; align-items:center; gap:40px;">
+        <a href="/products/" style="font-size:15px; font-weight:500; color:#001C44;">Products</a>
+        <a href="/compare/" style="font-size:15px; font-weight:500; color:#001C44;">Compare</a>
+        <a href="/about/" style="font-size:15px; font-weight:500; color:#001C44;">About</a>
+      </div>
+      <a href="/contact/" style="background:#001C44; color:#FFFFFF; font-size:15px; font-weight:600; padding:12px 26px; border-radius:999px; flex-shrink:0;">Contact</a>
+    </div>
+  </nav>
+
+  <!-- JUMP NAV -->
+  <div style="position:sticky; top:84px; z-index:20; background:#FFFFFF; border-bottom:1px solid rgba(0,28,68,0.10);">
+    <div style="max-width:1400px; margin:0 auto; padding:0 32px; display:flex; gap:28px; overflow-x:auto; scrollbar-width:none;">
+      <sc-for list="{{ jumpItems }}" as="item" hint-placeholder-count="13">
+        <a href="{{ item.href }}" style="{{ item.style }}">{{ item.label }}</a>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header style="background:#F5F8FC; padding:48px 32px 40px;">
+    <div style="max-width:900px; margin:0 auto;">
+      <p style="font-size:13px; font-weight:500; color:rgba(0,28,68,0.6); margin:0 0 16px;">Home &gt; Terms &amp; Conditions</p>
+      <h1 style="font-size:clamp(28px,4vw,36px); font-weight:700; color:#001C44; margin:0 0 14px; letter-spacing:-0.01em;">Terms &amp; Conditions</h1>
+      <p style="font-size:15px; font-weight:400; color:rgba(0,28,68,0.7); margin:0;">Effective Date: 30 March 2025</p>
+    </div>
+  </header>
+
+  <main style="max-width:900px; margin:0 auto; padding:64px 32px;">
+
+    <!-- 1. INTRODUCTION -->
+    <section id="intro" data-screen-label="Terms Intro" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">1. Introduction</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 24px;">These Terms govern your use of Trade Funding's website and services.</p>
+
+      <div style="background:#F5F8FC; border:1px solid rgba(0,28,68,0.15); border-radius:8px; overflow:hidden; margin-bottom:20px;">
+        <div style="display:grid; grid-template-columns:220px 1fr; padding:18px 24px; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">We / Us / Our</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">Trade Funding Pty Ltd (ABN 28 647 543 084)</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; padding:18px 24px; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Terms</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">This Terms &amp; Conditions document</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; padding:18px 24px;">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Services</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">tradefunding.com.au and all related products, tools, and services</span>
+        </div>
+      </div>
+
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">By using our Services, you agree to these Terms and our Privacy Policy. We hold Australian Credit Licence 387856 and are an AFCA member &mdash; nothing here limits your rights under Australian consumer protection law, including the Australian Consumer Law.</p>
+    </section>
+
+    <!-- 2. ELIGIBILITY -->
+    <section id="eligibility" data-screen-label="Eligibility" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">2. Eligibility</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 18px;">To use our Services, you must:</p>
+      <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:20px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Be at least 18 years of age</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Be operating or intending to establish a business in Australia</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Have legal capacity to enter binding contracts under Australian law</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Not be prohibited from receiving our Services under any applicable law</span></div>
+      </div>
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">Using our Services means you confirm all four. We can verify eligibility and refuse access at any time.</p>
+    </section>
+
+    <!-- 3. REGISTRATION -->
+    <section id="registration" data-screen-label="Registration" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">3. Registration &amp; Account Security</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 18px;">If you register an account, you agree to:</p>
+      <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:20px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Provide accurate, current, and complete information</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Keep that information up to date</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Keep your credentials confidential &mdash; never share them</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Notify us immediately at support@tradefunding.com.au of any unauthorised use</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Take responsibility for all activity under your account</span></div>
+      </div>
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">We can suspend or terminate accounts we reasonably believe are inaccurate, incomplete, or misused.</p>
+    </section>
+
+    <!-- 4. USE OF SERVICES -->
+    <section id="use-of-services" data-screen-label="Use of Services" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">4. Use of Services</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 18px;">You must not use our Services to:</p>
+      <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:20px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Violate any law or regulation</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Send spam or unsolicited commercial communications</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Impersonate any person or entity</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Restrict or inhibit anyone else's use of the Services</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Introduce viruses, trojans, or other harmful code</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Attempt unauthorised access to our systems</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Scrape or data-mine without our written consent</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Act fraudulently, deceptively, or misleadingly</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Harass, threaten, or defame any individual or entity</span></div>
+      </div>
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">Suspected breaches may result in suspension, termination, and referral to relevant authorities.</p>
+    </section>
+
+    <!-- 5. FUNDING ACCESS -->
+    <section id="funding-access" data-screen-label="Funding Access" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">5. Access to Funding</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 20px;">We connect you to funding. We don't provide it.</p>
+
+      <div style="border-left:3px solid #FF5D5C; padding:18px 24px; margin-bottom:24px;">
+        <p style="font-size:14px; line-height:1.7; color:#001C44; margin:0;">We do not provide funding directly and are not a lender. We do not guarantee approval for any credit product. Approval is subject solely to the relevant lender's own terms and credit criteria.</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">We act as a credit representative / referral service &mdash; facilitating introductions, not decisions</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Information provided (including comparison results and indicative rates) is general, not financial advice</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Read all product disclosure documents; seek independent advice where appropriate</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">We're not responsible for third-party lenders' conduct &mdash; disputes on a funded product sit with that lender</span></div>
+      </div>
+    </section>
+
+    <!-- 6. IP -->
+    <section id="ip" data-screen-label="Intellectual Property" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">6. Intellectual Property</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 16px;">All content, branding, and technology on our Services &mdash; including the Cashper engine and S.T.A.R. framework &mdash; belongs to Trade Funding Pty Ltd or its licensors.</p>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 18px;">You get a limited, non-exclusive, revocable licence to use the Services for your own business evaluation. You must not:</p>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Copy, republish, or distribute our content without written consent</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Modify or create derivative works from it</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Remove copyright or trademark notices</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Use our trademarks or branding without written approval</span></div>
+      </div>
+    </section>
+
+    <!-- 7. WARRANTIES -->
+    <section id="warranties" data-screen-label="Disclaimer of Warranties" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">7. Disclaimer of Warranties</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 18px;">Services are provided "as is," without warranty of any kind, including:</p>
+      <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:20px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Merchantability, fitness for purpose, or non-infringement</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Uninterrupted, timely, secure, or error-free operation</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Accuracy, reliability, or completeness of information provided</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Freedom from defects, viruses, or harmful components</span></div>
+      </div>
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">This doesn't override any consumer guarantee that can't be excluded under the Australian Consumer Law.</p>
+    </section>
+
+    <!-- 8. LIABILITY -->
+    <section id="liability" data-screen-label="Limitation of Liability" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">8. Limitation of Liability</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 20px;">To the fullest extent the law allows, we're not liable for:</p>
+      <div style="border-top:1px solid rgba(0,28,68,0.15); margin-bottom:20px;">
+        <div style="display:grid; grid-template-columns:220px 1fr; gap:8px; padding:14px 0; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:rgba(0,28,68,0.55);">Category</span>
+          <span style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:rgba(0,28,68,0.55);">Excluded</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; gap:8px; padding:16px 0; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Direct loss</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">From your use of, or inability to use, the Services</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; gap:8px; padding:16px 0; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Indirect / consequential</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">Incidental, special, consequential, or punitive damages</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; gap:8px; padding:16px 0; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Business loss</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">Profits, revenue, data, goodwill, or opportunity</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; gap:8px; padding:16px 0; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Reliance loss</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">Losses from relying on information we provided</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; gap:8px; padding:16px 0;">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Third-party loss</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">Acts or omissions of any third-party lender or provider</span>
+        </div>
+      </div>
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">Where liability can't be excluded but can be limited, it's limited to resupplying the relevant service.</p>
+    </section>
+
+    <!-- 9. INDEMNITY -->
+    <section id="indemnity" data-screen-label="Indemnification" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">9. Indemnification</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 18px;">You agree to indemnify Trade Funding against claims arising from:</p>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Your use of, or inability to use, the Services</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Your breach of these Terms</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Your violation of any law</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Your infringement of a third party's rights</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Inaccurate, misleading, or fraudulent information you submit</span></div>
+      </div>
+    </section>
+
+    <!-- 10. GOVERNING LAW -->
+    <section id="governing-law" data-screen-label="Governing Law" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">10. Governing Law</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0;">These Terms are governed by the laws of New South Wales, Australia. You submit to the exclusive jurisdiction of NSW and Federal Court of Australia, without limiting our right to seek urgent injunctive relief elsewhere.</p>
+    </section>
+
+    <!-- 11. TERMINATION -->
+    <section id="termination" data-screen-label="Termination" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">11. Termination</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 16px;">We can suspend or terminate your access at any time, for any reason, including a suspected breach.</p>
+      <p style="font-size:15px; font-weight:600; color:#001C44; margin:0 0 14px;">On termination:</p>
+      <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:20px;">
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Your right to use the Services ends immediately</span></div>
+        <div style="display:flex; gap:14px;"><span style="width:6px; height:6px; background:#001C44; margin-top:9px; flex-shrink:0;"></span><span style="font-size:15px; line-height:1.6; color:rgba(0,28,68,0.85);">Clauses that should survive &mdash; ownership, disclaimers, indemnity, liability limits &mdash; do survive</span></div>
+      </div>
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">You can stop using the Services, or close your account, any time via support@tradefunding.com.au.</p>
+    </section>
+
+    <!-- 12. CHANGES -->
+    <section id="changes" data-screen-label="Changes to These Terms" style="margin-bottom:64px; scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">12. Changes to These Terms</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0;">We may update these Terms at any time &mdash; the Effective Date above will change when we do. Continuing to use our Services after an update means you accept the revised Terms.</p>
+    </section>
+
+    <!-- 13. CONTACT -->
+    <section id="contact" data-screen-label="Contact Us" style="scroll-margin-top:160px;">
+      <h2 style="font-size:24px; font-weight:600; color:#001C44; margin:0 0 10px;">13. Contact Us</h2>
+      <p style="font-size:16px; line-height:1.7; color:rgba(0,28,68,0.85); margin:0 0 20px;">Questions or complaints about these Terms:</p>
+
+      <div style="background:#F5F8FC; border:1px solid rgba(0,28,68,0.15); border-radius:8px; overflow:hidden; margin-bottom:20px;">
+        <div style="display:grid; grid-template-columns:220px 1fr; padding:18px 24px; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Email</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">support@tradefunding.com.au</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; padding:18px 24px; border-bottom:1px solid rgba(0,28,68,0.15);">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Phone</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">1300 161 641</span>
+        </div>
+        <div style="display:grid; grid-template-columns:220px 1fr; padding:18px 24px;">
+          <span style="font-size:15px; font-weight:600; color:#001C44;">Office Address</span>
+          <span style="font-size:15px; color:rgba(0,28,68,0.8);">Level 8, 387 George Street, Sydney NSW 2000</span>
+        </div>
+      </div>
+
+      <p style="font-size:14px; line-height:1.7; color:rgba(0,28,68,0.65); margin:0;">Not satisfied with our response? Contact the Australian Financial Complaints Authority (AFCA) at www.afca.org.au or 1800 931 678.</p>
+    </section>
+
+  </main>
+
+  <!-- CLOSING BANNER -->
+  <div style="text-align:center; padding:56px 32px; border-top:1px solid rgba(0,28,68,0.10);">
+    <p style="font-size:15px; color:rgba(0,28,68,0.7); margin:0;">Questions about how this applies to you? <a href="/contact/" style="color:#001C44; font-weight:600;">Get in touch &rarr;</a></p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="background:#001C44; color:rgba(255,255,255,0.75); padding:72px 32px 32px;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:32px; margin-bottom:56px;">
+        <div>
+          <img src="assets/logo-white.png" alt="tradefunding" style="height:22px; width:auto; display:block; margin-bottom:22px;">
+          <p style="font-size:15px; line-height:1.7; color:rgba(255,255,255,0.7); max-width:420px; margin:0 0 20px;">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+          <p style="font-size:15px; color:rgba(255,255,255,0.85); margin:0 0 6px;">1300 161 641</p>
+          <p style="font-size:15px; color:rgba(255,255,255,0.85); margin:0 0 6px;">support@tradefunding.com.au</p>
+          <p style="font-size:15px; color:rgba(255,255,255,0.6); margin:0 0 24px;">Level 8, 387 George Street, Sydney, NSW, 2000</p>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <span style="border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:8px 16px; font-size:13px; color:rgba(255,255,255,0.75);">ACL 387856</span>
+            <span style="border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:8px 16px; font-size:13px; color:rgba(255,255,255,0.75);">AFCA Member</span>
+            <span style="border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:8px 16px; font-size:13px; color:rgba(255,255,255,0.75);">CAFBA</span>
+            <span style="border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:8px 16px; font-size:13px; color:rgba(255,255,255,0.75);">Fintech Australia</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:15px; font-weight:600; color:#FFFFFF; margin:0 0 20px;">Channels</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <a href="/business-loans/" style="font-size:15px; color:rgba(255,255,255,0.75);">Business Loans</a>
+            <a href="/connect/" style="font-size:15px; color:rgba(255,255,255,0.75);">Connect</a>
+            <a href="/personalandproperty/" style="font-size:15px; color:rgba(255,255,255,0.75);">Personal &amp; Property</a>
+            <a href="/guides/" style="font-size:15px; color:rgba(255,255,255,0.75);">Guides &amp; Tools</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:15px; font-weight:600; color:#FFFFFF; margin:0 0 20px;">Company</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <a href="/about/" style="font-size:15px; color:rgba(255,255,255,0.75);">About Us</a>
+            <a href="/broker-portal/" style="font-size:15px; color:rgba(255,255,255,0.75);">Broker Portal</a>
+            <a href="/about/#partner" style="font-size:15px; color:rgba(255,255,255,0.75);">Become a Partner</a>
+            <a href="/contact/" style="font-size:15px; color:rgba(255,255,255,0.75);">Contact</a>
+            <a href="/apply/" style="font-size:15px; color:rgba(255,255,255,0.75);">Get Started</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:15px; font-weight:600; color:#FFFFFF; margin:0 0 20px;">Legal</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <a href="/credit-guide/" style="font-size:15px; color:rgba(255,255,255,0.75);">Credit Guide</a>
+            <a href="/privacy/" style="font-size:15px; color:rgba(255,255,255,0.75);">Privacy Policy</a>
+            <a href="/terms/" style="font-size:15px; color:#FFFFFF;">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:28px;">
+        <p style="font-size:13px; line-height:1.7; color:rgba(255,255,255,0.55); margin:0 0 10px; max-width:1000px;">Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="/credit-guide/" style="color:rgba(255,255,255,0.75);">Credit Guide</a> | <a href="/terms/" style="color:rgba(255,255,255,0.75);">Terms &amp; Conditions</a> | ACL 387856</p>
+        <p style="font-size:13px; color:rgba(255,255,255,0.4); margin:0;">&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: 'intro' };
+
+  componentDidMount() {
+    this.sectionIds = ['intro','eligibility','registration','use-of-services','funding-access','ip','warranties','liability','indemnity','governing-law','termination','changes','contact'];
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) this.setState({ active: e.target.id });
+      });
+    }, { rootMargin: '-160px 0px -70% 0px', threshold: 0 });
+    this.sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) this.observer.observe(el);
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.observer) this.observer.disconnect();
+  }
+
+  renderVals() {
+    const labels = [
+      ['intro', 'Intro'], ['eligibility', 'Eligibility'], ['registration', 'Registration'],
+      ['use-of-services', 'Use of Services'], ['funding-access', 'Funding Access'], ['ip', 'IP'],
+      ['warranties', 'Warranties'], ['liability', 'Liability'], ['indemnity', 'Indemnity'],
+      ['governing-law', 'Governing Law'], ['termination', 'Termination'], ['changes', 'Changes'],
+      ['contact', 'Contact']
+    ];
+    const jumpItems = labels.map(([id, label]) => {
+      const isActive = this.state.active === id;
+      return {
+        id, label, href: '#' + id,
+        style: {
+          fontSize: '14px', whiteSpace: 'nowrap', padding: '14px 0',
+          borderBottom: '2px solid ' + (isActive ? '#54B4F6' : 'transparent'),
+          flexShrink: 0,
+          color: isActive ? '#001C44' : 'rgba(0,28,68,0.6)',
+          fontWeight: isActive ? 600 : 500
+        }
+      };
+    });
+    return { jumpItems };
+  }
+}
+</script>
+</body>
+</html>

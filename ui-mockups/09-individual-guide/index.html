@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'DM Sans', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--skyblue); text-decoration: none; }
+  a:hover { color: var(--navy); }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+
+<div style="background:#FFFFFF; color:#001C44;">
+
+  <!-- NAV -->
+  <nav style="width:100%; background:#FFFFFF; border-bottom:1px solid rgba(0,28,68,0.08);">
+    <div style="max-width:1360px; margin:0 auto; padding:20px 32px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:nowrap;">
+      <span style="font-size:1.35rem; font-weight:700; color:#001C44; letter-spacing:-0.02em; flex-shrink:0;">tradefunding</span>
+      <div style="display:flex; align-items:center; gap:28px; flex-shrink:0;">
+        <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="3">
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.98rem; font-weight:500; color:#001C44; cursor:pointer; white-space:nowrap;">
+            {{ item.label }}
+            <sc-if value="{{ item.dropdown }}" hint-placeholder-val="{{ true }}">
+              <span aria-hidden="true" style="font-size:0.7em; color:#001C44; opacity:0.6;">&#9662;</span>
+            </sc-if>
+          </span>
+        </sc-for>
+      </div>
+      <div style="display:flex; align-items:center; gap:2px; background:#FFFFFF; border:1px solid rgba(0,28,68,0.12); border-radius:999px; padding:5px; box-shadow:0 6px 16px rgba(0,28,68,0.08); flex-shrink:0; white-space:nowrap;">
+        <sc-for list="{{ channels }}" as="ch" hint-placeholder-count="4">
+          <span style="{{ ch.pillStyle }}">
+            {{ ch.label }}
+          </span>
+        </sc-for>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="background:#F5F8FC; padding:64px 40px 48px;">
+    <div style="max-width:900px; margin:0 auto; text-align:center;">
+      <div style="font-size:0.82rem; font-weight:500; color:rgba(0,28,68,0.6); margin-bottom:20px;">Home / Guides / Business Term Loans</div>
+      <span style="display:inline-block; padding:6px 14px; border:1px solid rgba(0,28,68,0.15); border-radius:999px; font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:#001C44; margin-bottom:22px;">BUSINESS LOANS</span>
+      <h1 style="font-size:2.5rem; font-weight:700; line-height:1.2; color:#001C44; margin:0 0 20px; text-wrap:pretty;">Business term loans in Australia: what they actually cost, and how to get the best rate.</h1>
+      <div style="font-size:0.9rem; font-weight:500; color:rgba(0,28,68,0.6);">Published 5 April 2026 &middot; 18 min read &middot; By Trade Funding, ACL 387856</div>
+    </div>
+  </header>
+
+  <!-- KEY TAKEAWAYS -->
+  <div style="max-width:900px; margin:0 auto; padding:0 40px; transform:translateY(-32px);">
+    <div style="background:#FFFFFF; border:1px solid rgba(0,28,68,0.15); border-left:3px solid #54B4F6; border-radius:4px; padding:32px 36px; box-shadow:0 12px 32px rgba(0,28,68,0.08);">
+      <div style="font-size:0.8rem; font-weight:600; letter-spacing:0.1em; color:#54B4F6; margin-bottom:18px;">KEY TAKEAWAYS</div>
+      <sc-for list="{{ takeaways }}" as="point" hint-placeholder-count="4">
+        <div style="padding:12px 0; border-bottom:1px solid rgba(0,28,68,0.1); font-size:1rem; line-height:1.6; color:#001C44;">
+          {{ point }}
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- MAIN READING CANVAS -->
+  <div style="max-width:1360px; margin:0 auto; padding:64px 40px 0; display:grid; grid-template-columns:260px 1fr; gap:64px; align-items:start;">
+
+    <!-- STICKY JUMP RAIL -->
+    <aside style="position:sticky; top:32px; display:flex; flex-direction:column; gap:2px; border-right:1px solid rgba(0,28,68,0.12); padding-right:24px;">
+      <div style="font-size:0.72rem; font-weight:600; letter-spacing:0.1em; color:rgba(0,28,68,0.5); margin-bottom:12px;">ON THIS PAGE</div>
+      <sc-for list="{{ jumpLinks }}" as="link" hint-placeholder-count="8">
+        <a href="{{ link.href }}" style="{{ link.navStyle }}">
+          {{ link.label }}
+        </a>
+      </sc-for>
+    </aside>
+
+    <!-- ARTICLE BODY -->
+    <div style="max-width:760px; display:flex; flex-direction:column; gap:56px; padding-bottom:64px;">
+
+      <!-- What is a term loan -->
+      <section id="what-is-a-term-loan">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 18px;">What Is a Business Term Loan?</h2>
+        <p style="font-size:1.02rem; line-height:1.75; color:#3A4A63; margin:0 0 16px;">A business term loan provides a lump sum upfront, repaid through fixed instalments over a set period &mdash; typically 3 months to 7 years, depending on the lender and loan size. Repayments follow an amortisation schedule: each instalment covers a portion of principal and interest, calculated so the loan is fully repaid by the end of the term.</p>
+        <p style="font-size:1.02rem; line-height:1.75; color:#3A4A63; margin:0;">Unlike a line of credit or overdraft, a term loan is a one-off draw rather than a revolving facility. That structure suits a single, defined use &mdash; buying equipment, funding an expansion, or consolidating existing debt &mdash; rather than ongoing working capital needs.</p>
+      </section>
+
+      <!-- Comparison ledger -->
+      <section id="comparison-ledger">
+        <h3 style="font-size:1.3rem; font-weight:600; color:#001C44; margin:0 0 16px;">Secured vs. Unsecured, Fixed vs. Variable</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:0.92rem;">
+          <thead>
+            <tr style="background:#001C44;">
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Dimension</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Option A</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Option B</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:600; color:#001C44; vertical-align:top;">Security</td>
+              <td style="padding:14px 16px; color:#3A4A63; vertical-align:top;"><strong style="color:#001C44;">Secured</strong> &mdash; property/asset backed; lower rate, slower approval</td>
+              <td style="padding:14px 16px; color:#3A4A63; vertical-align:top;"><strong style="color:#001C44;">Unsecured</strong> &mdash; no collateral; higher rate, approved in 24&ndash;48 hrs</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:600; color:#001C44; vertical-align:top;">Rate Type</td>
+              <td style="padding:14px 16px; color:#3A4A63; vertical-align:top;"><strong style="color:#001C44;">Fixed</strong> &mdash; locked for the term; predictable repayments</td>
+              <td style="padding:14px 16px; color:#3A4A63; vertical-align:top;"><strong style="color:#001C44;">Variable</strong> &mdash; moves with the lender's base rate</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:600; color:#001C44; vertical-align:top;">Term Length</td>
+              <td style="padding:14px 16px; color:#3A4A63; vertical-align:top;"><strong style="color:#001C44;">Short-term</strong> &mdash; 3&ndash;24 months; higher repayment, less total interest</td>
+              <td style="padding:14px 16px; color:#3A4A63; vertical-align:top;"><strong style="color:#001C44;">Long-term</strong> &mdash; 2&ndash;7 years; lower repayment, more total interest</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Rate benchmarks -->
+      <section id="rates-by-lender-type">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 18px;">Rate Benchmarks by Lender Tier (2026)</h2>
+        <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+          <thead>
+            <tr style="background:#001C44;">
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Lender Tier</th>
+              <th style="text-align:right; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Rate Range (p.a.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; color:#001C44; font-weight:500;">Big 4 Banks</td>
+              <td style="padding:14px 16px; color:#3A4A63; text-align:right;">7.5% &ndash; 11%</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; color:#001C44; font-weight:500;">Second-Tier Banks</td>
+              <td style="padding:14px 16px; color:#3A4A63; text-align:right;">9% &ndash; 15%</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; color:#001C44; font-weight:500;">Fintech Lenders</td>
+              <td style="padding:14px 16px; color:#3A4A63; text-align:right;">12% &ndash; 35%</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; color:#001C44; font-weight:500;">Specialist Non-Bank</td>
+              <td style="padding:14px 16px; color:#3A4A63; text-align:right;">9% &ndash; 18%</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; color:#001C44; font-weight:500;">Private Lenders</td>
+              <td style="padding:14px 16px; color:#3A4A63; text-align:right;">18% &ndash; 48%</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Worked example -->
+      <section>
+        <div style="background:#F5F8FC; padding:32px; border-radius:4px;">
+          <h3 style="font-size:1.25rem; font-weight:600; color:#001C44; margin:0 0 12px;">Understanding the True Cost: APR vs. Headline Rate</h3>
+          <p style="font-size:0.98rem; line-height:1.7; color:#3A4A63; margin:0 0 24px;">A lower headline rate doesn't always mean a cheaper loan. Fees change the real cost more than most borrowers expect &mdash; especially on shorter terms, where a one-off origination fee is spread across fewer repayments. Worked example: $150,000 loan, 12-month term.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+            <div style="background:#FFFFFF; border:1px solid rgba(0,28,68,0.15); padding:20px;">
+              <div style="font-size:0.75rem; font-weight:600; letter-spacing:0.06em; color:rgba(0,28,68,0.5); margin-bottom:10px;">LENDER A</div>
+              <div style="font-size:1.4rem; font-weight:700; color:#001C44; margin-bottom:14px;">7.9% p.a.</div>
+              <div style="font-size:0.86rem; color:#3A4A63; line-height:1.8;">Origination fee: 4% ($6,000)<br>Facility fee: $50/month ($600/yr)<br><strong style="color:#001C44;">Total cost: $18,450</strong><br>Effective rate: &asymp;12.3%</div>
+            </div>
+            <div style="background:#FFFFFF; border:1px solid rgba(0,28,68,0.15); border-top:2px solid #54B4F6; padding:20px;">
+              <div style="font-size:0.75rem; font-weight:600; letter-spacing:0.06em; color:rgba(0,28,68,0.5); margin-bottom:10px;">LENDER B</div>
+              <div style="font-size:1.4rem; font-weight:700; color:#001C44; margin-bottom:14px;">9.2% p.a.</div>
+              <div style="font-size:0.86rem; color:#3A4A63; line-height:1.8;">Origination fee: 1% ($1,500)<br>Facility fee: None<br><strong style="color:#001C44;">Total cost: $15,300</strong><br>Effective rate: &asymp;10.2%</div>
+            </div>
+          </div>
+          <p style="font-size:0.92rem; font-weight:600; color:#001C44; margin:20px 0 0;">Lender B carries the higher headline rate but costs $3,150 less over the year.</p>
+        </div>
+      </section>
+
+      <!-- Mid-article lead gen -->
+      <section style="background:#F5F8FC; border:1px solid rgba(0,28,68,0.15); padding:36px;">
+        <h3 style="font-size:1.35rem; font-weight:600; color:#001C44; margin:0 0 10px;">Check your numbers before you borrow.</h3>
+        <p style="font-size:0.95rem; line-height:1.6; color:#3A4A63; margin:0 0 24px;">See which of these lenders you actually qualify with, and at what rate &mdash; before you apply anywhere.</p>
+        <button style="height:48px; padding:0 28px; background:#FF5D5C; color:#FFFFFF; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.98rem; font-weight:600; cursor:pointer;">Get My Free Compare Report &rarr;</button>
+        <div style="font-size:0.82rem; color:rgba(0,28,68,0.6); margin-top:16px;">No credit check &middot; No commitment &middot; Ready in 24 hours</div>
+      </section>
+
+      <!-- Borrowing limits -->
+      <section id="borrowing-limits">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 12px;">How Much Can You Borrow?</h2>
+        <p style="font-size:1.02rem; line-height:1.75; color:#3A4A63; margin:0 0 24px;">Borrowing capacity is sized against the business, not just the amount requested. Lenders weigh six factors:</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(0,28,68,0.15); border:1px solid rgba(0,28,68,0.15); margin-bottom:28px;">
+          <sc-for list="{{ capacityFactors }}" as="f" hint-placeholder-count="6">
+            <div style="background:#FFFFFF; padding:20px;">
+              <div style="font-size:0.95rem; font-weight:600; color:#001C44; margin-bottom:6px;">{{ f.label }}</div>
+              <div style="font-size:0.86rem; color:#3A4A63; line-height:1.55;">{{ f.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <table style="width:100%; border-collapse:collapse; font-size:0.92rem;">
+          <thead>
+            <tr style="background:#001C44;">
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Security Type</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Typical Limit</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Basis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:500; color:#001C44;">Unsecured</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Up to $500,000</td>
+              <td style="padding:14px 16px; color:#3A4A63;">10&ndash;20% of annual revenue</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:500; color:#001C44;">Asset-Backed</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Up to $2M</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Value tied to the asset financed</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:500; color:#001C44;">Property-Backed</td>
+              <td style="padding:14px 16px; color:#3A4A63;">$5M+</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Loan-to-value ratio dependent</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Eligibility & documents -->
+      <section id="eligibility-and-documents">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 12px;">Eligibility &amp; Documents</h2>
+        <p style="font-size:1.02rem; line-height:1.75; color:#3A4A63; margin:0 0 24px;">Minimum eligibility varies by lender type, but most panels apply a similar baseline:</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(0,28,68,0.15); border:1px solid rgba(0,28,68,0.15); margin-bottom:28px;">
+          <sc-for list="{{ eligibilityFactors }}" as="e" hint-placeholder-count="4">
+            <div style="background:#FFFFFF; padding:20px;">
+              <div style="font-size:0.95rem; font-weight:600; color:#001C44; margin-bottom:6px;">{{ e.label }}</div>
+              <div style="font-size:0.86rem; color:#3A4A63; line-height:1.55;">{{ e.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <table style="width:100%; border-collapse:collapse; font-size:0.92rem;">
+          <thead>
+            <tr style="background:#001C44;">
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Document</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Fintech / Non-Bank</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.78rem; letter-spacing:0.04em;">Banks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:500; color:#001C44;">Bank statements</td>
+              <td style="padding:14px 16px; color:#3A4A63;">3&ndash;6 months</td>
+              <td style="padding:14px 16px; color:#3A4A63;">6&ndash;12 months</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:500; color:#001C44;">Financial statements</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Not always required</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Required (2 years)</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:500; color:#001C44;">Tax returns</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Rarely required</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Required (2 years)</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:500; color:#001C44;">Identification</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Director ID + licence</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Director ID + licence</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- STAR framework -->
+      <section>
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 24px;">Evaluating Term Loans Against the S.T.A.R. Framework</h2>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px;">
+          <sc-for list="{{ starCards }}" as="card" hint-placeholder-count="4">
+            <div style="border-top:2px solid {{ card.color }}; padding:22px 0 0;">
+              <div style="width:34px; height:34px; border:1.5px solid #001C44; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.05rem; color:#001C44; margin-bottom:14px;">{{ card.letter }}</div>
+              <div style="font-size:1rem; font-weight:600; color:#001C44; margin-bottom:8px;">{{ card.label }}</div>
+              <div style="font-size:0.88rem; line-height:1.6; color:#3A4A63;">{{ card.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- Pros & cons -->
+      <section id="pros-and-cons">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 24px;">Pros &amp; Cons of Business Term Loans</h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+          <div style="border-top:2px solid #54B4F6; padding-top:18px;">
+            <div style="font-size:0.78rem; font-weight:600; letter-spacing:0.08em; color:#54B4F6; margin-bottom:14px;">ADVANTAGES</div>
+            <sc-for list="{{ pros }}" as="p" hint-placeholder-count="4">
+              <div style="padding:12px 0; border-bottom:1px solid rgba(0,28,68,0.1); font-size:0.95rem; color:#001C44; line-height:1.55;">{{ p }}</div>
+            </sc-for>
+          </div>
+          <div style="border-top:2px solid #FF5D5C; padding-top:18px;">
+            <div style="font-size:0.78rem; font-weight:600; letter-spacing:0.08em; color:#FF5D5C; margin-bottom:14px;">DISADVANTAGES</div>
+            <sc-for list="{{ cons }}" as="c" hint-placeholder-count="3">
+              <div style="padding:12px 0; border-bottom:1px solid rgba(0,28,68,0.1); font-size:0.95rem; color:#001C44; line-height:1.55;">{{ c }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product comparison -->
+      <section id="product-comparison">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 18px;">Business Term Loans vs. Other Finance Products</h2>
+        <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.88rem; min-width:640px;">
+          <thead>
+            <tr style="background:#001C44;">
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.76rem; letter-spacing:0.04em;"></th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.76rem; letter-spacing:0.04em;">Term Loan</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.76rem; letter-spacing:0.04em;">Line of Credit</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.76rem; letter-spacing:0.04em;">Overdraft</th>
+              <th style="text-align:left; padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:0.76rem; letter-spacing:0.04em;">Invoice Finance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:600; color:#001C44;">How It Works</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Lump sum, fixed schedule</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Revolving limit, draw as needed</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Buffer attached to bank account</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Advance against unpaid invoices</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:600; color:#001C44;">Best For</td>
+              <td style="padding:14px 16px; color:#3A4A63;">One-off funding need</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Ongoing working capital</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Short-term cash flow gaps</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Bridging receivables timing</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:600; color:#001C44;">Typical Rates</td>
+              <td style="padding:14px 16px; color:#3A4A63;">7.5%&ndash;48% p.a.</td>
+              <td style="padding:14px 16px; color:#3A4A63;">9%&ndash;25% p.a.</td>
+              <td style="padding:14px 16px; color:#3A4A63;">10%&ndash;20% p.a.</td>
+              <td style="padding:14px 16px; color:#3A4A63;">1%&ndash;3% per invoice</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,28,68,0.15);">
+              <td style="padding:14px 16px; font-weight:600; color:#001C44;">Repayment Structure</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Fixed instalments over term</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Interest on drawn balance only</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Repaid as funds are deposited</td>
+              <td style="padding:14px 16px; color:#3A4A63;">Repaid when invoice is collected</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- Case study -->
+      <section id="real-world-case-study">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 16px;">Real-World Case Study</h2>
+        <div style="background:#FFFFFF; border:1px solid rgba(0,28,68,0.15); padding:28px;">
+          <div style="font-size:0.78rem; font-weight:600; letter-spacing:0.06em; color:rgba(0,28,68,0.5); margin-bottom:14px;">MELBOURNE HOSPITALITY</div>
+          <p style="font-size:0.98rem; line-height:1.75; color:#3A4A63; margin:0;">A Melbourne caf&eacute; owner refinancing a $180,000 fit-out loan compared their bank's rollover offer against the open market before committing. CBA's renewal came in at 14.5% p.a.; Judo Bank, a second-tier lender, offered 10.2% p.a. on the same security. Switching lenders saved $10,800 in interest over the remaining term &mdash; the saving alone outweighed the cost and admin of refinancing.</p>
+        </div>
+      </section>
+
+      <!-- Author card -->
+      <section style="border-top:1px solid rgba(0,28,68,0.15); border-bottom:1px solid rgba(0,28,68,0.15); padding:28px 0;">
+        <div style="font-size:0.98rem; font-weight:600; color:#001C44; margin-bottom:8px;">Written by Ben Lyons &middot; Co-Founder, Trade Funding &middot; ACL 387856</div>
+        <div style="font-size:0.9rem; color:#3A4A63; line-height:1.6;">35+ years combined lending and finance experience across Tier-1 banks, non-banks, and private commercial credit.</div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <h2 style="font-size:1.7rem; font-weight:600; color:#001C44; margin:0 0 8px;">Frequently Asked Questions</h2>
+        <div>
+          <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="8">
+            <div style="border-bottom:1px solid rgba(0,28,68,0.15); padding:18px 0;">
+              <div onClick="{{ toggleFaq($index) }}" style="display:flex; justify-content:space-between; align-items:center; cursor:pointer; gap:16px;">
+                <span style="font-size:1rem; font-weight:600; color:#001C44;">{{ faq.q }}</span>
+                <span style="font-size:0.82rem; font-weight:600; color:#54B4F6; flex-shrink:0;">{{ faq.toggleLabel }}</span>
+              </div>
+              <sc-if value="{{ faq.open }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:0.92rem; line-height:1.7; color:#3A4A63; margin:14px 0 0;">{{ faq.a }}</p>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- EXIT CTA -->
+  <section style="background:#F5F8FC; padding:80px 40px; text-align:center;">
+    <div style="max-width:640px; margin:0 auto;">
+      <div style="font-size:0.78rem; font-weight:600; letter-spacing:0.1em; color:#54B4F6; margin-bottom:16px;">NO CREDIT CHECK</div>
+      <h2 style="font-size:2rem; font-weight:600; color:#001C44; margin:0 0 14px;">Ready to see every term loan option available to your business?</h2>
+      <p style="font-size:1.02rem; color:#3A4A63; line-height:1.6; margin:0 0 32px;">Start your free comparison and receive your S.T.A.R. Compare Report within 24 hours.</p>
+      <button style="height:52px; padding:0 32px; background:#FF5D5C; color:#FFFFFF; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:1.02rem; font-weight:600; cursor:pointer;">Get My Free Compare Report &rarr;</button>
+      <div style="font-size:0.85rem; color:rgba(0,28,68,0.6); margin-top:18px;">No credit check &middot; No commitment &middot; Ready in 24hr</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#001C44; color:rgba(255,255,255,0.7); padding:64px 40px 0;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:48px;">
+        <div>
+          <div style="font-size:1.3rem; font-weight:700; color:#FFFFFF; margin-bottom:18px;">tradefunding</div>
+          <p style="font-size:0.88rem; line-height:1.65; color:rgba(255,255,255,0.55); max-width:320px; margin:0 0 20px;">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+          <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:20px; font-size:0.85rem; color:rgba(255,255,255,0.65);">
+            <span>1300 161 641</span>
+            <span>support@tradefunding.com.au</span>
+            <span>Level 8, 387 George Street, Sydney, NSW, 2000</span>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <sc-for list="{{ badges }}" as="b" hint-placeholder-count="4">
+              <span style="padding:6px 12px; border:1px solid rgba(255,255,255,0.25); border-radius:999px; font-size:0.72rem; color:rgba(255,255,255,0.75);">{{ b }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+          <div>
+            <div style="font-size:0.85rem; font-weight:600; color:#FFFFFF; margin-bottom:16px;">{{ col.heading }}</div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+                <a href="#" style="font-size:0.85rem; color:rgba(255,255,255,0.6);">{{ l }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.15); padding:24px 0; font-size:0.8rem; color:rgba(255,255,255,0.5); line-height:1.6;">
+        Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="#" style="color:rgba(255,255,255,0.7);">Credit Guide</a> | <a href="#" style="color:rgba(255,255,255,0.7);">Terms &amp; Conditions</a> | ACL 387856
+      </div>
+      <div style="padding:16px 0 24px; font-size:0.8rem; color:rgba(255,255,255,0.4);">&copy; 2026 Trade Funding Pty Ltd. All rights reserved.</div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    faqs: [
+      { q: "What's the minimum revenue to qualify for a business term loan?", a: "Most lenders set a minimum of $75,000\u2013$100,000 in annual revenue for an unsecured facility. Bank lenders typically require higher, established turnover; some specialist non-bank lenders will consider newer businesses with lower revenue against strong cash flow." },
+      { q: "Do I need residential property to secure a loan?", a: "No. Unsecured term loans are available up to roughly $500,000 based on business cash flow alone. Residential property security can unlock larger amounts and lower rates, but it isn't required for most standard facilities." },
+      { q: "Can I get a term loan with bad credit?", a: "Yes, through specialist non-bank and private lenders \u2014 at a higher rate than the bank tier. A default or late payment history narrows the panel rather than closing it entirely." },
+      { q: "Does comparing lenders affect my credit score?", a: "Comparing rate estimates through a broker or comparison service typically uses a soft check, which doesn't affect your credit file. Only a formal application triggers a hard inquiry \u2014 this is why comparing before applying protects your file from multiple hard inquiries." },
+      { q: "How long does approval take?", a: "Unsecured fintech and non-bank facilities are commonly approved and funded within 24\u201348 hours. Bank and secured facilities take longer \u2014 typically 1\u20133 weeks \u2014 due to valuation and formal credit assessment requirements." },
+      { q: "Can I repay a term loan early?", a: "Most lenders allow early repayment. Fixed-rate bank facilities may carry a break cost calculated against the remaining interest; fintech and non-bank lenders more commonly allow early payout with a discount on unearned interest instead of a penalty." },
+      { q: "What's the difference between a term loan and a line of credit?", a: "A term loan disburses a lump sum upfront with a fixed repayment schedule. A line of credit is a revolving facility \u2014 you draw funds as needed and pay interest only on the drawn balance, better suited to ongoing working capital than a single funding need." },
+      { q: "Will I need to provide a personal guarantee?", a: "Most lenders require a director's guarantee, regardless of whether the loan itself is secured or unsecured. It's a guarantee tied to the director, not additional collateral on the business assets." }
+    ],
+    openFaq: null
+  };
+
+  toggleFaqAt(i) {
+    this.setState(s => ({ openFaq: s.openFaq === i ? null : i }));
+  }
+
+  renderVals() {
+    return {
+      navLinks: [
+        { label: 'Products', dropdown: true },
+        { label: 'Compare', dropdown: true },
+        { label: 'About', dropdown: false }
+      ],
+      channels: [
+        { label: 'Home', active: false },
+        { label: 'Commercial', active: true },
+        { label: 'Connect', active: false },
+        { label: 'Personal & Property', active: false }
+      ].map(c => ({
+        ...c,
+        pillStyle: c.active
+          ? { padding: '8px 14px', borderRadius: '999px', fontSize: '0.82rem', fontWeight: 600, background: '#54B4F6', color: '#FFFFFF', whiteSpace: 'nowrap' }
+          : { padding: '8px 14px', borderRadius: '999px', fontSize: '0.82rem', fontWeight: 600, background: 'transparent', color: '#001C44', whiteSpace: 'nowrap' }
+      })),
+      takeaways: [
+        'Rates range from 7.5% (secured, major bank) to 48% (unsecured, private lender) \u2014 security and speed drive the spread.',
+        'Most businesses can borrow 10\u201320% of annual revenue unsecured, higher with property or asset security.',
+        'The lowest headline rate is not always the cheapest loan \u2014 always evaluate true APR including origination and facility fees.',
+        'Comparing 70+ lenders before formal submission protects your credit file from multiple inquiries.'
+      ],
+      jumpLinks: [
+        { label: 'What Is a Term Loan?', href: '#what-is-a-term-loan', active: true },
+        { label: 'Rates by Lender Type', href: '#rates-by-lender-type', active: false },
+        { label: 'Borrowing Limits', href: '#borrowing-limits', active: false },
+        { label: 'Eligibility & Documents', href: '#eligibility-and-documents', active: false },
+        { label: 'Pros & Cons', href: '#pros-and-cons', active: false },
+        { label: 'Product Comparison', href: '#product-comparison', active: false },
+        { label: 'Real-World Case Study', href: '#real-world-case-study', active: false },
+        { label: 'FAQ', href: '#faq', active: false }
+      ].map(l => ({
+        ...l,
+        navStyle: l.active
+          ? { padding: '8px 0', fontSize: '0.88rem', fontWeight: 600, color: '#54B4F6', borderBottom: '2px solid #54B4F6', display: 'block' }
+          : { padding: '8px 0', fontSize: '0.88rem', fontWeight: 500, color: '#001C44', borderBottom: '2px solid transparent', display: 'block' }
+      })),
+      capacityFactors: [
+        { label: 'Annual Revenue', desc: 'Most unsecured offers cap at 10\u201320% of annual turnover.' },
+        { label: 'Security Offered', desc: 'Property or asset backing raises the ceiling well beyond the unsecured range.' },
+        { label: 'Time in Business', desc: '12+ months trading opens the full panel; under 6 months narrows it to specialist lenders.' },
+        { label: 'Cash Flow Trend', desc: 'Lenders read 3\u20136 months of bank statements for stability, not just volume.' },
+        { label: 'Existing Debt Load', desc: 'Existing facilities reduce serviceable capacity for a new loan.' },
+        { label: 'Credit Score', desc: 'A clean file broadens the panel; defaults or late payments narrow it to non-bank options.' }
+      ],
+      eligibilityFactors: [
+        { label: 'Time Trading', desc: '6+ months for non-bank; 12+ months typical for bank lenders.' },
+        { label: 'Annual Revenue', desc: '$75,000+ typical minimum across the panel.' },
+        { label: 'Credit File', desc: 'No active defaults for bank tier; non-bank options exist otherwise.' },
+        { label: 'Business Structure', desc: 'Company, trust, or sole trader; ABN active 6+ months.' }
+      ],
+      starCards: [
+        { letter: 'S', label: 'Security', desc: 'Unsecured options available up to $500k; asset-backed facilities available without residential property caveats.', color: '#001C44' },
+        { letter: 'T', label: 'Term', desc: 'Fixed 12 to 60-month loan amortisation aligned with expansion or cash flow cycles.', color: '#54B4F6' },
+        { letter: 'A', label: 'Amount', desc: 'Borrowing quantum sized directly against verified bank cash flow and turnover metrics.', color: '#FBB766' },
+        { letter: 'R', label: 'Rate', desc: 'Full transparency on annualized percentage rates, origination fees, and early payout discounts.', color: '#FF5D5C' }
+      ],
+      pros: [
+        'Predictable fixed schedules',
+        'Large borrowing capacity',
+        'Tax-deductible interest',
+        'Preserves operational equity'
+      ],
+      cons: [
+        'Upfront interest commitment from day one',
+        'Potential break costs on fixed bank debt',
+        'Director guarantees required'
+      ],
+      footerCols: [
+        { heading: 'Channels', links: ['Business Loans', 'Connect', 'Personal & Property', 'Guides & Tools'] },
+        { heading: 'Company', links: ['About Us', 'Broker Portal', 'Become a Partner', 'Contact', 'Get Started'] },
+        { heading: 'Legal', links: ['Credit Guide', 'Privacy Policy', 'Terms & Conditions'] }
+      ],
+      badges: ['ACL 387856', 'AFCA Member', 'CAFBA', 'Fintech Australia'],
+      faqs: this.state.faqs.map((f, i) => ({ ...f, open: this.state.openFaq === i, toggleLabel: this.state.openFaq === i ? 'Hide' : 'Show' })),
+      toggleFaq: (i) => this.toggleFaqAt(i)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

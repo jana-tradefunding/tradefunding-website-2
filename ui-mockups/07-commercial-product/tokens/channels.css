@@ -1,0 +1,55 @@
+/* ============================================================
+   CHANNEL TOKENS — one underlying brand, three channels. Navy runs
+   through all three; its role changes. Commercial leads with navy;
+   Connect leads with gold; Personal & Property leads with peach, both
+   using navy as accent/detail. Locked in tokens.md §2.
+   Apply a channel by setting the scope class on a wrapper (or <body>):
+     .channel-commercial | .channel-connect | .channel-personal-property
+   ============================================================ */
+:root {
+  --tf-commercial-primary: var(--navy);
+  --tf-commercial-primary-alt: var(--navy-blue);
+  --tf-commercial-accent: var(--skyblue);
+  --tf-commercial-accent-soft: var(--skyblue-soft);
+
+  --tf-connect-primary: var(--gold);
+  --tf-connect-primary-soft: var(--gold-soft);
+  --tf-connect-accent: var(--navy);
+  --tf-connect-accent-alt: var(--navy-blue);
+
+  --tf-personalproperty-primary: var(--peach);
+  --tf-personalproperty-primary-soft: var(--peach-soft);
+  --tf-personalproperty-accent: var(--navy);
+  --tf-personalproperty-accent-alt: var(--navy-blue);
+
+  /* Resolved channel slots — default to Commercial */
+  --channel-primary: var(--navy);
+  --channel-primary-soft: var(--skyblue-soft);
+  --channel-accent: var(--skyblue);
+  --channel-on-primary: var(--white);
+  --channel-hero-bg: linear-gradient(160deg, #001C44 0%, #002A5C 40%, #001838 100%);
+}
+
+.channel-commercial {
+  --channel-primary: var(--navy);
+  --channel-primary-soft: var(--skyblue-soft);
+  --channel-accent: var(--skyblue);
+  --channel-on-primary: var(--white);
+  --channel-hero-bg: linear-gradient(160deg, #001C44 0%, #002A5C 40%, #001838 100%);
+}
+
+.channel-connect {
+  --channel-primary: var(--gold);
+  --channel-primary-soft: var(--gold-soft);
+  --channel-accent: var(--navy);
+  --channel-on-primary: var(--navy);
+  --channel-hero-bg: linear-gradient(160deg, var(--gold) 0%, #FDC988 100%);
+}
+
+.channel-personal-property {
+  --channel-primary: var(--peach);
+  --channel-primary-soft: var(--peach-soft);
+  --channel-accent: var(--navy);
+  --channel-on-primary: var(--navy);
+  --channel-hero-bg: linear-gradient(160deg, var(--peach) 0%, #FF8382 55%, var(--peach-soft) 100%);
+}

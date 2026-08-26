@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Funding - Business Capital, From Every Angle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth;}
+body{margin:0;background:#FFFFFF;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;border:none;background:none;padding:0;cursor:pointer;}
+*{box-sizing:border-box;}
+
+/* Mega menu (CSS hover, replacing the dc-runtime state) */
+.nav-item{position:relative;}
+.mega-panel{
+  position:absolute;top:64px;left:50%;transform:translateX(-50%);width:400px;background:#FFFFFF;
+  border:1px solid rgba(0,28,68,0.08);border-radius:16px;box-shadow:0 20px 60px rgba(0,28,68,0.16);
+  padding:10px;display:flex;flex-direction:column;gap:2px;
+  opacity:0;visibility:hidden;transform:translate(-50%,-6px);
+  transition:opacity 0.2s ease,transform 0.2s ease,visibility 0.2s ease;
+}
+.nav-item:hover .mega-panel,.nav-item:focus-within .mega-panel{opacity:1;visibility:visible;transform:translate(-50%,0);}
+.mega-panel a{display:flex;align-items:flex-start;gap:14px;padding:14px 14px;border-radius:12px;transition:background 0.2s;}
+.mega-panel a:hover{background:rgba(0,28,68,0.045);}
+.mega-panel-compare{
+  position:absolute;top:64px;left:50%;transform:translateX(-50%);background:#001C44;border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,28,68,0.24);padding:10px 16px;white-space:nowrap;
+  opacity:0;visibility:hidden;transition:opacity 0.2s ease,visibility 0.2s ease;
+}
+.nav-item:hover .mega-panel-compare,.nav-item:focus-within .mega-panel-compare{opacity:1;visibility:visible;}
+
+/* Channel tiles — benefit-led hierarchy, no colour coding */
+.channel-card{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:14px;padding:40px;border-radius:16px;
+  aspect-ratio:1 / 1;border:1px solid rgba(0,28,68,0.08);
+  background:#FFFFFF;box-shadow:0 1px 3px rgba(0,28,68,0.05);color:#001C44;
+  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.channel-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,28,68,0.10);}
+.channel-eyebrow{
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:0.1em;
+  color:rgba(0,28,68,0.45);
+}
+.channel-detail{
+  font-family:'DM Sans',sans-serif;font-size:13.5px;line-height:1.5;color:rgba(0,28,68,0.6);
+  opacity:0;max-height:0;margin-top:-14px;overflow:hidden;
+  transition:opacity 0.25s ease,max-height 0.25s ease,margin-top 0.25s ease;
+}
+.channel-card:hover .channel-detail,.channel-card:focus .channel-detail{opacity:1;max-height:60px;margin-top:-2px;}
+
+.cta-btn{font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;padding:11px 24px;border-radius:999px;white-space:nowrap;flex-shrink:0;transition:transform 0.2s,box-shadow 0.2s;background:#001C44;color:#FFFFFF;border:2px solid #001C44;box-shadow:0 4px 14px rgba(0,28,68,0.3);display:inline-block;}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,28,68,0.4);}
+
+.footer-link{font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(255,255,255,0.6);transition:color 0.2s;}
+.footer-link:hover{color:#FFFFFF;}
+</style>
+</head>
+<body>
+
+<div style="font-family:'DM Sans',sans-serif;color:#001C44;background:#FFFFFF;min-height:100vh;">
+
+<header style="position:sticky;top:0;z-index:60;background:#FFFFFF;border-bottom:1px solid rgba(0,28,68,0.08);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="index.html" style="flex-shrink:0;display:flex;align-items:center;"><img src="assets/img/logo-navy.png" alt="tradefunding" style="height:22px;width:auto;display:block;"></a>
+
+    <nav aria-label="Primary" style="display:flex;align-items:center;gap:40px;">
+
+      <div class="nav-item">
+        <span aria-haspopup="true" style="display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;color:rgba(0,28,68,0.75);padding:28px 0;">
+          Products
+          <span aria-hidden="true" style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;"></span>
+        </span>
+        <div role="menu" class="mega-panel">
+          <a href="commercial/index.html">
+            <div>
+              <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.02em;color:#001C44;">FUND MY BUSINESS</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(0,28,68,0.55);margin-top:2px;">Compare options below</div>
+            </div>
+          </a>
+          <a href="connect/index.html">
+            <div>
+              <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.02em;color:#001C44;">SUPPORT CLIENT PAYMENTS</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(0,28,68,0.55);margin-top:2px;">The funding market at point-of-sale</div>
+            </div>
+          </a>
+          <a href="personal-and-property/index.html">
+            <div>
+              <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.02em;color:#001C44;">FUNDING OWNERS RUNNING BUSINESS</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(0,28,68,0.55);margin-top:2px;">For their personal and property needs</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Compare routes to the dedicated Cashper/Compare Engine page -->
+      <div class="nav-item">
+        <a href="compare-report/index.html" aria-haspopup="true" style="display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;color:rgba(0,28,68,0.75);padding:28px 0;">
+          Compare
+          <span aria-hidden="true" style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;"></span>
+        </a>
+        <div role="menu" class="mega-panel-compare">
+          <span style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:13.5px;color:#FFFFFF;">Which Option is Best</span>
+        </div>
+      </div>
+
+      <a href="home-shared/about/index.html" style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;color:rgba(0,28,68,0.75);padding:28px 0;">About</a>
+    </nav>
+
+    <a href="home-shared/about/index.html#contact" class="cta-btn">Contact</a>
+  </div>
+</header>
+
+<section style="background:#FFFFFF;min-height:85vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:clamp(96px,10vw,128px) 40px;">
+  <div style="max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;">
+    <div style="grid-column:1 / span 8;text-align:left;">
+      <h1 style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:clamp(3rem,5.2vw,5rem);line-height:1.04;letter-spacing:-0.025em;color:#001C44;margin:0 0 20px;">Business capital, from every angle.</h1>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:1.15rem;line-height:1.6;color:rgba(0,28,68,0.65);margin:0;">Choose the channel that fits what you need funded</p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Funding channels" style="padding:clamp(96px,8vw,128px) 40px;background:#F8FAFC;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+
+    <a href="commercial/index.html" class="channel-card">
+      <span class="channel-eyebrow">Commercial</span>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:24px;color:#001C44;">Fund my business</div>
+      <div class="channel-detail">Term loans, lines of credit and asset finance, compared side by side.</div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;color:#001C44;margin-top:auto;">Explore →</div>
+    </a>
+
+    <a href="connect/index.html" class="channel-card">
+      <span class="channel-eyebrow">Connect</span>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:24px;color:#001C44;">Funding for my customers</div>
+      <div class="channel-detail">Offer finance at checkout so more customers say yes.</div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;color:#001C44;margin-top:auto;">Explore →</div>
+    </a>
+
+    <a href="personal-and-property/index.html" class="channel-card">
+      <span class="channel-eyebrow">Personal and property</span>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:24px;color:#001C44;">Funding owners running business</div>
+      <div class="channel-detail">Home loans and property finance for the people behind the business.</div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;color:#001C44;margin-top:auto;">Explore →</div>
+    </a>
+
+  </div>
+</section>
+
+<section style="background:#FFFFFF;padding:clamp(96px,8vw,128px) 40px;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:stretch;">
+    <div style="text-align:left;">
+      <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(0,28,68,0.45);margin-bottom:20px;">Why we exist</div>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(1.2rem,1.7vw,1.5rem);line-height:1.6;color:#001C44;margin:0;">Could you review over 100 products to pick which ones you qualify for and are best?</p>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:clamp(1.2rem,1.7vw,1.5rem);line-height:1.6;color:#54B4F6;margin:8px 0 0;">We can.</p>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:15px;line-height:1.9;color:#001C44;margin:32px 0 20px;">Business owners have long been pushed through a single funding channel, regardless of what they actually needed. A commercial loan, a customer financing program, and a personal or property-backed facility are different products, priced and structured differently.</p>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:15px;line-height:1.9;color:#001C44;margin:0;">This directory lays out the channels plainly, with the terms and fit for each made clear up front, so you can see where your business sits before you talk to anyone.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:24px;">
+      <div style="display:flex;align-items:center;gap:24px;padding:32px;border-radius:16px;background:#FFFFFF;border:1px solid rgba(0,28,68,0.08);box-shadow:0 1px 3px rgba(0,28,68,0.08);">
+        <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:3.5rem;color:#001C44;line-height:1;">100+</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(0,28,68,0.6);line-height:1.4;">lending products across every channel</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:24px;padding:32px;border-radius:16px;background:#FFFFFF;border:1px solid rgba(0,28,68,0.08);box-shadow:0 1px 3px rgba(0,28,68,0.08);">
+        <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:3.5rem;color:#001C44;line-height:1;">1</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(0,28,68,0.6);line-height:1.4;">directory that lays out the fit for each, up front</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#001C44;">
+  <div style="max-width:1200px;margin:0 auto;padding:72px 40px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;">
+
+    <div>
+      <img src="assets/img/logo-white.png" alt="tradefunding" style="height:20px;width:auto;display:block;margin-bottom:16px;">
+      <p style="font-family:'DM Sans',sans-serif;font-size:13.5px;line-height:1.7;color:rgba(255,255,255,0.55);margin:0 0 20px;max-width:280px;">Know before you apply. We pre-qualify your business against 70+ lenders and match you with the right offer, then support you all the way to settlement. Free. No credit check. 24 hours.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+        <a href="tel:1300161641" style="font-family:'DM Sans',sans-serif;font-size:13.5px;color:rgba(255,255,255,0.75);">1300 161 641</a>
+        <a href="mailto:support@tradefunding.com.au" style="font-family:'DM Sans',sans-serif;font-size:13.5px;color:rgba(255,255,255,0.75);">support@tradefunding.com.au</a>
+        <span style="font-family:'DM Sans',sans-serif;font-size:13.5px;color:rgba(255,255,255,0.55);">Level 8, 387 George Street, Sydney, NSW, 2000</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 10px;">ACL 387856</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 10px;">AFCA Member</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 10px;">CAFBA</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 10px;">Fintech Australia</span>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;color:#FFFFFF;margin-bottom:18px;">Channels</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="commercial/index.html" class="footer-link">Business Loans</a>
+        <a href="connect/index.html" class="footer-link">Connect</a>
+        <a href="personal-and-property/index.html" class="footer-link">Personal &amp; Property</a>
+        <a class="footer-link" href="guides/index.html">Guides &amp; Tools</a>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;color:#FFFFFF;margin-bottom:18px;">Company</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="home-shared/about/index.html" class="footer-link">About Us</a>
+        <a href="home-shared/broker-portal/index.html" class="footer-link">Broker Portal</a>
+        <a href="connect/index.html" class="footer-link">Become a Partner</a>
+        <a href="home-shared/about/index.html#contact" class="footer-link">Contact</a>
+        <a href="home-shared/apply/index.html" class="footer-link">Get Started</a>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;color:#FFFFFF;margin-bottom:18px;">Legal</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="home-shared/credit-guide/index.html" class="footer-link">Credit Guide</a>
+        <span class="footer-link" style="opacity:0.5;cursor:default">Privacy Policy</span>
+        <a href="home-shared/terms/index.html" class="footer-link">Terms &amp; Conditions</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:24px 40px 32px;border-top:1px solid rgba(255,255,255,0.15);display:flex;flex-direction:column;gap:10px;">
+    <p style="font-family:'DM Sans',sans-serif;font-size:11.5px;line-height:1.6;color:rgba(255,255,255,0.45);margin:0;">Credit products are provided by third-party lenders and credit offers are subject to a full credit review. Read our <a href="home-shared/credit-guide/index.html" style="color:rgba(255,255,255,0.65);">Credit Guide</a> | <a href="home-shared/terms/index.html" style="color:rgba(255,255,255,0.65);">Terms &amp; Conditions</a> | ACL 387856</p>
+    <p style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);margin:0;">© 2026 Trade Funding Pty Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+</div>
+
+</body>
+</html>

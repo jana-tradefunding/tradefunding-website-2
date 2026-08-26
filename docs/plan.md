@@ -1,177 +1,197 @@
 # Trade Funding — Homepage-First Rebuild Plan
 
-**Status: v4.** Two changes from v3: (1) **Phase 3 (IA/Routing/Redirect Lock) now includes updating the Master Information Architecture & Sitemap doc itself**, producing a fresh `master-ia-sitemap.md` that becomes the canonical IA reference going forward — the old `oldsite/docs/` copy stays untouched as a historical record. (2) **Phase 10 is now "Payload Conversion & Vercel Launch,"** rewritten around the concrete steps in Abrar's `Trade Funding Build Walkthrough for Jana.pdf`, replacing the earlier generic "flip DNS" description. Execution order is otherwise unchanged: Phase 0 → Phase 1 (Design Tokens) → Phase 2 (Wireframe) → Phase 3 (IA/Routing/Redirect Lock) → Phase 4 (Site Folder & Route Scaffold) → Phase 5 (Homepage Production) → Phase 6 (Subsite Pass) → Phase 7 (Copy) → Phase 8 (Stakeholder Review) → Phase 9 (Audits) → Phase 10 (Payload Conversion & Vercel Launch) → Phase 11 (Post-Launch). **Phases 0, 1, and 2 are done and verified** — see §4.
+**Status: v8.** This revision is grounded in the actual repo contents (`ui-mockups.zip`), not assumptions. Three things this resolves that were previously open, and one thing it corrects outright:
 
-**Source materials this plan is built from:** Matt's shared Claude conversation (2+1 architecture, "business capital from every angle"), the 2026-08-21 sprint transcript (Matt + Jana), the homepage mockup screenshot, `Trade Funding — Brand Guidelines.pdf`, `Trade Funding Build Walkthrough for Jana.pdf` (Abrar's Payload/Vercel deployment guide), the retained `oldsite/` static build (for content/product-data reference), and the Phase 0 scaffold session transcript.
+- **Resolved: Option A locked.** Commercial products, guides, tools, and Compare are nested under `/commercial/` — confirmed already substantially built this way. The earlier "flat at root" default is superseded.
+- **Resolved: Personal & Property slug is hyphenated**, `/personal-and-property/` — confirmed as the real folder name. Every prior mention of `personalandproperty` in this doc set was wrong and is corrected here.
+- **Resolved: Self-Employed Home Loan and Second Mortgage migrated to Personal & Property** — confirmed built there (9 category pages total, not 7).
+- **Corrected: no `/site/` wrapper folder.** The static build lives directly at the true repo root, alongside the untouched Payload app folders, `docs/`, `branding/`, `oldsite/`, `ui-mockups/`, and a new `qa/` folder.
+- **Corrected: no build script.** The manifest-driven `pages.json`/`build.mjs` approach this plan specced for Phase 5 was never adopted — decided against in prior sessions. The site is hand-authored static HTML. This plan stops describing a build system that doesn't exist and won't be built.
+
+**Phases 0 through 4 are marked done, per instruction — the historical record below is unchanged.** Phase 4's mockup inventory is now reconciled against the real `ui-mockups/` folder (17 numbered templates + 2 components, not 18 — see Phase 4 for the precise reconciliation, including a few templates that turned out not to be needed and a few real pages that don't have a mockup yet). Phase 5 (Site Assembly) is rewritten from scratch around the real, current state of the repo: which of the ~55 pages exist, which don't, and a concrete, QA-sourced list of defects to fix — not a hypothetical build process.
+
+**Source materials:** all prior source materials (transcript, brand guidelines, Matt-Website-Brief.md, Master IA checklist v2, Build Walkthrough PDF), plus `Matt_Vision_Site.md` (Design Corrections addendum — DM Sans only, home-icon exemption) and the actual project export `ui-mockups.zip`, including its `qa/2026-08-24-site-audit.md`.
 
 ---
 
-## Venue legend (which tool runs each phase)
+## Venue legend
 
 | Tag | What it means |
 |---|---|
-| 💬 **Claude Chat** | Conversation only — decisions, research, copywriting, redirect/route tables as documents. No code repo involved. |
-| 🎨 **Claude Design** | Visual mockup/prototype tooling — wireframes, layout exploration. Not the production codebase. |
+| 💬 **Claude Chat** | Conversation only — decisions, research, copywriting, planning documents. |
+| 🎨 **Claude Design** | Visual mockup tooling. Not the production codebase. |
 | 💻 **Claude Code** | Actual repo work — components, pages, config, deploys. |
 
 ---
 
 ## 0. The pivot, in one paragraph
 
-The old architecture put Commercial at `/` as the hero brand, with Connect and Personal & Property reached via a "ChannelSwitcher" from inside Commercial. The new architecture — confirmed by Matt in the transcript and locked for this rebuild — makes **the homepage itself a neutral, brand-level entry point**, not Commercial's page. `/` becomes a short, high-impact directory: master statement ("Business capital, from every angle") plus three equal-weight cards — **Commercial, Connect, Personal & Property** — each linking to its own subsite. **Commercial moves off root to `/commercial/`**, becoming a peer of `/connect/` and `/personal-and-property/`, not their parent.
-
-This is a "2+1" architecture, not a "3 equal" one: Commercial and Personal & Property are full customer-facing product tracks; Connect is a partner/vendor-facing track with less overall site weight — but on the homepage itself, per Matt's explicit instruction, all three get equal visual treatment as entry cards. The audience-weighting shows up in each subsite's depth and nav prominence, not on the homepage.
+The homepage is a neutral, brand-level entry point. `/` carries the master statement plus a "three ways we help business owners" section — Commercial leading, Connect and Personal & Property as extensions, not equal peers on the homepage specifically (equal weight everywhere else — footer, Products mega-menu, Channel Toggle). Routing is **Option A**: Commercial's hub, products, guides, tools, and Compare all nest under `/commercial/`; Connect and Personal & Property are fully nested under their own prefixes; genuinely brand-neutral pages (Home, 404, About Us, Apply, Broker Portal, Credit Guide, Terms, and soon Privacy and Contact) live under `/home-shared/`, with only `index.html` and `404.html` permitted loose at the true repo root.
 
 ---
 
-## 1. Locked decisions (do not re-litigate without a chat with Matt)
+## 1. Locked decisions
 
 | Decision | Locked answer | Source |
 |---|---|---|
-| Root URL owner | New neutral homepage. Commercial moves to `/commercial/`. | Confirmed for this rebuild |
-| Code reuse | Full rebuild. `oldsite/` is reference-only (content, product data, FAQs) — no components/CSS ported directly. | Confirmed for this rebuild |
-| Old docs (v11) | Fully replaced by this doc set. | Confirmed for this rebuild |
-| Homepage nav | One row: logo, `Products` / `Choice` / `About`, CTA button (not "Get started" — that was Claude taking liberties in the original mockup; needs a real CTA decision, e.g. "Compare now" or "Contact us"). | Transcript 00:10:40–00:11:29 |
-| Three-card section | Commercial / Connect / Personal & Property, equal visual weight, icon + one-liner + "Explore →" each. | Transcript + screenshot |
-| Sticky nav dial | Appears once scrolled past the hero **inside a subsite**, not on the homepage itself. Shows the current channel plus a way back to Home. This is a renamed/repositioned version of the existing `ChannelSwitcher` component already specced in the old `tokens.md`/`buildspec.md` — reuse the *concept and states*, not the *old markup*. | Transcript 00:34:13–00:38:10 |
-| Calculator | Stays, but lives on the **Commercial subsite** (where the compare/apply funnel lives), not on the new homepage. | Transcript 00:15:33–00:19:29 |
-| "Why we exist" section | Required, sits below the three cards, homepage only — longer-form brand narrative for the ~2% of visitors who read past the fold. | Transcript 00:30:33–00:32:13 |
-| Typography | Work Sans (headings, unchanged) + **DM Sans** (body/UI), replacing Roboto. **This deviates from the current brand guidelines PDF (Work Sans + Roboto).** Matt verbally approved it. The guidelines document itself has not been formally updated — see note in §4, Phase 1. | Transcript 00:28:07–00:29:48 |
-| Visual style | Plain white background, no photography/gradient in the hero, typography-led minimalism (Carta/Prospa direction) over the photo-heavy Shift-style hero. See `claude.md` for the full comparative research. | Transcript 00:22:05–00:26:36 |
-| Site folder structure | Explicit dedicated phase (Phase 4) to scaffold the four top-level route groups — home, commercial, connect, personal-and-property — before either gets filled with real content. | Added in this revision |
+| Root URL owner | New neutral homepage at `/`. | Confirmed |
+| **Commercial routing (Option A)** | Hub, Products Hub, Individual Product Pages, Compare, Compare Report, Guides Hub, Guide Articles, and both Calculators all nest under `/commercial/`. Reverses the earlier flat-at-root default. | Confirmed against the real repo this revision |
+| **Personal & Property slug** | Hyphenated: `/personal-and-property/`. | Confirmed against the real repo — corrects prior `personalandproperty` usage throughout this doc set |
+| **Self-Employed Home Loan / Second Mortgage** | Migrated to Personal & Property (9 category pages, not 7). | Confirmed built this way |
+| **Repo structure** | No `/site/` wrapper. Static pages live at the true repo root: `index.html`, `404.html` loose; everything else under `/home-shared/`, `/commercial/`, `/connect/`, `/personal-and-property/`. Siblings: untouched Payload app folders, `/docs/`, `/branding/`, `/oldsite/`, `/ui-mockups/`, `/qa/`. | Confirmed this session |
+| **Build process** | No manifest, no generator script, no `/dist/` — hand-authored static HTML per page, decided in prior sessions. Consistency is maintained by periodic audit (`/qa/`), not build-time enforcement. | Confirmed against the real repo (`qa/2026-08-24-site-audit.md`) |
+| Nav labels | **Products / Compare / About** — universal. | Matt-Website-Brief.md |
+| Homepage three-channel section | Not equal weight — Commercial leads. | Matt-Website-Brief.md (supersedes original transcript) |
+| Locked family taglines | Commercial: "Compare, choose, and access business capital — with full transparency." Connect: "Fund your customers. Get paid faster." P&P: "Personal and property funding, for the business owner behind the business." | Matt-Website-Brief.md |
+| Channel Toggle | 4 destinations, Home + 3 channels. Present on channel pages, not homepage. Border + shadow for visual distinction. | Matt-Website-Brief.md, confirmed built |
+| **Channel Toggle home icon** | **Exempted from the zero-icon rule** — the sole exemption sitewide. Confirmed intentional in the actual Phase 4 component mockup. | Matt_Vision_Site.md (Design Corrections addendum) |
+| **Typography** | **DM Sans only, sitewide** — headings and body both. The earlier Work Sans/DM Sans split is dropped entirely. Confirmed already correct in the live `tokens.css`. | Matt_Vision_Site.md, confirmed against the real repo |
+| Heading weight | Capped at Bold (700), default Semibold (600). Confirmed clean sitewide — zero 800/900 instances found in the QA audit. | Matt_Vision_Site.md, confirmed |
+| Icons elsewhere | Banned — one exemption only (Channel Toggle home). Confirmed one live violation (Connect FAQ chevrons) — see §2/Phase 5. | Matt_Vision_Site.md, confirmed against the real repo |
+| "Compare 100+ products against your profile" moment | Required, design-led. | Matt-Website-Brief.md |
+| Calculator | Lives on Commercial, now at `/commercial/repayment-calculator/` and `/commercial/equipment-calculator/` — nested, not flat. | Confirmed |
+| Footer | Commercial / Connect / Personal & Property equal peers, 4 columns + 4 text-badges. **Currently only correct on 7 of 11 built pages** — see Phase 5. | Matt-Website-Brief.md; compliance status confirmed via QA audit |
+| **Apply/Intake routing** | One page, `/home-shared/apply/`, parameterized via `?purpose=` — no separate `/connect/apply/` or `/personal-and-property/apply/` entry pages. Confirmed working end-to-end. | Confirmed against the real repo — simpler than this plan previously specced |
+| **"About (thin)" template** | Dropped entirely — every channel's nav links "About" straight to `/home-shared/about/`. No per-channel thin page exists or is needed. | Confirmed against the real repo |
 
 ---
 
-## 2. Open decisions (need Matt's sign-off before the relevant phase starts)
+## 2. Open decisions — carried forward, updated this revision
 
-1. **Homepage CTA button label + destination.** "Get started" was flagged as a placeholder Claude invented. Needs a real label (candidates: "Compare now," "Talk to us," "Get funded") and a real destination.
-2. **Whether the homepage needs an actual routing/matching mechanism** ("are these products for me / my customers / me personally," floated by Matt as a `Products` nav-hover interaction) or whether the three-card section alone is sufficient wayfinding.
-3. **Final hero copy** for the homepage master statement and subhead.
-4. **CTA button copy per card** ("Explore" is a placeholder from the mockup, not confirmed final).
-5. **Brand guidelines PDF formal update** for the DM Sans typography change — verbally approved by Matt, not yet formalized in the actual guidelines document. Not currently assigned to an AI prompt (see Phase 1 note below) — needs a direct owner (Jana/Matt) and a date.
+Several prior open items are now resolved (moved into §1 above) — Commercial nesting and the P&P slug in particular. What's left:
 
----
-
-## 3. SEO risk this pivot creates — and how we mitigate it
-
-The retained `oldsite/docs/research-notes.md` records that the **existing Commercial homepage at `/` carries 97.1% of the site's total organic clicks** and ranks at an average position of 13.5 for brand terms. Moving Commercial off `/` to `/commercial/` is a URL-level migration on the single highest-equity page in the domain.
-
-Mitigation plan (built into Phase 3 — IA/Routing/Redirect Lock — not as an afterthought at Phase 9):
-
-- **301 redirect map** for every existing Commercial URL currently live at `/` and its children to their new `/commercial/...` equivalents — one-to-one, no redirect chains.
-- **Updated `robots.txt` and `sitemap.xml`** reflecting the new URL set, submitted to Search Console on launch day.
-- **New homepage `/` needs its own meta title/description and structured data.**
-- **Internal linking**: every subsite's footer and the sticky nav dial link back to `/`.
-- **Search Console monitoring for 4–6 weeks post-launch** — a named Phase 11 task.
+1. **Fate of "Why Us" and "Partners"** nav items from the prior IA — still unconfirmed.
+2. **Personal & Property loan taxonomy** — now moot, resolved as 9 categories including the two migrated products (§1).
+3. **Homepage CTA label** — destination is clear (Commercial's funnel), exact wording still open.
+4. **Per-box hover-reveal lines** for Commercial's and P&P's homepage boxes — Connect's is locked, the other two aren't written.
+5. **The "why we exist" homepage section** — still unconfirmed whether it exists at all, per the later brief's silence on it.
+6. **Channel Toggle behavior** — confirmed present on channel pages + Compare; scroll-triggered vs. always-visible still not explicitly confirmed either way, though the built version appears always-visible in the header.
+7. **Final hero master statement wording.**
+8. **Brand guidelines PDF formal update** for DM Sans-only — not an AI task, needs an owner and date. More urgent now that Work Sans is dropped entirely, not just de-emphasized.
+9. **`/commercial/products/` hub's relationship to the Master IA checklist** — this route needs to be formally added to the canonical `Master Information Architecture & Sitemap.md` v2, since it predates that document.
+10. **Lender Panel status** — previously deferred as "blocked pending updated lender logo files." **12 lender SVGs now exist in `assets/img/lenders/`** (ANZ, Banjo, Bizcap, Butn, CBA, Earlypay, Judo Bank, Lumi, NAB, Prospa, Shift, Westpac). Worth reconfirming whether this is still blocked or ready to build — flagging rather than assuming either way.
+11. **Guide slug naming inconsistency** — the one built guide article lives at `/commercial/guides/business-term-loans/`, without the "-guide" suffix the other 8 planned guide slugs use (`business-term-loans-guide`, `business-overdraft-guide`, etc.). Keep the already-built page's real slug as-is, or rename for consistency before more guides get built? Cheaper to decide now than after 8 more guides exist.
+12. **`/commercial/lenders/`, `/home-shared/privacy/`, `/home-shared/contact/`, `/connect/for-vendors/`, `/connect/for-customers/`** — none of these have a Phase 4 mockup. See Phase 5 for how each is being handled.
 
 ---
 
-## 4. Phases (execution order)
+## 3. SEO risk — now the full-scope scenario, not the narrower one
 
-### Phase 0 — Archive & Environment Reset — 💻 Claude Code — ✅ **DONE, verified**
+An earlier revision of this plan assumed Commercial's ~30 existing pages would stay flat at root, which would have limited the SEO blast radius to just the homepage. **Option A changes that: every Commercial page genuinely moves** to a `/commercial/...` URL. `oldsite/docs/research-notes.md` records the existing Commercial homepage carrying 97.1% of the site's organic clicks — under Option A, that page's full content (not just the homepage) is what's actually migrating.
 
-Original scope: quarantine `oldsite/`, scaffold a fresh Next.js + Payload app at repo root.
+Mitigation, now scoped to the full migration:
+- **Complete 301 redirect map** for every old flat-root Commercial URL (`/business-term-loans.html`, `/compare.html`, `/repayment-calculator.html`, etc. — see `oldsite/commercial/` for the full legacy inventory) to its new `/commercial/...` path. This is now the single most consequential technical artifact in Phase 9, not an optional refinement.
+- **Updated `robots.txt`/`sitemap.xml`**, submitted to Search Console on launch day.
+- **New homepage `/` gets its own meta title/description and structured data.**
+- **Internal linking** — footer and Channel Toggle both link back to `/`.
+- **4–6 week Search Console monitoring window post-launch** (Phase 12).
 
-**What actually happened (from the Phase 0 session):**
-- Scaffolded Next.js 16 App Router + TypeScript at repo root (via a scratch build merged in, since `create-next-app` refuses non-empty directories).
-- Installed Payload CMS 3.88.0 in-app, with `@payloadcms/db-postgres`, `@payloadcms/richtext-lexical`, `@payloadcms/storage-vercel-blob` (installed but not wired — needs a Blob token before enabling), and `sharp`.
-- Wired the standard App Router integration: `payload.config.ts`, `collections/Users.ts`, `collections/Media.ts`, admin routes under `app/(payload)/admin/`, REST/GraphQL routes under `app/(payload)/api/`.
-- `oldsite/` confirmed completely untouched, excluded via `.vercelignore` **and** now `tsconfig.json`'s exclude list too.
-- Set `"type": "module"` in `package.json` — required for Payload's tooling to resolve ESM packages correctly.
-- Spun up local Postgres 16 (via Homebrew) as the dev database, ran the initial migration, confirmed both `npm run build` and `npm run dev` work.
-- Verified in-browser: `/` and `/admin` both return 200; the admin panel renders Payload's real UI (not an error page) and shows the "create first user" onboarding screen against a real DB connection.
-- Git status confirmed clean after committing — local `main` is ahead of `origin/main` but **not pushed**, per the "never push without asking" rule.
+---
 
-**Action item surfaced during this phase (not yet resolved):** the system default Node (26) hits an ESM/CJS interop crash in Payload's `tsx`-based config loader — Node 22 had to be used instead. **Needs a `.nvmrc` or `engines` field added** so future sessions/contributors don't hit the same wall. Flagged in §5 risks table below.
+## 4. Phases
 
-- **Deliverable:** ✅ buildable, verified Next.js + Payload app; `oldsite/` fully quarantined; this doc set in place at repo root.
+### Phase 0 — Archive & Environment Reset — 💻 Claude Code — ✅ **DONE**
+Unchanged from prior revisions. Next.js 16 + Payload 3.88.0 scaffolded, `oldsite/` quarantined, local build/dev/admin verified. Node 22 required — `.nvmrc`/`engines` pin still outstanding, carried to Phase 8.
 
-### Phase 1 — Design Tokens & Brand Deviation Sign-off *(formerly Phase 2)* — 💬 Claude Chat — ✅ **DONE**
-- Carried forward the existing per-channel accent system unchanged: Commercial = navy/skyblue, Connect = gold, Personal & Property = peach, shared navy/white base.
-- `tokens.md` rebuilt at the repo root using the exact hex values from `buildspec.md` §4, no altered values.
-- **Note:** the earlier plan for this phase included drafting a brand-guideline-amendment note for Matt to countersign (old Prompt 1.2) — **that sub-task is not being implemented.** The DM Sans deviation is documented in `tokens.md`/`buildspec.md` as a flagged decision, but the actual brand guidelines PDF update (open decision #5 above) is being handled outside this prompt library, not via an AI prompt.
-- **Deliverable:** ✅ `tokens.md`.
+### Phase 1 — Design Tokens & Brand Deviation Sign-off — 💬 Claude Chat — ✅ **DONE**
+`tokens.md`/`tokens.css` reflects the Design Corrections addendum correctly — confirmed against the live file this revision: DM Sans only (both heading and body), zero 800/900 weights, colours unchanged. The earlier "needs a revision pass" flag from a prior revision is now closed — the revision happened and is verified.
 
-### Phase 2 — Homepage Wireframe & Approval *(formerly Phase 3)* — 🎨 Claude Design — ✅ **DONE**
-- Built as a plain, content-free wireframe: Nav → Hero (master statement + subhead, no calculator) → Three-card section (equal weight) → "Why we exist" section → Footer.
-- **Deliverable:** ✅ wireframe, Matt's explicit go-ahead.
+### Phase 2 — Homepage Wireframe & Approval — 🎨 Claude Design — ✅ **DONE**
+Structural wireframe approved. Prior flag about icon usage in the original mockup screenshot is superseded — the actual built Home page (`index.html`) carries zero icons, confirmed clean in the QA audit.
 
-### Phase 3 — IA, Routing & Redirect Lock *(formerly Phase 1)* — 💬 Claude Chat
-- Lock the final route map against the approved wireframe: `/` (new homepage), `/commercial/*`, `/connect/*`, `/personal-and-property/*`.
-- Produce the full 301 redirect table (old Commercial URLs → new `/commercial/...` paths) as a reviewable document — a planning artifact, not a code change yet.
-- Re-confirm nav labels are consistent with the old `Master Information Architecture & Sitemap.md` where nothing has changed, and flag any label that needs to change now that Commercial is no longer "home."
-- **Update the Master Information Architecture & Sitemap doc itself.** The version in `oldsite/docs/Master Information Architecture & Sitemap.md` still describes the pre-pivot architecture (Commercial at root, `ChannelSwitcher` hiding the current channel) — it's now stale on the exact points this pivot changes. This phase produces a fresh `master-ia-sitemap.md` at the repo root (not inside `oldsite/`), carrying forward everything that hasn't changed (page inventory, duplicate-resolution calls, per-page SEO intent) but correcting the routing model, the home page entry, and the `ChannelSwitcher`/sticky-dial behavior to match `plan.md` §1 and `homepage.md`. This becomes the canonical IA reference for Phase 4 onward — the `oldsite/` copy stays untouched as a historical record of the old architecture, same as the rest of `oldsite/`.
-- **Deliverable:** `redirect-map.md`, `route-map.md`, and `master-ia-sitemap.md` — all chat-produced documents, handed to Phase 4 (folder scaffold) and Phase 6 (redirect implementation).
+### Phase 3 — IA, Routing & Redirect Lock — 💬 Claude Chat — ✅ **DONE**
+Satisfied by `Master Information Architecture & Sitemap.md` v2. **Needs a follow-up note added**, not a reopening: Option A's confirmation and the `/commercial/products/` hub addition (§2 item 9) should be reflected in that canonical document, since it currently doesn't mention either.
 
-### Phase 4 — Site Folder & Route Scaffold (NEW) — 💻 Claude Code
-- Create the actual Next.js route folders per the route map locked in Phase 3: `app/page.tsx` (home), `app/commercial/`, `app/connect/`, `app/personal-and-property/`, plus the shared `components/`, `collections/`, `globals/` structure per `buildspec.md` §2.
-- Each route gets a minimal placeholder page — enough to confirm it resolves (200, no route conflicts) — not real content. This deliberately separates "does the site structure exist and route correctly" from "is the content finished," so Phase 5 and Phase 6 aren't also responsible for inventing folder structure ad hoc while trying to write real content.
-- Confirm `npm run build` succeeds with all four route groups present, and that none of them collide with `oldsite/`'s quarantined structure.
-- **Deliverable:** buildable app with four resolvable, placeholder route groups matching `route-map.md`.
+### Phase 4 — UI Mockups — 🎨 Claude Design — ✅ **DONE**
 
-### Phase 5 — Homepage Production *(formerly Phase 4)* — 💻 Claude Code
-- Build the approved wireframe (Phase 2) out in code, inside the `app/page.tsx` scaffolded in Phase 4, against the real design tokens (Phase 1) and real (even if draft) copy.
-- Implement the "Products/Choice/About" nav row as a component shared with the subsites (same nav shell, different active state) — do not build a homepage-only nav that has to be reconciled later.
-- **Deliverable:** production homepage, deployed to a preview URL.
+Reconciled against the real `ui-mockups/` folder this revision. **17 numbered templates + 2 standalone components**, not the 18 this plan previously assumed:
 
-### Phase 6 — Subsite Architecture Pass (Commercial, Connect, Personal & Property) *(formerly Phase 5)* — 💻 Claude Code
-- Fill in the `app/commercial/`, `app/connect/`, `app/personal-and-property/` route groups scaffolded in Phase 4, reusing the shared nav/footer/`ChannelSwitcher`-equivalent component built in Phase 5.
-- Re-platform the Commercial calculator/compare-report tool into `/commercial/`.
-- Reuse existing page copy and product data from `oldsite/` per page.
-- Implement the redirect table produced in Phase 3 as actual `next.config.js`/`vercel.json` redirects.
-- **Deliverable:** three subsites live on preview, all internal links resolving, Phase 3's redirect map implemented and tested.
+| # | Template | Confirmed built as real page(s) |
+|---|---|---|
+| 01 | Home | ✅ `index.html` |
+| 02 | Channel Hub — Commercial | ✅ `commercial/index.html` |
+| 03 | Channel Hub — Connect | ✅ `connect/index.html` |
+| 04 | Channel Hub — Personal & Property | ✅ `personal-and-property/index.html` |
+| 05 | Compare | ✅ built, but a pre-redesign stub — see Phase 5 |
+| 06 | Products Hub | ✅ `commercial/products/index.html` |
+| 07 | Individual Product (Commercial) | ✅ 1 of 16 built (`business-term-loans`) |
+| 08 | Guides Hub | ✅ `commercial/guides/index.html` |
+| 09 | Individual Guide Article | ✅ 1 of 9 built (`business-term-loans`) |
+| 10 | Calculator Tool | ✅ 1 of 2 built (`repayment-calculator`) |
+| 11 | FAQ (Connect) | ✅ `connect/faqs/index.html` — has a confirmed icon violation, see Phase 5 |
+| 12 | Connect Process/Audience | ✅ 1 of 3 built (`how-it-works`) — `for-vendors`/`for-customers` have neither mockup nor page, see Phase 5 |
+| 13 | About Us (full) | ✅ `home-shared/about/index.html` |
+| 14 | Broker Portal | ✅ `home-shared/broker-portal/index.html` |
+| 15 | Credit Guide | ✅ `home-shared/credit-guide/index.html` |
+| 16 | Terms | ✅ `home-shared/terms/index.html` |
+| 17 | 404 | ✅ `404.html` |
+| — | Apply/Intake | ✅ `home-shared/apply/index.html` — one page, `?purpose=` parameterized, not the per-channel entry-page pattern this plan previously assumed |
+| — | Service Category (P&P) | ✅ all 9 built — confirmed genuinely distinct content, not a copy-paste stub |
+| — | Channel Toggle (component) | ✅ built, home-icon-included by design |
+| — | Products mega-menu (component) | ✅ built, confirmed identical across every page that carries it |
 
-### Phase 7 — Copy Pass *(formerly Phase 6)* — 💬 Claude Chat (drafting) + 💻 Claude Code (applying)
-- Homepage: finalize master statement, subhead, three card one-liners, "why we exist" narrative — drafted in chat.
-- Subsites: reuse and tighten existing copy against the "less is more" guardrail — drafted in chat, applied to pages in code.
-- **Deliverable:** `copy-final.md` (rebuilt), applied to all pages.
+**Templates dropped from the plan, confirmed not needed:** "About (thin)" — every channel links straight to the shared About Us page instead. "Legal Page" as one shared template — Credit Guide and Terms turned out to be two separate bespoke mockups (15 and 16 above), not one shared template as this plan previously assumed.
 
-### Phase 8 — Vercel Stakeholder Review *(formerly Phase 7)* — 💻 Claude Code
-- Deploy to a real Vercel preview URL and get Matt/Ben's eyes on the whole thing before the heavier performance/SEO/security pass.
-- **Deliverable:** stakeholder feedback log, prioritized fix list.
+**Pages with no mockup at all yet** — genuine gaps, not a deferred/blocked status like Lenders: `/home-shared/privacy/`, `/home-shared/contact/`, `/connect/for-vendors/`, `/connect/for-customers/`. Carried into Phase 5 as work that still needs design attention, not just assembly.
 
-### Phase 9 — Pre-Launch Technical Audits *(formerly Phase 8)* — 💻 Claude Code
-- **Security:** CSP without `unsafe-inline`, Turnstile actually wired front-to-back, form-submission integrity.
-- **Dependency risk:** fresh `npm audit`/lockfile check.
-- **Architecture review:** confirm the shared-component propagation approach eliminates the "3 of 66 pages synced" class of bug structurally.
-- **UI/UX & accessibility:** contrast checks per channel accent, keyboard/touch equivalents, 44×44px touch targets.
-- **Performance/SEO:** validate the redirect map from Phase 3/6 resolves correctly in production, submit updated sitemap, check Core Web Vitals on the homepage.
-- **State/resilience/observability:** rate limiting, form submission logging, error monitoring.
-- **Folder sanity check:** confirm `oldsite/` truly never ships, no duplicate routes, no orphaned old-domain assets. Also confirm the Node version pin (`.nvmrc`/`engines`) flagged in Phase 0 has actually been added.
-- **Deliverable:** `pre-launch-audit-report.md`, all blockers resolved or explicitly deferred with owner + date.
+- **Deliverable:** ✅ 17 templates + 2 components, `ui-mockups/` folder complete as delivered.
 
-### Phase 10 — Payload Conversion & Vercel Launch *(formerly Phase 9; content now follows Abrar's Build Walkthrough)* — 💻 Claude Code
+### Phase 5 — Site Assembly — 💻 Claude Code — 🔵 **IN PROGRESS**
 
-This phase now follows the concrete steps in `Trade Funding Build Walkthrough for Jana.pdf` (Guide 2 of 2) rather than a generic "flip DNS" description — that guide's Sections III–V map directly onto what "launch" actually means for a Payload site, so its steps are used here verbatim rather than re-invented.
+No `/site/` folder, no build script — this phase is about **completing the real repo root directly**, informed by the exact gaps above and the QA audit's confirmed defect list.
 
-- **Confirm the editable collections list before deploying.** The guide frames this as "your call": beyond the `pages` / `channelCards` / `siteNav` collections already locked in `buildspec.md` §6, decide whether **Team Members**, **Lender logos/partners**, and **News/blog posts** need their own Payload collections for this build, or stay fixed in code. Don't default to adding all of them — anything left out of Payload "stays fixed in code, which is fine, and actually safer" (guide, Section III).
-- **Push to GitHub.** Create a new **private** GitHub repository and push the code.
-- **Generate `PAYLOAD_SECRET`.** A long random string — the guide's own method: `openssl rand -base64 32`.
-- **Deploy via Vercel:**
-  1. Go to vercel.com/new, sign in with the team's existing account.
-  2. Import the new GitHub repository.
-  3. Before deploying, open the **Storage** tab and add a **Neon Postgres** database and **Blob storage** (for images) — Vercel injects the connection details automatically.
-  4. Add the `PAYLOAD_SECRET` environment variable generated above.
-  5. Click **Deploy**.
-- **Verify the live URL.** Visit `your-site.vercel.app/admin` and create the admin account again — the live database is separate from the local one, so this is a genuinely fresh login, not the same account used in Phase 0's local testing.
-- **Confirm the edit loop works live**, the same check used locally in Phase 0: change a piece of content in the dashboard, confirm it appears on the public site.
-- **Share the `.vercel.app` link with Matt and Ben for review** — this is the guide's own definition of "done" for this phase (see below), distinct from the Phase 8 stakeholder preview, since this is the fully-built, production-configured deploy rather than an in-progress preview.
-- **Domain cutover — later, optional, NOT part of this phase's completion.** Per the guide, don't let this hold up sharing the working site. Only do this once Matt/Ben have reviewed and approved the `.vercel.app` site:
-  1. In Vercel: Project → Settings → Domains → add `tradefunding.com.au`. Vercel shows the exact DNS records needed.
-  2. In Cloudflare: add those records (typically an A record for root, a CNAME for `www`).
-  3. Set both records' proxy status to **"DNS only" (grey cloud, not orange)** so Vercel can issue its own certificate cleanly.
-  4. Keep the current live site untouched until the new one is fully approved — loop in whoever manages the Cloudflare account first, since this is a domain change affecting live customers.
-- **Troubleshooting (from the guide's "if something goes wrong" section, worth keeping on hand for this phase specifically):**
-  - *"Node version" errors on deploy* → Vercel is using an old Node; set the project's Node version to 20.x or higher in Vercel project settings and redeploy. (Cross-reference: this project's Phase 0 already hit a related local issue — Node 22 required, system default Node 26 crashes Payload's config loader — so the `.nvmrc`/`engines` pin flagged there, and checked again in Phase 9, is exactly what prevents this class of error from recurring on Vercel too.)
-  - *Images work locally but not live* → Blob storage was skipped during deploy. Add it in Vercel's Storage tab and redeploy.
-  - *Dashboard is empty after going live* → expected. The live database starts blank and is separate from the local one — re-enter (or export/import) content once.
-- **Deliverable:** live `.vercel.app` site, admin login working against the live database, content-edit loop verified in production, link shared with Matt and Ben. Domain cutover to `tradefunding.com.au` tracked as a separate, later sign-off — not required to call this phase done.
+#### Part 1 — Folder sanitation
 
-### Phase 11 — Post-Launch *(formerly Phase 10)* — 💬 Claude Chat (analysis) + 💻 Claude Code (tracking setup)
-- 4–6 week SEO monitoring window watching brand-term rankings/click-share given the Phase 3/6 root-URL change (see §3).
-- Define ideal customer profile and user journey per channel.
-- Conversion case study comparing the old Commercial-as-homepage flow to the new homepage-first flow.
-- **Deliverable:** `post-launch-report.md`, ICP + journey docs, conversion case study.
+1. **Confirm root cleanliness.** Only `index.html` and `404.html` may sit loose at repo root. Everything else — `/home-shared/`, `/commercial/`, `/connect/`, `/personal-and-property/`, `/assets/`, `/ui-mockups/`, `/oldsite/`, `/qa/`, `/docs/`, `/branding/`, plus the untouched Payload app's own folders — must be a properly organized top-level folder. Audit for anything currently loose or misplaced before adding new pages.
+2. **Move `ui-mockups/` into the project folder and commit** (Jana's own step, not a Claude Code task — noted here for sequencing only).
+
+#### Part 2 — Remaining pages to produce
+
+| Group | Still needed | Count |
+|---|---|---|
+| Commercial — Individual Product Pages | 15 of 16 remaining: `business-line-of-credit`, `overdraft`, `charge-card`, `chattel-mortgage`, `finance-lease`, `operating-lease`, `invoice-finance`, `fund-an-invoice`, `trade-finance`, `export-finance`, `supply-chain-funding`, `merchant-cash-advance`, `r-and-d-funding` (Second Mortgage and Self-Employed Home Loan excluded — confirmed migrated to P&P) | 15 |
+| Commercial — Guide Articles | 8 of 9 remaining: `compare-business-loans`, `best-line-of-credit`, `business-line-of-credit-guide`, `business-charge-card-guide`, `business-overdraft-guide`, `business-loan-bad-credit`, `invoice-vs-debtor-finance`, `lease-vs-buy` | 8 |
+| Commercial — Calculator | `equipment-calculator` | 1 |
+| Commercial — Lenders | `/commercial/lenders/` — reconfirm blocked/unblocked status (§2 item 10) before building | 0 or 1 |
+| Connect — Process/Audience | `for-vendors`, `for-customers` — **no mockup exists for either**, needs Phase 4-equivalent design attention before or during this build, not just assembly | 2 |
+| Home/Shared | `privacy`, `contact` — **no mockup exists for either** | 2 |
+
+**For every page above wrapping an existing tool or form** (both calculators, the Apply engine) — adapt the working mechanism from `oldsite/`, not the visuals. See `buildspec.md` §11 note on the Apply engine's confirmed-working `?purpose=` logic — reuse that, don't rebuild it.
+
+#### Part 3 — Fix the confirmed defects (from `qa/2026-08-24-site-audit.md`)
+
+Priority order, full detail in `buildspec.md` §11:
+
+1. Rebuild `/commercial/compare/`'s nav and footer — it's still a pre-redesign stub.
+2. Standardize the footer across `/commercial/`, `/connect/`, `/personal-and-property/`, `/commercial/compare/` to match the 4-column pattern already correct on the 7 brand-neutral pages.
+3. Remove the 5 chevron icons from `/connect/faqs/` — genuine zero-icon violation, no exemption.
+4. Fix dead `href="#"` anchors sitewide, prioritizing the ones that resolve once `/home-shared/privacy/` and `/home-shared/contact/` exist.
+5. Fix WCAG contrast failures — Commercial's `.btn-primary` needs the same navy-text override Connect already has; peach CTAs need a darker background or navy swap.
+6. Fix touch-target sizes in the shared CSS classes — this is the one place a single edit *does* propagate everywhere, since CSS is shared even though HTML isn't.
+7. Add active-nav-state indicators — mechanical, per-page, no shared partial to edit once.
+
+- **Deliverable:** every page in §2's production table exists at its correct `/commercial/`-nested (Option A) or `/personal-and-property/`-hyphenated route; every confirmed defect in Part 3 resolved; root folder confirmed clean.
+
+### Phase 6 — Copy Pass — 💬 Claude Chat (drafting) + 💻 Claude Code (applying)
+Homepage: finalize master statement, subhead, Commercial/P&P hover lines, resolve the "why we exist" question. Subsites: apply locked taglines verbatim, write copy for every newly-produced page against the "less is more" guardrail.
+
+### Phase 7 — Vercel Stakeholder Review — 💻 Claude Code
+Deploy the completed static site (now living at the real repo root, no `/site/` prefix) as a preview and get Matt/Ben's review before the heavier audit pass.
+
+### Phase 8 — Pre-Launch Technical Audits — 💻 Claude Code
+UI/UX & accessibility (re-verify Phase 5 Part 3's fixes actually landed), performance (Core Web Vitals baseline), link/redirect audit, folder hygiene, `.nvmrc`/`engines` pin confirmation. CSP/Turnstile/form-integrity/rate-limiting deferred to Phase 9, same as before.
+
+### Phase 9 — Payload Conversion — 💻 Claude Code
+Convert the completed static repo root (not a `/site/` subfolder) into the already-scaffolded Payload app. Implement the full Option A redirect map from §3 — every flat-root Commercial URL in `oldsite/` needs a corresponding 301 to its `/commercial/...` path. Re-run deferred security audits.
+
+### Phase 10 — Vercel Launch — 💻 Claude Code
+Unchanged from prior revisions — GitHub push, `PAYLOAD_SECRET`, Vercel deploy with Neon + Blob, verify live admin, share link with Matt and Ben.
+
+### Phase 11 — Domain Cutover & Legacy Export — 💻 Claude Code
+Unchanged — export from WordPress and Google Analytics before cutover, then point `tradefunding.com.au` at the new site via Cloudflare DNS.
+
+### Phase 12 — Post-Launch — 💬 Claude Chat (analysis) + 💻 Claude Code (tracking setup)
+Unchanged — SEO monitoring, ICP/journey definition, conversion case study.
 
 ---
 
@@ -179,26 +199,20 @@ This phase now follows the concrete steps in `Trade Funding Build Walkthrough fo
 
 | Risk | Mitigation |
 |---|---|
-| Root URL SEO equity loss (see §3) | Redirect map treated as a Phase 3 deliverable, implemented in Phase 6 — not a Phase 9 afterthought |
-| Matt's iterative decision style produces scope churn mid-build | Async WhatsApp-speed check-ins at each phase boundary rather than one big review gate |
-| "Less is more" direction collides with vibe-coded execution risk | Typography (Work Sans/DM Sans) and spacing tokens locked in `buildspec.md` before any page is built |
-| Calculator relocation breaks an existing user expectation/link | Explicit redirect/backlink from any legacy calculator URL to its new `/commercial/` home |
-| Turnstile / rate-limiter / include-sync issues recur in the new build | New build uses real Next.js components, not the old copy-paste include system — verify explicitly in Phase 9, don't assume |
-| Homepage nav-hover product-matching idea (open decision #2) gets built without sign-off | Do not start building it until Matt confirms it's worth the scope |
-| Phase 3 (IA/redirect lock) runs in chat, not code — risk the resulting documents never get implemented | Phase 6 explicitly names "implement Phase 3's redirect table in code" as its own deliverable line |
-| **New:** Phase 5/6 (homepage/subsite content) get built before the folder/route scaffold exists, causing structural rework | Phase 4 is now a dedicated, code-only gate — folders and routes exist and build cleanly before any real content is written |
-| **New:** Node version mismatch (system default Node 26 crashes Payload's config loader; Node 22 required) causes future contributor friction | Add `.nvmrc`/`engines` field — flagged as an explicit Phase 9 folder-sanity-check item until it's done |
+| Full-scope SEO migration under Option A (§3) — larger blast radius than previously scoped | Complete redirect map treated as Phase 9's top artifact, not an afterthought |
+| No build script means shared-markup drift has no automatic guard — **already materialized**, per the QA audit's 4-different-footers finding | Phase 5 Part 3 fixes the existing drift; every future page-adding prompt in `prompts.md` explicitly checks against sibling pages sharing the same markup, since there's no script to do it automatically |
+| `for-vendors`, `for-customers`, `privacy`, `contact` have no Phase 4 mockup, but Phase 4 is marked done | Called out explicitly in Phase 4's own inventory table and carried into Phase 5 as real work, not silently absorbed into "already done" |
+| Guide slug naming inconsistency (§2 item 11) compounds if 8 more guides get built before it's decided | Flagged now, before more guides exist, not after |
+| Lender Panel's blocked status may be stale — assets exist now | Flagged as needing reconfirmation (§2 item 10) rather than assumed still-blocked or assumed ready |
+| Node version mismatch (Node 22 required, system default Node 26 crashes Payload's config loader) | `.nvmrc`/`engines` pin — still outstanding, checked in Phase 8 |
 
 ---
 
 ## 6. What "done" looks like at each gate
 
-- **End of Phase 0 (Claude Code):** ✅ done — verified build/dev/admin all working locally, `oldsite/` untouched, tree committed.
-- **End of Phase 1 (tokens, Claude Chat):** ✅ done — `tokens.md` exists with unaltered hex values.
-- **End of Phase 2 (wireframe, Claude Design):** ✅ done — Matt has approved a wireframe.
-- **End of Phase 3 (IA/redirect, Claude Chat):** a reviewed `redirect-map.md`/`route-map.md`/`master-ia-sitemap.md` exist as documents — not yet implemented in code.
-- **End of Phase 4 (folder scaffold, Claude Code):** all four route groups exist, build cleanly, and resolve locally as placeholders — no content yet.
-- **End of Phase 6:** every URL from the old site either resolves at its new address or 301s cleanly — zero 404s from internal links.
-- **End of Phase 8:** stakeholder feedback is captured in one place.
-- **End of Phase 9:** every item in this plan's audit list has a pass/fail/deferred status with a name attached.
-- **End of Phase 10:** live on a `.vercel.app` URL, admin login works against the live (not local) database, a content edit made in the dashboard shows up on the public site, and Matt + Ben have the link — per the guide's own definition of "done." Domain cutover to `tradefunding.com.au` is explicitly not required to reach this gate.
+- **Phases 0–4:** ✅ done, per instruction — reconciled against the real repo this revision, gaps carried forward explicitly rather than hidden.
+- **End of Phase 5:** every page in the Part 2 production table exists at its Option A route; every Part 3 defect resolved; root folder audited clean (only `index.html`/`404.html` loose).
+- **End of Phase 8:** static-site and re-verified Phase 5 fixes all pass; CMS-specific items explicitly deferred to Phase 9.
+- **End of Phase 9:** full Option A redirect map implemented and tested; converted app verified locally.
+- **End of Phase 10:** live on `.vercel.app`, admin works against the live DB, Matt + Ben have the link.
+- **End of Phase 11:** WordPress/GA exported, domain pointing at the new site.

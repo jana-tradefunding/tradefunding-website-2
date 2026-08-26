@@ -1,0 +1,25 @@
+/* ============================================================
+   MOTION — three durations, one signature easing curve, and one
+   reveal pattern (fade + rise, staggered 100ms, runs once).
+   Everything respects prefers-reduced-motion.
+   ============================================================ */
+:root {
+  --transition-fast: 0.2s ease; /* @kind other */
+  --transition-base: 0.3s ease; /* @kind other */
+  --transition-slow: 0.5s ease; /* @kind other */
+
+  /* Signature easing — used for reveals, counters and card lifts */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+
+  --duration-reveal: 600ms; /* @kind other */
+  --duration-reveal-slow: 700ms; /* @kind other */
+  --reveal-rise: 16px;
+  --reveal-rise-lg: 32px;
+  --stagger-step: 100ms; /* @kind other */
+
+  /* Interaction offsets */
+  --lift-card: -4px; /* @kind other */
+  --lift-btn: -2px; /* @kind other */
+  --lift-btn-sm: -1px; /* @kind other */
+}

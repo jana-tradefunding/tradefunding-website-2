@@ -1,0 +1,39 @@
+/* ============================================================
+   RADII, BORDERS & SHADOWS — every shadow is a navy-tinted drop
+   shadow (rgba(0,28,68,…)), never neutral black, except the two
+   dramatic "floating mockup" shadows used on hero product imagery.
+   ============================================================ */
+:root {
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius: 14px;           /* Connect card default */
+  --radius-card: 20px;      /* Connect .card */
+  --radius-chip: 10px;
+  --radius-pill: 999px;
+  --radius-pill-btn: 50px;  /* buttons are always fully pilled */
+
+  /* Elevation — Commercial scale */
+  --shadow-sm: 0 1px 3px rgba(0,28,68,0.08);
+  --shadow-md: 0 4px 16px rgba(0,28,68,0.1);
+  --shadow-lg: 0 8px 32px rgba(0,28,68,0.12);
+  --shadow-xl: 0 16px 48px rgba(0,28,68,0.16);
+
+  /* Elevation — Connect scale (softer, wider spread) */
+  --shadow-soft: 0 10px 40px rgba(0,28,68,0.08);
+  --shadow-lg-soft: 0 20px 60px rgba(0,28,68,0.12);
+
+  /* Coloured CTA shadows — a primary button always casts its own hue */
+  --shadow-peach: 0 4px 16px rgba(255,93,92,0.35);
+  --shadow-peach-hover: 0 8px 24px rgba(255,93,92,0.45);
+  --shadow-gold: 0 4px 14px rgba(251,183,102,0.35);
+  --shadow-gold-hover: 0 8px 22px rgba(251,183,102,0.5);
+  --shadow-navy: 0 4px 14px rgba(0,28,68,0.3);
+  --shadow-navy-hover: 0 8px 22px rgba(0,28,68,0.4);
+
+  /* Floating mockups (hero report card, invoice, phone) */
+  --shadow-float: 0 24px 80px rgba(0,0,0,0.35);
+  --shadow-float-deep: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+}

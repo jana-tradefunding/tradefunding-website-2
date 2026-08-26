@@ -1,0 +1,61 @@
+/* ============================================================
+   BASE — the production reset and base type, carried over from
+   shared/styles/chrome.css. Kept deliberately small: element
+   defaults, link colours, and the one shared reveal utility.
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: var(--lh-body);
+  color: var(--text-primary);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  color: var(--text-heading);
+  margin: 0;
+}
+
+p { margin: 0; text-wrap: pretty; }
+img { max-width: 100%; height: auto; display: block; }
+ul { list-style: none; margin: 0; padding: 0; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+a { color: var(--navy); text-decoration: none; transition: color var(--transition-fast); }
+a:hover { color: var(--skyblue); }
+a:focus-visible { outline: 2px solid var(--skyblue); outline-offset: 2px; }
+
+/* Section eyebrow — the brand's most repeated typographic device */
+.s-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: var(--eyebrow-weight);
+  font-size: var(--eyebrow-size);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--channel-accent);
+}
+
+/* Reveal-on-scroll: fade in and rise, staggered, once per element.
+   Add .visible (Commercial) or .is-visible (Connect) from an
+   IntersectionObserver with rootMargin: -10%. */
+.reveal { opacity: 0; transform: translateY(var(--reveal-rise)); transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease); }
+.reveal.visible, .reveal.is-visible { opacity: 1; transform: none; }
+.reveal.delay-1 { transition-delay: 100ms; }
+.reveal.delay-2 { transition-delay: 200ms; }
+.reveal.delay-3 { transition-delay: 300ms; }
+.reveal.delay-4 { transition-delay: 400ms; }
+.reveal.delay-5 { transition-delay: 500ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
