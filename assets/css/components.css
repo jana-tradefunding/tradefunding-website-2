@@ -126,6 +126,8 @@
   color: var(--white);
 }
 .channel-connect .tf-toggle-tab.is-active { color: var(--navy); }
+.channel-commercial .tf-toggle-tab.is-active { color: var(--navy); }
+.channel-personalproperty .tf-toggle-tab.is-active { color: var(--navy); }
 
 /* --- FOOTER --- */
 .tf-footer { background: var(--footer-bg); padding: 64px 0 0; color: rgba(255,255,255,0.7); }
