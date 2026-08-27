@@ -166,8 +166,12 @@
 .tf-footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
 .tf-footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
 
+.lender-logo{max-width:120px;height:36px;object-fit:contain;width:100%;filter:grayscale(1);opacity:0.55}
+.lender-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:28px 40px;align-items:center}
+
 @media (max-width: 900px) {
   .tf-nav-links { display: none; }
   .tf-footer-top { grid-template-columns: 1fr; }
   .tf-footer-cols { grid-template-columns: 1fr 1fr; }
+  .lender-strip { grid-template-columns: repeat(2,1fr); }
 }
