@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var outputId = input.getAttribute('data-slider-output');
     var output = outputId ? document.getElementById(outputId) : null;
     var deriveId = input.getAttribute('data-derive-output');
-    var deriveFormula = input.getAttribute('data-derive-formula'); // 'repayment' | 'power'
+    var deriveFormula = input.getAttribute('data-derive-formula'); // 'repayment' | 'power' | 'lease'
     var deriveEl = deriveId ? document.getElementById(deriveId) : null;
 
     function update() {
@@ -194,6 +194,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       if (deriveEl && deriveFormula === 'power') {
         deriveEl.textContent = formatCurrency(input.value * 3);
+      }
+      if (deriveEl && deriveFormula === 'lease') {
+        deriveEl.textContent = formatCurrency(input.value * 0.01846);
       }
     }
     input.addEventListener('input', update);
