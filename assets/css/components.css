@@ -139,6 +139,7 @@
 }
 .tf-footer-blurb { font-size: 0.85rem; line-height: 1.65; margin-top: 16px; max-width: 320px; color: rgba(255,255,255,0.55); }
 .tf-footer-contact { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 0.825rem; color: rgba(255,255,255,0.55); }
+.tf-footer-contact a { display: flex; align-items: center; min-height: 44px; }
 .tf-footer-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
 .tf-footer-badge {
   padding: 5px 10px; border: 1px solid rgba(255,255,255,0.12); border-radius: 5px;
