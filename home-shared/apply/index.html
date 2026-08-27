@@ -224,7 +224,7 @@
 </div>
 <a href="../about/index.html" class="tf-nav-link">About</a>
 </div>
-<a href="../about/index.html#contact" class="btn btn-primary" style="justify-self:end;padding:11px 24px;font-size:0.9rem">Contact</a>
+<a href="../contact/index.html" class="btn btn-primary" style="justify-self:end;padding:11px 24px;font-size:0.9rem">Contact</a>
 </div>
 </nav>
 
@@ -276,6 +276,10 @@
             <option value="new_business">New Business / Startup</option>
             <option value="refinance">Refinance</option>
             <option value="restructure">Debt Consolidation</option>
+          </optgroup>
+          <optgroup label="Connect">
+            <option value="connect_customer_finance">Point-of-Sale Purchase</option>
+            <option value="connect_vendor_finance">Becoming a Connect Vendor Partner</option>
           </optgroup>
         </select>
       </div>
@@ -552,7 +556,7 @@
 <a href="../about/index.html">About Us</a>
 <a href="../broker-portal/index.html">Broker Portal</a>
 <a href="../../connect/index.html">Become a Partner</a>
-<a href="../about/index.html#contact">Contact</a>
+<a href="../contact/index.html">Contact</a>
 <a href="index.html">Get Started</a>
 </div>
 <div class="tf-footer-col">
@@ -602,7 +606,9 @@ var purposeLabels = {
   purchase_residential_property: 'residential property',
   new_business: 'startup funding',
   refinance: 'refinancing',
-  restructure: 'debt consolidation'
+  restructure: 'debt consolidation',
+  connect_customer_finance: 'your point-of-sale purchase',
+  connect_vendor_finance: 'becoming a Connect vendor partner'
 };
 
 (function() {
@@ -654,7 +660,10 @@ var purposeProductMap = {
   purchase_vehicle: { primary: ['lease'], secondary: ['term-loan'] },
   new_business: { primary: ['term-loan','mortgage','second-mortgage'], secondary: [] },
   refinance: { primary: ['term-loan'], secondary: ['mortgage','second-mortgage'] },
-  restructure: { primary: ['term-loan'], secondary: ['mortgage','second-mortgage'] }
+  restructure: { primary: ['term-loan'], secondary: ['mortgage','second-mortgage'] },
+  // Connect pages only — not part of the ported calculatorEngine.ts map above.
+  connect_customer_finance: { primary: ['trade','line'], secondary: ['term-loan'] },
+  connect_vendor_finance: { primary: ['trade','line'], secondary: ['term-loan'] }
 };
 
 var productInfo = {
