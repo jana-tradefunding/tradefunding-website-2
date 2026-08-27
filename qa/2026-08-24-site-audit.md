@@ -171,7 +171,7 @@ Computed via the WCAG relative-luminance formula against the actual token hex va
 | **White text on Sky Blue** (`.btn-primary` on Commercial-channel pages) | **2.27:1** | ❌ FAIL | ❌ FAIL | `base.css:71-76` — `.btn-primary { background: var(--channel-accent); color: var(--white); }`. On `commercial/index.html` (`body class="channel-commercial"` → `--channel-accent: var(--skyblue)`), every primary CTA button has white text on a sky-blue background at 2.27:1 — badly fails even the large-text threshold. Connect channel already has a fix (`channel-connect .btn-primary { color: var(--navy); }` in `base.css:77`) but Commercial does not. |
 | **White text on Peach** (hardcoded CTA buttons, e.g. "Get My Free Compare Report") | **3.01:1** | ❌ FAIL | ✅ PASS | Used on `index.html`, `about/index.html`, `404.html`, `credit-guide/index.html` — button label text is set at 14–16px/600 weight, which is *below* the 18.66px-bold / 24px-regular WCAG "large text" threshold, so these buttons need the 4.5:1 standard and currently fail at 3.01:1. |
 
-### 5.3 Touch target minimum (44×44px) — several classes fail
+### 5.3 Touch target minimum (44×44px) — ~~several classes fail~~ RESOLVED (verified 2026-08-27)
 
 Spot-checked against the stated padding + font-size in `components.css`/`base.css`:
 
@@ -179,12 +179,12 @@ Spot-checked against the stated padding + font-size in `components.css`/`base.cs
 |---|---|---|
 | `.btn` / `.btn-primary` / `.btn-outline` | `15px×2 + ~18px` ≈ 48px | ✅ PASS |
 | `.ap-btn-next` (Apply page) | `15px×2 + ~18px` ≈ 48px | ✅ PASS |
-| `.tf-nav-link` | `8px×2 + ~18px` ≈ 34px | ❌ FAIL |
-| `.tf-toggle-tab` | `7px×2 + ~15px` ≈ 29px | ❌ FAIL |
-| `.tf-footer-col a` | `4px×2 + ~16px` ≈ 24px | ❌ FAIL (worst offender — every footer link sitewide) |
-| `.ap-pill` / `.ap-toggle` (Apply page credit/yes-no controls) | `9px×2 + ~17px` ≈ 35px | ❌ FAIL |
+| `.tf-nav-link` | ~~`8px×2 + ~18px` ≈ 34px ❌ FAIL~~ → `min-height: 44px; box-sizing: border-box` added, `components.css:39` | ✅ PASS |
+| `.tf-toggle-tab` | ~~`7px×2 + ~15px` ≈ 29px ❌ FAIL~~ → `min-height: 44px; box-sizing: border-box` added, `components.css:116` | ✅ PASS |
+| `.tf-footer-col a` | ~~`4px×2 + ~16px` ≈ 24px ❌ FAIL~~ → `min-height: 44px` added, `components.css:150` (also applied to `.tf-footer-inactive`, `components.css:151`) | ✅ PASS |
+| `.ap-pill` / `.ap-toggle` (Apply page credit/yes-no controls) | ~~`9px×2 + ~17px` ≈ 35px ❌ FAIL~~ → `min-height: 44px; box-sizing: border-box` added, `home-shared/apply/index.html:54,62` | ✅ PASS |
 
-None of these are new regressions from this session's work — they're inherited from `components.css`/`base.css`, which predates the last two sessions' page builds, so they apply uniformly across old and new pages alike.
+**Verified 2026-08-27:** all four classes above already carry the `min-height: 44px` fix in the live repo — confirmed by reading `assets/css/components.css` and `home-shared/apply/index.html` directly, not re-derived from this table. No page-level `<style>` block redefines any of these four selectors, so the shared-CSS fix propagates unmodified to every page that uses them; nothing left to patch. This table is left struck-through rather than deleted so the original finding stays traceable — treat the strikethrough state, not the original ❌ FAIL numbers, as current.
 
 ---
 
