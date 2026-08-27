@@ -376,6 +376,11 @@ input[type=range].fv-calc-slider::-moz-range-thumb{width:18px;height:18px;border
   var conv = document.getElementById('fv-calc-conv');
   var uplift = document.getElementById('fv-calc-uplift');
 
+  function updateSliderFill(slider){
+    var pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = 'linear-gradient(90deg, #FBB766 ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  }
+
   function render(){
     var vals = {
       quotes: parseInt(quotes.value, 10),
@@ -398,6 +403,11 @@ input[type=range].fv-calc-slider::-moz-range-thumb{width:18px;height:18px;border
     document.getElementById('fv-calc-narr-conv').textContent = vals.currentConv + '%';
     document.getElementById('fv-calc-headline-annual').textContent = '~' + fmtCompact(r.annualUplift);
     document.getElementById('fv-calc-headline-uplift').textContent = vals.uplift + '%';
+
+    updateSliderFill(quotes);
+    updateSliderFill(value);
+    updateSliderFill(conv);
+    updateSliderFill(uplift);
   }
 
   [quotes, value, conv, uplift].forEach(function(el){ el.addEventListener('input', render); });

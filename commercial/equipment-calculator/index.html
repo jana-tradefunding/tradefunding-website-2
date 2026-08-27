@@ -332,6 +332,11 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
   var loanRateText = document.getElementById('ec-loan-rate-text');
   var termSelect = document.getElementById('ec-term-select');
 
+  function updateSliderFill(slider){
+    var pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = 'linear-gradient(90deg, #54B4F6 ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  }
+
   function amortise(principal, annualRatePct, months){
     var r = annualRatePct / 100 / 12;
     if (r === 0) return principal / months;
@@ -394,6 +399,10 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
     document.getElementById('ec-term-label-2').textContent = termLabel;
     document.getElementById('ec-cost-label').textContent = fmtMoney(P);
     document.getElementById('ec-rate-label').textContent = leaseRate.toFixed(1) + '% – ' + loanRate.toFixed(1) + '%';
+
+    updateSliderFill(costSlider);
+    updateSliderFill(leaseRateSlider);
+    updateSliderFill(loanRateSlider);
 
     var diff = Math.abs(out.leaseTotalCost - out.loanTotalCost);
     var verdictTitle = document.getElementById('ec-verdict-title');

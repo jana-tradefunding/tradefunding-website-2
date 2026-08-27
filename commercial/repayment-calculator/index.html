@@ -284,6 +284,11 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
   var rateText = document.getElementById('ct-rate-text');
   var termSelect = document.getElementById('ct-term-select');
 
+  function updateSliderFill(slider){
+    var pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = 'linear-gradient(90deg, #54B4F6 ' + pct + '%, #e2e8f0 ' + pct + '%)';
+  }
+
   function compute(){
     var amount = Number(amountSlider.value);
     var rate = Number(rateSlider.value);
@@ -320,6 +325,9 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
     document.getElementById('ct-term-label').textContent = termLabel;
     document.getElementById('ct-amount-label').textContent = fmtMoney(amount);
     document.getElementById('ct-rate-label').textContent = rate.toFixed(1) + '%';
+
+    updateSliderFill(amountSlider);
+    updateSliderFill(rateSlider);
   }
 
   amountSlider.addEventListener('input', render);
