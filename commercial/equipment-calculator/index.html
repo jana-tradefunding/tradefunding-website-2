@@ -126,10 +126,17 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
 </div>
 
 <div style="margin-bottom:28px">
-<div class="ec-field-label"><span>Annual interest rate</span><span id="ec-rate-display">8.5%</span></div>
-<input type="range" id="ec-rate-slider" min="5" max="20" step="0.1" value="8.5">
-<div class="ec-range-scale"><span>5.0%</span><span>20.0%</span></div>
-<input type="text" id="ec-rate-text" class="ec-text-input" value="8.5%">
+<div class="ec-field-label"><span>Finance Lease rate (p.a.)</span><span id="ec-lease-rate-display">8.0%</span></div>
+<input type="range" id="ec-lease-rate-slider" min="5" max="15" step="0.1" value="8">
+<div class="ec-range-scale"><span>5.0%</span><span>15.0%</span></div>
+<input type="text" id="ec-lease-rate-text" class="ec-text-input" value="8.0%">
+</div>
+
+<div style="margin-bottom:28px">
+<div class="ec-field-label"><span>Equipment Loan rate (p.a.)</span><span id="ec-loan-rate-display">10.0%</span></div>
+<input type="range" id="ec-loan-rate-slider" min="7" max="20" step="0.1" value="10">
+<div class="ec-range-scale"><span>7.0%</span><span>20.0%</span></div>
+<input type="text" id="ec-loan-rate-text" class="ec-text-input" value="10.0%">
 </div>
 
 <div>
@@ -218,7 +225,7 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
 <div class="ec-star-card" style="border-top-color:var(--star-s)"><div class="ec-star-badge">S</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Security</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6">The equipment itself is the lender's security on both a lease and a loan, which is why equipment finance rates sit below unsecured facilities.</p></div>
 <div class="ec-star-card" style="border-top-color:var(--star-t)"><div class="ec-star-badge">T</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Term</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6">Modeled on <span id="ec-term-label-2">60 months (5 years)</span>. Longer terms lower monthly payments but increase total interest paid.</p></div>
 <div class="ec-star-card" style="border-top-color:var(--star-a)"><div class="ec-star-badge">A</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Amount</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6"><span id="ec-cost-label">$100,000</span> is widely supported across 70+ panel lenders, from $5,000 for smaller equipment to $2,000,000+ for major plant.</p></div>
-<div class="ec-star-card" style="border-top-color:var(--star-r)"><div class="ec-star-badge">R</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Rate</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6"><span id="ec-rate-label">8.5%</span> is an indicative benchmark. Your real rate is locked following automated Cashper policy matching.</p></div>
+<div class="ec-star-card" style="border-top-color:var(--star-r)"><div class="ec-star-badge">R</div><div style="font-weight:600;font-size:0.95rem;margin-bottom:8px;color:var(--navy)">Rate</div><p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6"><span id="ec-rate-label">8.0% &ndash; 10.0%</span> is an indicative benchmark range. Your real rate is locked following automated Cashper policy matching.</p></div>
 </div>
 </div>
 </section>
@@ -319,8 +326,10 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
 
   var costSlider = document.getElementById('ec-cost-slider');
   var costText = document.getElementById('ec-cost-text');
-  var rateSlider = document.getElementById('ec-rate-slider');
-  var rateText = document.getElementById('ec-rate-text');
+  var leaseRateSlider = document.getElementById('ec-lease-rate-slider');
+  var leaseRateText = document.getElementById('ec-lease-rate-text');
+  var loanRateSlider = document.getElementById('ec-loan-rate-slider');
+  var loanRateText = document.getElementById('ec-loan-rate-text');
   var termSelect = document.getElementById('ec-term-select');
 
   function amortise(principal, annualRatePct, months){
@@ -331,16 +340,17 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
 
   function compute(){
     var P = Number(costSlider.value);
-    var rate = Number(rateSlider.value);
+    var leaseRate = Number(leaseRateSlider.value);
+    var loanRate = Number(loanRateSlider.value);
     var n = Number(termSelect.value);
     var residual = P * 0.10;
 
     var leaseFinanced = P - residual;
-    var leaseMonthly = amortise(leaseFinanced, rate, n);
+    var leaseMonthly = amortise(leaseFinanced, leaseRate, n);
     var leaseTotalPayments = leaseMonthly * n;
     var leaseTotalCost = leaseTotalPayments + residual;
 
-    var loanMonthly = amortise(P, rate, n);
+    var loanMonthly = amortise(P, loanRate, n);
     var loanTotalCost = loanMonthly * n;
 
     return {
@@ -355,14 +365,17 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
 
   function render(){
     var P = Number(costSlider.value);
-    var rate = Number(rateSlider.value);
+    var leaseRate = Number(leaseRateSlider.value);
+    var loanRate = Number(loanRateSlider.value);
     var termLabel = termSelect.options[termSelect.selectedIndex].text;
     var out = compute();
 
     document.getElementById('ec-cost-display').textContent = fmtMoney(P);
     costText.value = fmtMoney(P);
-    document.getElementById('ec-rate-display').textContent = rate.toFixed(1) + '%';
-    rateText.value = rate.toFixed(1) + '%';
+    document.getElementById('ec-lease-rate-display').textContent = leaseRate.toFixed(1) + '%';
+    leaseRateText.value = leaseRate.toFixed(1) + '%';
+    document.getElementById('ec-loan-rate-display').textContent = loanRate.toFixed(1) + '%';
+    loanRateText.value = loanRate.toFixed(1) + '%';
 
     document.getElementById('ec-lease-monthly').textContent = fmtMoney(out.leaseMonthly);
     document.getElementById('ec-loan-monthly').textContent = fmtMoney(out.loanMonthly);
@@ -380,7 +393,7 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
 
     document.getElementById('ec-term-label-2').textContent = termLabel;
     document.getElementById('ec-cost-label').textContent = fmtMoney(P);
-    document.getElementById('ec-rate-label').textContent = rate.toFixed(1) + '%';
+    document.getElementById('ec-rate-label').textContent = leaseRate.toFixed(1) + '% – ' + loanRate.toFixed(1) + '%';
 
     var diff = Math.abs(out.leaseTotalCost - out.loanTotalCost);
     var verdictTitle = document.getElementById('ec-verdict-title');
@@ -399,16 +412,21 @@ details.faq p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65;marg
   }
 
   costSlider.addEventListener('input', render);
-  rateSlider.addEventListener('input', render);
+  leaseRateSlider.addEventListener('input', render);
+  loanRateSlider.addEventListener('input', render);
   termSelect.addEventListener('change', render);
 
   costText.addEventListener('change', function(){
     var v = Number(String(costText.value).replace(/[^0-9.]/g, ''));
     if (!isNaN(v)) { costSlider.value = Math.min(2000000, Math.max(5000, v)); render(); }
   });
-  rateText.addEventListener('change', function(){
-    var v = Number(String(rateText.value).replace(/[^0-9.]/g, ''));
-    if (!isNaN(v)) { rateSlider.value = Math.min(20, Math.max(5, v)); render(); }
+  leaseRateText.addEventListener('change', function(){
+    var v = Number(String(leaseRateText.value).replace(/[^0-9.]/g, ''));
+    if (!isNaN(v)) { leaseRateSlider.value = Math.min(15, Math.max(5, v)); render(); }
+  });
+  loanRateText.addEventListener('change', function(){
+    var v = Number(String(loanRateText.value).replace(/[^0-9.]/g, ''));
+    if (!isNaN(v)) { loanRateSlider.value = Math.min(20, Math.max(7, v)); render(); }
   });
 
   render();
