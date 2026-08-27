@@ -261,6 +261,10 @@
             <option value="pay_invoices">Invoices</option>
             <option value="pay_gov_tax">Government (Tax / BAS)</option>
           </optgroup>
+          <optgroup label="Unlock">
+            <option value="advance_invoices">Cash Tied Up in Unpaid Invoices</option>
+            <option value="rd_tax_incentive">R&amp;D Tax Incentive Claim</option>
+          </optgroup>
           <optgroup label="Purchase">
             <option value="purchase_equipment">Equipment / Technology</option>
             <option value="purchase_vehicle">Vehicle</option>
@@ -589,6 +593,8 @@ var purposeLabels = {
   pay_expenses: 'business expenses',
   pay_invoices: 'invoice payments',
   pay_gov_tax: 'tax obligations',
+  advance_invoices: 'unlocking unpaid invoices',
+  rd_tax_incentive: 'your R&D Tax Incentive claim',
   purchase_equipment: 'equipment finance',
   purchase_vehicle: 'vehicle finance',
   purchase_business: 'business acquisition',
@@ -639,6 +645,8 @@ var purposeProductMap = {
   pay_expenses: { primary: ['line'], secondary: ['term-loan','second-mortgage'] },
   pay_invoices: { primary: ['invoice','line'], secondary: ['term-loan','second-mortgage'] },
   pay_gov_tax: { primary: ['line','term-loan'], secondary: ['invoice','second-mortgage'] },
+  advance_invoices: { primary: ['invoice'], secondary: ['line','trade'] },
+  rd_tax_incentive: { primary: ['invoice'], secondary: ['term-loan','trade'] },
   purchase_equipment: { primary: ['lease'], secondary: ['term-loan','second-mortgage'] },
   purchase_business: { primary: ['term-loan'], secondary: ['line','second-mortgage'] },
   purchase_commercial_property: { primary: ['mortgage','second-mortgage'], secondary: ['term-loan'] },

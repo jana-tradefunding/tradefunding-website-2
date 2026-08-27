@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Business Term Loans — Trade Funding</title>
-<meta name="description" content="Compare 70+ bank and non-bank lenders for business term loans. Facilities from $10k to $5M with flexible terms and zero residential property security required.">
+<title>Merchant Cash Advance — Trade Funding</title>
+<meta name="description" content="Compare merchant cash advance options from 70+ Australian lenders. Advances from $5,000 to $600,000, factor rates from 1.15, repaid as a percentage of your daily card sales.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/tokens.css">
@@ -33,12 +33,28 @@ details.faq summary::-webkit-details-marker{display:none}
 details.faq summary::after{content:'+';float:right;color:var(--text-secondary)}
 details.faq[open] summary::after{content:'\2013'}
 details.faq p{padding:0 4px 20px;color:var(--text-secondary);line-height:1.65;max-width:680px}
+.cp-calc-card{background:#fff;border:1px solid var(--border-neutral);padding:32px}
+.cp-calc-row{margin-bottom:22px}
+.cp-calc-label{display:flex;align-items:center;justify-content:space-between;font-weight:500;font-size:0.85rem;color:var(--text-secondary);margin-bottom:10px}
+.cp-calc-label span:last-child{font-weight:600;color:var(--navy)}
+.cp-calc-row input[type="range"]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:var(--border-neutral);outline:none}
+.cp-calc-row input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff;box-shadow:0 0 0 1px var(--border-neutral)}
+.cp-calc-row input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff}
+.cp-calc-out{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-neutral);border:1px solid var(--border-neutral);margin-top:26px}
+.cp-calc-out-cell{background:var(--bg-soft);padding:18px 20px}
+.cp-calc-out-cell:first-child{background:var(--navy)}
+.cp-calc-out-cell:first-child .cp-calc-out-label{color:rgba(255,255,255,0.6)}
+.cp-calc-out-cell:first-child .cp-calc-out-value{color:#fff}
+.cp-calc-out-label{font-weight:500;font-size:0.78rem;color:var(--text-secondary);margin-bottom:6px}
+.cp-calc-out-value{font-weight:700;font-size:1.4rem;color:var(--navy)}
+.cp-calc-note{font-size:0.78rem;color:var(--text-secondary);margin-top:18px;line-height:1.6}
 @media (max-width:900px){
 .cp-grid-2{grid-template-columns:1fr!important}
 .cp-grid-4{grid-template-columns:repeat(2,1fr)!important}
 .cp-grid-3{grid-template-columns:repeat(2,1fr)!important}
 .cp-preview-head,.cp-preview-row{grid-template-columns:1.4fr 1fr 0.8fr!important}
 .cp-preview-head span:nth-child(2),.cp-preview-row span:nth-child(2){display:none}
+.cp-calc-out{grid-template-columns:1fr!important}
 }
 </style>
 </head>
@@ -53,8 +69,8 @@ details.faq p{padding:0 4px 20px;color:var(--text-secondary);line-height:1.65;ma
 <span class="tf-nav-link">Products<span class="tf-caret" aria-hidden="true"></span></span>
 <div class="tf-mega-panel" style="width:400px;max-height:80vh;overflow-y:auto">
 <span style="display:block;padding:2px 14px 12px;margin-bottom:6px;border-bottom:1px solid var(--border);font-family:var(--font-heading);font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-400)">Fund My Business</span>
-<a href="index.html"><span class="tf-mega-heading">Business Term Loans</span><div class="tf-mega-sub">A lump sum with fixed repayments for growth or working capital.</div></a>
-<a href="../merchant-cash-advance/index.html"><span class="tf-mega-heading">Merchant Cash Advance</span><div class="tf-mega-sub">An advance repaid as a percentage of card sales.</div></a>
+<a href="../business-term-loans/index.html"><span class="tf-mega-heading">Business Term Loans</span><div class="tf-mega-sub">A lump sum with fixed repayments for growth or working capital.</div></a>
+<a href="index.html"><span class="tf-mega-heading">Merchant Cash Advance</span><div class="tf-mega-sub">An advance repaid as a percentage of card sales.</div></a>
 <a href="../r-and-d-funding/index.html"><span class="tf-mega-heading">R&amp;D Tax Incentive Funding</span><div class="tf-mega-sub">Access your R&amp;D Tax Incentive claim before the ATO pays out.</div></a>
 <a href="../charge-card/index.html"><span class="tf-mega-heading">Business Charge Card</span><div class="tf-mega-sub">Team spending power on a card built for business expenses.</div></a>
 <a href="../business-line-of-credit/index.html"><span class="tf-mega-heading">Business Line of Credit</span><div class="tf-mega-sub">Draw funds as needed, pay interest only on what you use.</div></a>
@@ -97,13 +113,13 @@ details.faq p{padding:0 4px 20px;color:var(--text-secondary);line-height:1.65;ma
 <section style="background:var(--bg-soft);padding:64px 0 72px">
 <div class="container cp-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
 <div>
-<div style="font-weight:500;font-size:0.82rem;color:var(--text-secondary);margin-bottom:20px">Commercial &gt; Business Term Loans</div>
-<h1 class="section-title" style="margin-bottom:18px">Business term loans, structured around your cash flow.</h1>
-<p style="font-size:1rem;line-height:1.65;color:var(--text-secondary);max-width:480px;margin-bottom:28px">Compare 70+ bank and non-bank lenders. Facilities from $10k to $5M with flexible terms and zero residential property security required.</p>
+<div style="font-weight:500;font-size:0.82rem;color:var(--text-secondary);margin-bottom:20px">Commercial &gt; Merchant Cash Advance</div>
+<h1 class="section-title" style="margin-bottom:18px">Revenue coming in? Get tomorrow&rsquo;s sales today.</h1>
+<p style="font-size:1rem;line-height:1.65;color:var(--text-secondary);max-width:480px;margin-bottom:28px">Compare merchant cash advance options from 70+ lenders. Get an advance of $5,000 to $600,000 against your future card sales, repaid automatically as a fixed percentage of daily turnover &mdash; not a loan, no fixed monthly repayment.</p>
 <div class="card" style="padding:24px;max-width:440px">
-<div class="cp-field-row"><span>Loan amount</span><span>$250,000</span></div>
-<div class="cp-field-row"><span>Preferred term</span><span>1 to 5 Years</span></div>
-<div class="cp-field-row" style="border-bottom:none"><span>Monthly revenue</span><span>$40,000+</span></div>
+<div class="cp-field-row"><span>Advance amount</span><span>$5,000 to $600,000</span></div>
+<div class="cp-field-row"><span>Repayment</span><span>Daily holdback on card sales</span></div>
+<div class="cp-field-row" style="border-bottom:none"><span>Factor rate from</span><span>1.15</span></div>
 <a href="../../home-shared/apply/index.html?purpose=cashflow_working_capital" class="btn btn-primary" style="width:100%;padding:11px;margin-top:18px">Get My Free Compare Report &rarr;</a>
 <p style="text-align:center;font-weight:500;font-size:0.78rem;color:var(--text-secondary);margin:16px 0 0">No credit check &middot; No commitment &middot; 24hr turnaround</p>
 </div>
@@ -111,13 +127,13 @@ details.faq p{padding:0 4px 20px;color:var(--text-secondary);line-height:1.65;ma
 <div class="card" style="overflow:hidden;padding:0">
 <div style="padding:16px 24px;border-bottom:1px solid var(--border)">
 <div style="font-weight:600;font-size:0.9rem;color:var(--navy)">Compare Report Preview</div>
-<div style="font-weight:400;font-size:0.8rem;color:var(--text-secondary);margin-top:2px">Matching lenders for $250,000 Business Term Loan</div>
+<div style="font-weight:400;font-size:0.8rem;color:var(--text-secondary);margin-top:2px">Matching lenders for a $50,000 Merchant Cash Advance</div>
 </div>
 <div style="padding:0 24px">
-<div class="cp-preview-head"><span>Lender</span><span>Product</span><span>Rate</span><span>Amount</span><span>S.T.A.R.</span></div>
-<div class="cp-preview-row"><span style="font-weight:600;color:var(--navy)">Judo Bank</span><span style="color:var(--text-secondary)">Term Loan</span><span style="color:var(--navy)">9.45% p.a.</span><span style="color:var(--navy)">$250,000</span><span style="font-weight:600;color:var(--navy)">8.6 <span style="color:var(--skyblue);font-size:0.72rem">Best</span></span></div>
-<div class="cp-preview-row"><span style="font-weight:600;color:var(--navy)">Grow Finance</span><span style="color:var(--text-secondary)">Growth Facility</span><span style="color:var(--navy)">11.20% p.a.</span><span style="color:var(--navy)">$180,000</span><span style="font-weight:600;color:var(--navy)">8.1</span></div>
-<div class="cp-preview-row" style="border-bottom:none"><span style="font-weight:600;color:var(--navy)">Shift</span><span style="color:var(--text-secondary)">Term Facility</span><span style="color:var(--navy)">10.80% p.a.</span><span style="color:var(--navy)">$250,000</span><span style="font-weight:600;color:var(--navy)">7.9</span></div>
+<div class="cp-preview-head"><span>Lender</span><span>Product</span><span>Factor</span><span>Holdback</span><span>S.T.A.R.</span></div>
+<div class="cp-preview-row"><span style="font-weight:600;color:var(--navy)">Prospa</span><span style="color:var(--text-secondary)">Revenue Capital</span><span style="color:var(--navy)">1.18</span><span style="color:var(--navy)">12%</span><span style="font-weight:600;color:var(--navy)">8.1 <span style="color:var(--skyblue);font-size:0.72rem">Best</span></span></div>
+<div class="cp-preview-row"><span style="font-weight:600;color:var(--navy)">Bizcap</span><span style="color:var(--text-secondary)">Cash Advance</span><span style="color:var(--navy)">1.25</span><span style="color:var(--navy)">15%</span><span style="font-weight:600;color:var(--navy)">7.3</span></div>
+<div class="cp-preview-row" style="border-bottom:none"><span style="font-weight:600;color:var(--navy)">Banjo Loans</span><span style="color:var(--text-secondary)">Merchant Advance</span><span style="color:var(--navy)">1.32</span><span style="color:var(--navy)">18%</span><span style="font-weight:600;color:var(--navy)">6.8</span></div>
 </div>
 <div style="padding:16px 24px;background:var(--bg-soft);margin-top:20px"><span style="font-weight:500;font-size:0.82rem;color:var(--text-secondary)">+ 6 more lenders pre-qualified in your full personalized report</span></div>
 </div>
@@ -127,67 +143,94 @@ details.faq p{padding:0 4px 20px;color:var(--text-secondary);line-height:1.65;ma
 <!-- FACILITY PARAMETERS -->
 <section style="background:#fff;padding:72px 0">
 <div class="container cp-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-neutral);border:1px solid var(--border-neutral)">
-<div class="cp-param-card"><div class="cp-param-label">Loan Quantum</div><div class="cp-param-value">$10,000 to $5,000,000+ AUD</div></div>
-<div class="cp-param-card"><div class="cp-param-label">Facility Terms</div><div class="cp-param-value">1 to 7 Years (Fixed or Flexible Repayments)</div></div>
-<div class="cp-param-card"><div class="cp-param-label">Indicative Pricing</div><div class="cp-param-value">From 8.50% p.a. (Risk-adjusted per profile)</div></div>
-<div class="cp-param-card"><div class="cp-param-label">Decision Velocity</div><div class="cp-param-value">Pre-qualification in 24 hours &middot; Funds in 3&ndash;5 days</div></div>
+<div class="cp-param-card"><div class="cp-param-label">Advance Amount</div><div class="cp-param-value">$5,000 to $600,000+ AUD</div></div>
+<div class="cp-param-card"><div class="cp-param-label">Repayment Basis</div><div class="cp-param-value">Fixed % of daily card sales, not a scheduled instalment</div></div>
+<div class="cp-param-card"><div class="cp-param-label">Cost Structure</div><div class="cp-param-value">Factor rate from 1.15 (typically 1.1&ndash;1.5), not an interest rate</div></div>
+<div class="cp-param-card"><div class="cp-param-label">Decision Velocity</div><div class="cp-param-value">Approval in 24&ndash;48 hours &middot; Some same-day funding</div></div>
+</div>
+</section>
+
+<!-- CALCULATOR -->
+<section style="background:var(--bg-soft);padding:80px 0">
+<div class="container cp-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+<div>
+<span class="eyebrow">Advance Calculator</span>
+<h2 class="section-title" style="margin:14px 0 16px">This isn&rsquo;t an interest rate. Here&rsquo;s what it actually costs.</h2>
+<p style="font-size:0.95rem;line-height:1.65;color:var(--text-secondary);max-width:440px">A merchant cash advance is priced with a factor rate, not an interest rate &mdash; the total you repay is fixed the moment you draw down, regardless of how long it takes. How fast you clear it depends on your average daily card sales and the holdback percentage. Adjust both sliders to see an indicative total cost and repayment timeline.</p>
+</div>
+<div class="cp-calc-card" data-calc="factor" data-calc-factor-rate="1.25" data-calc-holdback="15">
+<div class="cp-calc-row">
+<div class="cp-calc-label"><span>Advance amount</span><span data-calc-output="amount">$50,000</span></div>
+<input type="range" data-calc-input="amount" min="5000" max="600000" step="5000" value="50000">
+</div>
+<div class="cp-calc-row">
+<div class="cp-calc-label"><span>Average daily card sales</span><span data-calc-output="dailySales">$2,000</span></div>
+<input type="range" data-calc-input="dailySales" min="200" max="20000" step="100" value="2000">
+</div>
+<div class="cp-calc-out">
+<div class="cp-calc-out-cell"><div class="cp-calc-out-label">Total repayment</div><div class="cp-calc-out-value" data-calc-output="repayment">$62,500</div></div>
+<div class="cp-calc-out-cell"><div class="cp-calc-out-label">Total cost of advance</div><div class="cp-calc-out-value" data-calc-output="cost">$12,500</div></div>
+<div class="cp-calc-out-cell"><div class="cp-calc-out-label">Estimated time to repay</div><div class="cp-calc-out-value" data-calc-output="estDays">208 days</div></div>
+</div>
+<p class="cp-calc-note">Illustrative only, based on a 1.25 factor rate and a 15% daily holdback. Your Compare Report shows the real factor rate, holdback percentage, and estimated repayment period each lender offers your business.</p>
+</div>
 </div>
 </section>
 
 <!-- S.T.A.R. FRAMEWORK -->
-<section style="background:var(--bg-soft);padding:80px 0">
+<section style="background:#fff;padding:80px 0">
 <div class="container">
 <h2 class="section-title" style="text-align:center;margin-bottom:40px">See the facts. Decide with confidence.</h2>
 <div class="cp-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
-<div class="cp-star-card" style="border-top-color:var(--star-s)"><div class="cp-star-badge">S</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Security</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">Unsecured options available up to $500k. Asset-backed or director-guaranteed facilities for larger amounts, never requiring residential property mortgages.</p></div>
-<div class="cp-star-card" style="border-top-color:var(--star-t)"><div class="cp-star-badge">T</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Term</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">Fixed 12 to 60-month loan amortisation aligned directly with your equipment lifecycle or expansion milestones.</p></div>
-<div class="cp-star-card" style="border-top-color:var(--star-a)"><div class="cp-star-badge">A</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Amount</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">Borrowing power calculated against your trading performance and bank cash flow, ensuring full capital delivery.</p></div>
-<div class="cp-star-card" style="border-top-color:var(--star-r)"><div class="cp-star-badge">R</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Rate</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">Transparent, annualised cost comparisons stripping out hidden early payout penalties or ongoing line fees.</p></div>
+<div class="cp-star-card" style="border-top-color:var(--star-s)"><div class="cp-star-badge">S</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Security</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">Structured as a purchase of future receivables, not a loan. Most providers take a General Security Agreement (PPSR) rather than requiring residential property as security.</p></div>
+<div class="cp-star-card" style="border-top-color:var(--star-t)"><div class="cp-star-badge">T</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Term</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">No fixed term. The advance is cleared automatically once the daily holdback deductions add up to the full repayment amount, commonly within 6&ndash;12 months.</p></div>
+<div class="cp-star-card" style="border-top-color:var(--star-a)"><div class="cp-star-badge">A</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Amount</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">Advances typically run from $5,000 to $600,000, sized against your recent average monthly card turnover rather than your credit profile.</p></div>
+<div class="cp-star-card" style="border-top-color:var(--star-r)"><div class="cp-star-badge">R</div><h3 style="font-weight:600;font-size:1.02rem;margin-bottom:10px">Rate</h3><p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary)">Priced on a factor rate from 1.15, typically 1.1 to 1.5, with a daily holdback of 10% to 25% of card sales. Your report shows the real factor rate and holdback for each match.</p></div>
 </div>
 </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section style="background:#fff;padding:80px 0">
+<section style="background:var(--bg-soft);padding:80px 0">
 <div class="container">
 <span class="eyebrow">How It Works</span>
-<h2 class="section-title" style="margin-bottom:48px;max-width:640px">From ABN to ranked term loan offers. Automatically.</h2>
+<h2 class="section-title" style="margin-bottom:48px;max-width:640px">From ABN to a ranked shortlist of cash advance offers. Automatically.</h2>
 <div class="process-grid grid-3" style="position:static">
-<div class="cp-step"><div class="cp-step-eyebrow">01</div><h3 style="font-weight:600;font-size:1.1rem;margin-bottom:10px">Tell us about your business</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">Your ABN, loan amount, and a few details about trading history and revenue.</p></div>
+<div class="cp-step"><div class="cp-step-eyebrow">01</div><h3 style="font-weight:600;font-size:1.1rem;margin-bottom:10px">Tell us about your business</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">Your ABN, preferred advance amount, and a few details about average daily or monthly card sales.</p></div>
 <div class="cp-step"><div class="cp-step-eyebrow">02</div><h3 style="font-weight:600;font-size:1.1rem;margin-bottom:10px">We score you against 70+ lenders</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">Cashper, our matching engine, checks your profile against live lender criteria in real time.</p></div>
-<div class="cp-step"><div class="cp-step-eyebrow">03</div><h3 style="font-weight:600;font-size:1.1rem;margin-bottom:10px">Get your ranked offers</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">A S.T.A.R.-scored Compare Report showing every offer you actually qualify for.</p></div>
+<div class="cp-step"><div class="cp-step-eyebrow">03</div><h3 style="font-weight:600;font-size:1.1rem;margin-bottom:10px">Get your ranked offers</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">A S.T.A.R.-scored Compare Report showing every factor rate and holdback percentage you actually qualify for.</p></div>
 </div>
 </div>
 </section>
 
 <!-- ADVISORY WORKFLOW -->
-<section style="background:var(--bg-soft);padding:80px 0">
+<section style="background:#fff;padding:80px 0">
 <div class="container">
 <h2 class="section-title" style="margin-bottom:48px">We don&rsquo;t stop at the report.</h2>
 <div class="cp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
-<div class="cp-advisory-card"><div style="font-weight:700;font-size:0.85rem;color:var(--ink-400);margin-bottom:16px">1</div><h3 style="font-weight:600;font-size:1.05rem;margin-bottom:10px">Your Personalised Report</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">Every offer scored on Security, Term, Amount and Rate, so you can compare on the facts that matter.</p></div>
-<div class="cp-advisory-card"><div style="font-weight:700;font-size:0.85rem;color:var(--ink-400);margin-bottom:16px">2</div><h3 style="font-weight:600;font-size:1.05rem;margin-bottom:10px">Specialist Walkthrough</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">A Trade Funding specialist explains the trade-offs between offers in plain English, no jargon.</p></div>
-<div class="cp-advisory-card"><div style="font-weight:700;font-size:0.85rem;color:var(--ink-400);margin-bottom:16px">3</div><h3 style="font-weight:600;font-size:1.05rem;margin-bottom:10px">Settlement Execution</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">We manage formal application submissions, lender negotiations, and documentation through to final settlement.</p></div>
+<div class="cp-advisory-card"><div style="font-weight:700;font-size:0.85rem;color:var(--ink-400);margin-bottom:16px">1</div><h3 style="font-weight:600;font-size:1.05rem;margin-bottom:10px">Your Personalised Report</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">Every advance scored on Security, Term, Amount and Rate, so you compare on facts, not marketing.</p></div>
+<div class="cp-advisory-card"><div style="font-weight:700;font-size:0.85rem;color:var(--ink-400);margin-bottom:16px">2</div><h3 style="font-weight:600;font-size:1.05rem;margin-bottom:10px">Specialist Walkthrough</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">A Trade Funding specialist explains factor rates, holdback mechanics, and whether a cheaper alternative fits your business better.</p></div>
+<div class="cp-advisory-card"><div style="font-weight:700;font-size:0.85rem;color:var(--ink-400);margin-bottom:16px">3</div><h3 style="font-weight:600;font-size:1.05rem;margin-bottom:10px">Settlement Execution</h3><p style="font-size:0.88rem;line-height:1.6;color:var(--text-secondary)">We manage the formal application, lender negotiation, and documentation through to your advance being funded.</p></div>
 </div>
 </div>
 </section>
 
 <!-- COMPARISON TABLE -->
-<section style="background:#fff;padding:80px 0">
+<section style="background:var(--bg-soft);padding:80px 0">
 <div class="container-prose">
-<h2 class="section-title" style="text-align:center;margin-bottom:40px">Trade Funding vs. traditional banks.</h2>
+<h2 class="section-title" style="text-align:center;margin-bottom:40px">Trade Funding vs. going direct to one provider.</h2>
 <div class="cp-compare-table">
-<div class="cp-compare-head"><span></span><span>Trade Funding</span><span>Traditional Bank</span></div>
-<div class="cp-compare-row"><span style="font-weight:600;color:var(--navy)">Speed to Approval</span><span style="color:var(--text-secondary)">24 hours to pre-qualification</span><span style="color:var(--ink-400)">2 to 6 weeks</span></div>
-<div class="cp-compare-row"><span style="font-weight:600;color:var(--navy)">Security Position</span><span style="color:var(--text-secondary)">Unsecured options to $500k</span><span style="color:var(--ink-400)">Often requires property security</span></div>
-<div class="cp-compare-row"><span style="font-weight:600;color:var(--navy)">Lender Access</span><span style="color:var(--text-secondary)">70+ banks and non-banks compared</span><span style="color:var(--ink-400)">Single lender only</span></div>
-<div class="cp-compare-row" style="border-bottom:none"><span style="font-weight:600;color:var(--navy)">Financial Documentation</span><span style="color:var(--text-secondary)">Bank statement based assessment</span><span style="color:var(--ink-400)">Full financials and tax returns required</span></div>
+<div class="cp-compare-head"><span></span><span>Trade Funding</span><span>Single Provider</span></div>
+<div class="cp-compare-row"><span style="font-weight:600;color:var(--navy)">Speed to Approval</span><span style="color:var(--text-secondary)">24&ndash;48 hours across the panel</span><span style="color:var(--ink-400)">24&ndash;48 hours, one offer only</span></div>
+<div class="cp-compare-row"><span style="font-weight:600;color:var(--navy)">Cost Transparency</span><span style="color:var(--text-secondary)">Factor rate and holdback shown side by side, S.T.A.R.-scored</span><span style="color:var(--ink-400)">Single factor rate, no benchmark</span></div>
+<div class="cp-compare-row"><span style="font-weight:600;color:var(--navy)">Lender Access</span><span style="color:var(--text-secondary)">70+ MCA and alternative-finance providers compared</span><span style="color:var(--ink-400)">Single provider only</span></div>
+<div class="cp-compare-row" style="border-bottom:none"><span style="font-weight:600;color:var(--navy)">Alternative Options</span><span style="color:var(--text-secondary)">Flags cheaper term loan or line of credit options if you qualify</span><span style="color:var(--ink-400)">No visibility of alternatives</span></div>
 </div>
 </div>
 </section>
 
 <!-- LENDER PANEL -->
-<section style="background:var(--bg-soft);padding:80px 0;text-align:center">
+<section style="background:#fff;padding:80px 0;text-align:center">
 <div class="container">
 <h2 class="section-title" style="margin-bottom:12px">70+ of Australia&rsquo;s leading lenders. One place to compare them.</h2>
 <p style="font-size:0.95rem;color:var(--text-secondary);margin-bottom:48px">A selection of the panel.</p>
@@ -205,21 +248,22 @@ details.faq p{padding:0 4px 20px;color:var(--text-secondary);line-height:1.65;ma
 </section>
 
 <!-- FAQ -->
-<section style="background:#fff;padding:80px 0">
+<section style="background:var(--bg-soft);padding:80px 0">
 <div class="container-prose">
 <h2 class="section-title" style="margin-bottom:40px">Frequently asked questions.</h2>
-<details class="faq"><summary>What are the minimum criteria to qualify?</summary><p>Most lenders require at least 6 months trading history and $10,000+ in average monthly revenue. Some non-bank lenders will consider newer businesses on a case-by-case basis.</p></details>
-<details class="faq"><summary>Do I need to put up my house as security?</summary><p>No. Unsecured facilities are available up to $500,000. Larger facilities can be secured against business assets or a director guarantee, without requiring a residential property mortgage.</p></details>
-<details class="faq"><summary>How fast can funds be disbursed?</summary><p>Pre-qualification takes 24 hours. Once you accept an offer and complete the lender&rsquo;s formal application, funds are typically disbursed within 3 to 5 business days.</p></details>
-<details class="faq"><summary>Are there discounts for early payout?</summary><p>Some lenders offer reduced interest for early payout, while others charge a fixed-fee structure regardless of payout timing. Your Compare Report shows the payout terms for each matched lender.</p></details>
+<details class="faq" open><summary>What is a factor rate and how does it differ from an interest rate?</summary><p>A factor rate is a decimal number, such as 1.25, that you multiply by your advance amount to get your total repayment. Unlike an interest rate, a factor rate doesn't account for time &mdash; whether you repay in 6 months or 12 months, you pay the same total amount, so repaying faster increases your effective annual cost.</p></details>
+<details class="faq"><summary>How much does a merchant cash advance really cost?</summary><p>The true cost depends on the factor rate and how quickly you repay. Factor rates typically range from 1.1 to 1.5. Because MCAs are often repaid within 6&ndash;12 months, the effective annualised cost can run well above what a term loan or line of credit would charge. Your Compare Report shows the real factor rate for each matched lender.</p></details>
+<details class="faq"><summary>What is the daily holdback and how does it work?</summary><p>The daily holdback is the percentage of your daily card sales, typically 10% to 25%, that's automatically deducted by your payment processor to repay the advance. There's no fixed monthly instalment: on a slow trading day you repay less, and on a strong day you repay more.</p></details>
+<details class="faq"><summary>Can I get a merchant cash advance with bad credit?</summary><p>Often, yes. Because repayment is tied to your card sales rather than a fixed monthly commitment, many MCA providers place more weight on your trading history and turnover than on your credit file.</p></details>
+<details class="faq"><summary>Is a merchant cash advance technically a loan?</summary><p>Technically, no. An MCA is structured as a purchase of future receivables rather than a loan, which is part of why it's priced with a factor rate instead of an interest rate.</p></details>
 </div>
 </section>
 
 <!-- EXIT CTA -->
-<section style="background:var(--bg-soft);padding:88px 0;text-align:center">
+<section style="background:#fff;padding:88px 0;text-align:center">
 <div class="container-prose">
 <span class="eyebrow" style="text-align:center">No Credit Check</span>
-<h2 class="section-title" style="margin:14px 0 16px">Ready to see every term loan option available to your business?</h2>
+<h2 class="section-title" style="margin:14px 0 16px">Ready to see every cash advance option available to your business?</h2>
 <p style="font-size:1rem;color:var(--text-secondary);margin-bottom:32px">Start your free comparison and receive your S.T.A.R. Compare Report within 24 hours.</p>
 <a href="../../home-shared/apply/index.html?purpose=cashflow_working_capital" class="btn btn-primary" style="padding:0 32px;height:52px">Get My Free Compare Report &rarr;</a>
 <p style="font-weight:500;font-size:0.8rem;color:var(--text-secondary);margin:20px 0 0">No credit check &middot; No commitment &middot; Ready in 24hr</p>

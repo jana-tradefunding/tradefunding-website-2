@@ -1,5 +1,136 @@
 // Trade Funding — shared site behaviour (vanilla JS, no framework/runtime dependency)
+
+// --- Pure product-calculator functions (no DOM refs) — ported from
+// oldsite/commercial/product-page.js and extended for non-amortizing
+// facility types (revolving, advance-against-receivable, factor-rate). ---
+function calcMonthly(principal, annualRatePct, months, mode) {
+  if (mode === 'FLAT') {
+    var R = annualRatePct / 100, T = months / 12, N = months;
+    var total = principal + principal * R * T;
+    var monthly = N > 0 ? total / N : 0;
+    return { monthly: monthly, total: total, interest: total - principal };
+  }
+  var r = annualRatePct / 100 / 12, n = months, M;
+  if (r === 0) { M = n > 0 ? principal / n : 0; }
+  else { M = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1); }
+  return { monthly: M, total: M * n, interest: M * n - principal };
+}
+function calcRevolving(drawnAmount, annualRatePct) {
+  var monthly = drawnAmount * (annualRatePct / 100) / 12;
+  return { monthly: monthly, annual: drawnAmount * (annualRatePct / 100) };
+}
+function calcAdvance(receivableAmount, advanceRatePct, feeRatePct, days) {
+  var advance = receivableAmount * (advanceRatePct / 100);
+  var fee = receivableAmount * (feeRatePct / 100) * (days / 30);
+  var balance = receivableAmount - advance - fee;
+  return { advance: advance, fee: fee, balance: balance };
+}
+function calcFactor(advanceAmount, factorRate, holdbackPct, avgDailySales) {
+  var repayment = advanceAmount * factorRate;
+  var cost = repayment - advanceAmount;
+  var dailyRepayment = avgDailySales * (holdbackPct / 100);
+  var estDays = dailyRepayment > 0 ? Math.ceil(repayment / dailyRepayment) : 0;
+  return { repayment: repayment, cost: cost, dailyRepayment: dailyRepayment, estDays: estDays };
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+
+  // --- Product calculators: any [data-calc] container drives its inputs/
+  // outputs declaratively. data-calc = amortizing | revolving | advance | factor.
+  // Inputs are marked [data-calc-input="field"], outputs [data-calc-output="field"].
+  (function () {
+    function fmt(n) { return '$' + Math.round(n).toLocaleString('en-AU'); }
+    function fmtInt(n) { return Math.round(n).toLocaleString('en-AU'); }
+    function parseAmount(str) { return parseInt(String(str).replace(/[^0-9]/g, ''), 10) || 0; }
+
+    document.querySelectorAll('[data-calc]').forEach(function (box) {
+      var type = box.getAttribute('data-calc');
+      var slider = box.querySelector('[data-calc-input="amount"]');
+      var amountText = box.querySelector('[data-calc-input-text="amount"]');
+      var termSelect = box.querySelector('[data-calc-input="months"]');
+      var modeBtns = box.querySelectorAll('[data-calc-mode-btn]');
+      var salesSlider = box.querySelector('[data-calc-input="dailySales"]');
+      if (!slider) return;
+
+      var mode = box.getAttribute('data-calc-mode') || 'APR';
+
+      function amount() { return parseFloat(slider.value) || 0; }
+      function months() { return termSelect ? parseInt(termSelect.value, 10) : (parseInt(box.getAttribute('data-calc-months'), 10) || 12); }
+      function rate() { return parseFloat(box.getAttribute('data-calc-rate')) || 0; }
+
+      function setOutput(field, text) {
+        box.querySelectorAll('[data-calc-output="' + field + '"]').forEach(function (el) { el.textContent = text; });
+      }
+
+      function updateSliderBg(el) {
+        var min = parseFloat(el.min) || 0, max = parseFloat(el.max) || 100, val = parseFloat(el.value) || 0;
+        var pct = ((val - min) / (max - min)) * 100;
+        el.style.background = 'linear-gradient(to right, var(--skyblue) ' + pct + '%, var(--border-neutral) ' + pct + '%)';
+      }
+
+      function update() {
+        updateSliderBg(slider);
+        if (salesSlider) updateSliderBg(salesSlider);
+
+        if (type === 'amortizing') {
+          var res = calcMonthly(amount(), rate(), months(), mode);
+          setOutput('monthly', fmt(res.monthly) + '/mo');
+          setOutput('total', fmt(res.total));
+          setOutput('interest', fmt(res.interest));
+        } else if (type === 'revolving') {
+          var rv = calcRevolving(amount(), rate());
+          setOutput('monthly', fmt(rv.monthly) + '/mo');
+          setOutput('annual', fmt(rv.annual));
+        } else if (type === 'advance') {
+          var advanceRate = parseFloat(box.getAttribute('data-calc-advance-rate')) || 80;
+          var feeRate = parseFloat(box.getAttribute('data-calc-fee-rate')) || 0;
+          var days = parseFloat(box.getAttribute('data-calc-days')) || 30;
+          var av = calcAdvance(amount(), advanceRate, feeRate, days);
+          setOutput('advance', fmt(av.advance));
+          setOutput('fee', fmt(av.fee));
+          setOutput('balance', fmt(av.balance));
+        } else if (type === 'factor') {
+          var factorRate = parseFloat(box.getAttribute('data-calc-factor-rate')) || 1.15;
+          var holdback = parseFloat(box.getAttribute('data-calc-holdback')) || 15;
+          var dailySales = salesSlider ? (parseFloat(salesSlider.value) || 0) : (parseFloat(box.getAttribute('data-calc-daily-sales')) || 0);
+          var fa = calcFactor(amount(), factorRate, holdback, dailySales);
+          setOutput('repayment', fmt(fa.repayment));
+          setOutput('cost', fmt(fa.cost));
+          setOutput('dailyRepayment', fmt(fa.dailyRepayment));
+          setOutput('estDays', fmtInt(fa.estDays) + ' days');
+        }
+        setOutput('amount', fmt(amount()));
+        if (salesSlider) setOutput('dailySales', fmt(parseFloat(salesSlider.value) || 0));
+      }
+
+      slider.addEventListener('input', function () {
+        if (amountText) amountText.value = fmtInt(amount());
+        update();
+      });
+      if (amountText) {
+        amountText.addEventListener('input', function () {
+          var min = parseFloat(slider.min) || 0, max = parseFloat(slider.max) || 5000000;
+          slider.value = Math.min(Math.max(parseAmount(amountText.value), min), max);
+          update();
+        });
+        amountText.addEventListener('blur', function () {
+          amountText.value = fmtInt(amount());
+        });
+      }
+      if (termSelect) termSelect.addEventListener('change', update);
+      if (salesSlider) salesSlider.addEventListener('input', update);
+      modeBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          mode = btn.getAttribute('data-calc-mode-btn');
+          modeBtns.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          update();
+        });
+      });
+
+      update();
+    });
+  }());
 
   // --- Generic accordion toggle: any [data-accordion-toggle] controls the
   // sibling [data-accordion-panel], flips aria-expanded and a chevron rotation.
